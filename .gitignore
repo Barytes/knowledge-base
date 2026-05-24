@@ -1,0 +1,12 @@
+.DS_Store
+.env
+**/.env
+**/*.key
+**/*.pem
+**/*secret*
+**/*token*
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.obsidian/workspace.json
