@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>代码库作为知识来源 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/codebases-as-knowledge-sources.md</div>
+      <h1>代码库作为知识来源</h1>
+<h2>简短回答</h2>
+<p>代码库应该被纳入知识库，但通常不应该以“整仓库直接变成 wiki”的方式纳入。</p>
+<p>更好的做法是把代码库视为一种高价值原始证据源，再把其中可复用的工程实践提炼成维护过的知识页与桥接页。</p>
+<h2>为什么代码库重要</h2>
+<p>和文章或博客相比，代码库有两个独特价值：</p>
+<ul>
+<li>它暴露了工程实践在真实约束下到底是如何落地的。</li>
+<li>它能区分“作者宣称的做法”和“系统真正执行的做法”。</li>
+</ul>
+<p>如果你想理解像 harness engineering 这样的实践，代码库往往比理念文章更接近真实机制。</p>
+<h2>但不要天真摄取</h2>
+<p>直接把整个代码仓库都当成 wiki 内容，通常会带来三个问题：</p>
+<ul>
+<li>变动太快，维护成本会失控。</li>
+<li>实现细节太多，会淹没真正可迁移的模式。</li>
+<li>你会把项目特定约束误当成通用原则。</li>
+</ul>
+<p>所以代码库更适合当证据层，而不适合直接变成维护层。</p>
+<h2>推荐分类方式</h2>
+<h3>第三方仓库</h3>
+<p>如果你研究的是别人的仓库，它最接近 <code>raw/external/</code> 的角色。</p>
+<p>知识库真正关心的不是把整个仓库复制进来，而是保存：</p>
+<ul>
+<li>仓库地址与观察时间</li>
+<li>关键 commit 或 release</li>
+<li>相关文件路径</li>
+<li>少量必要摘录或结构说明</li>
+</ul>
+<h3>自己的仓库</h3>
+<p>如果你研究的是自己的仓库，它通常属于 mixed evidence。</p>
+<ul>
+<li>代码与配置里可观察的机制，仍然可以抽成世界层面的工程知识。</li>
+<li>你反复采用的取舍方式，才应该逐步沉淀到 <code>wiki/self/</code>。</li>
+<li>“这个项目该如何借鉴这些实践” 这类结论，更适合写进相关 <code>wiki/topics/</code> 页面。</li>
+</ul>
+<h2>该从仓库里提炼什么</h2>
+<p>当你想理解工程实践时，不要按“文件类型”平均阅读，而应该按“控制机制”抽样。</p>
+<p>对于 harness engineering，优先看这些证据面：</p>
+<ul>
+<li>任务入口：<code>AGENTS.md</code>、system prompts、skill definitions、planner configs</li>
+<li>状态外化：progress files、task specs、structured plans、scratchpads</li>
+<li>协调机制：worker orchestration、queues、state machines、mailboxes、branching rules</li>
+<li>验证机制：tests、evals、judges、review bots、sandbox rules、permission gates</li>
+<li>失败恢复：retries、resets、rollback scripts、checkpoints</li>
+<li>环境约束：CI、linters、repo rules、directory contracts</li>
+<li>演化痕迹：PR、commit、issue、ADR、postmortem</li>
+</ul>
+<p>这比“从头到尾读源码”更像是在阅读一套制度。</p>
+<h2>最佳写回形状</h2>
+<p>我建议把代码库实践写回成三类页面，而不是一种。</p>
+<h3>1. 仓库笔记页</h3>
+<p>记录某个仓库里到底存在什么机制。</p>
+<p>适合放在相关 <code>wiki/topics/</code> 目录，偏描述性。</p>
+<p>推荐结构：</p>
+<ul>
+<li>这个仓库要解决什么问题</li>
+<li>它用了哪些关键机制</li>
+<li>这些机制分别在防什么失败模式</li>
+<li>哪些部分明显依赖项目上下文</li>
+</ul>
+<h3>2. 实践主题页</h3>
+<p>把多个仓库里反复出现的机制提炼成主题知识页。</p>
+<p>例如 <code>Harness Engineering</code> 这类页面，重点不是某个函数怎么写，而是：</p>
+<ul>
+<li>常见控制层有哪些</li>
+<li>每一层在补偿什么能力缺口</li>
+<li>哪些设计是通用模式</li>
+<li>哪些 tradeoff 最常见</li>
+</ul>
+<h3>3. 桥接分析页</h3>
+<p>把“某个仓库里的实践”翻译成“对你当前项目意味着什么”。</p>
+<p>这类页面适合放在相关 <code>wiki/topics/</code> 目录，因为它混合了：</p>
+<ul>
+<li>代码库里的客观机制</li>
+<li>你当前项目的目标与约束</li>
+<li>你的取舍偏好</li>
+</ul>
+<h2>一套好的提炼流程</h2>
+<h3>第一步：冻结观察范围</h3>
+<p>先限定仓库、版本和问题，不要泛泛地说“研究这个 repo”。</p>
+<p>例如：</p>
+<ul>
+<li>看 <code>2026-03</code> 到 <code>2026-04</code> 的 harness 相关变更</li>
+<li>只研究权限门控与验证闭环</li>
+<li>只看 coding agent，不看产品功能层</li>
+</ul>
+<h3>第二步：建立机制清单</h3>
+<p>不要先总结价值观，先列机制清单。</p>
+<p>每条机制至少回答四个问题：</p>
+<ul>
+<li>它控制什么</li>
+<li>它防什么失败</li>
+<li>它依赖什么前提</li>
+<li>它的代价是什么</li>
+</ul>
+<h3>第三步：把机制和原则分开</h3>
+<p>例如：</p>
+<ul>
+<li>“使用 JSON task spec” 是机制</li>
+<li>“不要让执行者同时定义完成标准” 是原则</li>
+</ul>
+<p>知识库应尽量把这两层分开保存。</p>
+<h3>第四步：跨仓库或跨时间比较</h3>
+<p>真正有价值的实践通常来自比较，而不是单点摘录。</p>
+<p>可比维度包括：</p>
+<ul>
+<li>同一仓库在不同时期的变化</li>
+<li>两个仓库如何分别解决同一失败模式</li>
+<li>同一机制在模型能力提升前后的增删变化</li>
+</ul>
+<h3>第五步：写出可迁移结论</h3>
+<p>最后写回时，重点不应该是“这个 repo 里有这些文件”，而应该是：</p>
+<ul>
+<li>什么问题值得加 harness</li>
+<li>哪类机制适合什么规模</li>
+<li>什么是暂时补丁，什么是更稳定的约束</li>
+<li>哪些做法对你的项目值得试，哪些只是别人的负担</li>
+</ul>
+<h2>对本仓库的实际建议</h2>
+<p>如果你以后想系统研究某个代码仓库的工程实践，我建议在这个知识库里这样落：</p>
+<ul>
+<li>仓库事实和机制观察 -&gt; <code>wiki/topics/</code></li>
+<li>你反复偏好的工程取舍 -&gt; <code>wiki/self/</code></li>
+<li>“基于这个仓库，我该怎么设计自己的系统” -&gt; <code>wiki/topics/</code></li>
+</ul>
+<p>原始 repo 本身不必完整拷入，只要保留能支撑结论的证据面、路径、版本与少量关键摘录就够了。</p>
+<h2>一句话规则</h2>
+<p>把代码库当作“可执行制度的证据库”，而不是“需要全文转写进 wiki 的内容库”。</p>
+<h2>双 Skill 工作流</h2>
+<p>如果要把这件事自动化，最自然的拆法就是两个 skill。</p>
+<h3>1. <code>repo-map-ingest</code></h3>
+<p>负责第一次阅读 repo，并产出一张稳定的仓库地图。</p>
+<p>它的职责是：</p>
+<ul>
+<li>先把 GitHub 或本地 repo 的最小原始证据保存到 <code>raw/external/</code></li>
+<li>自动生成 <code>wiki/topics/</code> 下的 repo map 初稿</li>
+<li>自动刷新 <code>wiki/index.md</code> 与 <code>wiki/log.md</code></li>
+<li>冻结研究范围</li>
+<li>建立 architecture map</li>
+<li>记录机制清单</li>
+<li>留下 evidence anchors</li>
+</ul>
+<h3>2. <code>repo-practice-query</code></h3>
+<p>负责带着具体问题回到 repo，只补读必要证据。</p>
+<p>它的职责是：</p>
+<ul>
+<li>从 repo map 起步</li>
+<li>命中相关锚点</li>
+<li>提炼 portable practice</li>
+<li>写回 <code>wiki/topics/</code></li>
+</ul>
+<p>这个拆法比“一个大 skill 同时做全仓理解和按需取证”更稳，因为第一次广度工作和后续定向深挖，本来就不是同一种任务。</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+<li><a href="../context-memory-knowledge-system/knowledge-base-operating-model.html">知识库运行模型</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

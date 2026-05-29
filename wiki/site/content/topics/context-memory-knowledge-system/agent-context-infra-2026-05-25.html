@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Context Infra 前沿调研（2026-05-25） · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/context-memory-knowledge-system/agent-context-infra-2026-05-25.md</div>
+      <h1>Agent Context Infra 前沿调研（2026-05-25）</h1>
+<h2>摘要</h2>
+<p>截至 2026-05-25，<code>agent context infrastructure</code> 已经从“给 agent 加长期记忆”升级成一条更完整的基础设施主线：</p>
+<p>&gt; agent context infra 是让 agent 在长任务、多轮会话、多工具、多数据源、多用户、多 agent 与可变环境中，能够获取、组织、压缩、隔离、持久化、回写、治理、观察、回放和评测上下文的系统层。</p>
+<p>它的主语不是单个 <code>memory API</code>，而是 <code>context lifecycle</code>。Memory 只是其中跨轮次保留信息的子系统。更大的问题包括：哪些信息应进入模型窗口，哪些应留在外部状态；哪些经历应写成长期经验；谁能读取和修改；旧信息如何失效；错误记忆如何被纠正；上下文机制是否真的提升任务完成率、稳定性、成本和用户体验。</p>
+<p>2026 年 5 月的前沿信号很集中：研究侧开始把 memory 从静态 recall 推向 <code>write-manage-read</code>、经验抽象、多人记忆、环境经验和长任务评测；工程侧则分化成 protocol、stateful runtime、managed agents、memory layer、context database、coding-agent workflow、eval / observability 几个层。Anthropic Managed Agents 的 filesystem memory、Cloudflare Agents 的 Session/context blocks、OpenViking 的 <code>viking://</code> context file system、Zep/Graphiti 的 temporal KG、Mem0 的 MaaS，以及 STATE-Bench / MemGym / LongMemEval-V2 这类 benchmark，都在证明同一件事：</p>
+<p>&gt; 前沿不在“更多 token”或“更像人类记忆”的概念包装，而在把上下文变成可来源化、可变更、可隔离、可调度、可回放、可评测的工程对象。</p>
+<h2>关键结论</h2>
+<p>1. **Context infra 的核心对象是生命周期，不是存储。** 只有 <code>add/search</code> 的长期记忆系统仍然偏 RAG；真正的 context infra 要覆盖写入、更新、冲突、过期、读取、注入、压缩、回放和评测。</p>
+<p>2. **Memory 正在被重新定义成控制面。** 2026 年 survey 已经把 agent memory 形式化成 <code>write-manage-read</code> loop，并把 temporal scope、representational substrate、control policy 作为三条主轴。也就是说，关键问题不只是“存什么”，还包括谁决定写、写成什么、何时合并、何时忘、对谁可见。</p>
+<p>3. **“更多上下文”不是可靠 agent 的充分条件。** 长上下文窗口能缓解部分 recall，但会带来噪音、延迟、成本、attention dilution 和 stale context。Active Context Compression、Contextual Memory Virtualisation、Cloudflare compaction、coding-agent intentional compaction 都说明：上下文窗口更像工作台，不是仓库。</p>
+<p>4. **评测正在从 recall QA 转向任务级可靠性。** STATE-Bench 把 memory 放进企业任务、stateful tool、user simulator 和 pass^5；MemGym 把 memory 推进 coding、deep research、computer use；LongMemEval-V2 则把问题定义成 agent 能否成为“有经验的同事”。</p>
+<p>5. **多人 / 多 agent 场景暴露了传统 memory 的结构性失败。** GroupMemBench 显示领先 memory 系统在 group memory 上明显 collapse，原因不是模型不会检索，而是 ingestion 抹平了 speaker、audience、term ambiguity、per-user belief 和权限边界。</p>
+<p>6. **filesystem / context database 是 2026 年最值得跟踪的工程形态之一。** Anthropic Managed Agents 和 OpenViking 都把 memory 放到文件系统范式中。原因很实际：文件可浏览、可 diff、可审计、可导出、可权限化，也适合 agent 用 bash/code 工具操作。</p>
+<p>7. **生产系统的硬问题转向 write policy、correction、isolation、observability。** 当前不少系统能取回信息，但弱在判断哪些信息不该写、哪些旧记忆应被 supersede、用户纠正后如何影响下游结论、失败时如何定位是写入错、检索错、压缩错还是工具错。</p>
+<p>8. **最好的 builder 机会在 eval-first context runtime，而不是普通 RAG wrapper。** 机会更像 memory eval harness、write/correction layer、group memory namespace、environment experience runbook、memory replay debugger、context file system，而不是又一个“把聊天记录向量化”的组件。</p>
+<h2>范围定义</h2>
+<p>本文把 <code>agent context infra</code> 纳入以下环节：</p>
+<p>| 环节 | 说明 | 典型系统 / 机制 |</p>
+<p>|---|---|---|</p>
+<p>| Connector / protocol | agent 连接工具、数据、workflow、其他 agent | MCP、A2A、tool/resource registry、SaaS connectors |</p>
+<p>| Runtime state / session | agent loop 中的会话、任务状态、checkpoint、resume、compaction | OpenAI Agents SDK Sessions、LangGraph checkpoints、Letta runs/steps、Cloudflare Session、Anthropic session log |</p>
+<p>| Memory system | 跨 session/user/workspace 保留信息 | Mem0、Zep、Graphiti、Letta memory blocks、Claude Managed Agents memory |</p>
+<p>| Retrieval / routing | 选择哪些上下文进入哪一步 | agentic RAG、hierarchical retrieval、query decomposition、directory recursive retrieval |</p>
+<p>| Compression / distillation | 把历史、轨迹、工具输出压成任务状态或经验 | Active Context Compression、intentional compaction、runbook、reflection |</p>
+<p>| Isolation / governance | 多用户、多团队、多 agent 的权限、命名空间和边界 | group memory namespace、RBAC、scoped stores、audit logs |</p>
+<p>| Observability / replay | 追踪上下文如何被写入、读取、注入并影响结果 | LangSmith、Braintrust、Phoenix、OpenTelemetry / OpenInference、memory replay debugger |</p>
+<p>| Evaluation | 判断上下文机制是否改善任务表现 | STATE-Bench、MemoryAgentBench、GroupMemBench、StructMemEval、LongMemEval-V2、MemGym |</p>
+<p>本文不把以下内容单独算作 context infra：普通 prompt 技巧、单纯向量库、没有状态变更的 workflow、普通 ETL、只服务一次性问答的 RAG。</p>
+<h2>一、研究前沿</h2>
+<h3>1. Memory 的新基本模型：write-manage-read</h3>
+<p>2026 年的核心 survey <a href="https://arxiv.org/abs/2603.07670">Memory for Autonomous LLM Agents</a> 把 agent memory 形式化为与 perception / action 耦合的 <code>write-manage-read</code> loop，并明确覆盖从 2022 到 2026 年初的现代 LLM agent memory 机制。它的重要性在于：memory 不再是一个被动外部数据库，而是 agent runtime 的控制面。</p>
+<p>| 阶段 | 关键问题 | 常见机制 | 主要失败模式 |</p>
+<p>|---|---|---|---|</p>
+<p>| Write | 何时把观察、偏好、工具结果、错误、环境状态写入 | LLM extraction、事件触发、human confirmation、tool trace capture、reflection | 噪音写入、临时事实长期化、未验证结果固化、隐私越界 |</p>
+<p>| Manage | 如何合并、去重、更新、遗忘、加来源、处理冲突 | summary、semantic triples、profile slots、KG、TTL、supersession graph | 旧事实污染、新旧矛盾被抹平、摘要丢证据、经验错误泛化 |</p>
+<p>| Read | 何时取回、如何排序、如何组织进上下文 | dense/sparse retrieval、hybrid search、rerank、context packing、query decomposition | 漏关键证据、召回噪音、过度注入、证据顺序错、把 recall 当 reasoning |</p>
+<p>对工程判断来说，这个 loop 比“短期记忆 / 长期记忆”更有用，因为它把系统拆成了可观测和可评测的控制点。</p>
+<h3>2. Storage -&gt; Reflection -&gt; Experience</h3>
+<p><a href="https://arxiv.org/abs/2605.06716">From Storage to Experience</a> 把 memory 机制演进压成三阶段：<code>Storage</code> 保存轨迹，<code>Reflection</code> 提炼轨迹，<code>Experience</code> 跨轨迹抽象经验。它提醒我们：保存 transcript 只是起点；真正有价值的是 agent 能否把多次交互中的失败、策略、环境 affordance 和 workflow 压成可迁移经验。</p>
+<p>| 阶段 | 主要对象 | 工程形态 | 成熟度 |</p>
+<p>|---|---|---|---|</p>
+<p>| Storage | messages、trajectory、tool result、user preference | chat history、vector store、episodic DB、raw file store | 成熟，但容易变成低质量归档 |</p>
+<p>| Reflection | lesson、summary、error analysis、preference extraction | task summary、self-reflection、prompt rewrite、memory consolidation | 可用，但可信度依赖验证 |</p>
+<p>| Experience | runbook、strategy、environment gotcha、cross-trajectory abstraction | procedural memory、skills、agent runbook、proactive exploration | 前沿，评测和归因仍弱 |</p>
+<p>这也是为什么 2026 年的 <code>environment experience memory</code> 很重要。对 coding / browser / internal tools agent 来说，最有价值的记忆往往不是“用户喜欢什么”，而是“这个 repo / UI / workflow 曾经在哪里失败，应该如何绕过”。</p>
+<h3>3. Context compression 与 state virtualization</h3>
+<p><a href="https://arxiv.org/abs/2601.07190">Active Context Compression</a> 代表了另一条前沿：让 agent 自主决定何时把关键学习写进 persistent knowledge block，并主动裁剪原始交互历史。它的实验证据仍小，但方向正确：上下文控制不应只是外部被动总结，而应变成 agent 可调用、可预算化的 runtime 动作。</p>
+<p><a href="https://arxiv.org/abs/2602.22402">Contextual Memory Virtualisation</a> 则把 session history 类比成可 snapshot、branch、trim 的状态对象。这个方向对 coding agent 尤其重要，因为长任务常有分支探索、回滚、压缩、恢复和 replay 需求。</p>
+<p>压缩判断：</p>
+<p>&gt; 好的 context infra 不会把历史全塞进模型，也不会一次性丢弃历史。它会把历史变成外部可查询对象，再按任务阶段选择性注入。</p>
+<h3>4. Group memory 与多人上下文</h3>
+<p><a href="https://arxiv.org/abs/2605.14498">GroupMemBench</a> 把 memory benchmark 从 dyadic user-agent 场景推到多人对话。它的核心发现很刺眼：最强系统平均准确率只有 46.0%，knowledge update 只有 27.1%，term ambiguity 只有 37.7%，简单 BM25 还可匹配或超过多数 agent memory 系统。</p>
+<p>这说明当前 memory ingestion 会抹平三类信息：</p>
+<ul>
+<li>**speaker-grounded belief**：谁相信什么，谁知道什么。</li>
+<li>**audience adaptation**：对不同人应该用什么术语和解释层级。</li>
+<li>**group dynamics**：群聊不是多个一对一聊天拼接。</li>
+</ul>
+<p>这对 Slack / Discord / Teams / Linear / Notion / GitHub agent 很关键。多人 context infra 的第一问题不是“召回最相关 chunk”，而是“这个事实属于谁、对谁成立、当前 asker 有没有权限看”。</p>
+<h3>5. Environment experience memory</h3>
+<p><a href="https://arxiv.org/abs/2605.12493">LongMemEval-V2</a> 和 <a href="https://arxiv.org/abs/2605.20833">MemGym</a> 是 2026 年 5 月最值得补进 north star 的两条线。</p>
+<p>LongMemEval-V2 把目标定义为让 agent 成为“有经验的同事”，评估 web agent 是否记住 static state、dynamic state、workflow knowledge、environment gotchas 和 premise awareness。它还给出两个有启发的基线：<code>AgentRunbook-R</code> 用 RAG 组织 raw observations / events / strategy notes，<code>AgentRunbook-C</code> 把轨迹存成文件并让 coding agent 在 sandbox 中 gather evidence。后者准确率更高，但延迟成本也高。</p>
+<p>MemGym 则试图把 memory evaluation 从聊天历史推进到真实 agentic regimes：tool-use dialogue、deep research、coding、computer use。它的关键是报告 <code>memory-isolated scores</code>，尽量把 memory 策略与模型推理、检索和 tool-use 能力解耦。</p>
+<p>这两者共同指向一个机会：</p>
+<p>&gt; coding / web / computer-use agent 的 memory，不应只存用户画像，而应存环境经验、操作路径、状态动态、工具坑和失败修复。</p>
+<h2>二、评测前沿</h2>
+<h3>1. Benchmark 演进图</h3>
+<p>| 阶段 | 代表 | 测什么 | 主要边界 |</p>
+<p>|---|---|---|---|</p>
+<p>| 长上下文 QA | LongBench、needle-in-a-haystack | 长文本里能否找事实 | 不测写入、更新、工具执行、任务后果 |</p>
+<p>| 长对话 recall | LoCoMo、LongMemEval | 跨会话用户事实、多跳、时间更新 | 仍偏 QA，容易高估普通 RAG |</p>
+<p>| incremental memory | MemoryAgentBench | 多轮逐步学习、selective forgetting、long-range understanding | 还不够贴近企业 state mutation |</p>
+<p>| memory structure | StructMemEval | ledger、todo、tree 等结构化长期记忆 | 测结构意识，但不完整覆盖生产治理 |</p>
+<p>| group memory | GroupMemBench | 多人 speaker、belief、audience、term ambiguity | 暂偏对话，不覆盖复杂工具流程 |</p>
+<p>| enterprise task memory | STATE-Bench | procedure、stateful tools、pass^5、cost、UX | 仍需更多领域和真实生产 episode |</p>
+<p>| environment experience | LongMemEval-V2、MemGym | coding / web / research / computer use 中的经验形成与复用 | 成本、可复现、归因仍是挑战 |</p>
+<h3>2. STATE-Bench：从“记住事实”到“改善生产任务”</h3>
+<p>Microsoft 在 2026-05-19 发布 <a href="https://opensource.microsoft.com/blog/2026/05/19/introducing-state-bench-a-benchmark-for-ai-agent-memory/">STATE-Bench</a>，其价值在于把 memory 评测放进 realistic enterprise tasks，而不是只问 50 轮前的名字能否召回。</p>
+<p>它覆盖 customer support、travel、shopping 三个域，共 450 个任务，强调三类特征：</p>
+<ul>
+<li>**Procedural**：必须遵守领域流程。</li>
+<li>**Stateful**：工具会改变数据库状态。</li>
+<li>**User experience**：评估交互质量，而不是只看最终答案。</li>
+</ul>
+<p>指标包括 task completion、pass^5、efficiency、user experience。这里最重要的是 pass^5：agent 不是偶尔成功就够了，生产系统需要多次运行稳定成功。</p>
+<h3>3. MemGym：把 memory 放进 agent gyms</h3>
+<p>MemGym 的重要性在于它把 memory 评测从“聊天里的长期记忆”拉到四类 agentic regimes：tool-use dialogue、deep research、coding、computer use。它还提出 memory-isolated scores，试图区分 memory 策略本身与模型推理 / tool-use 能力。</p>
+<p>这对 builder 很实用：如果一个 memory 系统只在聊天 QA 上有效，却不能减少 SWE / web navigation / computer use 的重复探索和重复失败，它就不是完整的 agent context infra。</p>
+<h3>4. LongMemEval-V2：环境经验是新目标</h3>
+<p>LongMemEval-V2 的问题设定非常接近真实工作：agent 要在 specialized web environments 中记住 interface affordances、state dynamics、workflows、recurring failure modes。它不是问“用户之前说了什么”，而是问“你是否像老同事一样懂这个环境”。</p>
+<p>这给 context infra 的产品定义带来一个变化：memory 不是 personalization feature，而是 operation experience layer。</p>
+<h3>5. StructMemEval：长期记忆需要结构，不只是列表</h3>
+<p><a href="https://arxiv.org/abs/2602.11243">StructMemEval</a> 的 v2 在 2026-05-22 更新。它强调长期记忆不只是事实 recall，而是能否组织成 ledger、todo、tree 等任务需要的结构。它还发现：如果提示如何组织，memory agents 可以表现更好；但模型不会总是自己识别该用什么结构。</p>
+<p>这支持一个工程判断：memory structure 不应完全交给模型临场自发形成，runtime 应提供结构槽、schema、namespace 和 task-specific memory type。</p>
+<h2>三、工程生态地图</h2>
+<h3>1. 六层分工</h3>
+<p>| 层 | 代表系统 | 它解决什么 | 它不保证什么 |</p>
+<p>|---|---|---|---|</p>
+<p>| Protocol / connector | MCP、A2A | 连接外部工具、数据、workflow、其他 agent | 不保证写入质量、检索正确、长期治理 |</p>
+<p>| Stateful runtime | OpenAI Agents SDK、LangGraph、Letta、Cloudflare Agents、Anthropic Managed Agents | session、state、checkpoint、compaction、tool execution、handoff、sandbox | 不一定自带最强 domain memory policy |</p>
+<p>| Memory layer / MaaS | Mem0、Zep、Graphiti、Mastra memory | long-term memory、user/session graph、add/search/update/delete | 如果没有 eval 和治理，容易停在 API 层 |</p>
+<p>| Context database / file-system | OpenViking、Claude Managed Agents filesystem memory、AGENTS.md / skills / local wiki | 可浏览、可审计、可回写、可权限化的上下文空间 | 系统更重，需要目录语义和权限维护 |</p>
+<p>| Coding-agent workflow | compaction、subagent isolation、Research/Plan/Implement、repo skills | 任务内上下文预算管理与探索噪音隔离 | 不是独立产品，依赖纪律和工具支持 |</p>
+<p>| Eval / observability | STATE-Bench、LangSmith、Braintrust、Phoenix、OpenTelemetry/OpenInference | trace、episode replay、dataset、scorer、regression、cost/latency | 不自动修复，需要和 runtime / memory policy 闭环 |</p>
+<h3>2. MCP 与 A2A：连接边界</h3>
+<p><a href="https://modelcontextprotocol.io/docs/getting-started/intro">MCP</a> 是让 AI 应用连接外部系统的开放标准，覆盖 data sources、tools 和 workflows。它对 context infra 的价值是统一工具与数据源接入边界，降低每个 agent runtime 重写 connector 的成本。</p>
+<p><a href="https://google-a2a.github.io/A2A/specification/">A2A</a> 则是 agent-to-agent 的互操作协议，目标是让不同框架、语言、供应商构建的 agent 能发现能力、协商交互模式、管理协作任务，并在不暴露内部 state / memory / tools 的前提下交换信息。</p>
+<p>压缩区别：</p>
+<ul>
+<li>MCP：agent 连接工具和数据。</li>
+<li>A2A：agent 连接另一个 agent。</li>
+</ul>
+<p>两者都是边界协议，不是 context policy。一个 MCP server 可以只是 <code>grep</code>，也可以背后接完整 context database。一个 A2A agent 可以很可靠，也可以只是把混乱转发给另一个黑盒。</p>
+<h3>3. Stateful runtime：session、state、sandbox 成为一等对象</h3>
+<p>OpenAI、LangGraph、Letta、Cloudflare、Anthropic 的共同趋势，是把 agent 从单次 LLM call 变成有状态运行体。</p>
+<p>| 系统 | Context abstraction | 关键机制 | 判断 |</p>
+<p>|---|---|---|---|</p>
+<p>| OpenAI Agents SDK / Sessions | Agent、Run、Session、RunState、handoff、tool、guardrail | Sessions 管理 client-side memory，可替换 Session 实现；官方文档同时把 compaction、conversation state、eval workflows 放在运行栈里 | 更像通用 agent runtime，memory 是 session/state 的一部分 |</p>
+<p>| LangGraph | graph state、thread checkpoint、Store namespace/key | short-term memory 存在 graph state/checkpointer；long-term memory 存在 custom namespace Store；支持 hot path / background write | 对 memory 类型和写入时机的术语很清晰 |</p>
+<p>| Letta | stateful agent、memory blocks、messages、runs/steps、conversations | 所有 messages、tool calls、reasoning、memory 持久化；core memory 注入上下文，旧 messages 可通过 API/tool 取回 | 强调 agent 可自编辑 memory 与 shared blocks |</p>
+<p>| Cloudflare Agents | Durable Object-backed Agent、Session API、conversation tree、context blocks | conversation history 树、SQLite-backed session、context memory、read-only / writable / searchable / loadable blocks、compaction | 把 memory 做成 edge runtime 内的 session primitive |</p>
+<p>| Anthropic Managed Agents | session log、harness、sandbox、filesystem memory | session 是 context window 外的 durable event log；memory 以 files 形式 mount，带 scoped permissions、audit logs、rollback/redaction | 把 context infra 推成 managed agent 平台核心能力 |</p>
+<p>这一层的核心竞争点不是“能否持久化聊天记录”，而是 session 是否可恢复、上下文是否可被程序化查询、sandbox 与凭证是否隔离、memory 写入是否可审计、失败是否可回放。</p>
+<h3>4. Memory layer：从 add/search 到语义与治理</h3>
+<p>Mem0、Zep/Graphiti、Mastra 等 memory layer 的价值，是让应用不必从零实现长期记忆。它们的分歧在于 memory representation 和治理深度。</p>
+<p>| 系统 | 核心抽象 | 强项 | 风险 |</p>
+<p>|---|---|---|---|</p>
+<p>| Mem0 | universal, self-improving memory layer；按 user/session/run scope add/search/update/delete | 接入简单，平台与 OSS 双形态，适合快速给 agent 加个人化记忆 | 如果没有外部 eval，容易把 memory 质量当成 API 成功 |</p>
+<p>| Zep | chat history -&gt; user-level knowledge graph；<code>memory.add</code> / <code>memory.get</code> 返回 context string | high-level opinionated API，fact rating、session/user graph、group graph | 高层 API 简洁，但复杂场景仍需 graph API 和自定义 context string |</p>
+<p>| Graphiti | temporally-aware KG for AI agents，实时增量更新 | 时间关系、hybrid search、MCP server、动态图谱 | 需要图数据库与 schema 维护，工程复杂度较高 |</p>
+<p>| Letta memory blocks | editable blocks、shared blocks、archival memory、context hierarchy | memory 和 agent state 绑定紧，适合 stateful agent | 更像完整 agent platform，作为单独 memory layer 较重 |</p>
+<p>2026 年判断 memory layer，不能只看召回率，还要看：</p>
+<ul>
+<li>写入是否有 type / scope / source / confidence / expiry。</li>
+<li>是否处理 contradiction、supersession、correction。</li>
+<li>是否支持 user / group / workspace / agent namespace。</li>
+<li>是否有 memory trace、audit、rollback、impact analysis。</li>
+<li>是否能在 task-level benchmark 中改善 pass^k、成本和 UX。</li>
+</ul>
+<h3>5. Context database / file-system：从 chunk 到工作面</h3>
+<p>OpenViking 是 context database 的典型样本。它把 memory、resources、skills、sessions 统一到 <code>viking://</code> 虚拟文件系统，用 <code>ls/tree/read/find/grep/search</code> 等文件式范式让 agent 定位和读取上下文，并支持 L0/L1/L2 分层、directory recursive retrieval、session commit 与 MCP endpoint。</p>
+<p>Anthropic Managed Agents 选择 filesystem memory 也说明同一趋势：agent 已经擅长用 bash、code execution 和文件操作做长任务，因此 memory 以文件形式存在时，更容易被 agent 组织、编辑、审计和导出。</p>
+<p>文件式 context 的优势：</p>
+<ul>
+<li>可浏览，不只是黑盒相似 chunk。</li>
+<li>可 diff / review，适合人审和版本管理。</li>
+<li>可权限化，适合 scoped store 和多 agent 共享。</li>
+<li>可被 agent 用现有工具操作，不需要为每个 memory 动作发明新接口。</li>
+<li>可承载 procedural memory，如 <code>AGENTS.md</code>、skills、runbooks、debug notes。</li>
+</ul>
+<p>它的代价也明确：目录语义、索引一致性、权限边界、写入治理、摘要质量、跨文件引用都要维护。</p>
+<h3>6. Coding-agent context workflow：短期最高 ROI</h3>
+<p>复杂代码库里的 agent context 管理已经形成一组高 ROI 工作流：</p>
+<ul>
+<li>intentional compaction：把聊天历史压成任务状态。</li>
+<li>subagent isolation：把探索噪音留在子上下文。</li>
+<li>Research -&gt; Plan -&gt; Implement：连续压缩事实、意图、执行空间。</li>
+<li>repo skills / rules：把重复有效的程序性经验写成可加载上下文。</li>
+<li>trace / eval / replay：把失败变成下一轮可回归的 episode。</li>
+</ul>
+<p>这类 workflow 看起来不像“产品”，但它是今天最真实的 context infra 训练场。原因很简单：brownfield codebase 会立刻暴露 context bloat、过时信息、工具失败、错误完成判断和 replay 缺失。</p>
+<h2>四、缺口地图</h2>
+<p>| 缺口 | 当前状态 | 生产失败模式 | 机会 |</p>
+<p>|---|---|---|---|</p>
+<p>| Write policy | 多数系统仍弱 | 临时事实写成长记忆；错误工具结果被固化；探索结论被泛化 | write gate、memory type、TTL、confidence、human confirmation |</p>
+<p>| Staleness / contradiction | 有 selective forgetting 和 knowledge update benchmark，但不够生产化 | 旧政策、旧偏好、旧环境状态污染新任务 | supersession graph、staleness score、conflict resolver |</p>
+<p>| Provenance / correction | Anthropic audit log、Zep fact rating 是好信号，但生态整体弱 | 用户纠正后旧记忆仍影响下游 | correction log、reverse dependency、impact analysis、rollback |</p>
+<p>| Namespace / isolation | GroupMemBench 暴露问题，runtime 支持不均 | A 用户事实泄漏给 B；团队共识污染个人记忆 | user/group/workspace/agent namespace、leakage tests |</p>
+<p>| Context packing | 很多系统只把 retrieval result 拼进 prompt | 召回对但顺序错、token 浪费、旧信息压过新信息 | budget-aware packing、source ranking、recency/confidence aware injection |</p>
+<p>| Environment experience | LongMemEval-V2 / MemGym 刚开始推进 | agent 每次像新人一样重新探索 repo/UI/API | runbook memory、workflow gotcha extraction、episode-to-skill |</p>
+<p>| Observability / replay | LangSmith 等成熟，但 memory-specific trace 弱 | 只知道错了，不知道错在写、读、压缩还是工具 | memory trace、context assembly diff、episode replay debugger |</p>
+<p>| Eval realism | STATE-Bench / MemGym 明显推进 | benchmark 过了，上线仍失败 | domain-specific sandbox、state assertions、pass^k、UX + cost |</p>
+<h2>五、机会地图</h2>
+<h3>机会 A：Agent Memory Eval Harness</h3>
+<p>目标用户：正在做 coding agent、browser agent、customer support agent、internal workflow agent 的 builder。</p>
+<p>痛点：加了 memory 后 demo 更聪明，但线上任务完成率、pass^k、成本和 UX 没有稳定改善；失败后不知道该修 prompt、retrieval、write policy 还是工具流程。</p>
+<p>最小产物：</p>
+<ul>
+<li>episode replay。</li>
+<li>stateful tool sandbox。</li>
+<li>memory on/off A/B。</li>
+<li>pass@1 / pass^5。</li>
+<li>cost / latency / token breakdown。</li>
+<li>memory write / read / context assembly trace。</li>
+<li>failure class 标注。</li>
+</ul>
+<p>第一轮 eval：选 30-50 个真实或半真实 workflow episode，跑 no-memory、RAG-memory、structured-memory 三组，比较 task success、pass^5、tool call waste、retrieval tokens、UX judge。</p>
+<h3>机会 B：Memory Write Policy 与 Correction Layer</h3>
+<p>目标用户：已有长期 memory 的 assistant、agent app、团队机器人。</p>
+<p>痛点：agent 乱写长期记忆；用户纠正后旧记忆仍污染后续任务。</p>
+<p>最小产物：</p>
+<ul>
+<li>每条 memory 带 type、scope、confidence、source episode、created_at、expiry、supersedes、correction status。</li>
+<li>create / update / archive / override policy。</li>
+<li>contradiction detector。</li>
+<li>correction impact analysis。</li>
+</ul>
+<p>第一轮 eval：构造 100 条 episode stream，包含偏好变化、政策变化、用户纠正、矛盾事实。测 stale recall rate、wrong persistence rate、correction success、unwanted write rate。</p>
+<h3>机会 C：Group Memory Namespace 与 Isolation Harness</h3>
+<p>目标用户：Slack / Discord / Teams / Linear / Notion / GitHub 等多人协作环境中的 agent builder。</p>
+<p>痛点：agent 混淆“谁说的、谁知道、谁允许、谁应该看到”。</p>
+<p>最小产物：</p>
+<ul>
+<li>user / group / workspace / channel / agent namespace。</li>
+<li>speaker-grounded facts。</li>
+<li>audience policy。</li>
+<li>visibility resolver。</li>
+<li>leakage test suite。</li>
+</ul>
+<p>第一轮 eval：复刻 GroupMemBench 六类 query，再加权限泄露题和纠错题。测 speaker attribution、audience adaptation、forbidden context leakage、abstention correctness。</p>
+<h3>机会 D：Environment Experience Runbook</h3>
+<p>目标用户：coding / browser / internal tools agent builder。</p>
+<p>痛点：agent 每次重新探索环境，同一个 repo、UI、API、测试环境和隐藏坑反复失败。</p>
+<p>最小产物：</p>
+<ul>
+<li>从 episode trace 自动压成 environment affordance、workflow steps、state invariants、tool recipes、gotchas。</li>
+<li>按任务检索 runbook。</li>
+<li>runbook 条目保留源 episode 和失败证据。</li>
+</ul>
+<p>第一轮 eval：选一个真实 repo 或 web app，录制 50-100 条任务轨迹。测 first-try success、重复错误率、探索步数、runbook retrieval precision、延迟。</p>
+<h3>机会 E：Memory Observability / Replay Debugger</h3>
+<p>目标用户：已经上线或准备上线的 agent infra / platform builder。</p>
+<p>痛点：用户说“agent 记错了”或“重复犯错”，团队只能看最终对话，无法定位因果链。</p>
+<p>最小产物：</p>
+<ul>
+<li>episode timeline。</li>
+<li>memory writes / updates / deletes。</li>
+<li>retrieval set。</li>
+<li>context assembly。</li>
+<li>tool calls。</li>
+<li>state diff。</li>
+<li>judge result。</li>
+<li>replay with patch。</li>
+</ul>
+<p>第一轮 eval：对 20 个已知失败 episode 做 root-cause annotation，测 debugger 是否减少定位时间、提高修复准确率，并把修复后 episode 纳入 regression。</p>
+<h3>机会 F：Context File System / Context Database</h3>
+<p>目标用户：需要长期维护 context 的 coding agent、research agent、企业内 knowledge agent。</p>
+<p>痛点：RAG chunk 不可浏览、不可纠错、不可审计；skills、resources、memory、sessions 分散在不同系统。</p>
+<p>最小产物：</p>
+<ul>
+<li><code>context://</code> 或文件系统式 namespace。</li>
+<li>resources / memory / skills / sessions 统一路径。</li>
+<li>L0/L1/L2 分层摘要。</li>
+<li><code>ls/read/search/grep/store/forget</code> tool surface。</li>
+<li>write audit 与 source links。</li>
+</ul>
+<p>第一轮 eval：比较普通 vector search 与 filesystem-guided retrieval 在复杂任务中的 token、latency、evidence precision、task success。</p>
+<h2>六、对本地项目与职业主线的含义</h2>
+<p>本地 <a href="../../frameworks/Harness架构判断框架.html">Harness 架构判断框架</a> 的核心判断是：agent 的很多进步来自外层控制壳，而不是模型本身。Context infra 正是这个控制壳里正在变成独立主语的一层。</p>
+<p>结合 <a href="../../frameworks/AI系统产品判断框架.html">AI 系统产品判断框架</a>，更准确的定位是：</p>
+<p>&gt; agent context infra 不是“AI memory API”，而是 agent runtime 的 context lifecycle layer，负责历史经验的写入、组织、隔离、调度、纠错、回放和评测。</p>
+<p>对当前项目路线，建议这样收束：</p>
+<p>1. <code>gogo / oh-share-it</code> 适合承载 context database / local wiki / routed context 的证据。重点不是多做一个聊天入口，而是证明 raw/wiki/framework/bridge 的分层能成为 agent-facing context layer。</p>
+<p>2. <code>my-little-agent-loop</code> 适合承载 runtime ownership。应优先做 session policy、tool routing、trace/replay、evaluator loop、memory write policy，而不是追逐更花的 agent demo。</p>
+<p>3. <code>context-core</code> 的最小旗舰形态应是 eval-first：有一组真实或半真实 episode，能展示 context 改造前后 task success、pass^k、cost、latency、failure class 的变化。</p>
+<p>4. 如果要投 agent systems / context infra / eval infra 相关岗位，最有说服力的不是“我知道 memory 很重要”，而是一个可部署、可回放、可评测、能解释失败归因的 context runtime。</p>
+<p>5. 公开叙事可以从“我做了一个知识库”升级为“我在做 agent context lifecycle infra：把知识、判断、运行轨迹和经验变成 agent 可加载、可验证、可回写的工程对象”。</p>
+<h2>七、建议的 2-4 周研究产物路线</h2>
+<p>| 周期 | 产物 | 成功标准 |</p>
+<p>|---|---|---|</p>
+<p>| 第 1 周 | 选 domain，收集 30-50 个 episode，定义 failure taxonomy 与 baseline | 能跑 no-memory / naive RAG / structured context 三组 |</p>
+<p>| 第 2 周 | 加 trace、write log、retrieval log、context assembly log、state assertions、pass^k、cost | 每个失败 episode 能定位到至少一个 failure class |</p>
+<p>| 第 3 周 | 实现一个明确 runtime ownership 模块，如 write policy、namespace isolation、runbook memory | 至少一个关键指标改善，而不是只换模型 |</p>
+<p>| 第 4 周 | 写公开报告和 repo README：benchmark、失败案例、修复、指标变化、残余缺口 | 能被看成 agent systems 证据包，而不是 demo |</p>
+<p>最小 north star：</p>
+<p>&gt; 一个 eval-first context runtime，证明“更好的上下文生命周期管理”能让 agent 在真实任务中更可靠、更便宜、更可解释。</p>
+<h2>八、跟踪清单</h2>
+<p>后续最该持续跟踪的不是泛泛的“agent memory 产品”，而是以下信号：</p>
+<ul>
+<li>STATE-Bench 是否出现主流 memory layer / runtime 的公开 leaderboard 或复现实验。</li>
+<li>MemGym 是否能成为 coding / web / computer-use memory 的标准评测入口。</li>
+<li>Anthropic filesystem memory 是否继续推进 memory consolidation、dreaming、scoped stores、MCP tunnels 与 self-hosted sandbox。</li>
+<li>OpenAI Agents SDK 是否把 Sessions、compaction、tracing、eval workflows 进一步合成更明确的 context lifecycle API。</li>
+<li>Cloudflare Agents 的 Session/context block 是否从 experimental 进入稳定 API。</li>
+<li>OpenViking 这类 context database 是否能证明比普通 RAG 在真实 agent 任务上更有效。</li>
+<li>Group memory 是否从 benchmark 进入 Slack / Teams / Discord agent 的权限与命名空间实践。</li>
+<li>Memory observability 是否从 trace viewer 发展成可定位 write/read/manage failure 的 replay debugger。</li>
+</ul>
+<h2>来源依据</h2>
+<h3>本地知识库</h3>
+<ul>
+<li><a href="agent-context-infra-2026-05-24.html">Agent Context Infra 调研报告（2026-05-24）</a></li>
+<li><a href="../../../../../raw/external/agent-context-infra-source-list-2026-05-24.md">Agent Context Infra 来源清单（2026-05-24）</a></li>
+<li><a href="../../frameworks/Harness架构判断框架.html">Harness 架构判断框架</a></li>
+<li><a href="../../frameworks/AI系统产品判断框架.html">AI 系统产品判断框架</a></li>
+<li><a href="../agent-harness-runtime/coding%20agent%20的上下文压缩工作流.html">coding agent 的上下文压缩工作流</a></li>
+<li><a href="volcengine-openviking-repo-map.html">volcengine/openviking 仓库地图</a></li>
+<li><a href="../career-positioning-job-search/Anthropic与OpenAI的Agent%20Systems履历North%20Star.html">Anthropic 与 OpenAI 的 Agent Systems 履历 North Star</a></li>
+</ul>
+<h3>研究与 benchmark</h3>
+<ul>
+<li><a href="https://arxiv.org/abs/2603.07670">Memory for Autonomous LLM Agents: Mechanisms, Evaluation, and Emerging Frontiers</a></li>
+<li><a href="https://arxiv.org/abs/2605.06716">From Storage to Experience: A Survey on the Evolution of LLM Agent Memory Mechanisms</a></li>
+<li><a href="https://arxiv.org/abs/2601.07190">Active Context Compression: Autonomous Memory Management in LLM Agents</a></li>
+<li><a href="https://arxiv.org/abs/2602.22402">Contextual Memory Virtualisation</a></li>
+<li><a href="https://opensource.microsoft.com/blog/2026/05/19/introducing-state-bench-a-benchmark-for-ai-agent-memory/">STATE-Bench</a></li>
+<li><a href="https://openreview.net/pdf?id=DT7JyQC3MR">MemoryAgentBench</a></li>
+<li><a href="https://arxiv.org/abs/2605.14498">GroupMemBench</a></li>
+<li><a href="https://arxiv.org/abs/2602.11243">StructMemEval</a></li>
+<li><a href="https://arxiv.org/abs/2605.12493">LongMemEval-V2</a></li>
+<li><a href="https://arxiv.org/abs/2605.20833">MemGym</a></li>
+</ul>
+<h3>工程系统与官方文档</h3>
+<ul>
+<li><a href="https://modelcontextprotocol.io/docs/getting-started/intro">Model Context Protocol docs</a></li>
+<li><a href="https://google-a2a.github.io/A2A/specification/">A2A Protocol Specification</a></li>
+<li><a href="https://developers.openai.com/api/docs/guides/agents">OpenAI Agents SDK</a></li>
+<li><a href="https://openai.github.io/openai-agents-js/guides/sessions/">OpenAI Agents SDK Sessions</a></li>
+<li><a href="https://docs.langchain.com/oss/python/concepts/memory">LangGraph memory docs</a></li>
+<li><a href="https://docs.letta.com/guides/core-concepts/stateful-agents">Letta stateful agents</a></li>
+<li><a href="https://developers.cloudflare.com/agents/concepts/memory/">Cloudflare Agents memory</a></li>
+<li><a href="https://docs.mem0.ai/introduction">Mem0 docs</a></li>
+<li><a href="https://help.getzep.com/v2/memory">Zep Memory docs</a></li>
+<li><a href="https://help.getzep.com/graphiti/getting-started/welcome">Graphiti docs</a></li>
+<li><a href="https://github.com/volcengine/OpenViking">OpenViking GitHub</a></li>
+<li><a href="https://www.anthropic.com/engineering/managed-agents">Anthropic Managed Agents: Decoupling the brain from the hands</a></li>
+<li><a href="https://claude.com/blog/claude-managed-agents-memory">Built-in memory for Claude Managed Agents</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

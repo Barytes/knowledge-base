@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>知识系统判断框架 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../index.html">首页</a>
+    <a href="../../layers/topics.html">话题</a>
+    <a href="../../layers/self.html">自我</a>
+    <a href="../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">frameworks/知识系统判断框架.md</div>
+      <h1>知识系统判断框架</h1>
+<p>这页服务于知识系统、query、memory system、仓库分层这类问题。</p>
+<p>它不是完整分析，而是一张高频判断表。</p>
+<h2>先看什么</h2>
+<p>遇到知识系统问题时，优先先问四件事：</p>
+<p>1. 未来高价值工作默认站在哪一层上发生</p>
+<p>2. 这里面对的是知识编译问题，还是判断蒸馏问题</p>
+<p>3. 现在缺的是材料存储，还是可调用的工作面</p>
+<p>4. 这次产物更像框架入口，还是具体应用分析</p>
+<h2>核心判断</h2>
+<h3>1. 默认工作面比信息存储更关键</h3>
+<p>真正重要的不是存了多少信息，而是未来任务是不是先站在一个已经提炼过的中间层上工作。</p>
+<p>如果每次 query 仍然主要回到 raw 或分散页面重新拼装，系统就还没有形成复利。</p>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/context-memory-knowledge-system/information-compounding-systems-design.html">信息复利系统设计</a></li>
+</ul>
+<h3>2. 先区分知识编译与判断蒸馏</h3>
+<ul>
+<li><code>llm-wiki</code> 类问题更像把高信号外部材料编译成可维护 wiki</li>
+<li><code>context-infrastructure</code> 类问题更像从高噪音个人痕迹里提炼稳定判断</li>
+</ul>
+<p>这两类问题都在做“压缩”，但数据分布、失败模式和最佳层次不同。</p>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/context-memory-knowledge-system/ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a></li>
+<li><a href="../topics/context-memory-knowledge-system/local-knowledge-base-patterns.html">本地知识库模式</a></li>
+</ul>
+<h3>3. wiki 本身可以是压缩层，不必急着再造更多层</h3>
+<p>很多时候真正该做的，不是继续发明新的中间表示，而是让 <code>wiki</code> 本身承担压缩、关联、回查和写回功能。</p>
+<p>高价值信号常常会以“高复用 wiki 节点”的形式涌现出来，而不是必须先验定义成新的类型。</p>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/research-knowledge-governance/什么是公共知识库应该共享的公共知识.html">什么是公共知识库应该共享的公共知识</a></li>
+</ul>
+<h3>4. <code>frameworks/</code> 和 <code>bridges/</code> 的职责必须分开</h3>
+<ul>
+<li><code>frameworks/</code> 放高复用、低噪音的入口页与判断框架</li>
+<li><code>bridges/</code> 放具体情境下的分析、memo 和应用结论</li>
+</ul>
+<p>如果什么 durable query 都进 <code>bridges/</code>，它会越来越大，也越来越像噪音池。</p>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/context-memory-knowledge-system/knowledge-base-operating-model.html">知识库运行模型</a></li>
+<li><a href="让query真正调用判断框架.html">让 query 真正调用判断框架</a></li>
+</ul>
+<h3>5. 优先追踪人的复用，而不是只看 agent 能不能检索到</h3>
+<p>一个知识页真正值不值得保留，更强的信号常常不是“能搜到”，而是：</p>
+<ul>
+<li>人会不会回到这页</li>
+<li>会不会基于这页继续提问、编辑、引用和分享</li>
+<li>会不会把它带回后续工作流</li>
+</ul>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/research-knowledge-governance/什么是公共知识库应该共享的公共知识.html">什么是公共知识库应该共享的公共知识</a></li>
+</ul>
+<h2>常见张力</h2>
+<ul>
+<li>raw/wiki vs 蒸馏信号</li>
+<li>可回查性 vs 默认工作面锋利度</li>
+<li>高复用入口 vs 具体应用 memo</li>
+<li>共识编译 vs 反共识判断</li>
+</ul>
+<h2>推荐阅读顺序</h2>
+<p>1. <a href="../topics/context-memory-knowledge-system/ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a></p>
+<p>2. <a href="../topics/context-memory-knowledge-system/local-knowledge-base-patterns.html">本地知识库模式</a></p>
+<p>3. <a href="../topics/context-memory-knowledge-system/information-compounding-systems-design.html">信息复利系统设计</a></p>
+<p>4. <a href="../topics/context-memory-knowledge-system/knowledge-base-operating-model.html">知识库运行模型</a></p>
+<p>5. 如涉及公共层边界，再读 <a href="../topics/research-knowledge-governance/什么是公共知识库应该共享的公共知识.html">什么是公共知识库应该共享的公共知识</a></p>
+<h2>什么时候进入 bridge</h2>
+<p>如果问题已经从“这类系统该怎么理解”变成“在这个具体项目里该怎么做”，再进入相关 <code>bridges/</code> 页面。</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="router.html">框架路由入口</a></li>
+<li><a href="让query真正调用判断框架.html">让 query 真正调用判断框架</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

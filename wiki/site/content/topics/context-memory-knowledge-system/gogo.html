@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>gogo：本地 llm-wiki 桌面应用 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/context-memory-knowledge-system/gogo.md</div>
+      <h1>gogo：本地 llm-wiki 桌面应用</h1>
+<h2>项目定位</h2>
+<p><code>gogo</code> 是一个本地 <code>llm-wiki</code> 风格 knowledge-base 的桌面应用原型。</p>
+<p>它当前最成立的身份不是“完整公共知识库系统”，而是：</p>
+<p>**把本地 markdown 知识库、Pi Agent、示例 knowledge-base、可见机制和最小安全边界收进同一个桌面入口里的作品级原型。**</p>
+<p>**GitHub**: https://github.com/Barytes/gogo</p>
+<p>**源文件位置**: <code>raw/personal/writings/gogo-repo-map.md</code></p>
+<p>**补充证据**: <code>raw/external/github-repo-barytes-gogo.md</code></p>
+<h2>当前边界</h2>
+<p><code>gogo</code> 主要承接三件事：</p>
+<ul>
+<li>浏览和编辑本地 <code>wiki / raw / inbox</code></li>
+<li>在同一个工作面里和 Pi Agent 对话</li>
+<li>降低第一次使用 <code>llm-wiki</code> 工作流的门槛</li>
+</ul>
+<p>它不再承担“课题组公共知识库”的完整主语。公共知识库方向已经独立为 <a href="../research-knowledge-governance/oh-share-it公共知识库产品.html">oh-share-it 公共知识库产品</a>。</p>
+<p>这个拆分很重要。<code>gogo</code> 是 app，是入口，是参考实现。<code>oh-share-it</code> 才是多人公共知识库、联邦同步、公共池聚合、知识治理和 agent-facing capability layer 的产品主语。</p>
+<h2>当前公开实现</h2>
+<p>截至 2026-04-28 的公开仓库，<code>gogo</code> 已经更明确地收束为本地 <code>llm-wiki</code> desktop app prototype，并进入 maintenance mode。</p>
+<p>当前直接能力包括：</p>
+<ul>
+<li>本地应用工作台：<code>Wiki / Chat</code> 双主模式</li>
+<li><code>wiki / raw / inbox</code> 浏览与基本编辑</li>
+<li>Pi RPC 主聊天链路</li>
+<li>多会话管理与历史恢复</li>
+<li>knowledge-base 切换</li>
+<li><code>skills / schemas / AGENTS.md</code> 的发现与编辑入口</li>
+<li><code>example-knowledge-base/</code> 最小样板</li>
+<li>首次启动 onboarding</li>
+<li>model provider 配置与 Pi 登录路径</li>
+<li>安全模式、托管 extension、审计日志、inline confirm</li>
+<li>Tauri 桌面壳与安装包分发路径</li>
+</ul>
+<p>尚未进入 <code>gogo</code> 当前公开主线的能力包括：</p>
+<ul>
+<li>多用户公共池与自动聚合端</li>
+<li>面向公共知识库的贡献、晋升与冲突治理</li>
+<li>独立的公共知识库 MCP / tool surface</li>
+<li>长期运营型 SaaS 或平台支持链路</li>
+</ul>
+<p>这些能力应归入 <code>oh-share-it</code>，而不是继续塞回 <code>gogo</code>。</p>
+<h2>核心问题</h2>
+<p><code>gogo</code> 解决的是本地知识工作流里的低摩擦入口问题。</p>
+<p>传统 <code>llm-wiki</code> 工作流即使理念成立，也有明显门槛：</p>
+<ul>
+<li>要理解 <code>raw / wiki / inbox / skills / schemas</code></li>
+<li>要安装和配置 agent</li>
+<li>要在知识浏览、编辑、对话之间切换</li>
+<li>要处理模型 provider、session、安全确认等细节</li>
+</ul>
+<p><code>gogo</code> 的价值是把这些东西收进一个可下载、可启动、可观察的桌面壳里，让用户第一天就能完成“浏览知识库 + 问 agent + 回到 markdown 资产”的基本闭环。</p>
+<h2>设计原则</h2>
+<p>这版仓库中最稳定的设计原则有六条。</p>
+<p>1. **gogo 服务于本地 llm-wiki knowledge-base**</p>
+<p>   知识不应被锁进 app。停止使用 <code>gogo</code> 不应损失知识层内容。</p>
+<p>2. **统一 Wiki + Agent 工作面**</p>
+<p>   浏览、编辑、引用、对话应尽量放在一个表面里。</p>
+<p>3. **聚焦 llm-wiki，而不是泛化成通用知识管理器**</p>
+<p>   保持边界清晰，比扩大场景更重要。</p>
+<p>4. **用户是知识库的第一拥有者**</p>
+<p>   路径、结构、skills、schemas、<code>AGENTS.md</code> 都应尽量可见、可改、可迁移。</p>
+<p>5. **不过度黑盒化 Agent 机制**</p>
+<p>   让 provider、thinking level、slash、diagnostics、安全边界保持可理解。</p>
+<p>6. **开箱即用**</p>
+<p>   让第一次成功闭环更容易发生。</p>
+<h2>与 oh-share-it 的关系</h2>
+<p><code>gogo</code> 和 <code>oh-share-it</code> 的关系可以这样拆：</p>
+<p>| 名称 | 主语 | 主要问题 |</p>
+<p>|---|---|---|</p>
+<p>| <code>gogo</code> | 本地桌面应用 | 让个人更顺手地使用 <code>llm-wiki</code> 和本地 agent |</p>
+<p>| <code>oh-share-it</code> | 公共知识库产品 | 让多人知识、判断、冲突和贡献形成可治理的公共工作面 |</p>
+<p><code>gogo</code> 可以成为 <code>oh-share-it</code> 的一个客户端或本地入口，但不应该再被描述为公共知识库产品本身。</p>
+<p>这也解释了为什么“把 gogo 接到微信”这类想法需要拆开看：</p>
+<ul>
+<li>如果是在控制本地知识库 app，那属于 <code>gogo</code> 的入口扩展；</li>
+<li>如果是在给任何 agent 暴露公共知识库查询、贡献、同步、聚合能力，那属于 <code>oh-share-it</code> 的 tool / MCP / skill surface。</li>
+</ul>
+<h2>核心文档</h2>
+<p>当前最值得回看的文档是：</p>
+<p>| 文档 | 作用 |</p>
+<p>|------|------|</p>
+<p>| <code>README.md</code> | 当前最直接的产品主语与公开边界 |</p>
+<p>| <code>docs/index.md</code> | 当前文档总入口 |</p>
+<p>| <code>docs/public/architecture.md</code> | 系统结构、调用链与 ownership split |</p>
+<p>| <code>docs/public/design-principles.md</code> | 产品原则与边界 |</p>
+<p>| <code>docs/public/knowledge-base-guide.md</code> | <code>llm-wiki</code> knowledge-base 的结构与工作流 |</p>
+<p>| <code>docs/public/design-notes/agent-architecture.md</code> | Pi RPC 与后端编排收敛 |</p>
+<p>| <code>docs/public/design-notes/frontend-workbench-elements.md</code> | 工作台与设置面板的真实产品面 |</p>
+<p>| <code>docs/public/design-notes/pi-security-boundary.md</code> | 最小安全边界 |</p>
+<p>| <code>docs/public/design-notes/session-management.md</code> | session 主链路与富历史恢复 |</p>
+<p>| <code>docs/public/design-notes/slash-command-scope.md</code> | 为什么 slash 命令优先服务 knowledge-base 能力 |</p>
+<p>历史上的 <code>product-definition-belief.md</code>、<code>release-target-and-boundaries.md</code>、<code>gogo-app-architecture.md</code> 仍有参考价值，但现在更多属于 <code>docs/archive/</code> 范围。</p>
+<h2>与现有知识的关联</h2>
+<ul>
+<li><a href="../research-knowledge-governance/oh-share-it公共知识库产品.html">oh-share-it 公共知识库产品</a></li>
+<li><a href="../agent-harness-runtime/pi-coding-agent-harness.html">Pi coding agent:一种极简且可观察的 coding harness</a></li>
+<li><a href="local-knowledge-base-patterns.html">本地知识库模式</a></li>
+<li><a href="ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a></li>
+<li><a href="../agent-harness-runtime/coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a></li>
+<li><a href="../agent-harness-runtime/Tolaria%20综合分析.html">Tolaria 综合分析</a></li>
+</ul>
+<h2>当前压缩结论</h2>
+<p><code>gogo</code> 是本地 <code>llm-wiki</code> 桌面应用。它的价值是把知识浏览、agent 对话、可见规则层和本地安全边界做成一个低摩擦入口。</p>
+<p>公共知识库、联邦架构和 agent-facing 知识能力层不再叫 <code>gogo</code>，统一归入 <code>oh-share-it</code>。</p>
+    </article>
+
+  </main>
+</body>
+</html>

@@ -14,10 +14,10 @@ Default mode for repository-related questions is `local-only`.
 
 Route each question before synthesizing:
 
-- factual or topic question -> read `wiki/knowledge/`
+- factual or topic question -> read `wiki/topics/`
 - self-modeling question -> read `wiki/self/`
-- design, evaluation, comparison, or decision question -> read `wiki/frameworks/router.md` first, then the most relevant framework page, then pull in `wiki/knowledge/` and `wiki/bridges/` as needed
-- advisory or evaluative question with a concrete situational output -> synthesize through `wiki/bridges/`
+- design, evaluation, comparison, or decision question -> read `wiki/frameworks/router.md` first, then the most relevant framework page, then pull in `wiki/topics/` as needed
+- advisory or evaluative question with a concrete situational output -> synthesize through the most relevant topic under `wiki/topics/`
 
 If the repository lacks enough material, say what is missing instead of faking confidence.
 
@@ -74,10 +74,9 @@ Write the result back into the repository when it is likely to be useful again.
 
 Save to:
 
-- `wiki/knowledge/` for factual syntheses, topic summaries, and comparisons
+- `wiki/topics/` for factual syntheses, topic summaries, comparisons, recommendations, essays, and applied analyses
 - `wiki/self/` for stable user judgment patterns derived from repeated evidence
 - `wiki/frameworks/` for reusable judgment frameworks, compact router pages, and high-frequency entry surfaces
-- `wiki/bridges/` for applied analyses, recommendations, and essays that mix knowledge with the user's lens
 
 ## Useful-Again Heuristic
 
@@ -104,14 +103,14 @@ Do not create a new page when the output is:
 - based on weak or ambiguous personal evidence
 - highly time-sensitive and likely to go stale quickly
 - temporary task status, progress chatter, or narrow operational output
-- really a concrete memo that should update an existing `wiki/bridges/` page instead of spawning another framework page
+- really a concrete memo that should update an existing topic page instead of spawning another framework page
 
 Update an existing page instead whenever possible.
 
-When deciding between `wiki/frameworks/` and `wiki/bridges/`, use this distinction:
+When deciding between `wiki/frameworks/` and `wiki/topics/`, use this distinction:
 
 - `wiki/frameworks/` answers “what lens or routing surface should future queries start from?”
-- `wiki/bridges/` answers “what concrete conclusion follows in this case after combining knowledge and judgment?”
+- `wiki/topics/` answers “what does this topic contain, and what concrete conclusion follows in this case after combining knowledge and judgment?”
 
 ## Search Escalation
 

@@ -1,6 +1,6 @@
 ---
 name: repo-practice-query
-description: Answer focused engineering-practice questions from a studied repository. Use when Codex should start from an existing repo map or architecture note, revisit only the necessary repository evidence, extract portable patterns, and write durable findings back into `wiki/knowledge/` or `wiki/bridges/`.
+description: Answer focused engineering-practice questions from a studied repository. Use when Codex should start from an existing repo map or architecture note, revisit only the necessary repository evidence, extract portable patterns, and write durable findings back into the relevant `wiki/topics/` page.
 ---
 
 # Repo Practice Query
@@ -10,7 +10,7 @@ Read these files first:
 - `AGENTS.md`
 - `schemas/AGENTS.md`
 - `schemas/query.md`
-- `wiki/bridges/codebases-as-knowledge-sources.md`
+- `wiki/topics/agent-harness-runtime/codebases-as-knowledge-sources.md`
 
 Use this skill after a repository has already been mapped, or when a user asks a focused question about a repository's engineering practices.
 
@@ -30,7 +30,7 @@ Typical questions:
 Read in this order:
 
 1. `wiki/index.md`
-2. the most relevant maintained repo note in `wiki/knowledge/`
+2. the most relevant maintained repo note in `wiki/topics/`
 3. only the anchored raw evidence needed for the question
 
 If no repo map exists yet, either:
@@ -61,8 +61,7 @@ Keep these layers separate:
 
 Choose the write target by stability:
 
-- `wiki/knowledge/` for descriptive repo facts or cross-repo practice summaries
-- `wiki/bridges/` for “what should we borrow from this repo” style conclusions
+- `wiki/topics/` for descriptive repo facts, cross-repo practice summaries, and “what should we borrow from this repo” style conclusions
 - `wiki/self/` only if repeated evidence across projects reveals a stable personal engineering preference
 
 ## Good Answer Shape
@@ -83,7 +82,7 @@ When useful, structure the answer around:
 
 ## Write-Back
 
-If the answer yields a durable clarification, update the maintained repo note and any affected topic or bridge pages.
+If the answer yields a durable clarification, update the maintained repo note and any affected topic pages.
 
 Append a `query` entry to `wiki/log.md` when the result becomes a maintained asset.
 

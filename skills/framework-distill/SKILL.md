@@ -1,6 +1,6 @@
 ---
 name: framework-distill
-description: Distill reusable judgment frameworks from maintained `wiki/knowledge/` and `wiki/bridges/` pages into compact pages under `wiki/frameworks/`. Use when Codex needs to lift repeated distinctions, routing surfaces, or decision skeletons upward without mixing in `wiki/self/` or turning `frameworks/` into a second `bridges/`.
+description: Distill reusable judgment frameworks from maintained `wiki/topics/` pages into compact pages under `wiki/frameworks/`. Use when Codex needs to lift repeated distinctions, routing surfaces, or decision skeletons upward without mixing in `wiki/self/` or turning `frameworks/` into a second topic layer.
 ---
 
 # Framework Distill
@@ -19,7 +19,7 @@ Use this skill when the task is to compress existing maintained material into re
 
 If the user input is only `framework-distill` or `$framework-distill`, interpret it as:
 
-- scan recent or user-named `wiki/knowledge/` and `wiki/bridges/` pages
+- scan recent or user-named `wiki/topics/` pages
 - identify the best candidate reusable judgments
 - update or create the smallest necessary page under `wiki/frameworks/`
 - refresh router/index links when needed
@@ -31,7 +31,7 @@ A page belongs in `wiki/frameworks/` when it mainly answers:
 
 - 以后这类问题该先站在哪个框架上看
 - 哪几个区分、张力、诊断问题最值得先问
-- 哪些 `knowledge/` 或 `bridges/` 页面常该一起调用
+- 哪些 `topics/` 页面常该一起调用
 
 A page does **not** belong in `wiki/frameworks/` when it mainly answers:
 
@@ -41,16 +41,16 @@ A page does **not** belong in `wiki/frameworks/` when it mainly answers:
 
 ## Required Boundaries
 
-- Distill from `wiki/knowledge/` and `wiki/bridges/` only.
+- Distill from `wiki/topics/` only.
 - Do not pull `wiki/self/` into `frameworks/`.
-- Do not turn `frameworks/` into a second `bridges/`.
+- Do not turn `frameworks/` into a second topic directory.
 - Prefer compact framework pages over long summary pages.
 - Prefer updating an existing framework over spawning a near-duplicate.
 
 ## Workflow
 
 1. Read `wiki/frameworks/router.md` and the most relevant existing framework pages first.
-2. Read the candidate `wiki/knowledge/` or `wiki/bridges/` pages.
+2. Read the candidate `wiki/topics/` pages.
 3. Extract the reusable layer only:
    - recurring distinctions
    - routing questions
@@ -75,7 +75,7 @@ Prefer promoting material when at least one of these is true:
 - the page helps route future design, evaluation, comparison, or decision queries
 - later queries would otherwise need to re-read a long page to recover the same top-level lens
 
-Prefer leaving material in `knowledge/` or `bridges/` when:
+Prefer leaving material in `topics/` when:
 
 - it is mainly source summary or factual exposition
 - it is mainly a case memo or concrete recommendation
@@ -91,7 +91,7 @@ When useful, organize the page as:
 - core judgments
 - common tensions
 - recommended reading order
-- when to enter `bridges/`
+- when to enter a concrete topic page
 - related pages
 
 Keep it short. Link outward instead of re-expanding the full source material.

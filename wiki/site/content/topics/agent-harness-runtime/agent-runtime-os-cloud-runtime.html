@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent 系统作为 OS 与 Cloud Runtime 问题 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/agent-runtime-os-cloud-runtime.md</div>
+      <h1>Agent 系统作为 OS 与 Cloud Runtime 问题</h1>
+<p>**来源：** <a href="../../../../../raw/external/anthropic-scaling-managed-agents.md">Scaling Managed Agents: Decoupling the brain from the hands</a>；<a href="../../../../../raw/external/agent-runtime-os-cloud-runtime.md">Agent 系统正在重新走一遍 OS 和 Cloud Runtime 的老路</a></p>
+<p>**标签：** agent runtime，session log，control plane，data plane，sandbox，observability</p>
+<p>---</p>
+<h2>核心判断</h2>
+<p>这组材料的增量，是把 agent infra 从“更强 prompt / 更好 workflow / 更厚 harness”的讨论，推进到更底层的系统工程视角：</p>
+<p>&gt; **当 agent 任务变长、工具变多、执行环境变复杂时，核心问题会越来越像 OS、distributed system 与 cloud runtime：状态、隔离、恢复、权限、观测、接口稳定性，而不只是模型调用。**</p>
+<p>这里的重点不是把 agent 包装成一个新名词，而是问题形状已经改变。长任务需要在多次模型调用、工具执行、文件改动、用户插话、权限变化和失败重试之间保持连续性。单靠 context window 或一次 prompt 很难承担这种运行时责任。</p>
+<p>Anthropic 官方原文给出的工程答案是 Claude Managed Agents：把 agent virtualize 成 <code>session</code>、<code>harness</code>、<code>sandbox</code> 三个可替换对象，并把平台主语从某个具体 harness 转向更稳定的 runtime interfaces。</p>
+<p>---</p>
+<h2>关键拆解</h2>
+<h3>0. 官方原文的架构主语</h3>
+<p>Anthropic 在原文里把 Managed Agents 设计成一个 <code>meta-harness</code>，它不试图固定未来 Claude 应该使用哪一种 harness，而是固定更底层的接口：</p>
+<ul>
+<li><code>session</code>：append-only event log，保存任务全过程。</li>
+<li><code>harness</code>：调用 Claude、管理上下文、路由 tool calls 的 loop。</li>
+<li><code>sandbox</code>：执行代码、编辑文件、访问资源的隔离环境。</li>
+</ul>
+<p>这对应一个重要判断：harness 会编码某一代模型的弱点。比如 Anthropic 曾为 Claude Sonnet 4.5 的“接近上下文上限就过早收尾”行为加入 context reset；但换到 Claude Opus 4.5 后，这个补丁反而变成多余负担。稳定层因此不应是某个具体 harness，而应是足够抽象、能容纳未来 harness / sandbox / tool 的接口。</p>
+<h3>1. Context window 不是 runtime</h3>
+<p>材料最重要的区分，是把当前模型调用能看到的上下文，与真实系统状态分开。</p>
+<ul>
+<li><code>context window</code> 更像当前工作集、cache 或进程映射进来的页。</li>
+<li><code>session</code> 才应承载跨轮次、跨工具、跨失败恢复的事实源。</li>
+<li>如果把 context 当成 session，恢复出来的往往只是被摘要、被转述、可能已经偏移的故事版本。</li>
+<li>Anthropic 的 <code>getEvents()</code> 接口让 brain 可以按位置切片查询 event stream，再由 harness 把相关事件变成当前模型上下文。</li>
+</ul>
+<p>这与 <a href="coding%20agent%20的上下文压缩工作流.html">coding agent 的上下文压缩工作流</a> 可以互补。后者讨论怎样管理上下文预算；本文进一步强调，上下文管理只是 runtime 状态模型的一部分。</p>
+<h3>2. Append-only session log 像 event sourcing</h3>
+<p>文章把长任务 agent 的 session log 类比为 <code>event sourcing</code>：</p>
+<ul>
+<li>用户输入、模型决策、tool call、工具返回、文件修改、测试失败、路线切换，都应成为事件。</li>
+<li>当前上下文只是从事件流 materialize 出来的 view。</li>
+<li>有完整事件流，才能做 replay、diff、审计、debug 和 evaluator 复盘。</li>
+</ul>
+<p>这个判断把“记忆”从模型内部拿出来，放回 runtime：数据应由 runtime 保存，模型只在某个 view 上推理。</p>
+<h3>3. Brain / hands 本质是 control plane / data plane</h3>
+<p>材料把 Anthropic “decoupling the brain from the hands”的说法解释成系统工程里的控制面与执行面分离：</p>
+<ul>
+<li><code>brain</code>：模型与 harness，负责决策、编排、解释反馈和下一步选择。</li>
+<li><code>hands</code>：sandbox、tool、MCP、浏览器、客户 VPC 等执行环境，负责真实副作用。</li>
+</ul>
+<p>两者生命周期不同。控制面需要可恢复、可升级、可替换；执行面需要隔离、可丢弃、可按需 provision；session state 又应比二者更持久。把它们塞进同一个容器，短期省事，长期会造成状态、权限和恢复语义耦合。</p>
+<h3>4. Sandbox 正在变成 disposable runtime</h3>
+<p>Anthropic 早期把 session、harness、sandbox 放进同一容器，带来直接文件操作的便利，但也让容器变成不能丢的 <code>pet</code>：容器挂了 session 也丢，容器卡住就需要工程师进入用户数据所在环境 debug。</p>
+<p>解耦后，sandbox 不再是“agent 的家”，而是一次任务执行的 disposable runtime：</p>
+<ul>
+<li>需要时创建，坏了就丢，污染了就换。</li>
+<li>repo、依赖、临时文件、测试产物可以在里面，但不应是 source of truth。</li>
+<li>工具输出、文件改动、权限使用和副作用应事件化，便于恢复和审计。</li>
+<li>sandbox 通过 <code>execute(name, input) -&gt; string</code> 暴露为工具；失败可反馈给 Claude，并通过 <code>provision({resources})</code> 重新创建。</li>
+</ul>
+<p>这条判断会直接影响 agent 平台设计：系统应尽量靠 runtime 恢复任务，而不是靠人去抢救某个临时容器。</p>
+<h3>5. 凭证边界要离开 sandbox</h3>
+<p>官方原文特别强调安全边界：Claude 生成的不可信代码不应和 credentials 处在同一个容器里。结构性修复不是只给 token 缩权限，而是让 token 永远不出现在 sandbox 中。</p>
+<p>Anthropic 给出的模式是：</p>
+<ul>
+<li>Git 凭证在 sandbox 初始化时被用于配置 repo remote，agent 可以 push / pull，但不直接拿到 token。</li>
+<li>custom tools 通过 MCP proxy 访问外部服务。</li>
+<li>OAuth credentials 存在外部 vault，由 proxy 根据 session token 取用。</li>
+<li>harness 本身也不需要知道具体 credentials。</li>
+</ul>
+<p>这把安全问题从“相信模型不会乱读环境变量”，改成了更硬的 runtime 边界设计。</p>
+<h3>6. Interface 比 implementation 更稳定</h3>
+<p>文章强调 <code>session</code>、<code>execute</code>、<code>wake</code>、<code>provision</code> 这类接口比具体 harness 或 sandbox 实现更重要。</p>
+<p>原因是未来会持续变化的是：</p>
+<ul>
+<li>模型</li>
+<li>harness 策略</li>
+<li>工具协议</li>
+<li>sandbox 类型</li>
+<li>部署形态</li>
+<li>agent 应用场景</li>
+</ul>
+<p>如果平台押注具体实现，很容易被某代模型或某个工具栈拖住；如果押注稳定接口，下层实现可以替换。这个判断和 <a href="harness-engineering.html">Harness Engineering（约束壳工程）</a> 中“补偿面会移动”的判断相接：可替换性本身就是抵抗 harness 腐化的结构设计。</p>
+<p>Anthropic 还给出一个直接工程收益：brain 不再必须等待 sandbox 预热才开始推理。许多 session 可以先从 orchestration layer 读取 session log 并启动推理，只有需要执行环境时再 provision hand。官方报告该架构使 p50 TTFT 下降约 60%，p95 下降超过 90%。</p>
+<p>---</p>
+<h2>真正难点</h2>
+<p>文章认为 demo 和 long-running system 之间的差距主要在：</p>
+<ul>
+<li>长任务中的失败恢复</li>
+<li>工具副作用和重试语义</li>
+<li>权限过期与安全边界</li>
+<li>多 agent / 多用户协同</li>
+<li>compaction 前后丢失了什么</li>
+<li>过程观测与评价，而不只是最终答案打分</li>
+</ul>
+<p>这说明 agent observability 不能只看 token、latency 和最终输出。它还要能解释：为什么采取这个动作、某次工具返回是否带偏了模型、某条 harness 策略是否提高了成功率、某次 compaction 是否丢了关键约束。</p>
+<p>---</p>
+<h2>与现有知识的关系</h2>
+<ul>
+<li><a href="AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.html">AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First</a>：那页强调 runtime + contract 如何把安全感从过程控制转向结果验证；本文补上更底层的状态、接口、执行隔离与恢复语义。</li>
+<li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a>：那页强调 harness 是对模型弱点的阶段性补偿；本文进一步说明，稳定抽象应尽量下沉到 runtime interface，避免 harness 补丁变成历史包袱。</li>
+<li><a href="../context-memory-knowledge-system/agent-context-infra-2026-05-25.html">Agent Context Infra 前沿调研（2026-05-25）</a>：那页把 context lifecycle layer 放进前沿生态地图；本文提供了一条更强的系统类比：context infra 是 agent runtime 的状态管理层，而不是普通 memory API。</li>
+<li><a href="../../frameworks/Harness架构判断框架.html">Harness 架构判断框架</a>：本文可作为判断 harness 厚度、runtime 边界和补偿面迁移时的底层参考。</li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

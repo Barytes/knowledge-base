@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>课题组公共知识库的联邦架构设计 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/research-knowledge-governance/课题组公共知识库的联邦架构设计.md</div>
+      <h1>课题组公共知识库的联邦架构设计</h1>
+<h2>摘要</h2>
+<p>本页是 <code>oh-share-it</code> 的联邦部署支撑页。主入口见 <a href="oh-share-it公共知识库产品.html">oh-share-it 公共知识库产品</a>。</p>
+<p>这份架构设计把课题组公共知识库重新定义为一个**联邦式知识系统**：每人本地跑完整 LLM Wiki + Agent，服务器做一个带自动聚合的公共 Git 仓库，不跑推理。</p>
+<p>相比中心化架构，联邦架构把 token 成本分散给个人，同时保留&quot;打破研究孤岛&quot;和&quot;知识复利&quot;的核心价值。它的服务器成本几乎为零，聚合工作由 Agent 自动完成，无需人工 review。</p>
+<h2>架构动机</h2>
+<h3>中心化架构的问题</h3>
+<p>最初的设计是在课题组服务器上放一个知识库后端，所有人的问答都由服务器上的 Agent 回答，材料也全部放在服务器里。这个设计有两个问题：</p>
+<p>1. **token 成本集中** — 导师一个人承担所有人的推理消耗</p>
+<p>2. **多用户管理复杂** — 需要处理并发、配额、鉴权、权限</p>
+<h3>联邦架构的核心判断</h3>
+<p>联邦架构基于一个简单判断：**推理是个人消费，同步是公共产品**。</p>
+<ul>
+<li>推理（query）是个人在消耗 token 获取知识 → 个人承担</li>
+<li>同步（sync）是把个人贡献汇聚成公共池 → 服务器只做这个</li>
+</ul>
+<h3>为什么不是 git merge</h3>
+<p><code>git merge</code> 只能处理文本层面的合并，但知识聚合需要语义层面的关联：</p>
+<p>| git merge 能处理 | git merge 不能处理 |</p>
+<p>|-----------------|-------------------|</p>
+<p>| 不同文件 → 直接合并 | A 和 B 写同一主题的不同侧面 → 应该关联 |</p>
+<p>| 同一行的文本冲突 → 标记冲突 | A 说 X，B 说 not X → 是认知冲突，不是文本冲突 |</p>
+<p>| 合并后一个文件 | 两篇互补内容 → 应该创建 index 页链接两者 |</p>
+<p>因此，聚合机制需要 **Agent 语义分析**，而不是简单的 git merge。</p>
+<h2>架构总览</h2>
+<pre><code>┌─────────────────┐
+│  个人客户端 A    │
+│  本地 LLM Wiki   │
+│  个人材料 + 公共材料 │
+│  本地 Agent 推理   │
+└────────┬────────┘
+         │ git push → pending-pool/
+         │ git pull ← public-pool/
+         │
+┌────────▼────────┐
+│   服务器         │
+│   pending-pool/ │  ← 临时接收区（自动清理）
+│   public-pool/  │  ← 已聚合区（Agent 自动聚合）
+│   aggregate.sh  │  ← 每周自动执行
+└────────┬────────┘
+         │
+┌────────┬────────┘
+│  个人客户端 B    │
+│  ... same ...   │
+└─────────────────┘</code></pre>
+<h2>核心设计选择</h2>
+<p>| 维度 | 选择 | 为什么 |</p>
+<p>|------|------|--------|</p>
+<p>| 推理位置 | 只在本地 | 省 token，不依赖服务器 |</p>
+<p>| 公共池形态 | 纯 markdown Git 仓 | 最简单，无服务依赖 |</p>
+<p>| 聚合方式 | Agent 语义聚合 | git merge 无法处理语义关联和认知冲突 |</p>
+<p>| 人工 review | 不需要 | 增加摩擦，保守自动聚合即可 |</p>
+<p>| 共享边界 | 单向贡献（个人→公共） | 隐私清晰，公共池只进不出 |</p>
+<p>| 写回路径 | 本地写回个人库，默认公开 | 低摩擦，用户可选择关闭 |</p>
+<p>| 身份管理 | 静态注册 | 课题组内部，不需要复杂发现协议 |</p>
+<p>| 冲突处理 | 保留多样性 + 创建 tension 页 | 冲突不是问题，是知识张力 |</p>
+<h2>目录结构</h2>
+<h3>个人本地</h3>
+<pre><code>personal-wiki/
+  raw/                    # 个人原始材料（不同步到服务器）
+    papers/
+    meetings/
+    experiments/
+  wiki/                   # 个人维护知识
+    knowledge/
+    insights/
+  public-pool/            # 公共池的只读副本（git submodule）
+    knowledge/
+    insights/
+    tensions/
+  config.yaml             # 个人策略配置</code></pre>
+<h3>服务器</h3>
+<pre><code>public-pool/
+  knowledge/              # 公共共享池（领域地图、方法路线、多视角入口）
+    topics/
+    comparisons/
+  insights/               # 判断层（gap、tension、下一步建议）
+  tensions/               # 自动创建的冲突页
+  index.md                # 自动生成的入口
+  log.md                  # 贡献日志
+
+pending-pool/
+  incoming/               # 临时接收区（聚合后自动清理）</code></pre>
+<h2>工作流程</h2>
+<h3>1. Ingest（摄取）</h3>
+<pre><code>个人读论文 → 本地 agent 提炼 → 写回个人 wiki
+         → 默认公开 → git push 到 pending-pool/incoming/</code></pre>
+<h3>2. 服务器自动聚合（每周执行）</h3>
+<pre><code>aggregate.sh:
+  1. 扫描 incoming/ 新页面
+  2. 提取主题和判断（LLM 语义分析）
+  3. 检测相似主题 → 都保留，互加 related 链接
+  4. 检测冲突判断 → 创建 tensions/ 页面，保留双方
+  5. 检测互补内容 → 自动添加 cross-link
+  6. 更新 index.md
+  7. git commit &amp; push 到 public-pool/
+  8. 清理 incoming/</code></pre>
+<h3>3. Query（查询）</h3>
+<pre><code>用户提问 → 本地 Agent 检索 wiki 页面 (个人 wiki + public-pool 副本)
+         → 本地推理 → 回答
+         → 可选：高价值问答标记为&quot;可贡献&quot; → git push</code></pre>
+<h3>4. Sync（同步）</h3>
+<pre><code>每天/每周 git pull public-pool
+→ 新贡献进入本地 wiki 检索范围
+→ 本地 index.md 更新</code></pre>
+<h2>聚合策略</h2>
+<p>| 情况 | 自动处理方式 |</p>
+<p>|------|-------------|</p>
+<p>| 同一主题两篇 | 都保留，创建 index 页链接到两篇 |</p>
+<p>| 相反判断 | 创建 tension 页，保留双方观点和来源 |</p>
+<p>| 互补内容 | 自动添加 related_pages 链接 |</p>
+<p>| 一篇明显过时 | 标记 <code>superseded_by: [新页面]</code> |</p>
+<p>| 质量差异 | 不处理，读者自行判断 |</p>
+<h2>Token 成本对比</h2>
+<p>| 方案 | 服务器 token | 个人 token | 总成本 | 导师负担 |</p>
+<p>|------|-------------|-----------|--------|---------|</p>
+<p>| 中心化 | 高（所有推理） | 0 | 高 | 100% |</p>
+<p>| 联邦（本设计） | 低（仅聚合） | 各自承担 | 相同 | ~0% |</p>
+<h2>与产品定义的对齐</h2>
+<p>| 产品价值 | 联邦架构如何保住 |</p>
+<p>|---------|-----------------|</p>
+<p>| 快速建立入口与多视角 | public-pool/knowledge/ 作为公共工作面入口 |</p>
+<p>| 支持研究判断 | insights/ 目录专门承接研究判断 |</p>
+<p>| 沉淀可复用判断 | 写回路径支持高价值问答进入公共池 |</p>
+<p>| 形成持续复利 | 新贡献进入个人 wiki 检索范围，减少重复 |</p>
+<p>| 打破研究孤岛 | public-pool 汇聚所有人的 wiki 贡献 |</p>
+<h2>知识复利机制</h2>
+<h3>复利 1：站在前人页面上继续写</h3>
+<pre><code>第 1 周：A 写了 knowledge/topics/边缘卸载.md（基础概念）
+第 2 周：B 读了 A 的页面，在其基础上添加了「方法路线比较」
+第 3 周：C 基于 B 的页面，写了一篇 comparison/边缘卸载 vs 云计算.md</code></pre>
+<h3>复利 2：冲突即知识</h3>
+<pre><code>A 写的：边缘卸载适合延迟敏感应用
+B 写的：边缘卸载不适合延迟敏感应用
+
+→ Agent 检测到冲突 → 创建 tensions/边缘卸载延迟敏感性争议.md
+→ 记录双方观点和来源 → 留给后人判断或进一步研究</code></pre>
+<h3>复利 3：检索优先级</h3>
+<pre><code>本地 query 时：
+1. 先检索 public-pool/wiki/ （公共共享池）
+2. 不足时再检索个人 wiki/ （个人理解和笔记）
+3. 最后才回 raw/ （原始材料）</code></pre>
+<h2>风险与缓解</h2>
+<p>| 风险 | 描述 | 缓解 |</p>
+<p>|------|------|------|</p>
+<p>| 孤岛加剧 | 如果个人默认不贡献，公共池空洞 | 默认配置为&quot;公开&quot;，用户可改 |</p>
+<p>| 同步延迟 | 个人库更新不及时，复利滞后 | 建议每日 sync，或查询前自动 pull |</p>
+<p>| 语义冲突 | Agent 聚合可能误判 | 保守策略：不确定就保留两篇，让读者判断 |</p>
+<p>| 搭便车 | 只 pull 不 push | 课题组内部规范，非技术约束 |</p>
+<h2>与架构分层设计的关系</h2>
+<p>这份联邦架构设计和 <a href="课题组公共知识库的架构风险与分层设计.html">课题组公共知识库的架构风险与分层设计</a> 是**部署策略**与**结构设计**的关系：</p>
+<ul>
+<li>架构风险分层设计定义页面类型、关系模型与默认工作面应该长什么样</li>
+<li>联邦架构定义这些能力如何分布到不同节点（本地 vs 服务器）</li>
+</ul>
+<p>两者可以组合：同一套页面与关系模型，可以在联邦架构的每个个人节点上独立运行，再通过 Git 做保守同步。</p>
+<h2>与架构风险分层设计的关系</h2>
+<p><a href="课题组公共知识库的架构风险与分层设计.html">课题组公共知识库的架构风险与分层设计</a> 中提出的三个核心风险（多用户污染、上下文窗口、token 成本）在联邦架构下有不同表现：</p>
+<p>| 风险 | 中心化架构 | 联邦架构 |</p>
+<p>|------|-----------|---------|</p>
+<p>| 多用户污染 | 需要显式 review 流程 | 个人库自己控制，保守自动聚合 |</p>
+<p>| 上下文窗口 | 服务器需要策略性裁剪 | 个人控制自己的窗口预算 |</p>
+<p>| token 成本 | 导师承担 | 个人承担 |</p>
+<p>联邦架构把&quot;治理问题&quot;从服务器转移到了个人：每个人决定自己的质量控制策略，公共池只做保守的自动聚合。</p>
+<h2>实现路线图</h2>
+<h3>Phase 1：单人验证</h3>
+<ul>
+<li>本地跑通 LLM Wiki + Agent + 写回</li>
+<li>手动 git push 到服务器仓库</li>
+</ul>
+<h3>Phase 2：多人同步</h3>
+<ul>
+<li>第二个人加入</li>
+<li>验证 Agent 语义聚合脚本</li>
+<li>建立贡献规范</li>
+</ul>
+<h3>Phase 3：自动化</h3>
+<ul>
+<li>定时聚合（cron job，每周）</li>
+<li>自动更新 index.md</li>
+<li>可选：贡献统计 dashboard</li>
+</ul>
+<h2>来源依据</h2>
+<ul>
+<li>课题组公共知识库产品定义信念讨论（2026/04/13）</li>
+<li>联邦知识库 vs EvoMap 对比分析（2026/04/13）</li>
+<li><a href="课题组公共知识库的产品定义信念.html">课题组公共知识库的产品定义信念</a></li>
+<li><a href="课题组公共知识库的架构风险与分层设计.html">课题组公共知识库的架构风险与分层设计</a></li>
+<li><a href="../context-memory-knowledge-system/information-compounding-systems-design.html">信息复利系统设计</a></li>
+<li><a href="../../../../../raw/external/llm-wiki.md">llm-wiki</a></li>
+<li><a href="../agent-harness-runtime/EvoMap-Agent%20互联网与集体潜意识.html">EvoMap：Agent 互联网与集体潜意识</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="课题组公共知识库的产品定义信念.html">课题组公共知识库的产品定义信念</a></li>
+<li><a href="课题组公共知识库的架构风险与分层设计.html">课题组公共知识库的架构风险与分层设计</a></li>
+<li><a href="../context-memory-knowledge-system/information-compounding-systems-design.html">信息复利系统设计</a></li>
+<li><a href="../context-memory-knowledge-system/local-knowledge-base-patterns.html">本地知识库模式</a></li>
+<li><a href="../agent-harness-runtime/EvoMap-Agent%20互联网与集体潜意识.html">EvoMap：Agent 互联网与集体潜意识</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

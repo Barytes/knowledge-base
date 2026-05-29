@@ -4,9 +4,9 @@
 
 当前仓库已经积累出几类很有价值的中间层：
 
-- `wiki/knowledge/` 里的世界知识与概念框架
+- `wiki/topics/` 里的世界知识与概念框架
 - `wiki/frameworks/` 里的高复用判断入口
-- `wiki/bridges/` 里的具体应用分析
+- `wiki/topics/` 里的具体应用分析
 
 但如果 query 只是“找几页相关内容然后总结一下”，它其实仍然更像一个增强检索器，而不是一个真正站在判断框架上工作的系统。
 
@@ -23,7 +23,7 @@
 
 ### 1. 默认工作面比信息存储更关键
 
-[信息复利系统设计](../bridges/information-compounding-systems-design.md) 已经给出最关键的一句：
+[信息复利系统设计](../topics/context-memory-knowledge-system/information-compounding-systems-design.md) 已经给出最关键的一句：
 
 > 真正重要的，不是系统有没有保存足够多的信息，而是未来的高价值工作，到底默认站在哪一层上发生。
 
@@ -31,7 +31,7 @@
 
 ### 2. 这个仓库本来就不是单纯 QA 系统
 
-[知识库运行模型](../bridges/knowledge-base-operating-model.md) 和 [本地知识库模式](../knowledge/local-knowledge-base-patterns.md) 都明确了：
+[知识库运行模型](../topics/context-memory-knowledge-system/knowledge-base-operating-model.md) 和 [本地知识库模式](../topics/context-memory-knowledge-system/local-knowledge-base-patterns.md) 都明确了：
 
 - `knowledge` 负责世界知识
 - `frameworks` 负责高复用、低噪音的判断框架与 query 入口
@@ -41,7 +41,7 @@
 
 ### 3. 高价值 query 应该产出新的工作面，而不是只消耗旧页面
 
-[课题组公共研究知识库的产品化与评测策略](../bridges/lab-research-knowledge-base-product-strategy.md) 里已经把这点说得很清楚：
+[课题组公共研究知识库的产品化与评测策略](../topics/research-knowledge-governance/lab-research-knowledge-base-product-strategy.md) 里已经把这点说得很清楚：
 
 - 系统的价值不只是回答问题
 - 更重要的是把高价值判断持续沉淀回公共工作面
@@ -50,7 +50,7 @@
 
 ### 4. 这个仓库天然在反对“共识化平回答”
 
-[AI 知识系统的产品定义信念](../knowledge/ai-knowledge-systems-product-definition-beliefs.md) 和 [课题组公共研究知识库的产品化与评测策略](../bridges/lab-research-knowledge-base-product-strategy.md) 都指向同一个风险：
+[AI 知识系统的产品定义信念](../topics/context-memory-knowledge-system/ai-knowledge-systems-product-definition-beliefs.md) 和 [课题组公共研究知识库的产品化与评测策略](../topics/research-knowledge-governance/lab-research-knowledge-base-product-strategy.md) 都指向同一个风险：
 
 - 如果系统只是从已有材料里找最大公约数
 - 它会越来越擅长总结共识
@@ -241,8 +241,8 @@
 
 ## 相关页面
 
-- [知识库运行模型](../bridges/knowledge-base-operating-model.md)
-- [信息复利系统设计](../bridges/information-compounding-systems-design.md)
-- [课题组公共研究知识库的产品化与评测策略](../bridges/lab-research-knowledge-base-product-strategy.md)
-- [AI 知识系统的产品定义信念](../knowledge/ai-knowledge-systems-product-definition-beliefs.md)
-- [本地知识库模式](../knowledge/local-knowledge-base-patterns.md)
+- [知识库运行模型](../topics/context-memory-knowledge-system/knowledge-base-operating-model.md)
+- [信息复利系统设计](../topics/context-memory-knowledge-system/information-compounding-systems-design.md)
+- [课题组公共研究知识库的产品化与评测策略](../topics/research-knowledge-governance/lab-research-knowledge-base-product-strategy.md)
+- [AI 知识系统的产品定义信念](../topics/context-memory-knowledge-system/ai-knowledge-systems-product-definition-beliefs.md)
+- [本地知识库模式](../topics/context-memory-knowledge-system/local-knowledge-base-patterns.md)

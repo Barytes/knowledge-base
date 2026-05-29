@@ -28,7 +28,7 @@ That means:
 1. read `wiki/index.md` first
 2. for design, evaluation, comparison, or decision questions, read `wiki/frameworks/router.md` first when available
 3. then read the most relevant `wiki/frameworks/` page
-4. then read the most relevant `wiki/knowledge/` and `wiki/bridges/` pages
+4. then read the most relevant `wiki/topics/` pages
 5. read `raw/` only if the wiki is incomplete
 6. answer from local material
 7. if local material is insufficient, say so explicitly and stop
@@ -68,7 +68,6 @@ If a local-only answer produces a durable clarification or synthesis, save it ba
 Prefer:
 
 - `wiki/frameworks/` for reusable judgment frameworks, router pages, and compact entry surfaces
-- `wiki/bridges/` for concrete applied analyses or memos
-- `wiki/knowledge/` for factual syntheses
+- `wiki/topics/` for factual syntheses, concrete applied analyses, memos, and essays
 
 Any maintained wiki page written back by this skill should default to Chinese.

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>multica 与 clawhouse 的目标与核心价值差异 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/multica与clawhouse的目标与核心价值差异.md</div>
+      <h1>multica 与 clawhouse 的目标与核心价值差异</h1>
+<h2>摘要</h2>
+<p><code>multica</code> 和 <code>clawhouse</code> 表面上都在处理“分散在不同地方的 coding agent 应该怎样被访问和使用”这个问题，但它们真正定义的产品对象并不一样。</p>
+<p><code>clawhouse</code> 更像一个面向单用户、多设备场景的 agent launcher 与运行时工作台。按最新澄清，它最原始的动机其实非常直接：无论身在何处，都能访问“我的 agent”。当你离开原来的桌面后，能不能继续回到那台机器上的 agent，并看清它此刻到底在做什么，是这个动机展开后的具体要求。</p>
+<p><code>multica</code> 则更像一个面向团队任务流的 managed agents platform。它最关心的不是“我怎么连回我的 agent”，而是“一个团队怎样把 agent 当作真正的队友来分配任务、跟踪进展、沉淀技能和共享算力”。</p>
+<p>因此，两者的差别不主要在功能清单，而在第一性目标和核心价值承诺。</p>
+<h2>目标差异</h2>
+<h3>1. <code>clawhouse</code> 的目标首先是让 agent 成为可随身访问的对象</h3>
+<p>从当前设想和后续澄清看，<code>clawhouse</code> 要解决的首先不是抽象的“连续性”，而是更第一性的访问权问题：agent 还没有像账号、文件或云服务一样成为一种可随身访问的对象。</p>
+<p>它在个人多设备环境中具体表现为连续性断裂。</p>
+<p>静态文件可以同步，但运行时上下文不会自然同步。用户真正缺的是：</p>
+<ul>
+<li>现在是哪台机器在跑任务</li>
+<li>那台机器上的 agent 进行到哪里</li>
+<li>项目和测试处于什么状态</li>
+<li>手机和平板上如何无痛接回原来的工作现场</li>
+</ul>
+<p>所以它的目标更像：</p>
+<p>&gt; 让用户无论身在何处，都能重新进入并继续使用自己的 agent。</p>
+<p>统一入口、移动端可用和可观察，都是为这个目标服务的实现条件。这里的核心单位是“设备上的 agent 节点”与“节点上的项目运行时工作面”。</p>
+<h3>2. <code>multica</code> 的目标是把 agent 纳入团队任务系统</h3>
+<p><code>multica</code> 的目标更靠组织层。</p>
+<p>它不是先从“多设备访问”出发，而是先从“agent 应该像同事一样进入团队协作系统”出发。它要解决的是：</p>
+<ul>
+<li>agent 怎样像成员一样被分配 issue</li>
+<li>agent 执行任务时怎样持续更新状态和进度</li>
+<li>本地 daemon 和云端 runtime 怎样统一接入</li>
+<li>团队怎样复用 agent 在过去任务里形成的 skills</li>
+</ul>
+<p>所以它的目标更像：</p>
+<p>&gt; 把 coding agent 从个人工具升级成团队工作流里的原生执行者。</p>
+<p>这里的核心单位不是单台设备，而是 <code>workspace / issue / agent / runtime / skill</code> 这一整套协作对象。</p>
+<h3>3. 一个偏“回到原工作现场”，一个偏“重新定义工作组织方式”</h3>
+<p>如果再压缩一层，可以把目标差异概括成：</p>
+<ul>
+<li><code>clawhouse</code> 更像在修复个人工作流中的断点。</li>
+<li><code>multica</code> 更像在重写团队如何分工与调度 agent。</li>
+</ul>
+<p>前者首先解决 continuity problem，后者首先解决 coordination problem。</p>
+<h2>核心价值差异</h2>
+<h3>1. <code>clawhouse</code> 的核心价值是可达性加可观察性</h3>
+<p><code>clawhouse</code> 最核心的价值，不是“能发消息给 agent”，而是：</p>
+<ul>
+<li>让 agent 变成一种你走到哪里都能接回来的对象</li>
+<li>让原来那台机器上的 agent 可达</li>
+<li>让它的设备状态、项目状态、任务状态可见</li>
+<li>让移动端看到的不只是聊天回执，而是运行时现场</li>
+</ul>
+<p>换句话说，它交付的是一种更好的默认工作面。</p>
+<p>它承诺给用户的价值是：</p>
+<p>&gt; 即使人离开了桌面，仍然能从手机或平板继续进入并使用自己的 agent，而不是把 agent 留在原来的那台机器上。</p>
+<h3>2. <code>multica</code> 的核心价值是 agent 协作基础设施</h3>
+<p><code>multica</code> 的价值更重，也更组织化。它不只是让 agent 可见，而是让 agent 成为任务系统里的原生角色。</p>
+<p>它承诺的价值包括：</p>
+<ul>
+<li>可以把 issue 直接分配给 agent</li>
+<li>agent 会经历可追踪的任务生命周期</li>
+<li>任务进展通过 WebSocket 持续同步到工作台</li>
+<li>skills 会被沉淀和复用</li>
+<li>runtime 可以统一接入和管理</li>
+</ul>
+<p>所以它真正卖的不是“多设备入口”，而是：</p>
+<p>&gt; 一个让人类和 agent 在同一任务系统里协同工作的基础设施层。</p>
+<h3>3. <code>clawhouse</code> 的 magic 更偏“即时掌控感”，<code>multica</code> 的 magic 更偏“组织杠杆”</h3>
+<p>如果从用户主观体验来区分：</p>
+<ul>
+<li><code>clawhouse</code> 的 magic 在于，你打开手机就能立刻知道哪台机器、哪个 agent、哪个项目现在是什么状态，黑盒感显著下降。</li>
+<li><code>multica</code> 的 magic 在于，agent 不再像一次性工具，而像可以持续协作、被分配、被追踪、会积累能力的组织成员。</li>
+</ul>
+<p>前者更像提升 control surface，后者更像提升 organizational leverage。</p>
+<h2>为什么它们会看起来相似</h2>
+<p>两者看起来相似，是因为它们共享了几条中间层机制：</p>
+<ul>
+<li>都承认 agent 不只是一个聊天窗口</li>
+<li>都需要某种 runtime / daemon / server 层</li>
+<li>都需要把执行中的状态显式化</li>
+<li>都在试图摆脱“聊天软件里的黑盒代理”形态</li>
+</ul>
+<p>但这些更像相同的工程手段，而不是相同的产品目标。</p>
+<h2>一个更清楚的区分方式</h2>
+<p>可以把两者分别理解成：</p>
+<ul>
+<li><code>clawhouse</code>：面向个人多设备场景的 agent access + observability layer</li>
+<li><code>multica</code>：面向团队任务流的 managed agents orchestration layer</li>
+</ul>
+<p>这个区分也解释了为什么你会觉得 <code>multica</code> “更近一步”。</p>
+<p>不是因为它单点功能一定全面超过 <code>clawhouse</code>，而是因为它已经把 runtime 接入、任务分配、状态同步、workspace 和 skill 复利这些层收进了同一个系统叙事里。</p>
+<p>但反过来说，这也意味着它未必天然最优地解决 <code>clawhouse</code> 最尖锐的那个问题：移动端上，如何以最清晰、最低摩擦的方式重新进入某台具体设备上的 agent 工作现场。</p>
+<h2>如果已经有 multica，clawhouse 还有没有意义</h2>
+<p>从当前本地材料看，答案是：有，但前提是 <code>clawhouse</code> 不去和 <code>multica</code> 正面做同一个“团队任务系统”。</p>
+<p>如果 <code>clawhouse</code> 只是想证明“多设备 agent 可以被统一接入、被分配任务、被看见在线状态”，那它和 <code>multica</code> 的重叠已经很高，意义会迅速下降。</p>
+<p>但如果 <code>clawhouse</code> 把自己收束成下面这个问题，它仍然有很清楚的存在空间：</p>
+<p>&gt; 当用户离开原来的桌面设备后，怎样在手机或平板上以最低摩擦重新进入并继续使用那个 agent，而不是把它留在原地。</p>
+<p>“可靠判断它此刻到底在做什么”是这个问题的第二层，而不是第一层。当前看，这仍然不是 <code>multica</code> 当前材料里最中心的承诺。</p>
+<h2>multica 已经 address 了多少黑盒问题</h2>
+<p>基于当前本地证据，<code>multica</code> 不是完全忽略黑盒问题。</p>
+<p>已有材料明确显示它至少承诺了这些可见性：</p>
+<ul>
+<li>agent 的任务生命周期是显式的，有 <code>enqueue -&gt; claim -&gt; start -&gt; complete/fail</code></li>
+<li>任务进展会通过 WebSocket 实时推回前端</li>
+<li>agent 会出现在 board 上，能评论、改状态、报告 blocker</li>
+<li>runtime 是被显式注册和展示的，用户能看到机器作为 active runtime 存在</li>
+<li>平台强调 execution monitoring，而不是只强调 prompt 发送</li>
+</ul>
+<p>所以严格说，<code>multica</code> 已经在解决“agent 完全不可见”这个问题。</p>
+<p>但当前本地材料还没有证明另一件更强的事：</p>
+<p>&gt; 用户是否能像看一个真实工作台那样，看见 agent 执行中的关键运行时内容。</p>
+<p>也就是，目前还看不出它是否稳定暴露了这些东西：</p>
+<ul>
+<li>实时命令输出</li>
+<li>测试流和失败点</li>
+<li><code>git status</code>、分支、diff 级变化</li>
+<li>当前打开的是哪个项目工作树</li>
+<li>本机资源状态和 agent 使用的具体设备环境</li>
+<li>agent 此刻为什么卡住、卡在哪个子步骤</li>
+</ul>
+<p>README 里有 “real-time progress streaming” 和 “execution monitoring”，但这更像证明它有状态流和任务监控，不足以证明它已经把 agent 从黑盒变成了高分辨率、可诊断的运行时工作面。</p>
+<p>因此，更准确的说法不是 “multica 没有 address 黑盒问题”，而是：</p>
+<p>&gt; <code>multica</code> 已经 address 了任务层的黑盒问题，但是否 address 了运行时现场层的黑盒问题，当前证据还不够。</p>
+<h2>clawhouse 可能提供的独特价值</h2>
+<p>如果要让 <code>clawhouse</code> 有独特价值，它最有希望的方向不是比 <code>multica</code> 更像“另一个 agent team platform”，而是比 <code>multica</code> 更彻底地把 agent 工作现场显式化。</p>
+<p>当前最可能的独特价值有四条。</p>
+<h3>1. 面向“具体那台机器”的高分辨率可观察性</h3>
+<p><code>multica</code> 的 runtime 视角更像平台资源视角，而 <code>clawhouse</code> 可以把重点放在“实验室台式机上的这个 agent 此刻在这个 repo 里做什么”。</p>
+<p>这是一种更贴近个人真实使用现场的 observability：</p>
+<ul>
+<li>哪个 repo</li>
+<li>哪个 worktree</li>
+<li>哪个分支</li>
+<li>当前测试到哪里</li>
+<li>生成了哪些页面或文件</li>
+<li>设备 CPU、内存、uptime 和 agent 任务并列展示</li>
+</ul>
+<h3>2. 移动端优先的 re-entry 体验</h3>
+<p><code>clawhouse</code> 的问题定义从一开始就是手机和平板场景，而 <code>multica</code> 当前叙事更像桌面上的团队工作台。</p>
+<p>如果 <code>clawhouse</code> 能把“掏出手机，十秒内重新接回原任务现场”做到极致，它就不是 <code>multica</code> 的弱化版，而是在优化另一条关键体验曲线。</p>
+<h3>3. 项目级 dashboard，而不是只停留在任务卡片和状态流</h3>
+<p><code>multica</code> 当前材料更强调 issue、board、status、runtime、skills。</p>
+<p><code>clawhouse</code> 如果继续强化“每个项目都能由 agent 动态编译出一个 dashboard”，那它提供的就不是任务系统视图，而是项目运行时视图。这个视图更适合回答：</p>
+<ul>
+<li>现在最该看什么</li>
+<li>当前项目哪里坏了</li>
+<li>下一步接管应该从哪开始</li>
+</ul>
+<h3>4. 可信可见，而不只是可协作</h3>
+<p>你现在最敏感的一点，其实不是“agent 能不能接任务”，而是“我能不能相信它真的按我理解的方式在工作”。</p>
+<p>这会把 <code>clawhouse</code> 推向一个更尖锐的价值主张：</p>
+<p>&gt; 不只是让 agent 成为队友，而是让 agent 的工作过程足够可见，所以用户敢把任务真正交给它。</p>
+<p>这条价值和 <code>multica</code> 的团队协作价值并不相同。</p>
+<h2>当前判断</h2>
+<p>基于当前本地材料，一个简化但有用的判断是：</p>
+<p>&gt; <code>clawhouse</code> 优先优化“我如何继续我的 agent 工作”，<code>multica</code> 优先优化“我们如何把 agent 纳入团队工作系统”。</p>
+<p>这两者并不冲突，甚至可能是上下游关系。</p>
+<p>如果 <code>clawhouse</code> 往前长，它可能会进入 <code>multica</code> 的 territory；如果 <code>multica</code> 往移动端和单用户多设备场景继续打磨，它也可能吃进 <code>clawhouse</code> 的核心问题。</p>
+<p>但在当前定义下，它们的第一性目标和核心价值仍然是不同的。</p>
+<p>如果要把这条判断再压缩成一句对产品决策最有帮助的话，那就是：</p>
+<p>&gt; <code>clawhouse</code> 只有在“让 agent 真正成为可随身访问对象”这件事上，比 <code>multica</code> 做得明显更好时，才有强存在意义。</p>
+<h2>来源依据</h2>
+<ul>
+<li><a href="clawhouse-多设备-agent-工作台.html">Clawhouse：多设备 Agent 的统一入口与运行时工作台</a></li>
+<li><a href="multica-ai-multica-repo-map.html">multica-ai/multica 仓库地图</a></li>
+<li><a href="../../../../../raw/external/github-repo-multica-ai-multica.md">multica GitHub repo snapshot</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="clawhouse-多设备-agent-工作台.html">Clawhouse：多设备 Agent 的统一入口与运行时工作台</a></li>
+<li><a href="multica-ai-multica-repo-map.html">multica-ai/multica 仓库地图</a></li>
+<li><a href="coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

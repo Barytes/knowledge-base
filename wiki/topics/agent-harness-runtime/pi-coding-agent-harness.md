@@ -1,0 +1,113 @@
+# Pi coding agent：一种极简且可观察的 coding harness
+
+## 摘要
+
+`pi` 把 coding agent harness 重新收缩成一个很小的壳：少量系统提示、四个默认工具、尽量透明的会话与 UI，再把更多状态与扩展能力外置到文件、CLI 工具和包机制里。
+
+从两份来源合起来看，它的核心不是“功能比别人更多”，而是三条更强的产品判断：
+
+- 默认相信前沿模型已经理解什么是 coding agent，不必再靠超长 system prompt 和复杂内建模式去补。
+- 把可观察性放在黑箱自动化之前，宁可让用户多显式管理一点状态，也不愿接受隐藏的 sub-agent、后台进程或上下文注入。
+- 把 agent 基础设施拆成可替换部件：统一 LLM API、agent loop、TUI 框架、最终 CLI，各层都尽量薄。
+
+## 它是什么
+
+`pi-mono/packages/coding-agent` 显示，`pi` 不是单一 CLI，而是一套分层工具链：
+
+- `pi-ai`：统一多 provider 的 LLM API，负责流式输出、tool calling、reasoning、跨 provider context handoff、token 与 cost 跟踪。
+- `pi-agent-core`：执行 tool loop、校验参数、发出事件流。
+- `pi-tui`：一个尽量少闪烁、保留终端 scrollback 的 TUI 框架。
+- `pi-coding-agent`：最终给用户使用的 coding agent CLI，负责 session、context files、命令、主题与自定义能力接入。
+
+这说明作者并不把 “coding agent” 看成单个 prompt 加工具集合，而是看成一组可独立替换的基础设施层。
+
+## 核心设计判断
+
+### 极简 prompt 与极简工具足够工作
+
+作者的判断是，现代前沿模型已经被充分训练为 coding agent，因此不需要冗长 system prompt。`pi` 默认只给四个工具：`read`、`write`、`edit`、`bash`。这一组合和 `Codex` 的极简工具面相近。
+
+这背后的取向是：少做隐藏注入，少做“看起来很聪明”的内建工作流，让模型站在一个更可预测的接口上工作。
+
+### 把状态外置，而不是内建更多模式
+
+`pi` 明确反对内建 `to-dos`、`plan mode`、`background bash`、`MCP` 和专用 `sub-agents`。
+
+它给出的替代方案几乎都遵循同一个原则：把状态存成用户可见的文件，或交给现成 CLI 设施。
+
+- 计划写进 `PLAN.md`
+- 任务状态写进 `TODO.md`
+- 长时运行进程交给 `tmux`
+- 外部能力优先做成带 README 的 CLI
+- 需要子代理时，让主 agent 通过 `bash` 再启动一个 `pi`
+
+这不是简单的“少功能”，而是把 harness 从“越来越厚的内建 orchestration”拉回“显式文件 + 通用命令行”的基本面。
+
+### 可观察性优先于魔法感
+
+来源里反复出现的词是 observability。作者尤其反感这几类黑箱：
+
+- 工具或 prompt 在背后悄悄注入上下文
+- 隐藏的 sub-agent 替你做上下文收集
+- 后台 bash 缺少可查询的真实状态
+- plan mode 只给结论，不暴露其搜索过程
+
+因此，`pi` 倾向把上下文准备拆到独立 session 里，先做调研并产出 artifact，再把 artifact 带进新的实现会话。这种做法把 “session 内临时并行探索” 替换成 “session 间可见的上下文编译”。
+
+### CLI + README 代替 MCP
+
+作者对 MCP 的批评，不只是实现麻烦，而是它会把大量工具描述常驻注入上下文，形成显著 token 税。
+
+`pi` 更偏向 progressive disclosure：先把能力做成普通 CLI 工具，配一个 README，让 agent 只在需要时读取说明并通过 `bash` 调用。这种设计把扩展成本从“协议层集成”降到“脚本与文档组织”。
+
+## 工程实现上最有意思的地方
+
+### 统一 LLM API，但明确承认抽象会漏
+
+`pi-ai` 试图统一 OpenAI Completions、Responses、Anthropic Messages 和 Google Generative AI 等几类接口，同时支持多 provider 与自托管模型。
+
+但来源没有把这说成完美抽象。相反，它明确强调：
+
+- provider 的 tool calling、reasoning、token 计量并不一致
+- 跨 provider context handoff 只能 best-effort
+- 一些推理痕迹需要降级成普通文本块继续传递
+
+这是一种比较成熟的工程态度：承认抽象层有价值，但不掩饰它一定是 leak 的。
+
+### tool result 分成给模型看的部分和给 UI 看的部分
+
+这可能是两份来源里最有辨识度的设计之一。工具返回结果可以拆成：
+
+- 给 LLM 消费的文本或结构化内容
+- 给 UI 展示的独立 details / attachments
+
+这个分离很重要，因为很多 agent UI 的糟糕体验，本质上来自“把给模型看的数据结构，硬当成给人看的界面数据”。
+
+### TUI 选择保留 scrollback，而不是接管整屏
+
+`pi-tui` 没走 fullscreen TUI 路线，而是保留终端原生 scrollback，只在可见区域内做 differential rendering 和同步输出，尽量减少闪烁。
+
+这对应的产品判断是：coding agent 的核心交互天然是线性的消息流，因此继承终端已有的滚动、搜索与查看能力，比造一个全屏界面更划算。
+
+## 适用边界与代价
+
+这套设计更适合高自主、愿意自己管理环境的用户，不太像面向广泛用户的安全默认值。
+
+- `YOLO` 权限模型牺牲了默认安全栏杆，换取更少摩擦。
+- 把状态外置到文件和 `tmux`，会把一部分产品复杂度转移给用户工作流纪律。
+- 反对内建 sub-agent 与 plan mode，有助于减少黑箱，但也意味着很多便利能力要靠用户自己搭。
+- benchmark 结果最多能说明“极简壳并不必然输”，不能单独证明这套哲学在所有真实任务里都更优。
+
+因此，`pi` 更像一个面向 power user 的 harness 论点：真正稀缺的不是更多内建 feature，而是更薄、更透明、可被用户重新编排的工作面。
+
+## 来源依据
+
+- [pi-mono/packages/coding-agent README](../../../raw/external/pi-mono-coding-agent-readme.md)
+- [What I learned building an opinionated and minimal coding agent](../../../raw/external/pi-coding-agent-retrospective.md)
+
+## 相关页面
+
+- [Harness Engineering（约束壳工程）](harness-engineering.md)
+- [badlogic/pi-mono 仓库地图](badlogic-pi-mono-repo-map.md)
+- [grapeot/context-infrastructure 仓库地图](../context-memory-knowledge-system/grapeot-context-infrastructure-repo-map.md)
+- [代码库作为知识来源](codebases-as-knowledge-sources.md)

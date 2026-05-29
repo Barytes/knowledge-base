@@ -42,5 +42,5 @@
 
 ## 相关页面
 
-- 相关的 `wiki/knowledge/` 主题页
-- 相关的 `wiki/bridges/` 页面
+- 相关的 `wiki/topics/` 主题页
+- 相关的 `wiki/frameworks/` 或 `wiki/self/` 页面

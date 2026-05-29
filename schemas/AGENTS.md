@@ -18,10 +18,10 @@ Read this file first, then consult the more specific schema for the task:
 
 - `raw/external/`: immutable outside sources
 - `raw/personal/`: immutable personal records
-- `wiki/knowledge/`: maintained world knowledge
+- `wiki/topics/`: topic-organized maintained knowledge and applied analysis
 - `wiki/self/`: maintained personal judgment pages
 - `wiki/frameworks/`: compact judgment frameworks and query routing pages
-- `wiki/bridges/`: applied analyses combining the layers above
+- `wiki/site/`: generated static HTML browsing view
 - `wiki/index.md`: top-level map
 - `wiki/log.md`: append-only activity log
 
@@ -33,10 +33,9 @@ This includes:
 
 - `wiki/index.md`
 - `wiki/log.md`
-- new or updated pages in `wiki/knowledge/`
+- new or updated pages in `wiki/topics/`
 - new or updated pages in `wiki/self/`
 - new or updated pages in `wiki/frameworks/`
-- new or updated pages in `wiki/bridges/`
 
 Keep file paths, repository names, commands, code identifiers, and unavoidable technical terms in their original form when helpful.
 
@@ -55,32 +54,31 @@ Use local skills when the task matches:
 
 - `skills/kb-ops/` as the top-level orchestration entry point
 - `skills/kb-query/` as the local-only query entry point
-- `skills/research-ingest/` for external-source compilation
+- `skills/research-ingest/` for external-source compilation into topic pages
 - `skills/self-distill/` for personal-source distillation
-- `skills/bridge-write/` for mixed analyses and essays
-- `skills/framework-distill/` for lifting reusable judgment skeletons from `wiki/knowledge/` and `wiki/bridges/` into `wiki/frameworks/`
+- `skills/bridge-write/` for mixed analyses and essays inside `wiki/topics/`
+- `skills/framework-distill/` for lifting reusable judgment skeletons from `wiki/topics/` into `wiki/frameworks/`
 
 ## Layer Boundaries
 
 - Treat files in `raw/` as source evidence.
 - Do not rewrite source content in `raw/` unless explicitly asked.
-- Put world-facing claims in `wiki/knowledge/`.
+- Put world-facing claims and mixed applied analysis in the relevant topic under `wiki/topics/`.
 - Put recurring user judgment patterns in `wiki/self/`.
 - Put reusable judgment frameworks, compact router pages, and high-frequency entry surfaces in `wiki/frameworks/`.
-- Put mixed applied analyses in `wiki/bridges/`.
 
-Do not store personal axioms inside `wiki/knowledge/`.
+Do not store personal axioms inside `wiki/topics/`.
 Do not store outside factual summaries inside `wiki/self/`.
-Do not let `wiki/frameworks/` turn into a second `wiki/bridges/`; keep it small and periodically consolidated.
+Do not let `wiki/frameworks/` turn into a second topic directory; keep it small and periodically consolidated.
 
 ## Query Routing
 
 Route questions by type:
 
-- Factual or topic questions: read `wiki/knowledge/` first.
+- Factual or topic questions: read `wiki/topics/` first.
 - Questions about the user's style, preferences, or recurring judgments: read `wiki/self/` first.
-- Design, evaluation, comparison, and decision questions: read `wiki/frameworks/router.md` first, then the most relevant framework page, then pull in `wiki/knowledge/` and `wiki/bridges/` as needed.
-- Save concrete applied outputs to `wiki/bridges/` only when the result is really an analysis or memo, not merely a reusable router or framework page.
+- Design, evaluation, comparison, and decision questions: read `wiki/frameworks/router.md` first, then the most relevant framework page, then pull in `wiki/topics/` as needed.
+- Save concrete applied outputs to the relevant `wiki/topics/<topic>/` directory when the result is really an analysis or memo, not merely a reusable router or framework page.
 
 For repository-related questions, default to local-only behavior. Do not browse the web unless the user explicitly requests online search.
 
@@ -89,7 +87,7 @@ For repository-related questions, default to local-only behavior. Do not browse 
 When ingesting an external source:
 
 1. Read the source in `raw/external/`.
-2. Create or update a relevant page in `wiki/knowledge/`.
+2. Create or update a relevant page in `wiki/topics/<topic>/`.
 3. Link it from existing related pages when appropriate.
 4. Append a short note to `wiki/log.md`.
 
@@ -130,10 +128,9 @@ Use language that distinguishes:
 
 If a query produces durable value:
 
-- save factual synthesis under `wiki/knowledge/`, or
+- save factual synthesis or applied analysis under `wiki/topics/`, or
 - save stable user-specific signals under `wiki/self/`, or
-- save reusable frameworks and router pages under `wiki/frameworks/`, or
-- save concrete applied analysis under `wiki/bridges/`
+- save reusable frameworks and router pages under `wiki/frameworks/`
 
 Do not let durable work disappear into chat history if it would be useful later.
 
@@ -147,6 +144,6 @@ During lint or cleanup, check for:
 - duplicate pages
 - claims with no visible source basis
 - self pages based on weak evidence
-- bridge pages that should link back to both knowledge and self pages
+- topic pages that should link back to relevant frameworks or self pages
 
 Use the full maintenance procedure in `schemas/lint.md`.

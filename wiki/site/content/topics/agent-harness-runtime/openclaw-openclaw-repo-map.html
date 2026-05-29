@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>openclaw/openclaw 仓库地图 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/openclaw-openclaw-repo-map.md</div>
+      <h1>openclaw/openclaw 仓库地图</h1>
+<h2>摘要</h2>
+<p>这页是围绕主题&quot;个人 AI assistant、Gateway 与持续身份层&quot;维护的 <code>openclaw/openclaw</code> 第一版仓库地图。</p>
+<p>从 GitHub README、公开 docs 与顶层结构看,<code>OpenClaw</code> 已经明显不是&quot;给现有 coding agent 套一个聊天壳&quot;那么简单。它在产品叙事上明确把主语放在 assistant 本身,而不是 Gateway 本身:README 直接写 &quot;The Gateway is just the control plane - the product is the assistant&quot;。</p>
+<p>但从公开架构文档看,它的系统实现主语仍然强烈地是 Gateway。Gateway 是一个 long-lived、always-on 的本地中枢,承接 channels、sessions、control UI、WebSocket API、nodes、heartbeat 与 WebChat。也就是说,OpenClaw 已经在努力把 agent 做成一个有 identity、workspace、memory、multi-agent routing 与主动行为的 personal AI assistant,但它并没有完全摆脱 gateway-centric 的实现结构。</p>
+<p>就你当前关心的主题看,<code>OpenClaw</code> 最值得注意的不是&quot;能不能通过聊天软件访问&quot;,而是它已经认真做了下面这些层:</p>
+<ul>
+<li>assistant 作为产品主语</li>
+<li><code>SOUL.md</code> 作为人格与风格主文件</li>
+<li>multi-agent routing 下的 per-agent workspace / sessions / auth</li>
+<li>always-on heartbeat 与 <code>HEARTBEAT.md</code></li>
+<li>device nodes 作为 assistant 可调用的能力来源</li>
+</ul>
+<p>这让它比多数聊天入口型 agent 产品更接近&quot;持续存在的 assistant&quot;,但它离&quot;一个高于设备、主动持有工作、以 re-entry inbox 与你协作的 kernel&quot;仍然还有一层差距。</p>
+<p>当前置信度仍停留在&quot;架构地图&quot;层,而不是&quot;实现已读透&quot;层:它已经足够支撑定向追问,但还不足以裁定每一条工程实践判断。</p>
+<h2>仓库目的</h2>
+<ul>
+<li>README 的公开定位非常直接:<code>OpenClaw</code> 是一个 &quot;personal AI assistant you run on your own devices&quot;。</li>
+<li>它强调 assistant 才是产品本体,而 Gateway 只是 control plane。这和很多以 terminal、bot 或 web shell 为主语的 agent 产品不同。</li>
+<li>README 还把 single-user、local-first、always-on 作为核心感受来卖,而不是把它定义成团队任务系统或纯自动化平台。</li>
+<li>docs 进一步把这条定位拆开成:</li>
+</ul>
+<p>  - Gateway 是 one always-on process</p>
+<p>  - sessions、channels、tools、events 都经由 Gateway</p>
+<p>  - 多个 agent 可以在同一 Gateway 中隔离存在</p>
+<p>  - device nodes 作为额外能力接入</p>
+<ul>
+<li>观察时默认分支:<code>main</code></li>
+<li>主要语言:<code>TypeScript</code></li>
+<li>公开文档里还能看到一套围绕 CLI、Gateway、macOS app、iOS/Android nodes、Canvas 与 skills 的完整产品面,而不只是一个 npm CLI。</li>
+<li>仓库地址:https://github.com/openclaw/openclaw</li>
+</ul>
+<h2>架构地图</h2>
+<h3>顶层目录</h3>
+<ul>
+<li><code>.agents</code></li>
+<li><code>.github</code></li>
+<li><code>.pi</code></li>
+<li><code>.vscode</code></li>
+<li><code>Swabble</code></li>
+<li><code>apps</code></li>
+<li><code>assets</code></li>
+<li><code>docs</code></li>
+<li><code>extensions</code></li>
+<li><code>git-hooks</code></li>
+<li><code>packages</code></li>
+<li><code>patches</code></li>
+<li><code>qa</code></li>
+<li><code>scripts</code></li>
+<li><code>skills</code></li>
+<li><code>src</code></li>
+<li><code>test</code></li>
+<li><code>test-fixtures</code></li>
+<li><code>ui</code></li>
+<li><code>vendor</code></li>
+</ul>
+<h3>顶层文件</h3>
+<ul>
+<li><code>.codex</code></li>
+<li><code>.detect-secrets.cfg</code></li>
+<li><code>.dockerignore</code></li>
+<li><code>.env.example</code></li>
+<li><code>.gitattributes</code></li>
+<li><code>.gitignore</code></li>
+<li><code>.jscpd.json</code></li>
+<li><code>.mailmap</code></li>
+<li><code>.markdownlint-cli2.jsonc</code></li>
+<li><code>.npmignore</code></li>
+<li><code>.npmrc</code></li>
+<li><code>.oxfmtrc.jsonc</code></li>
+<li><code>.oxlintrc.json</code></li>
+<li><code>.pre-commit-config.yaml</code></li>
+<li><code>.prettierignore</code></li>
+<li><code>.secrets.baseline</code></li>
+<li><code>.shellcheckrc</code></li>
+<li><code>.swiftformat</code></li>
+<li><code>.swiftlint.yml</code></li>
+<li><code>AGENTS.md</code></li>
+<li><code>CHANGELOG.md</code></li>
+<li><code>CLAUDE.md</code></li>
+<li><code>CONTRIBUTING.md</code></li>
+<li><code>Dockerfile</code></li>
+<li><code>Dockerfile.sandbox</code></li>
+<li><code>Dockerfile.sandbox-browser</code></li>
+<li><code>Dockerfile.sandbox-common</code></li>
+<li><code>INCIDENT_RESPONSE.md</code></li>
+<li><code>LICENSE</code></li>
+<li><code>Makefile</code></li>
+<li><code>README.md</code></li>
+<li><code>SECURITY.md</code></li>
+<li><code>VISION.md</code></li>
+<li><code>appcast.xml</code></li>
+<li><code>docker-compose.yml</code></li>
+<li><code>docker-setup.sh</code></li>
+<li><code>docs.acp.md</code></li>
+<li><code>dream-diary-preview-v2.html</code></li>
+<li><code>dream-diary-preview-v3.html</code></li>
+<li><code>fix2.py</code></li>
+<li><code>fly.private.toml</code></li>
+<li><code>fly.toml</code></li>
+<li><code>knip.config.ts</code></li>
+<li><code>openclaw.mjs</code></li>
+<li><code>openclaw.podman.env</code></li>
+<li><code>package.json</code></li>
+<li><code>pnpm-lock.yaml</code></li>
+<li><code>pnpm-workspace.yaml</code></li>
+<li><code>pyproject.toml</code></li>
+<li><code>render.yaml</code></li>
+<li><code>setup-podman.sh</code></li>
+<li><code>tsconfig.json</code></li>
+<li><code>tsconfig.oxlint.json</code></li>
+<li><code>tsconfig.plugin-sdk.dts.json</code></li>
+<li><code>tsdown.config.ts</code></li>
+<li><code>vitest.config.ts</code></li>
+<li><code>zizmor.yml</code></li>
+</ul>
+<h3>第一版子系统角色判断</h3>
+<ul>
+<li><code>Gateway</code> 是系统中枢。公开 docs 明确写它是 single long-lived process,负责 routing、control plane、channel connections、WS API、HTTP surfaces 和 heartbeat。</li>
+<li><code>assistant</code> 是产品叙事主语。README 一再强调产品不是 gateway,而是 assistant。</li>
+<li><code>agents</code> 在实现上已经是清晰对象。公开 multi-agent 文档把一个 agent 定义成 workspace + <code>agentDir</code> + sessions + auth 的隔离组合,而不只是聊天实例。</li>
+<li><code>SOUL.md</code>、<code>AGENTS.md</code>、<code>TOOLS.md</code> 这类 prompt files 是它人格层、操作边界层与行为层的关键构件。</li>
+<li><code>nodes</code> 是设备能力接入层。macOS / iOS / Android / headless nodes 通过 Gateway WebSocket 暴露本地能力,而不是直接等于 assistant 本体。</li>
+<li><code>WebChat</code>、Control UI、Canvas、companion apps 说明它并不把聊天软件入口当成唯一交互面。</li>
+</ul>
+<h2>机制清单</h2>
+<h3>用 &quot;assistant 是产品,Gateway 是 control plane&quot; 重写系统主语</h3>
+<ul>
+<li>README 的这句定位非常关键:</li>
+</ul>
+<p>  - &quot;The Gateway is just the control plane - the product is the assistant.&quot;</p>
+<ul>
+<li>这控制的是很多多渠道 agent 产品容易滑向&quot;其实只是一个 bot hub&quot;的失败模式。</li>
+<li>代价是它必须同时维护两层叙事:</li>
+</ul>
+<p>  - 面向用户时,assistant 才是产品本体</p>
+<p>  - 面向实现时,Gateway 仍然是最强系统中枢</p>
+<ul>
+<li>这也是 OpenClaw 当前最值得注意的结构性张力。</li>
+</ul>
+<h3>用 Gateway 作为 always-on 本地中枢承接 channels、sessions、tools 与 UI</h3>
+<ul>
+<li>公开 gateway runbook 明确写:</li>
+</ul>
+<p>  - one always-on process for routing, control plane, and channel connections</p>
+<p>  - single multiplexed port for WS control/RPC、HTTP APIs、Control UI 和 hooks</p>
+<ul>
+<li>架构文档也明确写:</li>
+</ul>
+<p>  - a single long-lived Gateway owns all messaging surfaces</p>
+<p>  - clients 与 nodes 都连到同一个 WS server</p>
+<ul>
+<li>这控制的是渠道碎片化、状态不一致和多入口漂移的问题。</li>
+<li>代价是 Gateway 成为实现里的真正中心对象,assistant 的高层抽象仍要通过它落地。</li>
+</ul>
+<h3>用 <code>SOUL.md</code> 把人格层做成一等 prompt file</h3>
+<ul>
+<li>docs 明确把 <code>SOUL.md</code> 写成&quot;智能体声音所在的地方&quot;,并说明普通会话中会注入它。</li>
+<li><code>SOUL</code> 模板进一步把 continuity 讲得很明确:</li>
+</ul>
+<p>  - 每次会话都是 fresh</p>
+<p>  - 这些文件是你的 memory</p>
+<p>  - 阅读它们、更新它们,它们是你持续存在的方式</p>
+<ul>
+<li>这控制的是 agent 风格漂移、人格不稳定和&quot;每次都像新壳&quot;的问题。</li>
+<li>代价是人格连续性强依赖 prompt files 的维护质量,而不是更深的 persistent runtime abstraction。</li>
+</ul>
+<h3>用 multi-agent routing 把一个 Gateway 扩展成多个隔离 agent</h3>
+<ul>
+<li>multi-agent 文档把 &quot;one agent&quot; 定义成:</li>
+</ul>
+<p>  - workspace</p>
+<p>  - <code>agentDir</code></p>
+<p>  - session store</p>
+<p>  - per-agent auth profiles</p>
+<ul>
+<li>绑定规则决定 inbound channels/accounts/peers 路由到哪个 agent。</li>
+<li>这控制的是多个 persona、多账户、多工作区之间的串线问题。</li>
+<li>代价是它当前更像&quot;同一 Gateway 下多个隔离 brains&quot;,而不是&quot;一个更高层 assistant 自由调度多个 execution bodies&quot;。</li>
+</ul>
+<h3>用 heartbeat 和 <code>HEARTBEAT.md</code> 把 assistant 做成主动存在</h3>
+<ul>
+<li>README 强调 always-on。</li>
+<li>heartbeat docs 则把这层能力具体化成:</li>
+</ul>
+<p>  - 周期性 heartbeat</p>
+<p>  - 默认可以全天运行</p>
+<p>  - <code>HEARTBEAT.md</code> 作为稳定 checklist</p>
+<p>  - agent 可在 heartbeat 中主动维护这份 checklist</p>
+<ul>
+<li>这控制的是 assistant 完全被动、只有你来问才会响应的失败模式。</li>
+<li>代价是主动性更多表现为周期性 upkeep,而不一定已经等于高层的持续工作简报。</li>
+</ul>
+<h3>用 nodes 把设备能力纳入 assistant,而不直接等同于 assistant</h3>
+<ul>
+<li>架构文档中 nodes 通过 Gateway WebSocket 暴露能力。</li>
+<li>README 也清楚区分:</li>
+</ul>
+<p>  - Gateway host 运行 exec 和 channel 连接</p>
+<p>  - device nodes 运行 device-local actions</p>
+<ul>
+<li>这控制的是&quot;assistant 必须完全绑定某一个 host 才能工作&quot;的限制。</li>
+<li>代价是设备能力仍然通过 Gateway 和 node protocol 被组织,而不是由一个更抽象的 agent kernel 自然调度。</li>
+</ul>
+<h3>用 Web surfaces、Canvas 和 companion apps 扩展默认交互面</h3>
+<ul>
+<li>README 已不只卖消息入口,还强调:</li>
+</ul>
+<p>  - WebChat</p>
+<p>  - Control UI</p>
+<p>  - live Canvas</p>
+<p>  - macOS app</p>
+<p>  - iOS / Android nodes</p>
+<ul>
+<li>这控制的是&quot;助手只能存在于聊天软件里&quot;的单一入口问题。</li>
+<li>代价是交互面增多之后,真正的默认入口到底是聊天、控制面板还是别的高层工作面,会变得更值得继续追问。</li>
+</ul>
+<h3>用仓库契约与 CI 外化复杂系统的协作边界</h3>
+<ul>
+<li>顶层有 <code>AGENTS.md</code>、<code>CLAUDE.md</code>、大量 workflows、release 流程与安全文件。</li>
+<li>这控制的是大仓库、多入口、多平台、多贡献者下的漂移。</li>
+<li>代价是系统工程面明显比单一 CLI agent 厚得多。</li>
+</ul>
+<h2>证据锚点</h2>
+<ul>
+<li>Snapshot 来源:<a href="../../../../../raw/external/github-repo-openclaw-openclaw.md">github-repo-openclaw-openclaw.md</a></li>
+<li>Docs 摘要:<a href="../../../../../raw/external/openclaw-public-docs-notes.md">openclaw-public-docs-notes.md</a></li>
+<li>仓库:<code>openclaw/openclaw</code></li>
+<li>观察分支:<code>main</code></li>
+<li>解析到的 commit:<code>f2c7cec8de2c7c5867f126b93fec3349c5cbe385</code></li>
+</ul>
+<ul>
+<li><code>.github/workflows/auto-response.yml</code></li>
+<li><code>.github/workflows/ci.yml</code></li>
+<li><code>.github/workflows/codeql.yml</code></li>
+<li><code>.github/workflows/control-ui-locale-refresh.yml</code></li>
+<li><code>.github/workflows/docker-release.yml</code></li>
+<li><code>.github/workflows/docs-sync-publish.yml</code></li>
+<li><code>.github/workflows/docs-translate-trigger-release.yml</code></li>
+<li><code>.github/workflows/install-smoke.yml</code></li>
+<li><code>.github/workflows/labeler.yml</code></li>
+<li><code>.github/workflows/macos-release.yml</code></li>
+<li><code>.github/workflows/openclaw-npm-release.yml</code></li>
+<li><code>.github/workflows/plugin-clawhub-release.yml</code></li>
+<li><code>AGENTS.md</code></li>
+<li><code>CLAUDE.md</code></li>
+<li><code>Dockerfile</code></li>
+<li><code>Makefile</code></li>
+<li><code>README.md</code></li>
+<li><code>docker-compose.yml</code></li>
+<li><code>package.json</code></li>
+<li><code>pnpm-workspace.yaml</code></li>
+<li><code>pyproject.toml</code></li>
+</ul>
+<h2>开放问题</h2>
+<ul>
+<li>assistant 的 identity 到底在多大程度上独立于 Gateway/host,而不只是依靠 workspace + prompt files + sessions 拼起来?</li>
+<li>multi-agent routing 更接近&quot;多个隔离 brains&quot;,还是已经接近更高层的长期协作对象?</li>
+<li>heartbeat 当前更多是 upkeep / cron 语义,还是已经在走向真正的 proactive work briefing?</li>
+<li>默认入口在产品上究竟是什么:聊天、WebChat、Control UI、Canvas,还是别的更高层工作面?</li>
+</ul>
+<h2>来源依据</h2>
+<ul>
+<li><a href="../../../../../raw/external/github-repo-openclaw-openclaw.md">仓库 snapshot</a></li>
+<li><a href="../../../../../raw/external/openclaw-public-docs-notes.md">公开 docs 摘要</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="multica-ai-multica-repo-map.html">multica-ai/multica 仓库地图</a></li>
+<li><a href="clawhouse-多设备-agent-工作台.html">Clawhouse:多设备 Agent 上下文同步</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

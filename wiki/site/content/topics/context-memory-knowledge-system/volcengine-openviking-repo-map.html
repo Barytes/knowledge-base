@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>volcengine/openviking 仓库地图 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/context-memory-knowledge-system/volcengine-openviking-repo-map.md</div>
+      <h1>volcengine/openviking 仓库地图</h1>
+<h2>摘要</h2>
+<p>这页是 <code>volcengine/openviking</code> 的第一版仓库地图，观察主题是“面向 AI Agent 的 context database 架构与工程实践”。</p>
+<p><code>OpenViking</code> 的核心不是把传统 RAG 包一层 API，而是把 agent 需要的 resources、user memory、agent memory、skills、sessions 统一进 <code>viking://</code> 虚拟文件系统。它用类似文件系统的 <code>ls/tree/read/find/grep</code> 交互范式，让 agent 先定位目录、读摘要、再按需读全文；同时通过 session commit 把对话、工具使用和任务经验回写成长期记忆。</p>
+<p>当前置信度是中等：README、配置文档、session 文档、server 启动层、FastAPI app、storage/native engine loader、Python/Rust CLI、bot README 和 CI/打包脚本已经读过，足够形成机制地图；但 retrieval 具体实现、AGFS/RAGFS 底层、每个 router 的权限语义和 multi-tenant 细节仍需后续定向深读。</p>
+<h2>仓库目的</h2>
+<ul>
+<li>公开定位：面向 AI Agents 的开源 context database，用文件系统范式统一管理 memory、resources 和 skills，支持分层 context delivery 与 self-evolving。</li>
+<li>实际架构定位：一个 context runtime。底层包含 storage、vector engine、AGFS/RAGFS/native extension；中层是 HTTP server 与 Python SDK；上层是 Rust CLI、server bootstrap、Vikingbot 和多种 agent/channel 集成。</li>
+<li>主要目标：降低 agent 长任务中的 context 爆炸、检索黑盒、记忆无法迭代、资源/技能/记忆分散管理等问题。</li>
+<li>观察分支：<code>main</code></li>
+<li>解析到的 commit：<code>39b124d037ff7f2f6ecc4cab7560a359468fd641</code></li>
+<li>主要语言：<code>Python</code></li>
+<li>仓库地址：https://github.com/volcengine/openviking</li>
+</ul>
+<h2>架构地图</h2>
+<h3>顶层结构</h3>
+<ul>
+<li><code>openviking/</code>: Python 核心包，包含 server、service、storage、metrics、telemetry、console、providers、resources、sessions 等运行时模块。</li>
+<li><code>openviking_cli/</code>: Python CLI 入口与配置、doctor/init/bootstrap 工具。<code>openviking-server</code> 从这里进入，<code>ov/openviking</code> 则主要转发到 Rust CLI。</li>
+<li><code>crates/ov_cli/</code>: Rust CLI。承载高频交互命令，包括 data、search、chat、admin、observer、TUI 等命令组。</li>
+<li><code>bot/</code>: Vikingbot。基于 Nanobot，给 OpenViking 加 chat channel、agent tools、MCP tools、sandbox、自动 session memory commit 等能力。</li>
+<li><code>src/</code>: native/vector engine 相关源码，与 <code>setup.py</code>、CMake、wheel 打包链路配合。</li>
+<li><code>docs/</code>: 概念、配置、quickstart、部署、API 等文档。</li>
+<li><code>benchmark/</code>: 效果评测与对照实验材料。</li>
+<li><code>.github/workflows/</code>: build、lint、test、publish、API test、Docker image、docs deploy 等 CI/CD 工作流。</li>
+<li><code>docker/</code>、<code>deploy/</code>、<code>docker-compose.yml</code>、<code>Dockerfile</code>: 服务化部署和容器入口。</li>
+</ul>
+<h3>主要执行面</h3>
+<p><code>openviking-server</code> 通过 <code>openviking/server/bootstrap.py</code> 启动。它读取 <code>ov.conf</code>，初始化全局 config，检测 Ollama，本地启动 Uvicorn；如果启用 bot，会先检查 bot gateway 端口，避免旧进程仍在服务，然后启动 <code>vikingbot gateway</code> 子进程。</p>
+<p>HTTP 服务由 <code>openviking/server/app.py</code> 创建。它在 lifespan 中初始化 <code>OpenVikingService</code>、<code>APIKeyManager</code>、metrics/tracing/logging、task tracker 和 MCP session manager，然后注册 filesystem、resources、search、sessions、tasks、admin、bot、webdav、observer、metrics 等 router。</p>
+<p>CLI 有两层：Python package 暴露 <code>ov/openviking/openviking-server</code> 入口；其中 <code>ov/openviking</code> 是极薄 Python wrapper，优先处理少量 Python-native 子命令，然后查找开发环境、wheel 内置或 PATH 中的 Rust <code>ov</code> 二进制并执行。Rust CLI 负责真正的文件式 context 操作和交互式命令。</p>
+<p>Vikingbot 是 agent-facing 表面。它提供 7 个 OpenViking tools，包括 read、list、search、add_resource、grep、glob、memory_commit，并把 L0/L1/L2 内容访问、session 自动提交、chat channels、MCP servers 和 sandbox/FUSE/OpenCode 等可选能力接到同一个 bot 配置里。</p>
+<h3>MCP 交互面</h3>
+<p>OpenViking server 内置 MCP endpoint，不需要额外启动一个 MCP 进程。<code>openviking/server/app.py</code> 在同一个 FastAPI app 上挂载 <code>/mcp</code>，支持 <code>GET</code>、<code>POST</code>、<code>DELETE</code>，文档说明它与 REST API 共用同一进程和端口，默认是 <code>http://&lt;server&gt;:1933/mcp</code>。</p>
+<p>MCP server 本体在 <code>openviking/server/mcp_endpoint.py</code>。它使用 <code>FastMCP(&quot;openviking&quot;)</code> 和 streamable HTTP transport，把 OpenViking 的 context 操作暴露成 9 个 MCP tools：<code>search</code>、<code>read</code>、<code>list</code>、<code>store</code>、<code>add_resource</code>、<code>grep</code>、<code>glob</code>、<code>forget</code>、<code>health</code>。</p>
+<p>这一层是 thin adapter。每个 MCP tool 都调用已有 <code>OpenVikingService</code> 能力，而不是另写一套业务逻辑：<code>search</code> 调 <code>service.search.find</code>，<code>read/list/grep/glob/forget</code> 调 <code>service.fs.*</code>，<code>add_resource</code> 调 <code>service.resources.add_resource</code>，<code>store</code> 创建临时 session 并 <code>commit_async</code> 触发 memory extraction。</p>
+<p>MCP 鉴权复用 REST API 的身份体系。<code>_IdentityASGIMiddleware</code> 调用 <code>resolve_identity</code>，读取 <code>X-Api-Key</code> 或 <code>Authorization: Bearer ...</code>，也支持 <code>X-OpenViking-Account</code>、<code>X-OpenViking-User</code>、<code>X-OpenViking-Agent</code>。解析后的 <code>RequestContext</code> 通过 contextvar 传给各个 MCP tool，因此 MCP 和 REST 共享 account/user/agent namespace、role 与 namespace policy。</p>
+<p>OpenViking 还有反方向的 MCP client 能力。<code>bot/vikingbot/agent/tools/mcp.py</code> 让 Vikingbot 连接外部 MCP servers，再把外部工具包装成 <code>mcp_&lt;server&gt;_&lt;tool&gt;</code> 形式的 native tools。也就是说：OpenViking server 可以作为 MCP server 给 Claude Code、Codex、Manus、Trae 等客户端用；Vikingbot 也可以作为 MCP client 消费外部工具。</p>
+<h2>机制清单</h2>
+<h3><code>viking://</code> 虚拟文件系统范式</h3>
+<ul>
+<li>控制什么：把 resources、user memory、agent memory、skills、sessions 统一成可浏览、可定位、可读取的 URI 树。</li>
+<li>补偿的失败模式：传统 RAG 把 context 打平成 chunks，agent 无法知道信息的层级、来源和相邻上下文，只能依赖黑盒相似度。</li>
+<li>证据位置：<code>README.md</code>、<code>docs/en/concepts/08-session.md</code>、<code>crates/ov_cli/src/main.rs</code>、<code>bot/README.md</code>。</li>
+<li>代价：系统必须维护目录语义、URI 规范、权限边界、索引一致性和多租户命名空间。它比“单表向量检索”重得多。</li>
+</ul>
+<h3>L0/L1/L2 分层 context loading</h3>
+<ul>
+<li>控制什么：写入资源或提交 session 后，生成 <code>.abstract.md</code>、<code>.overview.md</code> 和可按需读取的原文/详情层。</li>
+<li>补偿的失败模式：agent 一次性塞入大量原文会浪费 token，也容易引入噪音；只保留短摘要又会丢失需要深读的证据。</li>
+<li>证据位置：<code>README.md</code>、<code>docs/en/concepts/08-session.md</code>、<code>bot/README.md</code>、Rust CLI 的 <code>abstract</code>、<code>overview</code>、<code>read</code> 命令。</li>
+<li>代价：摘要质量会成为系统正确性的上游变量。写入成本也更高，因为每个资源和 session 都需要额外加工。</li>
+</ul>
+<h3>Directory recursive retrieval</h3>
+<ul>
+<li>控制什么：先用检索定位高相关目录，再在目录内部细化探索，并递归向下收窄范围。</li>
+<li>补偿的失败模式：单次向量搜索只找“相似片段”，不理解片段所在目录和上下游结构，复杂查询容易缺全局视角。</li>
+<li>证据位置：<code>README.md</code> 的 core concepts 与 <code>find/search/grep/tree</code> 命令设计。</li>
+<li>代价：检索路径变长，系统需要记录和解释 retrieval trajectory。后续要深读具体实现，确认目录递归、语义检索和规则检索如何合流。</li>
+</ul>
+<h3>Session commit 与 memory self-iteration</h3>
+<ul>
+<li>控制什么：session 记录 messages、used contexts、used skills 和 tool calls；<code>commit()</code> 后先同步归档，再异步总结并抽取长期 memory。</li>
+<li>补偿的失败模式：agent 每次任务结束后经验消失，用户偏好、工具经验、失败案例无法结构化复用。</li>
+<li>证据位置：<code>docs/en/concepts/08-session.md</code>。</li>
+<li>代价：memory extraction 引入 LLM 判断、去重、合并、删除冲突等复杂链路。错误记忆会成为长期污染源，所以需要后续关注审计、回滚和可见性。</li>
+</ul>
+<h3>Server auth mode 与安全启动门</h3>
+<ul>
+<li>控制什么：server 支持 <code>dev</code>、<code>api_key</code>、<code>trusted</code> 三种认证模式，并在非 localhost 场景阻止不安全配置启动。</li>
+<li>补偿的失败模式：context database 一旦暴露网络，未经认证的 ROOT 身份或可信 header 模式会变成高风险入口。</li>
+<li>证据位置：<code>openviking/server/config.py</code>、<code>openviking/server/app.py</code>。</li>
+<li>代价：配置复杂度上升。<code>trusted</code> 模式要求外部 gateway 真的可信，<code>api_key</code> 模式还要处理 key 存储、hashing 与 encryption 的组合语义。</li>
+</ul>
+<h3>FastAPI service runtime</h3>
+<ul>
+<li>控制什么：把 context database 服务化，暴露 filesystem、resource、search、session、task、admin、bot、webdav、observer、metrics 等 API。</li>
+<li>补偿的失败模式：只作为本地库时，多个 agent、CLI、bot、远端 client 难以共享同一份 context runtime。</li>
+<li>证据位置：<code>openviking/server/app.py</code>、<code>openviking/server/bootstrap.py</code>、<code>docs/en/getting-started/03-quickstart-server.md</code>。</li>
+<li>代价：长期服务需要处理 auth、CORS、observability、task cleanup、MCP lifespan、shutdown、multi-worker 和部署边界。</li>
+</ul>
+<h3>Python package + Rust CLI 双层入口</h3>
+<ul>
+<li>控制什么：Python 包负责发行与配置兼容，Rust CLI 负责高频命令和 TUI 交互。</li>
+<li>补偿的失败模式：纯 Python CLI 启动慢，纯 Rust CLI 又不容易和 Python wheel、server bootstrap、native extension 打包链路自然合流。</li>
+<li>证据位置：<code>openviking_cli/rust_cli.py</code>、<code>crates/ov_cli/src/main.rs</code>、<code>pyproject.toml</code>、<code>.github/workflows/_build.yml</code>、<code>setup.py</code>。</li>
+<li>代价：构建发布链路明显变重。wheel 需要打包 Rust <code>ov</code> 二进制、C++/native vector engine、AGFS/RAGFS 组件，并覆盖 Linux/macOS/Windows 与多 CPU variant。</li>
+</ul>
+<h3>Native vector engine loader</h3>
+<ul>
+<li>控制什么：根据平台和 CPU capability 动态选择 <code>x86_sse3</code>、<code>x86_avx2</code>、<code>x86_avx512</code> 或 <code>native</code> 后端，也允许用 <code>OV_ENGINE_VARIANT</code> 强制指定。</li>
+<li>补偿的失败模式：向量检索底层性能和平台兼容性难以只靠纯 Python 实现。</li>
+<li>证据位置：<code>openviking/storage/vectordb/engine/__init__.py</code>、<code>setup.py</code>、<code>.github/workflows/_build.yml</code>。</li>
+<li>代价：wheel 构建、ABI、Windows DLL 搜索、CPU feature detection 都会成为维护点。仓库用 lazy import 和 missing symbol proxy 降低导入期失败的破坏面。</li>
+</ul>
+<h3>Ollama setup 与本地模型 preflight</h3>
+<ul>
+<li>控制什么：启动 server 前检测配置是否使用 Ollama，并在本地场景尝试确保 Ollama 正在运行。</li>
+<li>补偿的失败模式：本地模型配置看似完成，但 server 启动后 embedding/VLM 调用才失败。</li>
+<li>证据位置：<code>openviking_cli/utils/ollama.py</code>、<code>openviking/server/bootstrap.py</code>、<code>docs/en/guides/01-configuration.md</code>。</li>
+<li>代价：它只负责 ensure running，不负责停止服务。这个选择尊重 Ollama 作为共享服务的现实，但也意味着 OpenViking 不完全拥有模型进程生命周期。</li>
+</ul>
+<h3>Vikingbot 作为 agent 工作面</h3>
+<ul>
+<li>控制什么：把 OpenViking 的 context 操作变成 agent tools，并接入 chat channels、MCP servers、sandbox、FUSE、OpenCode 等能力。</li>
+<li>补偿的失败模式：context database 如果只暴露 API/CLI，agent 仍需要额外 glue code 才能把记忆、资源、技能和外部工具编排进日常对话。</li>
+<li>证据位置：<code>bot/README.md</code>、<code>pyproject.toml</code>。</li>
+<li>代价：bot 层会把身份、channel 权限、工具 allowlist、MCP server 连接、sandbox 隔离和 memory commit 混在一起。它提升可用性，也扩大治理面。</li>
+</ul>
+<h3>MCP endpoint 作为标准 agent 接口</h3>
+<ul>
+<li>控制什么：把 OpenViking 的 context database 能力通过标准 MCP streamable HTTP 暴露给外部 agent/client。</li>
+<li>补偿的失败模式：如果只有 REST API/CLI，每个 agent runtime 都要自己写 adapter；MCP 让 Claude Code、Codex、Manus、Trae 等 MCP client 可以用同一套 tool schema 访问 OpenViking。</li>
+<li>证据位置：<code>openviking/server/mcp_endpoint.py</code>、<code>openviking/server/app.py</code>、<code>docs/en/guides/06-mcp-integration.md</code>、<code>tests/server/test_mcp_endpoint.py</code>。</li>
+<li>代价：MCP 是更宽的暴露面，尤其是 <code>store</code>、<code>add_resource</code>、<code>forget</code> 这类写操作。它必须复用 REST API 的 auth、account/user/agent identity 与 namespace policy，否则会变成绕过权限边界的旁路。</li>
+</ul>
+<h3>MCP-to-skill 与外部工具接入</h3>
+<ul>
+<li>控制什么：一方面把 OpenViking 暴露给外部 MCP clients；另一方面让 Vikingbot 消费外部 MCP servers，并把 MCP tool definition 转成 OpenViking skill 形态。</li>
+<li>补偿的失败模式：agent 工具生态如果只存在于某个运行时里，难以沉淀和复用；把 MCP tool 转成 skill 可以把“可调用工具”变成“可描述、可检索、可治理的能力资产”。</li>
+<li>证据位置：<code>bot/vikingbot/agent/tools/mcp.py</code>、<code>openviking/core/mcp_converter.py</code>。</li>
+<li>代价：MCP tool schema 到 OpenAI/tool schema/skill markdown 的转换会丢失一部分语义。Vikingbot 代码只规范化 nullable schema，说明这里更偏实用接入，而不是完整语义建模。</li>
+</ul>
+<h3>CI/CD 与多平台发行</h3>
+<ul>
+<li>控制什么：通过 GitHub Actions 构建 sdist、wheel、Rust CLI、Docker image、docs、API tests、CodeQL、lint 与 publish。</li>
+<li>补偿的失败模式：Python + Rust + C++ native extension + Docker + docs 的多语言仓库很容易出现“本地能跑、发行不可用”的漂移。</li>
+<li>证据位置：<code>.github/workflows/_build.yml</code>、<code>_test_lite.yml</code>、<code>_test_full.yml</code>、<code>api_test.yml</code>、<code>api_test_effect.yml</code>、<code>_publish.yml</code>、<code>build-docker-image.yml</code>。</li>
+<li>代价：CI 本身复杂，且 snapshot 显示不少工作流里有平台分支、临时跳过、测试忽略列表和构建清理逻辑。后续要区分哪些是硬质量门，哪些只是发布辅助。</li>
+</ul>
+<h2>证据锚点</h2>
+<ul>
+<li>Snapshot 来源：<a href="../../../../../raw/external/github-repo-volcengine-openviking.md">github-repo-volcengine-openviking.md</a></li>
+<li>仓库：<code>volcengine/openviking</code></li>
+<li>观察分支：<code>main</code></li>
+<li>解析到的 commit：<code>39b124d037ff7f2f6ecc4cab7560a359468fd641</code></li>
+<li>README 与文档：<code>README.md</code>、<code>docs/en/guides/01-configuration.md</code>、<code>docs/en/concepts/08-session.md</code>、<code>docs/en/getting-started/03-quickstart-server.md</code></li>
+<li>Server：<code>openviking/server/bootstrap.py</code>、<code>openviking/server/app.py</code>、<code>openviking/server/config.py</code></li>
+<li>Storage/native：<code>openviking/storage/__init__.py</code>、<code>openviking/storage/vectordb/engine/__init__.py</code>、<code>setup.py</code></li>
+<li>CLI：<code>openviking_cli/rust_cli.py</code>、<code>openviking_cli/server_bootstrap.py</code>、<code>openviking_cli/utils/config/config_loader.py</code>、<code>openviking_cli/utils/ollama.py</code>、<code>crates/ov_cli/src/main.rs</code></li>
+<li>Bot：<code>bot/README.md</code>、<code>pyproject.toml</code> 的 <code>bot*</code> optional dependencies</li>
+<li>MCP：<code>openviking/server/mcp_endpoint.py</code>、<code>docs/en/guides/06-mcp-integration.md</code>、<code>docs/zh/guides/06-mcp-integration.md</code>、<code>bot/vikingbot/agent/tools/mcp.py</code>、<code>openviking/core/mcp_converter.py</code>、<code>tests/server/test_mcp_endpoint.py</code></li>
+<li>CI/CD：<code>.github/workflows/_build.yml</code>、<code>.github/workflows/_lint.yml</code>、<code>.github/workflows/_test_lite.yml</code>、<code>.github/workflows/_test_full.yml</code>、<code>.github/workflows/api_test.yml</code>、<code>.github/workflows/api_test_effect.yml</code>、<code>.github/workflows/_publish.yml</code></li>
+</ul>
+<h2>开放问题</h2>
+<ul>
+<li>AGFS/RAGFS 的真实数据模型、事务语义、锁策略和失败恢复还没有深读。</li>
+<li><code>filesystem_router</code>、<code>resources_router</code>、<code>search_router</code>、<code>sessions_router</code> 的具体 API 权限边界需要定向确认。</li>
+<li>Directory recursive retrieval 的实现细节还停留在 README 级别，需要补读 search/service/storage 代码。</li>
+<li>multi-tenant 下 account/user/agent_id 如何映射到 <code>viking://agent/{agent_id}/user/{user_id}/...</code> 仍需读 identity、namespace policy 与 API key manager。</li>
+<li>memory extraction 的 dedup/merge/delete 决策如何审计和回滚，是后续判断它能否承载长期 self-evolving 的关键。</li>
+<li>MCP endpoint 文档写 9 个 tools，而 <code>app.py</code> 注释仍写“5 tools”，应是旧注释；<code>tests/server/test_mcp_endpoint.py</code> 里 <code>list_dir</code> 导入与当前 endpoint 中 <code>ls</code> 函数名也有命名漂移迹象，需确认 CI 中的真实状态。</li>
+<li>Bot 层外部 MCP tools、sandbox、channel identity 与 OpenViking account/user 的映射关系还需要继续看。</li>
+<li>README 中 OpenClaw + OpenViking 的效果数据值得保留为产品论证线索，但还不能当作已复现实验结论。</li>
+</ul>
+<h2>可迁移判断</h2>
+<p><code>OpenViking</code> 最值得学习的是把 agent context 从“检索接口”升级成“可浏览的上下文文件系统”。它让 agent 不只问“哪些 chunk 相似”，而是先知道自己处在哪个 context namespace、哪个目录、哪一层摘要，以及是否需要继续深读。</p>
+<p>这和本知识库的 <code>raw -&gt; wiki</code> 分层有天然呼应：两者都把原文、摘要、索引、使用路径分开，只是 <code>OpenViking</code> 更偏 runtime 和 agent tool surface，而本仓库更偏人可维护的知识资产。后续可以把它作为 <a href="../ai-product-product-definition/ai-architect-context-intelligence.html">AI Architect 的 Context Intelligence 镜头</a>、<a href="ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a>、<a href="local-knowledge-base-patterns.html">本地知识库模式</a> 的重要对照样本。</p>
+<h2>来源依据</h2>
+<ul>
+<li><a href="../../../../../raw/external/github-repo-volcengine-openviking.md">仓库 snapshot</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../ai-product-product-definition/ai-architect-context-intelligence.html">AI Architect 的 Context Intelligence 镜头</a></li>
+<li><a href="ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a></li>
+<li><a href="local-knowledge-base-patterns.html">本地知识库模式</a></li>
+<li><a href="../agent-harness-runtime/codebases-as-knowledge-sources.html">代码库作为知识来源</a></li>
+<li><a href="../agent-harness-runtime/openclaw-openclaw-repo-map.html">openclaw/openclaw 仓库地图</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

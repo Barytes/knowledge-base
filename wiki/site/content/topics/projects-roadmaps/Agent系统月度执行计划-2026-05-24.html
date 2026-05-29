@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent 系统月度执行计划（2026-05-24 至 2026-06-21） · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/projects-roadmaps/Agent系统月度执行计划-2026-05-24.md</div>
+      <h1>Agent 系统月度执行计划（2026-05-24 至 2026-06-21）</h1>
+<h2>摘要</h2>
+<p>这个月的核心目标是把 <code>context-core</code>、<code>oh-share-it</code>、<code>my-little-agent-loop</code> 收束成一个可以写进简历的生产级旗舰证据包。</p>
+<p><code>gogo</code> 不再作为本月主要改造对象。它只保留为已有 workbench / demo / portfolio 入口，除非为了展示 <code>context-core</code> 必须做极小适配，否则不继续投入功能开发。</p>
+<p>目标叙事不是“做了三个 AI 项目”，而是：</p>
+<p>&gt; 构建一个 eval-first 的 agent context infrastructure 系统，覆盖 context core、shared context layer、trace / replay / evaluator loop、真实试点、部署与失败驱动迭代。</p>
+<p>项目分工：</p>
+<p>| 项目 | 本月角色 | 主要补强 |</p>
+<p>|---|---|---|</p>
+<p>| <code>context-core</code> | 核心 context infra 层 | source registry、context routing、context bundle、trace、eval、writeback |</p>
+<p>| <code>oh-share-it</code> | context layer 与真实试点主体 | eval、deployment、routing quality、课题组使用 |</p>
+<p>| <code>gogo</code> | 既有 workbench / demo / portfolio 入口 | 不主动改动，只在需要时做最小展示适配 |</p>
+<p>| <code>my-little-agent-loop</code> | harness ownership 证据 | trace、replay、evaluator loop、runtime 边界 |</p>
+<p>| 行业与求职 | 市场校准 | 公司地图、岗位信号、定向连接 |</p>
+<p>| 博弈论与低维结构 | 研究支线 | 小 notebook / memo，不抢主线资源 |</p>
+<p>时间范围：2026-05-24 至 2026-06-21。</p>
+<h2>总体成功标准</h2>
+<p>到 2026-06-21，至少形成以下证据：</p>
+<p>1. <code>oh-share-it</code> 有一个可运行试点路径。</p>
+<p>2. <code>context-core</code> 有最小可运行核心：source registry、router、context bundle、trace、eval schema。</p>
+<p>3. 有 15 到 20 个真实或半真实问题组成的 eval portfolio。</p>
+<p>4. 有 trace / logging / failure taxonomy。</p>
+<p>5. <code>my-little-agent-loop</code> 有一块明确 runtime ownership：优先 <code>trace + replay + evaluator loop</code>。</p>
+<p>6. <code>gogo</code> 能作为已有 workbench 展示系统，但不承担本月核心开发。</p>
+<p>7. 有一篇 case study 或技术长文草稿。</p>
+<p>8. 简历中能写出 3 条可信项目 bullet。</p>
+<p>9. 完成 10 家目标公司研究，开始 5 次定向投递或外联。</p>
+<h2>Week 1：基线与可运行性（2026-05-24 至 2026-05-30）</h2>
+<p>目标：先抽出 <code>context-core</code> 的设计与最小边界，再把现有项目变成可评估的工程对象。</p>
+<h3>主要任务</h3>
+<ul>
+<li>跑通 <code>oh-share-it</code> 现有测试、CLI、server、本地 demo。</li>
+<li>写一页 <code>oh-share-it</code> 架构理解笔记：数据流、核心模块、当前缺口。</li>
+<li>写一页 <code>context-core</code> design brief，回答：</li>
+</ul>
+<p>  - 它比 <code>llm-wiki</code> 多解决什么问题；</p>
+<p>  - 它和 <code>oh-share-it</code>、<code>gogo</code>、<code>my-little-agent-loop</code> 的边界；</p>
+<p>  - 本月只实现哪些核心对象。</p>
+<ul>
+<li>定义 <code>context-core</code> 最小对象模型：</li>
+</ul>
+<p>  - <code>Source</code></p>
+<p>  - <code>ContextUnit</code></p>
+<p>  - <code>ContextBundle</code></p>
+<p>  - <code>RouteDecision</code></p>
+<p>  - <code>Trace</code></p>
+<p>  - <code>EvalCase</code></p>
+<p>  - <code>WritebackCandidate</code></p>
+<ul>
+<li>给 <code>oh-share-it</code> 定义第一版 <code>eval/</code> schema：</li>
+</ul>
+<p>  - task</p>
+<p>  - input context</p>
+<p>  - expected behavior</p>
+<p>  - scoring fields</p>
+<ul>
+<li>梳理 <code>gogo</code> 当前文档，只判断是否能作为已有展示入口。不做功能改造。</li>
+<li>梳理 <code>my-little-agent-loop</code>，选定本月只做一块：<code>trace + replay + evaluator loop</code>。</li>
+<li>行业：列 20 家目标公司，分为 agent infra、context infra、eval infra、coding agent、research tools。</li>
+<li>求职：写一版 3 句话定位。</li>
+<li>博弈论：整理一个问题定义：什么叫“博弈数据的低维结构”。</li>
+</ul>
+<h3>本周结束标准</h3>
+<ul>
+<li>三个 repo 都有明确的本月补强点。</li>
+<li><code>context-core</code> design brief 完成。</li>
+<li><code>context-core</code> 最小对象模型完成。</li>
+<li><code>oh-share-it</code> 能本地跑。</li>
+<li>第一版 eval schema 出来。</li>
+<li>目标公司池初稿完成。</li>
+</ul>
+<h2>Week 2：oh-share-it 真实试点与 eval（2026-05-31 至 2026-06-06）</h2>
+<p>目标：用 <code>context-core</code> 支撑 <code>oh-share-it</code> 试点，把系统从 MVP 推到“有人真实用过、能评测”。</p>
+<h3>主要任务</h3>
+<ul>
+<li>选课题组一个具体方向或项目做试点。</li>
+<li>收集 15 到 20 个真实问题，记录用户场景。</li>
+<li>实现 <code>context-core</code> 最小可运行链路：</li>
+</ul>
+<p>  - source registry</p>
+<p>  - route context</p>
+<p>  - build context bundle</p>
+<p>  - emit trace</p>
+<p>  - produce eval record</p>
+<ul>
+<li>实现最小 eval runner：</li>
+</ul>
+<p>  - 输入问题和 context</p>
+<p>  - 输出 answer、sources、score stub</p>
+<ul>
+<li>设计 4 类指标：</li>
+</ul>
+<p>  - grounding</p>
+<p>  - routing relevance</p>
+<p>  - known / judgment / speculation separation</p>
+<p>  - next-step usefulness</p>
+<ul>
+<li>增加 logging / tracing：</li>
+</ul>
+<p>  - query</p>
+<p>  - context route</p>
+<p>  - selected sources</p>
+<p>  - answer</p>
+<p>  - failure label</p>
+<ul>
+<li>部署一版最小服务：本地局域网、VPS、Docker 三选一。优先 Docker + README。</li>
+<li>行业：研究 5 家公司，记录它们买什么能力。</li>
+<li>求职：把 <code>oh-share-it</code> 改写成一条简历 bullet 草稿。</li>
+<li>博弈论：做一个小 notebook，生成简单 normal-form game 数据，观察 payoff matrix 的低秩或嵌入可能性。</li>
+</ul>
+<h3>本周结束标准</h3>
+<ul>
+<li><code>oh-share-it</code> 有真实问题集。</li>
+<li><code>context-core</code> 能生成 context bundle 和 trace。</li>
+<li>有最小 eval runner。</li>
+<li>有可展示的 trace / log。</li>
+<li>有一次真实或半真实试用记录。</li>
+</ul>
+<h2>Week 3：my-little-agent-loop 与 context-core 闭环（2026-06-07 至 2026-06-13）</h2>
+<p>目标：补 runtime ownership，让履历不只依赖上游 agent。</p>
+<h3>主要任务</h3>
+<ul>
+<li>在 <code>my-little-agent-loop</code> 实现 <code>trace + replay + evaluator loop</code>。</li>
+<li>trace 至少记录：</li>
+</ul>
+<p>  - user task</p>
+<p>  - context bundle</p>
+<p>  - tool calls</p>
+<p>  - model output</p>
+<p>  - decision points</p>
+<p>  - final result</p>
+<p>  - failure label</p>
+<ul>
+<li>replay 可以重跑 5 到 10 个固定 task。</li>
+<li>evaluator 可以对 replay 输出做基础打分或人工评分入口。</li>
+<li>把这套机制和 <code>oh-share-it</code> eval 对齐，说明它如何服务 context infra 质量闭环。</li>
+<li>把 <code>my-little-agent-loop</code> 的 trace / replay / evaluator loop 与 <code>context-core</code> 的 <code>Trace</code> / <code>EvalCase</code> 对齐。</li>
+<li>给 <code>context-core</code> 增加 5 到 10 个 regression cases。</li>
+<li>只更新 <code>gogo</code> 的展示说明，不改功能：</li>
+</ul>
+<p>  - README 小节</p>
+<p>  - demo flow</p>
+<p>  - 它如何作为已有 workbench 观察 <code>context-core</code> 输出</p>
+<ul>
+<li>行业：再研究 5 家公司，补岗位信号表。</li>
+<li>求职：定向联系 2 个人，目标是请教或反馈，不是立刻求内推。</li>
+<li>博弈论：写半页 memo，把低维结构和 agent eval / multi-agent behavior 的关系讲清楚。</li>
+</ul>
+<h3>本周结束标准</h3>
+<ul>
+<li><code>my-little-agent-loop</code> 有一块清楚的 harness ownership。</li>
+<li><code>context-core</code> 有可回放的 regression cases。</li>
+<li><code>gogo</code> 作为已有展示入口的边界讲清楚。</li>
+<li>三个项目可以合成统一叙事。</li>
+</ul>
+<h2>Week 4：打磨成简历级证据包（2026-06-14 至 2026-06-21）</h2>
+<p>目标：从工程推进转成市场可识别信号。</p>
+<h3>主要任务</h3>
+<ul>
+<li>写一篇 case study：<code>Building an eval-first context layer for research agents</code>。</li>
+<li>case study 至少覆盖：</li>
+</ul>
+<p>  - 问题定义</p>
+<p>  - 架构</p>
+<p>  - <code>context-core</code></p>
+<p>  - eval</p>
+<p>  - trace</p>
+<p>  - 真实试点</p>
+<p>  - 失败案例</p>
+<p>  - 改进前后对比</p>
+<ul>
+<li>三个 README 更新到简历可读状态：</li>
+</ul>
+<p>  - <code>context-core</code>：eval-first context routing / bundle / trace / writeback</p>
+<p>  - <code>oh-share-it</code>：context layer + eval + deployment + trial</p>
+<p>  - <code>gogo</code>：existing workbench / demo entry，不作为本月核心开发</p>
+<p>  - <code>my-little-agent-loop</code>：trace / replay / evaluator harness</p>
+<ul>
+<li>简历项目区写 3 条 bullet，每条都包含：</li>
+</ul>
+<p>  - 结果</p>
+<p>  - 技术</p>
+<p>  - 证据</p>
+<ul>
+<li>portfolio / GitHub profile 更新，突出 <code>Agent Systems Engineer</code> 主线。</li>
+<li>行业：完成 10 家重点公司 shortlist。</li>
+<li>求职：投递或定向联系 5 个最匹配机会。</li>
+<li>博弈论：只保留一个公开小节或 appendix，不作为主项目。</li>
+</ul>
+<h3>本周结束标准</h3>
+<ul>
+<li>至少一个项目能被称为旗舰项目。</li>
+<li>有 eval、trace、deployment、真实试点、case study。</li>
+<li>简历里能写，不心虚。</li>
+</ul>
+<h2>每周时间配比</h2>
+<p>| 类别 | 比例 | 说明 |</p>
+<p>|---|---:|---|</p>
+<p>| 旗舰项目工程推进 | 70% | <code>context-core</code>、<code>oh-share-it</code>、<code>my-little-agent-loop</code> |</p>
+<p>| 文档、case study、简历叙事 | 15% | 把工程结果变成市场信号 |</p>
+<p>| 行业研究与求职外联 | 10% | 每周公司研究与少量连接 |</p>
+<p>| 博弈论与低维结构 | 5% | 保留研究火种，不抢主线 |</p>
+<h2>每日最低动作</h2>
+<p>如果当天状态不好，只完成三件最小动作：</p>
+<p>1. 推进一个可验证工程任务。</p>
+<p>2. 记录一个失败、发现或设计决策。</p>
+<p>3. 更新一次本周 checklist。</p>
+<h2>压缩结论</h2>
+<p>这个月的判断标准不是功能数量，而是市场是否能看懂你经营过一个 agent context / harness / eval 系统。</p>
+<p>真正要交付的是一个证据包：</p>
+<p>&gt; 一个 <code>context-core</code> + 一个真实试点 + 一套 eval + 一套 trace / replay / evaluator loop + 一个已有 workbench 展示入口 + 一篇 case study + 一组简历 bullet。</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="Agent系统求职与项目路线图-2026-05.html">Agent 系统求职与项目路线图（2026-05）</a></li>
+<li><a href="Codex-like-agent-harness路线图.html">Codex-like agent harness 路线图</a></li>
+<li><a href="Agent-harness-core与三种adapter路线.html">Agent harness core 与三种 adapter 路线</a></li>
+<li><a href="../career-positioning-job-search/Anthropic与OpenAI的Agent%20Systems履历North%20Star.html">Anthropic 与 OpenAI 的 Agent Systems 履历 North Star</a></li>
+<li><a href="../career-positioning-job-search/Barytes-GitHub项目与Agent层次评估.html">Barytes GitHub 项目与 Agent 层次评估</a></li>
+<li><a href="../context-memory-knowledge-system/gogo.html">gogo：本地 llm-wiki 桌面应用</a></li>
+<li><a href="../research-knowledge-governance/oh-share-it公共知识库产品.html">oh-share-it 公共知识库产品</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

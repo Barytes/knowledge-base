@@ -15,6 +15,7 @@
 5. subagent 在这里是角色分工，还是上下文隔离
 6. 系统优先追求的是开箱即用，还是可观察性与可改造性
 7. 随着模型变强，哪些补偿面会从杠杆变成负担
+8. 哪些状态、权限、执行和恢复语义应下沉到 runtime interface，而不是堆在 harness 策略里
 
 ## 核心判断
 
@@ -23,9 +24,9 @@
 长流程、跨步骤、跨文件任务里，真正让 agent 不漂移、不误判完成、不协同坍塌的，往往是模型外侧那层控制壳，而不只是权重升级。
 
 主要依据：
-- [Harness Engineering（约束壳工程）](../knowledge/harness-engineering.md)
-- [Claude Code：较厚的 agentic coding harness](../knowledge/claude-code-harness.md)
-- [Pi coding agent：一种极简且可观察的 coding harness](../knowledge/pi-coding-agent-harness.md)
+- [Harness Engineering（约束壳工程）](../topics/agent-harness-runtime/harness-engineering.md)
+- [Claude Code：较厚的 agentic coding harness](../topics/agent-harness-runtime/claude-code-harness.md)
+- [Pi coding agent：一种极简且可观察的 coding harness](../topics/agent-harness-runtime/pi-coding-agent-harness.md)
 
 ### 2. Harness 首先是在补偿模型弱点，而且补偿面会移动
 
@@ -36,8 +37,9 @@
 所以重点不是“壳越厚越好”，而是持续追踪：哪些补偿仍然必要，哪些已经开始变成负担。
 
 主要依据：
-- [Harness Engineering（约束壳工程）](../knowledge/harness-engineering.md)
-- [Thin Harness, Fat Skills](../knowledge/thin-harness-fat-skills.md)
+- [Harness Engineering（约束壳工程）](../topics/agent-harness-runtime/harness-engineering.md)
+- [Thin Harness, Fat Skills](../topics/agent-harness-runtime/thin-harness-fat-skills.md)
+- [Agent 系统作为 OS 与 Cloud Runtime 问题](../topics/agent-harness-runtime/agent-runtime-os-cloud-runtime.md)
 
 ### 3. 先分清 latent space 和 deterministic space
 
@@ -49,8 +51,8 @@
 最好的 harness 不是让模型接管一切，而是对这条边界保持冷酷。
 
 主要依据：
-- [Thin Harness, Fat Skills](../knowledge/thin-harness-fat-skills.md)
-- [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](../knowledge/AI 时代的结果确定性 Agentic Runtime 与 Evaluation-First.md)
+- [Thin Harness, Fat Skills](../topics/agent-harness-runtime/thin-harness-fat-skills.md)
+- [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](../topics/agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.md)
 
 ### 4. 壳厚度的核心张力，是开箱即用能力 vs 可观察性与可改造性
 
@@ -75,9 +77,9 @@
 厚壳的好处是默认能力更强。薄壳的好处是更透明、更容易理解系统到底做了什么。
 
 主要依据：
-- [Claude Code：较厚的 agentic coding harness](../knowledge/claude-code-harness.md)
-- [Pi coding agent：一种极简且可观察的 coding harness](../knowledge/pi-coding-agent-harness.md)
-- [Claude Code、Codex 与 pi 的 harness 对比](../knowledge/coding-agent-harness-comparison.md)
+- [Claude Code：较厚的 agentic coding harness](../topics/agent-harness-runtime/claude-code-harness.md)
+- [Pi coding agent：一种极简且可观察的 coding harness](../topics/agent-harness-runtime/pi-coding-agent-harness.md)
+- [Claude Code、Codex 与 pi 的 harness 对比](../topics/agent-harness-runtime/coding-agent-harness-comparison.md)
 
 ### 5. subagent 的本质常常是上下文隔离，不是拟人分工
 
@@ -86,8 +88,8 @@
 这时它真正解决的是上下文污染，而不是角色感。
 
 主要依据：
-- [coding agent 的上下文压缩工作流](../knowledge/coding agent 的上下文压缩工作流.md)
-- [Thin Harness, Fat Skills](../knowledge/thin-harness-fat-skills.md)
+- [coding agent 的上下文压缩工作流](../topics/agent-harness-runtime/coding%20agent%20的上下文压缩工作流.md)
+- [Thin Harness, Fat Skills](../topics/agent-harness-runtime/thin-harness-fat-skills.md)
 
 ### 6. 复杂代码库里的核心资源是上下文预算，不是上下文总量
 
@@ -98,8 +100,8 @@
 - 主上下文里保留的是高杠杆信息，还是大量搜索噪音
 
 主要依据：
-- [coding agent 的上下文压缩工作流](../knowledge/coding agent 的上下文压缩工作流.md)
-- [Harness Engineering（约束壳工程）](../knowledge/harness-engineering.md)
+- [coding agent 的上下文压缩工作流](../topics/agent-harness-runtime/coding%20agent%20的上下文压缩工作流.md)
+- [Harness Engineering（约束壳工程）](../topics/agent-harness-runtime/harness-engineering.md)
 
 ### 7. 智能应尽量推到 skills，执行应尽量压到确定性工具
 
@@ -108,12 +110,13 @@
 这比把大量智能混进厚重 God-tools 或把每个动作都塞进巨大 prompt 更容易复利。
 
 主要依据：
-- [Thin Harness, Fat Skills](../knowledge/thin-harness-fat-skills.md)
-- [Pi coding agent：一种极简且可观察的 coding harness](../knowledge/pi-coding-agent-harness.md)
+- [Thin Harness, Fat Skills](../topics/agent-harness-runtime/thin-harness-fat-skills.md)
+- [Pi coding agent：一种极简且可观察的 coding harness](../topics/agent-harness-runtime/pi-coding-agent-harness.md)
 
 ## 常见张力
 
 - 模型升级 vs 壳层补偿
+- harness 策略 vs runtime interface
 - 厚壳默认能力 vs 薄壳可观察性
 - latent 判断 vs deterministic 执行
 - 内建 orchestration vs 外置编排
@@ -122,11 +125,12 @@
 
 ## 推荐阅读顺序
 
-1. [Harness Engineering（约束壳工程）](../knowledge/harness-engineering.md)
-2. [Thin Harness, Fat Skills](../knowledge/thin-harness-fat-skills.md)
-3. [coding agent 的上下文压缩工作流](../knowledge/coding agent 的上下文压缩工作流.md)
-4. [Claude Code、Codex 与 pi 的 harness 对比](../knowledge/coding-agent-harness-comparison.md)
-5. 如涉及具体产品取舍，再补读 [Claude Code：较厚的 agentic coding harness](../knowledge/claude-code-harness.md) 与 [Pi coding agent：一种极简且可观察的 coding harness](../knowledge/pi-coding-agent-harness.md)
+1. [Harness Engineering（约束壳工程）](../topics/agent-harness-runtime/harness-engineering.md)
+2. [Agent 系统作为 OS 与 Cloud Runtime 问题](../topics/agent-harness-runtime/agent-runtime-os-cloud-runtime.md)
+3. [Thin Harness, Fat Skills](../topics/agent-harness-runtime/thin-harness-fat-skills.md)
+4. [coding agent 的上下文压缩工作流](../topics/agent-harness-runtime/coding%20agent%20的上下文压缩工作流.md)
+5. [Claude Code、Codex 与 pi 的 harness 对比](../topics/agent-harness-runtime/coding-agent-harness-comparison.md)
+5. 如涉及具体产品取舍，再补读 [Claude Code：较厚的 agentic coding harness](../topics/agent-harness-runtime/claude-code-harness.md) 与 [Pi coding agent：一种极简且可观察的 coding harness](../topics/agent-harness-runtime/pi-coding-agent-harness.md)
 
 ## 什么时候进入 bridge
 

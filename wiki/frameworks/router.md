@@ -115,4 +115,4 @@
 
 - [框架层说明](README.md)
 - [让 query 真正调用判断框架](让query真正调用判断框架.md)
-- [知识库运行模型](../bridges/knowledge-base-operating-model.md)
+- [知识库运行模型](../topics/context-memory-knowledge-system/knowledge-base-operating-model.md)

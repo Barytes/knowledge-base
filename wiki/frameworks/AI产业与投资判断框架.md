@@ -30,7 +30,7 @@
 - 还是值得重写职业、研究或投资主线的变化
 
 主要依据：
-- [AI 时代的投资与生存法则](../knowledge/AI 时代的投资与生存法则.md)
+- [AI 时代的投资与生存法则](../topics/ai-industry-investment/AI%20时代的投资与生存法则.md)
 
 ### 2. AI 产业要同时看技术分层和付钱分层
 
@@ -44,8 +44,8 @@
 技术层更接近能力与控制点。付钱层更接近需求强度、资本偏好与生存方式。两张图叠在一起，才更接近真实产业结构。
 
 主要依据：
-- [AI 产业分层地图](../knowledge/AI产业分层地图.md)
-- [AI 产业的付钱地图](../knowledge/AI产业的付钱地图.md)
+- [AI 产业分层地图](../topics/ai-industry-investment/AI产业分层地图.md)
+- [AI 产业的付钱地图](../topics/ai-industry-investment/AI产业的付钱地图.md)
 
 ### 3. 必须分清 `theme` 和 `core holding`
 
@@ -57,8 +57,8 @@
 混着看，很容易把短期轮动错当成长期结构，也容易把真正的结构性配置误判成一时热度。
 
 主要依据：
-- [AI 时代的投资与生存法则](../knowledge/AI 时代的投资与生存法则.md)
-- [AI 产业分层地图](../knowledge/AI产业分层地图.md)
+- [AI 时代的投资与生存法则](../topics/ai-industry-investment/AI%20时代的投资与生存法则.md)
+- [AI 产业分层地图](../topics/ai-industry-investment/AI产业分层地图.md)
 
 ### 4. 创业机会常常不在 general intelligence，而在补偿层
 
@@ -73,9 +73,9 @@
 - 行业 know-how
 
 主要依据：
-- [AI 时代的投资与生存法则](../knowledge/AI 时代的投资与生存法则.md)
-- [Harness Engineering（约束壳工程）](../knowledge/harness-engineering.md)
-- [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](../knowledge/AI 时代的结果确定性 Agentic Runtime 与 Evaluation-First.md)
+- [AI 时代的投资与生存法则](../topics/ai-industry-investment/AI%20时代的投资与生存法则.md)
+- [Harness Engineering（约束壳工程）](../topics/agent-harness-runtime/harness-engineering.md)
+- [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](../topics/agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.md)
 
 ### 5. 五年内更重要的结构转移，是 `software + labor -> model + compute`
 
@@ -88,8 +88,8 @@
 - 新瓶颈会转到算力、运行时、上下文、验证、权限和真实世界接入
 
 主要依据：
-- [AI 时代的投资与生存法则](../knowledge/AI 时代的投资与生存法则.md)
-- [AI 产业分层地图](../knowledge/AI产业分层地图.md)
+- [AI 时代的投资与生存法则](../topics/ai-industry-investment/AI%20时代的投资与生存法则.md)
+- [AI 产业分层地图](../topics/ai-industry-investment/AI产业分层地图.md)
 
 ### 6. 行业会走向哑铃结构，中间地带最危险
 
@@ -107,8 +107,8 @@
 这条判断既适用于投资看行业，也适用于创业找位置。
 
 主要依据：
-- [AI 时代的投资与生存法则](../knowledge/AI 时代的投资与生存法则.md)
-- [AI 时代大厂打工人的五条路](../knowledge/AI 时代大厂打工人的五条路.md)
+- [AI 时代的投资与生存法则](../topics/ai-industry-investment/AI%20时代的投资与生存法则.md)
+- [AI 时代大厂打工人的五条路](../topics/career-positioning-job-search/AI%20时代大厂打工人的五条路.md)
 
 ### 7. downturn 更值得看风险重定价和岗位重写，不只看情绪冷热
 
@@ -121,7 +121,7 @@
 这能避免把市场情绪当成本体，也能把“方向对”与“时间成熟”分开看。
 
 主要依据：
-- [衰退期的创业环境与技术判断](../knowledge/衰退期的创业环境与技术判断.md)
+- [衰退期的创业环境与技术判断](../topics/ai-industry-investment/衰退期的创业环境与技术判断.md)
 
 ## 常见张力
 
@@ -134,12 +134,12 @@
 
 ## 推荐阅读顺序
 
-1. [AI 时代的投资与生存法则](../knowledge/AI 时代的投资与生存法则.md)
-2. [AI 产业分层地图](../knowledge/AI产业分层地图.md)
-3. [AI 产业的付钱地图](../knowledge/AI产业的付钱地图.md)
-4. [衰退期的创业环境与技术判断](../knowledge/衰退期的创业环境与技术判断.md)
+1. [AI 时代的投资与生存法则](../topics/ai-industry-investment/AI%20时代的投资与生存法则.md)
+2. [AI 产业分层地图](../topics/ai-industry-investment/AI产业分层地图.md)
+3. [AI 产业的付钱地图](../topics/ai-industry-investment/AI产业的付钱地图.md)
+4. [衰退期的创业环境与技术判断](../topics/ai-industry-investment/衰退期的创业环境与技术判断.md)
 5. 如涉及产品与运行时，再读 [AI 系统产品判断框架](AI系统产品判断框架.md)
-6. 如涉及个人路径与收益结构，再读 [职业判断框架](职业判断框架.md) 与 [传统职业路径与 Naval 路径的投资模型](../bridges/传统职业路径与Naval路径的投资模型.md)
+6. 如涉及个人路径与收益结构，再读 [职业判断框架](职业判断框架.md) 与 [传统职业路径与 Naval 路径的投资模型](../topics/career-positioning-job-search/传统职业路径与Naval路径的投资模型.md)
 
 ## 什么时候进入 bridge
 

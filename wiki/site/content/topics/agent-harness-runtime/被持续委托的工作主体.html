@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>被持续委托的工作主体 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/被持续委托的工作主体.md</div>
+      <h1>被持续委托的工作主体</h1>
+<h2>摘要</h2>
+<p>这页原本想抓住一个重要直觉：用户真正想长期协作的，不是某个 <code>runtime</code>、某个 <code>session</code>，也不是某次 prompt 的输出，而是“那个我一直在和它合作的 agent”。</p>
+<p>但如果把这个概念写成“被持续委托的工作主体”，也很容易滑偏。最常见的误解就是把 agent 和它手上的某项工作绑死，仿佛一项工作结束，这个 agent 也就跟着结束。</p>
+<p>更准确的说法应该是：</p>
+<p>&gt; agent 不是工作本身，而是可以持续持有多项工作、并与用户保持长期协作关系的对象。</p>
+<p>因此，这页真正要澄清的，不是“agent = 某个持续中的工作”，而是：</p>
+<p>&gt; 为什么今天的 agent 产品还没有把 agent 做成一个可被持续委托、持续找到、持续接回、持续接管的协作对象。</p>
+<h2>这个概念真正有价值的地方</h2>
+<h3>1. 它指出用户真正想找回的不是进程，而是协作对象</h3>
+<p>用户离开原设备之后，真正焦虑的通常不是：</p>
+<ul>
+<li>某个 PID 还在不在</li>
+<li>某个 websocket 还通不通</li>
+<li>某个 terminal session 能不能 <code>resume</code></li>
+</ul>
+<p>用户真正想知道的是：</p>
+<ul>
+<li>这还是不是原来那个 agent</li>
+<li>它还记不记得我和它怎么协作</li>
+<li>它手上还拿着哪些我交给它的事</li>
+<li>我现在能不能继续和它一起推进这些事</li>
+</ul>
+<p>所以这个概念最有价值的地方，在于它把问题从 runtime 连续性提升成了 collaboration continuity。</p>
+<h3>2. 它要求把几个常被混掉的对象分开</h3>
+<p>这页最重要的澄清，就是下面这几个对象不能再混为一谈。</p>
+<ul>
+<li><code>device</code> 是算力位置</li>
+<li><code>runtime</code> 是执行环境</li>
+<li><code>session</code> 是某次交互或执行的上下文容器</li>
+<li><code>assignment</code> 是用户当前交给 agent 的某一项工作</li>
+<li><code>agent</code> 是那个可以持有多项 assignment、并与用户保持持续关系的协作对象</li>
+</ul>
+<p>这层区分一旦成立，很多混乱都会消失。</p>
+<p>用户说“还是不是它”，问的不是同一个 <code>session</code> 还在不在，而是同一个 <code>agent</code> 还在不在。</p>
+<p>用户说“我还能不能接回来”，问的也不是终端能不能续上，而是我能不能重新回到这个 agent 和我之间那段协作里。</p>
+<h3>3. 它强调的核心不是单项工作连续，而是委托关系连续</h3>
+<p>真正应该被持续的，不是某一项工作本身，而是委托关系。</p>
+<p>一个 agent 可以：</p>
+<ul>
+<li>完成一项工作</li>
+<li>暂停一项工作</li>
+<li>取消一项工作</li>
+<li>同时持有多项工作</li>
+<li>在不同时间切换工作的优先级</li>
+</ul>
+<p>但这些变化都不意味着 agent 消失。真正持续的是：</p>
+<ul>
+<li>这个 agent 还是“它”</li>
+<li>你和它的默认合作关系还在</li>
+<li>它仍然承接着你交给它的一组 assignments</li>
+<li>你可以回来重新进入、检查、调整和接管</li>
+</ul>
+<p>所以更准确的主线不是“被持续委托的工作”，而是“被持续协作和持续委托的对象”。</p>
+<h2>今天的 agent 产品距离这个概念还有哪些 gap</h2>
+<h3>1. 对象层 gap：系统里更稳定的单位仍然不是 agent</h3>
+<p>从当前本地材料看，不管是 terminal-first harness，还是像 <code>multica</code> 这样的管理平台，系统里更稳定的对象通常仍然是：</p>
+<ul>
+<li>terminal session</li>
+<li>runtime</li>
+<li>task</li>
+<li>issue lifecycle</li>
+</ul>
+<p>而不是一个高于这些对象、能把关系、委托与接回统一起来的 <code>agent</code>。</p>
+<p>这会导致一个很具体的问题：系统里有很多状态，但用户未必真的知道自己面对的还是不是“它”。</p>
+<h3>2. 身份层 gap：agent identity 仍然深度附着于执行位置</h3>
+<p>今天很多 agent 一旦换设备、断 session、重启 CLI，就会表现得像一个新壳。</p>
+<p>用户重新进入时看到的常常是：</p>
+<ul>
+<li>一个新的聊天窗口</li>
+<li>一个新的终端状态</li>
+<li>一串需要自己重新拼接的日志</li>
+</ul>
+<p>这说明身份连续性还没有被独立建模。agent 仍然太像 runtime 的影子，而不是一个高于 runtime 的协作对象。</p>
+<h3>3. 关系层 gap：长期合作关系没有被显式承接</h3>
+<p>和人类同事协作时，真正稳定的不只是“你认识他”，而是你们之间有默认合作方式。</p>
+<p>比如：</p>
+<ul>
+<li>他知道你通常怎么提需求</li>
+<li>你知道他通常怎么推进工作</li>
+<li>你们对何时汇报、何时自主决策有默认预期</li>
+</ul>
+<p>今天很多 agent 产品在这里仍然很弱。它们也许有一点长期记忆，但还没有把这种合作关系本身做成可依赖的对象层。</p>
+<h3>4. assignment 层 gap：工作还太像 prompt，不像持续委托</h3>
+<p>今天不少 agent 交互仍然停留在：</p>
+<ul>
+<li>我说一句</li>
+<li>你做一点</li>
+<li>你回一句</li>
+</ul>
+<p>这更像短回合对话，而不是持续委托。</p>
+<p>如果要接近“持续在岗的同事”，assignment 至少要能承接：</p>
+<ul>
+<li>目标</li>
+<li>当前状态</li>
+<li>成功条件</li>
+<li>阻塞点</li>
+<li>最近行动</li>
+<li>下一步预期</li>
+</ul>
+<p>否则用户回来时面对的就仍然是一串消息，而不是一组可继续协作的工作。</p>
+<h3>5. re-entry gap：今天多数系统解决的是 reachability，不是 re-entry</h3>
+<p>很多系统已经能让你：</p>
+<ul>
+<li>联系到 agent</li>
+<li>给它发消息</li>
+<li>看到它是否在线</li>
+<li>看到它完成或失败</li>
+</ul>
+<p>但这不等于真正的 re-entry。</p>
+<p>真正的 re-entry 是：你回来时可以直接进入当前协作状态，快速判断发生了什么，并继续委托、修正方向、暂停或接手，而不是先把上下文重新拼一遍。</p>
+<h3>6. 可见性 gap：很多可见性仍停留在结果层，而不是工作现场层</h3>
+<p>很多系统已经能显示：</p>
+<ul>
+<li>开始了</li>
+<li>结束了</li>
+<li>成功了</li>
+<li>失败了</li>
+</ul>
+<p>但这和“我看见它此刻怎样在工作”仍然差得很远。</p>
+<p>真正支撑 re-entry 的可见性通常还需要：</p>
+<ul>
+<li>它为什么走这条路径</li>
+<li>当前卡在哪个子步骤</li>
+<li>最近改了什么</li>
+<li>测试为何失败</li>
+<li>当前状态值不值得继续信任</li>
+</ul>
+<p>这类信息不足，用户就很难真正把 agent 当成一个能持续协作的对象。</p>
+<h2>现有产品各自更接近哪一层</h2>
+<h3>terminal-first coding agent</h3>
+<p>像当前知识库里总结的 Claude Code、Codex、<code>pi</code> 这类 terminal-first harness，强项在本地工作面的直接性和局部可观察性。</p>
+<p>但它们的基本单位通常还是：</p>
+<ul>
+<li>terminal</li>
+<li>session</li>
+<li>repo 工作面</li>
+</ul>
+<p>所以它们更像“带状态的本地工作会话”，还不是“高于执行位置的持续协作对象”。</p>
+<h3>multica 这类 managed agents 平台</h3>
+<p><code>multica</code> 已经往前走了一步。它承认 agent、runtime、task lifecycle 都是不同对象，也更重视任务分配和回报。</p>
+<p>但从当前本地材料看，它更强的是“把 agent 纳入团队任务系统”，不一定已经完整解决：</p>
+<ul>
+<li>高于 runtime 的 stable identity</li>
+<li>长期合作关系的显式承接</li>
+<li>强 re-entry 语义</li>
+<li>工作现场级的高分辨率可见性</li>
+</ul>
+<p>所以它离这个概念更近，但还不是同一个问题的终点。</p>
+<h2>clawhouse 最值得 bridge 的是什么</h2>
+<h3>1. 先把 <code>agent</code> 这个对象定义清楚</h3>
+<p><code>clawhouse</code> 最值得做的第一件事，不是先设计 launcher，而是先把对象层定义清楚：</p>
+<ul>
+<li><code>agent</code> 是什么</li>
+<li><code>assignment</code> 是什么</li>
+<li><code>session</code> 和 <code>runtime</code> 各自是什么</li>
+<li>它们之间如何关联</li>
+</ul>
+<p>如果这一步不先清楚，后面的网络层、UI 层、可见性层都会继续混掉。</p>
+<h3>2. 给 agent 一个比 session 更稳定的 identity</h3>
+<p>如果想让用户真觉得“还是它”，系统就需要有一个比 <code>session</code> 更稳定的 identity 层。</p>
+<p>这层至少要承接：</p>
+<ul>
+<li>它是谁</li>
+<li>它通常怎么工作</li>
+<li>它当前可在哪些设备上运行</li>
+<li>它现在依附于哪个 runtime</li>
+<li>它手上还有哪些 assignments</li>
+</ul>
+<h3>3. 把 assignment 从 prompt 提升成显式对象</h3>
+<p>这一步不是为了把 agent 变成工作本身，而是为了让 agent 能稳定持有工作。</p>
+<p>用户回来时，看到的应该不是一串 message history，而是一组 assignment：</p>
+<ul>
+<li>每项工作是什么</li>
+<li>做到哪了</li>
+<li>卡在哪</li>
+<li>下一步是什么</li>
+<li>现在建议用户做什么</li>
+</ul>
+<h3>4. 把 “re-enter / inspect / continue / take over” 做成一等语义</h3>
+<p>这可能是 <code>clawhouse</code> 最独特的地方。</p>
+<p>很多现成系统都在做：</p>
+<ul>
+<li>connect</li>
+<li>chat</li>
+<li>monitor</li>
+</ul>
+<p><code>clawhouse</code> 更值得做的是：</p>
+<ul>
+<li>re-enter</li>
+<li>inspect current assignments</li>
+<li>continue collaboration</li>
+<li>take over</li>
+</ul>
+<p>也就是把“重新接回这段协作”本身做成显式交互，而不只是“重新连上一个入口”。</p>
+<h3>5. 把设备退到算力层，让 agent 站到主语层</h3>
+<p>在产品语义上，一个很关键的翻转是：</p>
+<ul>
+<li>用户先看到的是 agent</li>
+<li>再看到它当前借用了哪台设备、哪个 runtime</li>
+</ul>
+<p>而不是先看设备列表，再猜每台机器上到底跑着什么。</p>
+<p>这会让系统更接近“持续在岗的同事”，而不是“很多散落的 agent 进程”。</p>
+<h2>一句收束</h2>
+<p>如果把这页压成一句最有用的话，我现在会写成：</p>
+<p>&gt; 真正值得追求的，不是“同一个持续中的工作”，而是“同一个可以持续持有工作、并被用户持续协作与持续接回的 agent”。</p>
+<p>这句话比旧版更稳，因为它既保留了对象层洞察，也避免了把 agent 误写成工作本身。</p>
+<h2>来源依据</h2>
+<ul>
+<li><a href="clawhouse-多设备-agent-工作台.html">Clawhouse：多设备 Agent 上下文同步</a></li>
+<li><a href="multica与clawhouse的目标与核心价值差异.html">multica 与 clawhouse 的目标与核心价值差异</a></li>
+<li><a href="coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a></li>
+<li><a href="claude-code-harness.html">Claude Code：较厚的 agentic coding harness</a></li>
+<li><a href="pi-coding-agent-harness.html">Pi coding agent：一种极简且可观察的 coding harness</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="clawhouse-多设备-agent-工作台.html">Clawhouse：多设备 Agent 上下文同步</a></li>
+<li><a href="multica与clawhouse的目标与核心价值差异.html">multica 与 clawhouse 的目标与核心价值差异</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

@@ -13,10 +13,10 @@ Current workflow skills:
 - `kb-query/`: local-only question answering from the repository knowledge base
 - `repo-map-ingest/`: fetch a compact GitHub or local repo evidence snapshot, auto-generate a maintained repo map note, and refresh index/log entries
 - `repo-practice-query/`: answer focused engineering-practice questions from a studied repo
-- `research-ingest/`: compile external sources into `wiki/knowledge/`
+- `research-ingest/`: compile external sources into `wiki/topics/`
 - `self-distill/`: distill personal records into `wiki/self/`
-- `bridge-write/`: combine `knowledge` and `self` into applied analysis
-- `framework-distill/`: lift reusable judgment skeletons from `knowledge` and `bridges` into `wiki/frameworks/`
+- `bridge-write/`: combine topic material and `self` into applied analysis under `wiki/topics/`
+- `framework-distill/`: lift reusable judgment skeletons from `topics` into `wiki/frameworks/`
 
 Installed external skills:
 

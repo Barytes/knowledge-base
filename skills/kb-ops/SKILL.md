@@ -80,7 +80,7 @@ When asked to ingest:
 1. Inventory the relevant files or folders.
 2. Classify each source as external, personal, or mixed.
 3. Move mislocated source files into the correct raw or inbox folder.
-4. Compile the material into `wiki/knowledge/`, `wiki/self/`, or `wiki/bridges/`.
+4. Compile the material into `wiki/topics/` or `wiki/self/`.
 5. Update `wiki/index.md` if the maintained structure changed.
 6. Append a short log entry to `wiki/log.md`.
 
@@ -102,7 +102,7 @@ When asked to update:
 6. Log meaningful updates in `wiki/log.md`.
 
 Use `bridge-write` when the update should reflect the user's recurring judgment, not just external facts.
-Use `framework-distill` when the update should lift reusable judgment skeletons from `wiki/knowledge/` or `wiki/bridges/` into `wiki/frameworks/`.
+Use `framework-distill` when the update should lift reusable judgment skeletons from `wiki/topics/` into `wiki/frameworks/`.
 
 ## Lint Mode
 
@@ -123,7 +123,7 @@ Be conservative. Prefer moving uncertain material to `inbox/` instead of deletin
 When asked to run a full maintenance cycle:
 
 1. Ingest targeted new materials or the contents of `inbox/`.
-2. Update any affected knowledge, self, or bridge pages.
+2. Update any affected topic, self, or framework pages.
 3. Run a light lint pass at the end.
 4. Return a short summary of what changed and what still needs review.
 

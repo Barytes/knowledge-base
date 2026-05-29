@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>知识库运行模型 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/context-memory-knowledge-system/knowledge-base-operating-model.md</div>
+      <h1>知识库运行模型</h1>
+<h2>材料共同指向什么</h2>
+<p>当这个仓库把“知识编译”和“个人判断蒸馏”视为两条分开的生产线，只在回答时或在稳定桥接页里汇合时，它运行得最好。</p>
+<p>从 <code>llm-wiki</code> 那里，可以拿到的有效外壳是：</p>
+<ul>
+<li>原始来源保持不可变</li>
+<li>被维护的 wiki 负责累积持久综合</li>
+<li>用 schema 定义 ingest、query、lint 行为</li>
+</ul>
+<p>从 <code>context infrastructure</code> 那里，可以拿到的关键补充是：</p>
+<ul>
+<li>个人痕迹也是合法证据</li>
+<li>稳定判断应被渐进蒸馏，而不是从单一例子里硬猜</li>
+<li>不同任务应加载不同的上下文切片</li>
+<li>高噪音个人记录往往需要多层信息提炼，才能沉淀成稳定规则</li>
+</ul>
+<h2>这对本仓库意味着什么</h2>
+<p>这个仓库应该维持五条边界。</p>
+<h3>1. 来源边界</h3>
+<ul>
+<li>外部证据放进 <code>raw/external/</code></li>
+<li>个人证据放进 <code>raw/personal/</code></li>
+</ul>
+<h3>2. 派生页面边界</h3>
+<ul>
+<li>面向世界的综合知识与混合分析放进相关 <code>wiki/topics/</code> 目录</li>
+<li>重复出现的判断放进 <code>wiki/self/</code></li>
+<li>高复用、低噪音的判断框架与 query 入口页放进 <code>wiki/frameworks/</code></li>
+</ul>
+<h3>3. 置信度边界</h3>
+<p>个人材料应当慢慢上升：</p>
+<ul>
+<li>先观察，再模式</li>
+<li>先模式，再公理</li>
+</ul>
+<p>一次有启发的对话可以支持一页 topic memo，但不足以直接生成一条高置信度 self axiom。</p>
+<h3>4. 工作流边界</h3>
+<p>agent 不应每次都临场发明结构，而应遵守明确的 ingest、query、lint 规则，再把耐久结果写回仓库。</p>
+<h3>5. 路由层边界</h3>
+<p>不是所有耐久 query 都该写进新的 topic 页面。</p>
+<ul>
+<li>如果结果主要在回答“这类问题以后该先站在哪个框架上看”，应写进 <code>wiki/frameworks/</code></li>
+<li>如果结果主要在回答“这次结合知识和判断后，具体该怎么做”，应写进最相关的 <code>wiki/topics/&lt;topic&gt;/</code></li>
+</ul>
+<h2>实际含义</h2>
+<ul>
+<li>外部文章通常应先更新最相关的 <code>wiki/topics/</code> 页面。</li>
+<li>个人对话即使也触发了 wiki 结构变化，仍然可以继续作为来源证据保留。</li>
+<li>混合设计讨论如果主要产出具体结论，很适合写进相关 topic。</li>
+<li>如果某次讨论主要沉淀的是高复用判断框架、入口页或路由规则，更适合写进 <code>wiki/frameworks/</code>。</li>
+<li>如果未来查询反复暴露某种稳定偏好，这些证据之后就能支持一页 <code>wiki/self/</code>。</li>
+</ul>
+<h2>当前用法</h2>
+<p>关于本地知识库设计的那份比较笔记，最适合被视为混合型个人证据；而它可复用的架构性结论，则应当留在这里，作为 topic 页面并进入维护索引。</p>
+<h2>来源依据</h2>
+<ul>
+<li><a href="local-knowledge-base-patterns.html">本地知识库模式</a></li>
+<li><a href="../../../../../raw/personal/conversations/比较两份材料的本地知识库方法与理念异同.md">比较讨论</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../agent-harness-runtime/harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+<li><a href="local-knowledge-base-patterns.html">本地知识库模式</a></li>
+<li><a href="ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

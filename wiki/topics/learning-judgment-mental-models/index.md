@@ -1,0 +1,43 @@
+# 学习 / 判断 / 心智模型
+
+围绕 taste、科学与技艺、数学基础、Naval、内心游戏、人际理解与长期适配的页面。
+
+## 推荐阅读顺序
+
+- [Ace the Data Science Interview](ace-the-data-science-interview.md)
+- [Go to Yourself 框架](go-to-yourself-框架.md)
+- [Naval 的 Mental Models](naval-mental-models.md)
+- [Taste：感受良质的能力](Taste：感受良质的能力.md)
+- [喜欢与擅长的命运飞轮](喜欢与擅长的命运飞轮.md)
+- [如何了解一个人](如何了解一个人.md)
+- [概率论入门](概率论入门.md)
+- [科学与技艺双层认知模型](science-and-craft-cognitive-model.md)
+- 其余页面可按下面的完整列表继续浏览。
+
+## 页面
+
+- [Ace the Data Science Interview](ace-the-data-science-interview.md): 数据科学面试准备指南，包含 201 道真实面试题，覆盖概率、统计、机器学习、产品感知、行为面试等核心模块。
+- [Go to Yourself 框架](go-to-yourself-框架.md): 两篇个人随笔，将物理学模型映射到个人成长与商业策略：
+- [Naval 的 Mental Models](naval-mental-models.md): 来自《纳瓦尔宝典》"Building Judgment" 章节，以及 Naval 推荐阅读书目。
+- [Taste：感受良质的能力](Taste：感受良质的能力.md): **标签：** taste，quality，判断力，AI，创作
+- [喜欢与擅长的命运飞轮](喜欢与擅长的命运飞轮.md): **标签：** 成功概率，职业适配，喜欢，擅长，反馈飞轮
+- [如何了解一个人](如何了解一个人.md): 《纽约时报》专栏作家戴维·布鲁克斯关于"如何真正了解他人"的探索，区分"简历美德"与"悼词美德"，探讨深度人际连接的可能性。
+- [概率论入门](概率论入门.md): 概率论经典教材，以严格的数学基础著称，同时保持直觉可理解性。
+- [科学与技艺双层认知模型](science-and-craft-cognitive-model.md): 这页笔记提出了一个两层判断模型。
+- [纳瓦尔宝典](纳瓦尔宝典.md): Naval Ravikant 多年推特、播客、采访精华合集，围绕财富创造与幸福两大主题展开。书名取自"Almanack"（年鉴），暗示这是一种可反复查阅的智慧手册而非一次性读物。
+- [线性代数正确入门](线性代数正确入门.md): 线性代数经典教材，以抽象向量空间为核心，避开行列式优先的传统路径，强调线性算子的几何直觉。
+- [网球的内心游戏](网球的内心游戏.md): W. Timothy Gallwey 1974 年出版的经典著作，提出"内心游戏"概念：每个比赛都有两部分——外部比赛（对抗外部对手）和内心比赛（对抗内心的障碍）。核心框架是 Self 1 和 Self 2 的区分。
+
+## 相关框架
+
+- [方向与执行判断框架](../../frameworks/方向与执行判断框架.md)
+
+## 相关自我页面
+
+- [自由与当下的观察](../../self/自由与当下的观察.md)
+- [物理模型抽象人生问题观察](../../self/物理模型抽象人生问题观察.md)
+
+## 返回
+
+- [话题总览](../index.md)
+- [Wiki 首页](../../index.md)

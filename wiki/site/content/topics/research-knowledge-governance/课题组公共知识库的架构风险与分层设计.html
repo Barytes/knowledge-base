@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>课题组公共知识库的架构风险与分层设计 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/research-knowledge-governance/课题组公共知识库的架构风险与分层设计.md</div>
+      <h1>课题组公共知识库的架构风险与分层设计</h1>
+<h2>摘要</h2>
+<p>本页是 <code>oh-share-it</code> 的架构风险支撑页。主入口见 <a href="oh-share-it公共知识库产品.html">oh-share-it 公共知识库产品</a>。</p>
+<p>围绕把 <code>llm-wiki</code> 做成公共知识库，这轮讨论集中暴露了三个担心：</p>
+<ul>
+<li>多用户同时写入后，坏回答污染 wiki，文档也越来越多却缺少关联</li>
+<li>知识库规模变大后，query 效果下降，上下文窗口不够</li>
+<li>query 很烧 token，进而挤压回答质量</li>
+</ul>
+<p>这三个问题表面不同，但底层大多来自同一个偏差：把系统理解成“query 时临时拼接语料的问答器”，而不是“平时持续把高价值信号编译成默认工作面”的知识系统。</p>
+<p>如果架构从第一天就把 <code>证据边界</code>、<code>页面类型</code>、<code>状态分层</code>、<code>关系模型</code> 和 <code>query routing</code> 立住，这些风险大多可以明显前移预防。相反，如果先做一个所有内容都平铺进入 query 的天真 MVP，后面再补治理和结构，代价会很高。</p>
+<h2>一、三个问题的根因</h2>
+<h3>1. 多用户管理、污染与文档失联</h3>
+<p>这组问题的根因不是“人多了”，而是缺少治理边界。</p>
+<p>如果系统里只有一个大 <code>wiki/</code>，而没有显式区分：</p>
+<ul>
+<li>共识</li>
+<li>判断</li>
+<li>猜想</li>
+<li>项目记忆</li>
+<li>页面状态</li>
+</ul>
+<p>那么不同来源、不同置信度、不同用途的内容就会被混成同一层。这样一来，坏回答污染 wiki，并不是因为模型偶尔答错，而是因为系统默认把所有内容都当成同等可信、同等可检索的维护资产。</p>
+<p>文档越来越多却缺少关联，也不是简单的“目录不够细”，而是因为页面没有承担清晰职能，也没有结构化关系。只有文件夹和 <code>index.md</code>，还不足以表达：</p>
+<ul>
+<li>这页是入口页还是判断页</li>
+<li>这页属于哪个项目</li>
+<li>这页在比较谁</li>
+<li>这页依赖哪些证据</li>
+<li>这页该被什么问题优先调用</li>
+</ul>
+<h3>2. 知识库变大后，query 效果下降</h3>
+<p>这组问题的根因不是“库大了”，而是默认工作面选错了。</p>
+<p>如果未来 query 仍然总是优先回到 <code>raw</code>，从一堆原始材料里重新检索、重新拼接、重新综合，那么系统并没有真正形成知识中间层。这样知识库越大，每次 query 需要搜索和裁剪的候选空间就越大，上下文窗口当然会越来越紧。</p>
+<p>真正需要缩小的不是文件数量，而是 query 时必须重新理解的材料面积。只有当未来多数问题先站在维护过的 <code>topic / comparison / project / judgment</code> 页面上发生，规模增长才不会直接变成回答退化。</p>
+<h3>3. query 烧 token，回答质量下降</h3>
+<p>这组问题的根因不是“token 贵”本身，而是把上下文窗口当仓库用。</p>
+<p>当系统没有足够好的中间层和 routing 时，query 往往会把大量低信号材料一股脑塞进 prompt。这样做会出现两层损失：</p>
+<ul>
+<li>检索阶段把 token 花在无效上下文上</li>
+<li>生成阶段真正留给比较、判断、推理的预算变少</li>
+</ul>
+<p>所以 token 问题本质上不是成本问题，而是架构问题。它说明系统还在让 query-time 检索替代 ingest-time 与 maintenance-time 的结构整理。</p>
+<h2>二、这些问题能否靠架构预防</h2>
+<p>能，而且应当尽量前移到架构阶段预防。</p>
+<p>真正需要讨论的不是“要不要现在就做复杂治理”，而是“哪些边界必须第一天就有，哪些机制可以第二阶段再加”。</p>
+<h3>必须从第一天就立住的边界</h3>
+<ul>
+<li><code>raw</code> 与维护态页面分开。原始证据不可变，维护页是派生结果。</li>
+<li>内容性质分开。至少区分 <code>共识</code>、<code>判断</code>、<code>猜想</code>。</li>
+<li>页面职能分开。至少区分 <code>目录/地图</code>、<code>主题</code>、<code>比较</code>、<code>项目</code>。</li>
+<li>query routing 分层。默认先查维护页，不足时再回 <code>raw</code>。</li>
+<li>页面元数据显式化。作者、来源、置信度、状态、关联主题不能只藏在正文。</li>
+<li>证据锚点显式化。页面必须能回链到 <code>raw</code> 或其他维护页。</li>
+</ul>
+<h3>可以后补的机制</h3>
+<ul>
+<li>很细的角色权限</li>
+<li>很复杂的多人冲突自动合并</li>
+<li>很重的审核工作流</li>
+<li>大而全的知识图谱推理</li>
+<li>复杂 dashboard</li>
+</ul>
+<p>所以更准确的建议不是“先做 MVP，之后再附加解决方案”，而是：</p>
+<p>&gt; 先做 MVP，但要做一个带最小治理骨架的 MVP。</p>
+<h2>三、如果不想做重 review 流程，怎么降低摩擦</h2>
+<p>这轮讨论里，一个关键约束是：不想引入明显的 <code>proposal -&gt; review -&gt; publish</code> 流程，因为人工 review 的摩擦太大。</p>
+<p>这并不意味着可以完全取消发布边界。更稳的做法是把显式审核改成“状态分层 + 检索权重 + 晋升规则”。</p>
+<p>可以采用下面这种低摩擦模式：</p>
+<ul>
+<li>所有内容都可以先自动保存</li>
+<li>但不是所有内容都进入同一检索优先级</li>
+<li><code>共识</code> 页默认高优先级，只允许较高置信内容进入</li>
+<li><code>判断</code> 页可以低摩擦发布，但要带作者、来源、置信度、时间</li>
+<li><code>猜想</code> 页允许保留探索性内容，但默认不参加普通 query，除非用户显式问探索性问题</li>
+<li>新材料不必覆盖旧结论，可以用 <code>active / tentative / superseded / archived</code> 之类状态并存</li>
+</ul>
+<p>这样做的关键，不是取消治理，而是把治理从“人工门禁”改成“内容状态与检索权重”。</p>
+<h2>四、推荐的页面分层</h2>
+<p>当前把 <code>wiki/</code> 只分成 <code>knowledge</code> 和 <code>insights</code>，方向是对的，但还不够。</p>
+<p>更稳的做法是同时做两条分层轴。</p>
+<h3>轴一：内容性质</h3>
+<ul>
+<li><code>consensus</code></li>
+</ul>
+<p>  已经较稳定、适合作为默认共识入口的内容</p>
+<ul>
+<li><code>judgment</code></li>
+</ul>
+<p>  带证据基础的研究判断、tradeoff、gap、下一步建议</p>
+<ul>
+<li><code>hypothesis</code></li>
+</ul>
+<p>  值得保留但尚未稳定的猜想或待验证判断</p>
+<h3>轴二：页面职能</h3>
+<ul>
+<li><code>map</code></li>
+</ul>
+<p>  入口页，回答“这个方向里有什么、先看哪里”</p>
+<ul>
+<li><code>topic</code></li>
+</ul>
+<p>  主题页，回答“这个概念/方法/方向本身是什么”</p>
+<ul>
+<li><code>comparison</code></li>
+</ul>
+<p>  比较页，回答“几类方法真正差在哪”</p>
+<ul>
+<li><code>project</code></li>
+</ul>
+<p>  项目页，回答“我们这个课题做过什么、为什么这样做、下一步去哪”</p>
+<ul>
+<li><code>judgment</code></li>
+</ul>
+<p>  判断页，回答“目前更应该往哪投精力”</p>
+<ul>
+<li><code>tension</code></li>
+</ul>
+<p>  张力页，回答“冲突真正发生在哪一层”</p>
+<ul>
+<li><code>hypothesis</code></li>
+</ul>
+<p>  猜想页，回答“什么值得继续验证，但还不能当成结论”</p>
+<p>这也是“分层上下文”的真正含义。它不是简单多几个文件夹，而是让不同问题有不同的默认工作面。</p>
+<p>例如：</p>
+<ul>
+<li>“这个方向有哪些主线”应先站在 <code>map</code> 或 <code>topic</code> 页上回答</li>
+<li>“A 和 B 的关键 tradeoff 是什么”应先站在 <code>comparison</code> 页上回答</li>
+<li>“我们为什么没继续某个点子”应先站在 <code>project</code> 页上回答</li>
+<li>“当前最值得补哪一块”应先站在 <code>judgment</code> 或 <code>tension</code> 页上回答</li>
+</ul>
+<h2>五、页面关系模型应该怎么做</h2>
+<p>单纯 <code>index.md</code> 只够做人工导航，不够做关系模型。</p>
+<p>它适合：</p>
+<ul>
+<li>展示仓库入口</li>
+<li>帮人快速浏览现有页面</li>
+<li>做小库阶段的手工导航</li>
+</ul>
+<p>但它不适合承载下面这些系统级关系：</p>
+<ul>
+<li>页面属于哪个主题</li>
+<li>页面属于哪个项目</li>
+<li>页面依赖哪些证据</li>
+<li>页面和哪些其他页面相关</li>
+<li>哪页比较了哪些对象</li>
+<li>哪页应在 query 时被优先使用</li>
+</ul>
+<p>更稳的 MVP 做法是：</p>
+<ul>
+<li>保留 <code>wiki/index.md</code> 作为展示层</li>
+<li>把真正的关系写进每页 frontmatter</li>
+<li>再由元数据自动生成 index 或 maps</li>
+</ul>
+<p>一个足够轻但有用的 frontmatter 可以包括：</p>
+<pre><code>id: topic-edge-offloading
+title: 边缘卸载
+page_type: topic
+knowledge_state: consensus
+status: active
+confidence: high
+authors: [alice]
+topics: [edge-computing, offloading]
+projects: [proj-mobile-inference]
+sources: [paper-001, meeting-004]
+related_pages: [comparison-offloading-vs-caching, judgment-offloading-bottleneck]
+updated_at: 2026-04-11</code></pre>
+<p>MVP 阶段最值得先支持的关系类型是：</p>
+<ul>
+<li><code>parent</code></li>
+</ul>
+<p>  用来表达目录树或主题树</p>
+<ul>
+<li><code>related_pages</code></li>
+</ul>
+<p>  用来表达横向关联</p>
+<ul>
+<li><code>sources</code></li>
+</ul>
+<p>  用来表达证据依赖</p>
+<ul>
+<li><code>projects</code></li>
+</ul>
+<p>  用来表达项目归属</p>
+<ul>
+<li><code>topics</code></li>
+</ul>
+<p>  用来表达主题聚类</p>
+<p>如果以后还要细化，可以再加：</p>
+<ul>
+<li><code>compares</code></li>
+<li><code>supports</code></li>
+<li><code>contradicts</code></li>
+<li><code>supersedes</code></li>
+</ul>
+<h2>六、推荐的知识库架构</h2>
+<p>如果目标是把现在这类 <code>llm-wiki</code> 结构推进成可承接公共知识写作和研究判断的仓库，下面这版会更稳。</p>
+<pre><code>knowledge-base/
+  inbox/
+    papers/
+    meetings/
+    projects/
+    experiments/
+    triage.md
+
+  raw/
+    papers/
+    meetings/
+    projects/
+    experiments/
+    registry/
+      materials.yaml
+      citations.yaml
+
+  wiki/
+    index.md
+    maps/
+      方向地图.md
+      项目地图.md
+      问题地图.md
+    knowledge/
+      topics/
+      comparisons/
+    projects/
+      &lt;project-slug&gt;/
+        overview.md
+        decisions.md
+        experiment-summary.md
+        open-questions.md
+    insights/
+      judgments/
+      tensions/
+      hypotheses/
+    templates/
+    log.md
+
+  schemas/
+    ingest.md
+    query.md
+    page.md
+    routing.md
+    lint.md
+
+  skills/
+    kb-ops/
+    kb-query/
+    research-ingest/
+    project-update/
+    insight-write/</code></pre>
+<p>这版架构的关键变化有四个。</p>
+<p>第一，<code>maps/</code> 从手写索引升级成默认工作面入口。</p>
+<p>它们不只是列文件，而是明确回答“从哪里开始看”。</p>
+<p>第二，<code>projects/</code> 被提升成一级层。</p>
+<p>这样组会、实验、阶段性结论就不必只散落在 <code>raw/projects/</code>、<code>raw/meetings/</code> 和 <code>raw/experiments/</code> 里。</p>
+<p>第三，<code>insights/</code> 内部分成 <code>judgments / tensions / hypotheses</code>。</p>
+<p>这样即使没有重审核流程，也可以通过状态与层次控制 query 行为。</p>
+<p>第四，<code>raw/registry/</code> 用来给材料和 citation 提供稳定 id。</p>
+<p>没有这一层，页面锚点和关系模型很难真正稳定。</p>
+<h2>七、对当前仓库设计的具体改进建议</h2>
+<p>如果从当前这版结构继续演进，最值得先做的不是全面重构，而是下面三步。</p>
+<h3>1. 给维护页统一加 frontmatter</h3>
+<p>这是把“结构性区分”从正文习惯升级成系统约束的第一步。</p>
+<p>最少建议包括：</p>
+<ul>
+<li><code>id</code></li>
+<li><code>page_type</code></li>
+<li><code>knowledge_state</code></li>
+<li><code>status</code></li>
+<li><code>confidence</code></li>
+<li><code>authors</code></li>
+<li><code>topics</code></li>
+<li><code>projects</code></li>
+<li><code>sources</code></li>
+<li><code>related_pages</code></li>
+</ul>
+<h3>2. 增加 <code>wiki/projects/</code> 与 <code>wiki/maps/</code></h3>
+<p>当前结构已经有 <code>knowledge</code> 与 <code>insights</code>，但还缺：</p>
+<ul>
+<li>面向 query 的稳定入口层</li>
+<li>面向项目记忆的独立工作面</li>
+</ul>
+<p>只要这两层缺失，很多判断与记忆仍然会掉回 <code>raw</code>。</p>
+<h3>3. 把 <code>index.md</code> 改成展示层，而不是唯一关系层</h3>
+<p>后续可以保留一个总索引，但同时增加：</p>
+<ul>
+<li>方向地图</li>
+<li>项目地图</li>
+<li>问题地图</li>
+</ul>
+<p>并让这些地图尽量由页面元数据生成，而不是完全靠手工维护。</p>
+<h2>八、一句话收束</h2>
+<p>围绕公共知识库，真正需要防的不是“文档太多”本身，而是系统在规模增长时仍然把 query-time 拼接当主工作流。</p>
+<p>更稳的方向，是尽早把仓库做成一个带分层页面类型、状态边界、证据锚点和关系模型的默认工作面。这样多用户写入、上下文窗口、token 开销和质量下降，都会从“后期运营问题”前移成“架构可控问题”。</p>
+<h2>来源依据</h2>
+<ul>
+<li><a href="lab-research-knowledge-base-product-strategy.html">课题组公共研究知识库的产品化与评测策略</a></li>
+<li><a href="../context-memory-knowledge-system/information-compounding-systems-design.html">信息复利系统设计</a></li>
+<li><a href="../context-memory-knowledge-system/knowledge-base-operating-model.html">知识库运行模型</a></li>
+<li><a href="../context-memory-knowledge-system/ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="课题组公共知识库的产品定义信念.html">课题组公共知识库的产品定义信念</a></li>
+<li><a href="课题组公共知识库的联邦架构设计.html">课题组公共知识库的联邦架构设计</a></li>
+<li><a href="lab-research-knowledge-base-product-strategy.html">课题组公共研究知识库的产品化与评测策略</a></li>
+<li><a href="../context-memory-knowledge-system/information-compounding-systems-design.html">信息复利系统设计</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

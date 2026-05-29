@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex-like agent harness 路线图 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/projects-roadmaps/Codex-like-agent-harness路线图.md</div>
+      <h1>Codex-like agent harness 路线图</h1>
+<h2>摘要</h2>
+<p>这个想法的核心不是“复制一个 Codex”，而是把 Codex 暴露出来的 agent harness 能力压缩成 <code>my-little-agent-loop</code> 可以实现、可以评测、可以服务 <code>context-core</code> 和 <code>oh-share-it</code> 的内核。</p>
+<p>更准确的定位是：</p>
+<p>&gt; <code>my-little-agent-loop</code> 是一个最小 Codex-like agent harness，用来提供可追踪 tool use、可恢复 session、patch-based editing、permissioned execution、trace / replay / evaluator loop，以及和 <code>context-core</code> 对齐的上下文质量闭环。</p>
+<p>它仍然是支撑项，不应抢走本月两个旗舰项目的位置。旗舰项目仍是：</p>
+<ul>
+<li><code>context-core</code>：agent context infra 的核心层。</li>
+<li><code>oh-share-it</code>：真实部署、协作与评测场景。</li>
+</ul>
+<p><code>my-little-agent-loop</code> 的价值，是证明自己不仅会“用 agent”，也能拥有 agent runtime / harness 的工程主权。</p>
+<h2>什么叫 Codex-like</h2>
+<p>这里的 <code>Codex-like</code> 指一组 agent harness 能力，而不是某个完整产品形态。</p>
+<p>最小能力包括：</p>
+<p>1. <code>Session</code>：会话、状态、工作目录、resume / fork / compact 的基本模型。</p>
+<p>2. <code>Tool Runtime</code>：文件读取、搜索、patch 编辑、命令执行、浏览器或外部工具调用的统一事件流。</p>
+<p>3. <code>Permission / Sandbox</code>：读、写、执行、网络、危险命令的权限边界。</p>
+<p>4. <code>Plan / Todo</code>：把长任务拆成可观察的执行状态，而不是只靠模型隐式记忆。</p>
+<p>5. <code>Diff / Patch</code>：所有文件修改都走可审计 patch，而不是黑箱写文件。</p>
+<p>6. <code>Trace / Replay</code>：记录 agent 的输入、工具调用、上下文、输出、失败标签，并支持重跑固定任务。</p>
+<p>7. <code>Eval Harness</code>：把 replay 结果接到评分、人工评审或 regression case。</p>
+<p>8. <code>Skill System</code>：把可复用流程、判断标准和项目规则外置成可加载文件。</p>
+<p>后续再考虑：</p>
+<ul>
+<li>subagents：主要用于上下文隔离，而不是角色扮演。</li>
+<li>worktrees：让长任务在隔离工作区里运行。</li>
+<li>cloud / remote task runner：把本地 harness 推到远程异步执行。</li>
+<li>PR review bot：把 harness 放进真实代码审查链路。</li>
+<li>automations：定时运行 eval、整理 issue、扫描失败。</li>
+<li>GUI / browser / computer use：作为可选工具层，而不是第一阶段核心。</li>
+</ul>
+<h2>为什么值得做</h2>
+<p>这个方向和当前职业主线高度一致。</p>
+<p><code>context-core</code> 证明你理解 context lifecycle、routing、bundle、trace、eval 和 writeback。<code>oh-share-it</code> 证明这套 context layer 可以进入多人协作和真实部署。<code>my-little-agent-loop</code> 如果做成 Codex-like harness，则补上第三块关键证据：你能控制 agent runtime 本身。</p>
+<p>这比单纯做一个聊天机器人或 RAG demo 强很多。它展示的是：</p>
+<ul>
+<li>能把模型能力放进受控 runtime。</li>
+<li>能区分 latent 判断和 deterministic 工具执行。</li>
+<li>能让 agent 行为可追踪、可回放、可评测。</li>
+<li>能把上下文基础设施接入真实 agent loop，而不是停留在静态知识库。</li>
+</ul>
+<p>对 <code>Agent Systems Engineer</code> 叙事来说，这是一条很硬的信号。</p>
+<h2>设计原则</h2>
+<h3>1. 先做可观察内核，不做大而全产品</h3>
+<p>第一阶段不追求覆盖 Codex 的桌面端、云端、IDE、GitHub、自动化和视觉能力。先把最小闭环做实：</p>
+<pre><code>task -&gt; context bundle -&gt; tool calls -&gt; patch/result -&gt; trace -&gt; replay -&gt; eval</code></pre>
+<p>这条链路跑通，才有资格继续扩展。</p>
+<h3>2. Thin harness, fat skills</h3>
+<p>内核保持薄，只做事件循环、工具协议、权限、状态、trace 和 replay。</p>
+<p>复杂判断尽量放到 skills、项目规则、eval rubric 和 <code>context-core</code> 的路由策略里。这样模型升级时，latent 判断会自然受益，而 deterministic 执行层仍然稳定。</p>
+<h3>3. Context native</h3>
+<p>这个 harness 不应把 context 当成 prompt 附件，而应把 <code>context-core</code> 当作一等公民：</p>
+<ul>
+<li>每次任务都显式生成 <code>ContextBundle</code>。</li>
+<li>每次 route 都记录 <code>RouteDecision</code>。</li>
+<li>每次回答都能追溯 source。</li>
+<li>每次失败都能回写成 <code>EvalCase</code> 或 <code>WritebackCandidate</code>。</li>
+</ul>
+<p>这样 <code>my-little-agent-loop</code> 才会和 <code>context-core</code> 互相增强，而不是变成另一个孤立 agent 项目。</p>
+<h3>4. Eval-first</h3>
+<p>每个功能都要能落到一个可回放任务上。</p>
+<p>优先做 5 到 10 个固定 regression tasks，而不是堆新功能。任务可以来自：</p>
+<ul>
+<li><code>oh-share-it</code> 的真实查询。</li>
+<li><code>context-core</code> 的路由失败。</li>
+<li>小型代码修改任务。</li>
+<li>文档整理或知识库写回任务。</li>
+</ul>
+<h3>5. 权限边界先于自动化</h3>
+<p>如果要让 agent 真正改文件、跑命令、部署服务，permission model 必须前置。</p>
+<p>最小权限层可以先分成：</p>
+<ul>
+<li><code>read-only</code></li>
+<li><code>edit-with-approval</code></li>
+<li><code>command-with-approval</code></li>
+<li><code>trusted-local</code></li>
+</ul>
+<p>这不是为了形式安全，而是为了让 harness 的行为能被解释、能被复盘。</p>
+<h2>分阶段路线</h2>
+<h3>V0：可追踪本地 agent loop</h3>
+<p>目标：先做一个透明、可保存、可复盘的本地 loop。</p>
+<p>最小交付：</p>
+<ul>
+<li>message log</li>
+<li>tool call log</li>
+<li>file read / search tool</li>
+<li>patch apply tool</li>
+<li>command runner</li>
+<li>permission gate</li>
+<li>JSONL trace</li>
+<li>README 解释架构边界</li>
+</ul>
+<p>过线标准：能完成 3 到 5 个小型代码或知识库任务，并留下完整 trace。</p>
+<h3>V1：和 context-core 对齐</h3>
+<p>目标：让 harness 成为 context infra 的运行面。</p>
+<p>最小交付：</p>
+<ul>
+<li>接入 <code>ContextBundle</code></li>
+<li>trace 中记录 <code>RouteDecision</code></li>
+<li>replay runner 支持固定 <code>EvalCase</code></li>
+<li>evaluator 生成人工评分入口或 score stub</li>
+<li>5 到 10 个 regression cases</li>
+</ul>
+<p>过线标准：能用 <code>context-core</code> 输出的上下文执行任务，并知道失败来自 retrieval、routing、context packaging、tool execution 还是 model judgment。</p>
+<h3>V2：Codex-like 开发者体验</h3>
+<p>目标：把它从脚本变成可用的 coding agent harness。</p>
+<p>可选交付：</p>
+<ul>
+<li>resume / fork session</li>
+<li>plan / todo state</li>
+<li>patch preview</li>
+<li>skill loader</li>
+<li>subagent isolation</li>
+<li>worktree support</li>
+<li>compact / summary policy</li>
+</ul>
+<p>过线标准：可以连续处理一个 1 到 2 小时的真实开发任务，过程中上下文、修改、命令和判断都有记录。</p>
+<h3>V3：产品化与外部信号</h3>
+<p>目标：把它变成简历和公开展示能看懂的系统。</p>
+<p>可选交付：</p>
+<ul>
+<li>GitHub PR review bot</li>
+<li>scheduled eval automation</li>
+<li>remote task runner</li>
+<li>small web trace viewer</li>
+<li>integration with <code>oh-share-it</code></li>
+<li>case study</li>
+</ul>
+<p>过线标准：外部读者能在 10 分钟内明白它和普通 agent demo 的差异：它不是“会聊天”，而是一个可评测、可恢复、可审计的 agent runtime。</p>
+<h2>本月最小切法</h2>
+<p>本月不建议直接冲完整 Codex-like 产品。最合理的切法是：</p>
+<p>1. <code>my-little-agent-loop</code> 只做 <code>trace + replay + evaluator loop</code>。</p>
+<p>2. trace schema 对齐 <code>context-core</code> 的 <code>Trace</code> / <code>EvalCase</code>。</p>
+<p>3. replay cases 来自 <code>oh-share-it</code> 和 <code>context-core</code>。</p>
+<p>4. README 用 Codex-like harness 叙事包装，但不承诺桌面端、云端、IDE 这类大产品能力。</p>
+<p>本月可以写进简历的表达是：</p>
+<p>&gt; Built a minimal Codex-like agent harness for traceable tool use, resumable task execution, patch-based editing, and eval-driven replay, powering an eval-first context infrastructure stack.</p>
+<h2>不该做什么</h2>
+<ul>
+<li>不要第一阶段就做完整 UI。</li>
+<li>不要把所有 Codex 功能都做成路线承诺。</li>
+<li>不要脱离 <code>context-core</code> 和 <code>oh-share-it</code> 单独做一个玩具 agent。</li>
+<li>不要用复杂 agent orchestration 掩盖没有 eval 的事实。</li>
+<li>不要把 permission、trace、replay 当成后期再补的附属功能。</li>
+</ul>
+<h2>和其他项目的关系</h2>
+<p>| 项目 | 关系 |</p>
+<p>|---|---|</p>
+<p>| <code>context-core</code> | 提供 context routing、bundle、trace、eval schema，是 harness 的上下文基础设施 |</p>
+<p>| <code>oh-share-it</code> | 提供真实任务、真实用户问题、部署和协作场景 |</p>
+<p>| <code>my-little-agent-loop</code> | 提供 Codex-like agent runtime，把 context 和 tool execution 接成可回放闭环 |</p>
+<p>| <code>gogo</code> | 保留为既有 workbench / demo，不承担本路线主要开发 |</p>
+<p>| <code>clawhouse</code> | 未来可接入 remote / multi-device session，但不是本月主线 |</p>
+<h2>简历叙事</h2>
+<p>可以收束成三层：</p>
+<p>1. Context layer：<code>context-core</code> 负责知识来源、路由、上下文包、trace 和 writeback。</p>
+<p>2. Deployment layer：<code>oh-share-it</code> 把 context layer 放进课题组共享知识场景。</p>
+<p>3. Runtime layer：<code>my-little-agent-loop</code> 提供 Codex-like harness，让 agent 行为可追踪、可恢复、可评测。</p>
+<p>一句话版本：</p>
+<p>&gt; Built an eval-first agent context infrastructure stack: <code>context-core</code> for context routing and writeback, <code>oh-share-it</code> for real-world shared deployment, and <code>my-little-agent-loop</code> as a minimal Codex-like harness for traceable, replayable agent execution.</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="Agent-harness-core与三种adapter路线.html">Agent harness core 与三种 adapter 路线</a></li>
+<li><a href="Agent系统月度执行计划-2026-05-24.html">Agent 系统月度执行计划（2026-05-24）</a></li>
+<li><a href="Agent系统求职与项目路线图-2026-05.html">Agent 系统求职与项目路线图（2026-05）</a></li>
+<li><a href="../career-positioning-job-search/Agent%20Systems%20Engineer职业定位.html">Agent Systems Engineer 职业定位</a></li>
+<li><a href="../../frameworks/Harness架构判断框架.html">Harness 架构判断框架</a></li>
+<li><a href="../agent-harness-runtime/coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a></li>
+<li><a href="../agent-harness-runtime/thin-harness-fat-skills.html">Thin Harness, Fat Skills</a></li>
+<li><a href="../agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.html">AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First</a></li>
+</ul>
+<h2>来源依据</h2>
+<ul>
+<li>本次对话中关于 Codex 功能清单的整理。</li>
+<li>本地 <code>codex --help</code> 显示的 CLI 命令面。</li>
+<li>本知识库已有 harness、context infra、职业叙事和月度计划页面。</li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

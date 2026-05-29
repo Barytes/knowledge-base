@@ -2,6 +2,70 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-05-28] ingest | Agent 系统作为 OS 与 Cloud Runtime 问题
+
+从 `inbox/` 摄取外部文章《Agent 系统正在重新走一遍 OS 和 Cloud Runtime 的老路》，移入 `raw/external/`，并新增知识页。页面把材料收束为 agent runtime 的系统工程视角：`context window` 不是 runtime，append-only session log 类似 event sourcing，brain / hands 对应 control plane / data plane，sandbox 趋向 disposable runtime，稳定接口比具体实现更重要。
+
+随后按用户要求联网搜索并摄取 Anthropic Engineering 官方原文《Scaling Managed Agents: Decoupling the brain from the hands》。新增一个 `raw/external/` source note，并更新知识页，把官方 Managed Agents 的 `session / harness / sandbox` 三对象、`execute / provision / wake / getEvents` 接口、凭证隔离、TTFT 改善和 `meta-harness` 判断补入同一页。随后将 source note 扩成原文结构化摄取版，按原文章节覆盖论证与工程细节，但不全文镜像受版权保护的原文。
+
+**新增页面**
+- [Agent 系统作为 OS 与 Cloud Runtime 问题](topics/agent-harness-runtime/agent-runtime-os-cloud-runtime.md)
+
+**更新页面**
+- `wiki/index.md`
+- `wiki/knowledge/AI 时代的结果确定性 Agentic Runtime 与 Evaluation-First.md`
+- `wiki/knowledge/harness-engineering.md`
+- `wiki/frameworks/Harness架构判断框架.md`
+
+**源文件移至**
+- `raw/external/agent-runtime-os-cloud-runtime.md`
+- `raw/external/anthropic-scaling-managed-agents.md`
+
+## [2026-05-26] query | Agent harness core 与三种 adapter 路线
+
+根据用户关于“也许做三个 agent harness”的 brainstorming，新增一页 bridge，将想法收束为 `agent-harness-core` 加三个 demo / adapter：`context-eval-adapter`、`clawhouse-continuity-adapter`、`companion-desktop-adapter`。页面明确三者共享 session、tool runtime、permission、trace、replay、eval、patch 和 context bridge，区别在于分别证明 context quality、task continuity 和 ambient collaboration。
+
+**新增页面**
+- [Agent harness core 与三种 adapter 路线](topics/projects-roadmaps/Agent-harness-core与三种adapter路线.md)
+
+**更新页面**
+- `wiki/index.md`
+- `wiki/bridges/Codex-like-agent-harness路线图.md`
+- `wiki/bridges/Agent系统月度执行计划-2026-05-24.md`
+
+## [2026-05-26] query | Codex-like agent harness 路线图
+
+根据用户提出的“把 `my-little-agent-loop` 做成 Codex-like agent harness”的想法，新增一页 bridge。页面将 Codex-like 压缩为可实现的 harness 能力组合：session、tool runtime、permission / sandbox、plan / todo、patch、trace / replay、eval harness 和 skill system，并明确它本月仍作为 `context-core` 与 `oh-share-it` 的支撑项，而不是新的旗舰主线。
+
+**新增页面**
+- [Codex-like agent harness 路线图](topics/projects-roadmaps/Codex-like-agent-harness路线图.md)
+
+**更新页面**
+- `wiki/index.md`
+- `wiki/bridges/Agent系统月度执行计划-2026-05-24.md`
+
+## [2026-05-25] query | Agent Context Infra 前沿调研
+
+基于既有 `Agent Context Infra 调研报告（2026-05-24）`、相关 framework 页和外部前沿资料，新增一篇 2026-05-25 版桥接调研页。新版把主线从“agent memory / RAG”进一步收束为 `context lifecycle layer`，补入 Anthropic Managed Agents filesystem memory、STATE-Bench、MemGym、LongMemEval-V2、GroupMemBench、Cloudflare Session/context blocks、OpenViking context file system 等信号，并形成缺口地图、机会地图和 2-4 周研究产物路线。
+
+**新增页面**
+- `wiki/bridges/agent-context-infra-2026-05-25.md`
+
+**更新页面**
+- `wiki/index.md`
+- `wiki/log.md`
+
+## [2026-05-25] query | Context-Core 技术前沿机制级调研
+
+按用户要求重新收窄到 context layer / context-core，不再讨论 MCP、OpenAI SDK 等连接或通用 runtime 层。逐一浏览前沿论文和项目源页后，新增机制级技术报告，按技术判断、工作机制、技术创新、重点难点和未来方向解读 memory/context-control/context-file-system/context-eval/context-governance 相关工作。报告补入 MemRouter、MemConflict、Mem-π、Memory-R2、MementoGUI、Parallel Context Compaction、WorldDB、Letta Context Repositories 等新近信号，并将 `context-core` 收束为 episode store、working state、write gate、structured memory、governance、context filesystem、experience layer 和 eval/replay 八层架构。
+
+**新增页面**
+- `wiki/bridges/context-core-technical-frontier-2026-05-25.md`
+
+**更新页面**
+- `wiki/index.md`
+- `wiki/log.md`
+
 ## [2026-05-24] 查询/写回 | Agent 系统月度执行计划
 
 将“一个月内把 `gogo`、`oh-share-it`、`my-little-agent-loop` 打造成可以写进简历的生产级旗舰项目”的目标拆成四周执行计划。计划以 `oh-share-it` 真实试点与 eval 为主体，`gogo` 作为 workbench / portfolio 入口，`my-little-agent-loop` 补 trace / replay / evaluator loop 的 runtime ownership，同时保留行业研究、求职外联和博弈论低维结构支线。
@@ -9,7 +73,7 @@
 随后按用户澄清更新计划：新增 `context-core` 作为本月核心主线，弱化 `gogo`，明确 `gogo` 不再主动改动，只作为已有 workbench / demo / portfolio 入口。
 
 **新增页面**
-- [Agent 系统月度执行计划（2026-05-24）](bridges/Agent系统月度执行计划-2026-05-24.md)
+- [Agent 系统月度执行计划（2026-05-24）](topics/projects-roadmaps/Agent系统月度执行计划-2026-05-24.md)
 
 **更新页面**
 - `wiki/index.md`
@@ -19,7 +83,7 @@
 围绕“论文结束后如何重新整理项目、行业学习、求职和博弈论研究支线”做本地知识库查询与综合。结论是继续以 `Agent Systems Engineer` 为主线，把 `gogo / oh-share-it` 打成可部署、可评测、被真实使用的 agent context infra 旗舰证据包，用 `my-little-agent-loop` 补 runtime ownership，把 `clawhouse` 放在低成本探索轨，同时让行业学习和求职围绕同一画像外化。
 
 **新增页面**
-- [Agent 系统求职与项目路线图（2026-05）](bridges/Agent系统求职与项目路线图-2026-05.md)
+- [Agent 系统求职与项目路线图（2026-05）](topics/projects-roadmaps/Agent系统求职与项目路线图-2026-05.md)
 
 **更新页面**
 - `wiki/index.md`
@@ -29,7 +93,7 @@
 基于已经整理好的 `Anthropic`、`OpenAI` 及相邻 agent systems JD 抽样，以及已有的 GitHub 履历评估，新增一页 bridge，把“顶尖 agent systems 团队到底想看到什么样的履历画像”压成一版 north star，并加入当前公开履历与该目标画像的差距表。
 
 **新增页面**
-- [Anthropic与OpenAI的Agent Systems履历North Star](bridges/Anthropic与OpenAI的Agent Systems履历North Star.md): 从 JD 倒推 `context / harness / runtime / eval / deployment / reliability` 目标画像,并把当前履历与该 north star 的差距按重要性排序。
+- [Anthropic与OpenAI的Agent Systems履历North Star](topics/career-positioning-job-search/Anthropic与OpenAI的Agent%20Systems履历North%20Star.md): 从 JD 倒推 `context / harness / runtime / eval / deployment / reliability` 目标画像,并把当前履历与该 north star 的差距按重要性排序。
 
 **更新页面**
 - `wiki/index.md`
@@ -39,7 +103,7 @@
 基于当前对 agent 市场需求、公开 JD 抽样、已有项目主线与用户自我澄清，把“不是用 AI build product，而是围绕 context / harness / evaluation / reliability 做更深一层 agent 系统”的方向压成一页职业定位 bridge。
 
 **新增页面**
-- [Agent Systems Engineer职业定位](bridges/Agent Systems Engineer职业定位.md): 定义这条职业主线与 `AI Product Manager` / generic AI builder 的区别、市场需求基础、适配岗位与对外表达模板。
+- [Agent Systems Engineer职业定位](topics/career-positioning-job-search/Agent%20Systems%20Engineer职业定位.md): 定义这条职业主线与 `AI Product Manager` / generic AI builder 的区别、市场需求基础、适配岗位与对外表达模板。
 
 **更新页面**
 - `wiki/index.md`
@@ -48,13 +112,13 @@
 
 基于公开 GitHub API 元数据、README、公开 docs、manifest，以及公开招聘 JD 抽样，对 `Barytes/gogo`、`Barytes/oh-share-it`、`Barytes/my-little-chating-agent`、`ICASSP 2026` 论文与教育背景做了一次不 clone 仓库的层次评估，并写回一页 bridge。随后又补入“当前匹配 / 部分匹配 / 暂不匹配”的投递分层与 20 个优先岗位方向。
 
-同日，再把一份用户提供的 `miromind` 二次整理材料摄取到 `raw/external/miromind-agent-jd-market-scan-2026-05.md`，并更新 [Agent 岗位JD抽样与能力信号](knowledge/Agent岗位JD抽样与能力信号.md)，补充传统企业 / 重行业场景岗位、五档经验梯度、薪资带、治理与安全要求，以及 AI-native startup bar 与 enterprise bar 的差异。
+同日，再把一份用户提供的 `miromind` 二次整理材料摄取到 `raw/external/miromind-agent-jd-market-scan-2026-05.md`，并更新 [Agent 岗位JD抽样与能力信号](topics/career-positioning-job-search/Agent岗位JD抽样与能力信号.md)，补充传统企业 / 重行业场景岗位、五档经验梯度、薪资带、治理与安全要求，以及 AI-native startup bar 与 enterprise bar 的差异。
 
-随后又把另一份 `miromind` 对用户 GitHub / 论文 / 教育背景的二次评估摄取到 `raw/external/miromind-profile-evaluation-barytes-2026-05.md`，并更新 [Barytes GitHub项目与Agent层次评估](bridges/Barytes-GitHub项目与Agent层次评估.md)，补入一版更保守的外部定位（Entry 上沿 → Early Mid）及其与本页原判断的对照。
+随后又把另一份 `miromind` 对用户 GitHub / 论文 / 教育背景的二次评估摄取到 `raw/external/miromind-profile-evaluation-barytes-2026-05.md`，并更新 [Barytes GitHub项目与Agent层次评估](topics/career-positioning-job-search/Barytes-GitHub项目与Agent层次评估.md)，补入一版更保守的外部定位（Entry 上沿 → Early Mid）及其与本页原判断的对照。
 
 **新增页面**
-- [Barytes GitHub项目与Agent层次评估](bridges/Barytes-GitHub项目与Agent层次评估.md): 用 L3-L6、runtime / eval /职业信号三组尺子评估当前公开履历,补入投递分层与 20 个岗位方向,并给出从早期 L5 走向更强 L5/L6 的补强动作。
-- [Agent 岗位JD抽样与能力信号](knowledge/Agent岗位JD抽样与能力信号.md): 把本轮公开招聘页抽样整理成可复用表格,并补入 miromind 提供的企业化 JD 梯度、薪资带与治理 / 安全 / domain 要求。
+- [Barytes GitHub项目与Agent层次评估](topics/career-positioning-job-search/Barytes-GitHub项目与Agent层次评估.md): 用 L3-L6、runtime / eval /职业信号三组尺子评估当前公开履历,补入投递分层与 20 个岗位方向,并给出从早期 L5 走向更强 L5/L6 的补强动作。
+- [Agent 岗位JD抽样与能力信号](topics/career-positioning-job-search/Agent岗位JD抽样与能力信号.md): 把本轮公开招聘页抽样整理成可复用表格,并补入 miromind 提供的企业化 JD 梯度、薪资带与治理 / 安全 / domain 要求。
 
 **更新页面**
 - `wiki/index.md`
@@ -84,10 +148,10 @@
 从 `inbox/` 摄取鸭哥 Superlinear Academy 的续篇，移入 `raw/external/`，并新增一页知识页，保留其中关于共享池+个人INDEX+baseline+heartbeat+review四部件、skill是prompt不是code、以及Context Infra作为岗位的判断。
 
 **新增页面**
-- [团队中共享AI Skills的原则与方法](knowledge/superlinear-team-skill-sharing.md)
+- [团队中共享AI Skills的原则与方法](topics/research-knowledge-governance/superlinear-team-skill-sharing.md)
 
 **更新页面**
-- [Superlinear 社区 Agent Skill 知识治理信号](bridges/Superlinear社区AgentSkill知识治理信号.md): 补入对鸭哥系统性回答的引用
+- [Superlinear 社区 Agent Skill 知识治理信号](topics/research-knowledge-governance/Superlinear社区AgentSkill知识治理信号.md): 补入对鸭哥系统性回答的引用
 - `wiki/index.md`
 
 **源文件移至**
@@ -103,7 +167,7 @@
 - [公共知识库实践启发他人写作观察](self/公共知识库实践启发他人写作观察.md): 一条中置信度 self observation
 
 **更新页面**
-- [团队中共享AI Skills的原则与方法](knowledge/superlinear-team-skill-sharing.md): 补入背景说明
+- [团队中共享AI Skills的原则与方法](topics/research-knowledge-governance/superlinear-team-skill-sharing.md): 补入背景说明
 - `wiki/self/README.md`
 - `wiki/index.md`
 
@@ -112,7 +176,7 @@
 从 `inbox/` 摄取一篇 Superlinear 社区文章，移入 `raw/external/`，并新增一页知识页，保留其中关于 `taste`、`quality`、动态 / 静态良质，以及 AI 时代为什么更需要质量判断的一组解释。
 
 **新增页面**
-- [Taste：感受良质的能力](knowledge/Taste：感受良质的能力.md)
+- [Taste：感受良质的能力](topics/learning-judgment-mental-models/Taste：感受良质的能力.md)
 
 **更新页面**
 - `wiki/index.md`
@@ -125,8 +189,8 @@
 从 `inbox/` 摄取两份 AI Architect 课程讲义，移入 `raw/external/`，并新增两页知识页，补上从产品定义与记忆系统继续推进到主动情报与生产级架构的后续模块。
 
 **新增页面**
-- [AI Architect 的 Proactive Intelligence 镜头](knowledge/ai-architect-proactive-intelligence.md)
-- [AI Architect 的 Advanced Architecture 镜头](knowledge/ai-architect-advanced-architecture.md)
+- [AI Architect 的 Proactive Intelligence 镜头](topics/ai-product-product-definition/ai-architect-proactive-intelligence.md)
+- [AI Architect 的 Advanced Architecture 镜头](topics/ai-product-product-definition/ai-architect-advanced-architecture.md)
 
 **更新页面**
 - `wiki/knowledge/ai-architect-lens.md`
@@ -231,7 +295,7 @@
 从 `inbox/` 摄取一篇 Superlinear Academy 文章,移入 `raw/external/`,并新增一页知识页,保留其中关于 `AI-assisted building vs AI runtime`、AI 产品六层与 L3-L6 能力分层的判断。
 
 **新增页面**
-- [AI 产品六层与 L3-L6 能力分层](knowledge/AI%20产品六层与%20L3-L6%20能力分层.md)
+- [AI 产品六层与 L3-L6 能力分层](topics/ai-product-product-definition/AI%20产品六层与%20L3-L6%20能力分层.md)
 
 **更新页面**
 - `wiki/index.md`
@@ -299,12 +363,12 @@
 从 `inbox/` 摄取三篇外部材料,移入 `raw/external/`。新增一页知识页,更新三页已有知识页,并同步更新 `wiki/index.md`。
 
 **新增页面**
-- [Go to Market Multiple Times:把高价值工作与早期产品反复推向市场](knowledge/go-to-market-multiple-times.md)
+- [Go to Market Multiple Times:把高价值工作与早期产品反复推向市场](topics/ai-product-product-definition/go-to-market-multiple-times.md)
 
 **更新页面**
 - [求职范式转变:让工作找到你](knowledge/求职范式转变:让工作找到你.md)
-- [Pre-PMF 验证手册](knowledge/pre-pmf-validation-playbook.md)
-- [增长工程师的职业押注与面试叙事](knowledge/增长工程师的职业押注与面试叙事.md)
+- [Pre-PMF 验证手册](topics/ai-product-product-definition/pre-pmf-validation-playbook.md)
+- [增长工程师的职业押注与面试叙事](topics/career-positioning-job-search/增长工程师的职业押注与面试叙事.md)
 - `wiki/index.md`
 
 **源文件移至**
@@ -318,7 +382,7 @@
 从 `inbox/` 摄取一份 Databricks 招聘相关访谈转录,移入 `raw/external/`,并新增一页知识页,保留其中关于双向选择、风险适配与多信号 hiring 的结构判断。
 
 **新增页面**
-- [Databricks 的人才态度与双向选择](knowledge/Databricks 的人才态度与双向选择.md)
+- [Databricks 的人才态度与双向选择](topics/career-positioning-job-search/Databricks%20的人才态度与双向选择.md)
 
 **源文件移至**
 - `raw/external/databricks-hiring-attitude-and-bidirectional-selection.md`
@@ -329,11 +393,11 @@
 从 `inbox/` 摄取五篇新材料,统一移入 `raw/external/`,并新增五页知识页,同时给几页旧页面补回相关链接。
 
 **新增页面**
-- [AI 焦虑的三种形态与行动解法](knowledge/AI%20焦虑的三种形态与行动解法.md)
-- [增长工程师的职业押注与面试叙事](knowledge/增长工程师的职业押注与面试叙事.md)
-- [coding agent 的上下文压缩工作流](knowledge/coding%20agent%20的上下文压缩工作流.md)
-- [衰退期的创业环境与技术判断](knowledge/衰退期的创业环境与技术判断.md)
-- [高级岗位简历的三条写法原则](knowledge/高级岗位简历的三条写法原则.md)
+- [AI 焦虑的三种形态与行动解法](topics/career-positioning-job-search/AI%20焦虑的三种形态与行动解法.md)
+- [增长工程师的职业押注与面试叙事](topics/career-positioning-job-search/增长工程师的职业押注与面试叙事.md)
+- [coding agent 的上下文压缩工作流](topics/agent-harness-runtime/coding%20agent%20的上下文压缩工作流.md)
+- [衰退期的创业环境与技术判断](topics/ai-industry-investment/衰退期的创业环境与技术判断.md)
+- [高级岗位简历的三条写法原则](topics/career-positioning-job-search/高级岗位简历的三条写法原则.md)
 
 **源文件移至**
 - `raw/external/superlinear-ai-anxiety-three-forms.md`
@@ -407,9 +471,9 @@
 从 `inbox/` 摄取三篇 Superlinear Academy 相关文章,统一移入 `raw/external/`,并新增三页知识页。
 
 **新增页面**
-- [GenAI 的共识边界与任务委托框架](knowledge/GenAI%20的共识边界与任务委托框架.md)
+- [GenAI 的共识边界与任务委托框架](topics/ai-product-product-definition/GenAI%20的共识边界与任务委托框架.md)
 - [AI 时代的结果确定性:Agentic Runtime 与 Evaluation-First](knowledge/AI%20时代的结果确定性:Agentic%20Runtime%20与%20Evaluation-First.md)
-- [喜欢与擅长的命运飞轮](knowledge/喜欢与擅长的命运飞轮.md)
+- [喜欢与擅长的命运飞轮](topics/learning-judgment-mental-models/喜欢与擅长的命运飞轮.md)
 
 **源文件移至**
 - `raw/external/ai-builders-module-6-become-future-proof.md`
@@ -454,7 +518,7 @@
 - 认知知识定锚的是业务口径,不是技术定义
 
 已更新页面:
-- [Superlinear 社区 Agent Skill 知识治理信号](bridges/Superlinear社区AgentSkill知识治理信号.md)
+- [Superlinear 社区 Agent Skill 知识治理信号](topics/research-knowledge-governance/Superlinear社区AgentSkill知识治理信号.md)
 
 ## [2026-04-17] 反思 | 操作知识需要认知知识的定锚
 
@@ -478,7 +542,7 @@
 - routed:需要设计--路由策略、冲突处理、场景判定
 
 已更新页面:
-- [Superlinear 社区 Agent Skill 知识治理信号](bridges/Superlinear社区AgentSkill知识治理信号.md)
+- [Superlinear 社区 Agent Skill 知识治理信号](topics/research-knowledge-governance/Superlinear社区AgentSkill知识治理信号.md)
 
 ## [2026-04-17] 反思 | Superlinear 求助帖里的知识治理信号
 
@@ -498,7 +562,7 @@
 - 是否存在明确的 ICP:人数增长后,知识冲突开始影响 agent 输出质量的团队。
 
 新增页面:
-- [Superlinear 社区 Agent Skill 知识治理信号](bridges/Superlinear社区AgentSkill知识治理信号.md)
+- [Superlinear 社区 Agent Skill 知识治理信号](topics/research-knowledge-governance/Superlinear社区AgentSkill知识治理信号.md)
 
 ## [2026-04-16] 摄取 | Slock 人机协作平台
 
@@ -520,7 +584,7 @@
 - 与 clawhouse 有关联(daemon 执行、context restore),但 Slock 是实时协作而非异步同步
 
 新增页面:
-- [Slock:人机协作平台](knowledge/Slock-人机协作平台.md)
+- [Slock:人机协作平台](topics/agent-harness-runtime/Slock-人机协作平台.md)
 
 源文件移至:
 - `raw/external/slock-ai-product-intro.md`
@@ -562,7 +626,7 @@
 - 体现了实时反馈循环在开发工具中的价值
 
 新增页面:
-- [Bakery:iOS 端远程开发 APP](knowledge/Bakery-iOS端远程开发APP.md)
+- [Bakery:iOS 端远程开发 APP](topics/agent-harness-runtime/Bakery-iOS端远程开发APP.md)
 
 源文件移至:
 - `raw/external/bakery-ios-远程开发APP.md`
@@ -628,7 +692,7 @@
 - 倾向用物理/数学模型抽象人生问题(磁通量、向量分析、余弦相似度)
 
 新增页面:
-- [Go to Yourself 框架](bridges/go-to-yourself-框架.md)
+- [Go to Yourself 框架](topics/learning-judgment-mental-models/go-to-yourself-框架.md)
 - [物理模型抽象人生问题观察](self/物理模型抽象人生问题观察.md)
 
 源文件移至:
@@ -704,7 +768,7 @@
 - 内心游戏的目标不是赢得外部比赛,而是发现内在自我
 
 新增页面:
-- [网球的内心游戏](knowledge/网球的内心游戏.md)
+- [网球的内心游戏](topics/learning-judgment-mental-models/网球的内心游戏.md)
 
 源文件位置:
 - `raw/external/the-inner-game-of-tennis.pdf`
@@ -727,7 +791,7 @@
 - Diarization 做不到:SQL 做不到,RAG 做不到,模型必须读完整档案
 
 新增页面:
-- [Thin Harness, Fat Skills](knowledge/thin-harness-fat-skills.md)
+- [Thin Harness, Fat Skills](topics/agent-harness-runtime/thin-harness-fat-skills.md)
 
 源文件位置:
 - `raw/external/garry-tan-thin-harness-fat-skills.md`(原文)
@@ -791,7 +855,7 @@
 **位置**:已移至 `bridges/essays/课题组公共知识库-博客草稿.md`
 
 新增页面:
-- [课题组公共知识库:让知识产生复利](bridges/essays/课题组公共知识库-博客草稿.md)
+- [课题组公共知识库:让知识产生复利](topics/research-knowledge-governance/essays/课题组公共知识库-博客草稿.md)
 
 ## [2026-04-14] 摄取 | gogo 项目(自己 build 的知识库产品)
 
@@ -837,7 +901,7 @@
 - 保护本金、避免重大亏损:与 Naval 同义
 
 新增页面:
-- [真本事:从会工作到会赚钱](knowledge/真本事-从会工作到会赚钱.md)
+- [真本事:从会工作到会赚钱](topics/career-positioning-job-search/真本事-从会工作到会赚钱.md)
 
 源文件移至:
 - `raw/external/真本事-从会工作到会赚钱-上篇.md`
@@ -862,7 +926,7 @@
 - 你的直觉判断(觉得boss直聘不对胃口)本身就是判断力 → 需要相信并用它指导行动
 
 新增页面:
-- [Naval财富框架应用于求职困境](bridges/Naval财富框架应用于求职困境.md)
+- [Naval财富框架应用于求职困境](topics/career-positioning-job-search/Naval财富框架应用于求职困境.md)
 
 ## [2026-04-14] 摄取 | Naval 的 Mental Models
 
@@ -895,10 +959,10 @@
 - 通过阅读经典建立高质量基础
 
 新增页面:
-- [Naval 的 Mental Models](knowledge/naval-mental-models.md)
+- [Naval 的 Mental Models](topics/learning-judgment-mental-models/naval-mental-models.md)
 
 更新页面:
-- [纳瓦尔宝典](knowledge/纳瓦尔宝典.md) - 待深入学习中标记 mental models 已完成
+- [纳瓦尔宝典](topics/learning-judgment-mental-models/纳瓦尔宝典.md) - 待深入学习中标记 mental models 已完成
 
 ## [2026-04-14] 摄取 | 纳瓦尔宝典深度摄取
 
@@ -926,7 +990,7 @@
 - 欲望的两面性:外部欲望破坏幸福,内部欲望可以保留
 
 更新页面:
-- [纳瓦尔宝典](knowledge/纳瓦尔宝典.md)(从薄摘要扩展为 5500+ 字深度摄取)
+- [纳瓦尔宝典](topics/learning-judgment-mental-models/纳瓦尔宝典.md)(从薄摘要扩展为 5500+ 字深度摄取)
 
 ## [2026-04-13] 摄取 | Agent 复利工作模式讲义
 
@@ -940,14 +1004,14 @@
 核心洞察:这不是「用 AI」,是在「训练 AI」。Agent 的价值不是第一次做得多好,是每一次都在变好。
 
 新增页面:
-- [Agent 复利工作模式](knowledge/agent 复利工作模式.md)
+- [Agent 复利工作模式](topics/agent-harness-runtime/agent%20复利工作模式.md)
 
 ## [2026-04-13] 更新 | 课题组公共知识库联邦架构设计
 
 讨论并记录了联邦式架构设计:每人本地跑完整 LLM Wiki + Agent,服务器只做 Git 同步仓。相比中心化架构,token 成本分散给个人,导师无需承担推理开销,同时保留"打破孤岛"和"知识复利"的核心价值。
 
 新增页面:
-- [课题组公共知识库的联邦架构设计](bridges/课题组公共知识库的联邦架构设计.md)
+- [课题组公共知识库的联邦架构设计](topics/research-knowledge-governance/课题组公共知识库的联邦架构设计.md)
 
 ## [2026-04-13] 更新 | 联邦架构简化设计
 
@@ -970,7 +1034,7 @@
 - GEP-A2A 协议如何实现 Agent 之间的经验传承
 
 新增页面:
-- [EvoMap:Agent 互联网与集体潜意识](knowledge/EvoMap-Agent 互联网与集体潜意识.md)
+- [EvoMap:Agent 互联网与集体潜意识](topics/agent-harness-runtime/EvoMap-Agent%20互联网与集体潜意识.md)
 
 ## [2026-04-12] 整理 | Lint 与 inbox 摄取
 
@@ -1429,12 +1493,12 @@
 - **如何了解一个人** (戴维·布鲁克斯, 2025): 关于深度人际连接的探索
 
 新增页面:
-- [Agentic Design Patterns](knowledge/agentic-design-patterns.md)
-- [Ace the Data Science Interview](knowledge/ace-the-data-science-interview.md)
+- [Agentic Design Patterns](topics/agent-harness-runtime/agentic-design-patterns.md)
+- [Ace the Data Science Interview](topics/learning-judgment-mental-models/ace-the-data-science-interview.md)
 - [Naval Ravikant 智慧年鉴](knowledge/naval智慧年鉴.md)
-- [概率论入门](knowledge/概率论入门.md)
-- [线性代数正确入门](knowledge/线性代数正确入门.md)
-- [如何了解一个人](knowledge/如何了解一个人.md)
+- [概率论入门](topics/learning-judgment-mental-models/概率论入门.md)
+- [线性代数正确入门](topics/learning-judgment-mental-models/线性代数正确入门.md)
+- [如何了解一个人](topics/learning-judgment-mental-models/如何了解一个人.md)
 
 ### [2026-04-14] 更新 | Embedding 聚类 vs LLM 聚合的分工
 
@@ -1462,7 +1526,7 @@ LLM 聚合的 5 个作用:
 - 但对外科、木工、厨师等依赖手感积累的职业,这个逻辑不完全成立
 
 新增页面:
-- [AI 让我们重新开始享受自己的职业](knowledge/AI 让我们重新开始享受自己的职业.md)
+- [AI 让我们重新开始享受自己的职业](topics/career-positioning-job-search/AI%20让我们重新开始享受自己的职业.md)
 
 源文件移至:
 - `raw/external/superlinear-ai-让我们重新开始享受自己的职业.md`
@@ -1485,19 +1549,19 @@ LLM 聚合的 5 个作用:
 
 新增页面:
 
-- [Automated Weak-to-Strong Researcher](knowledge/automated-weak-to-strong-researcher.md)
-- [Agent 时代的人机交互新命题](knowledge/agent时代的人机交互新命题.md)
+- [Automated Weak-to-Strong Researcher](topics/agent-harness-runtime/automated-weak-to-strong-researcher.md)
+- [Agent 时代的人机交互新命题](topics/agent-harness-runtime/agent时代的人机交互新命题.md)
 
 同步更新:
 
-- [AI 自演化研究 Harness](knowledge/ai-self-evolution-research-harnesses.md):补入 AAR 作为 outcome-gradable research harness 的对照案例
+- [AI 自演化研究 Harness](topics/agent-harness-runtime/ai-self-evolution-research-harnesses.md):补入 AAR 作为 outcome-gradable research harness 的对照案例
 - [wiki/index.md](index.md):补入新知识页入口
 
 ## [2026-04-21] 查询 | AAR knowledge sharing 的设计洞察与取舍
 
 围绕 `safety-research/automated-w2s-research` 的 findings sync、`share_finding`、snapshot 与本地文件工作面,整理了一页可复用总结:
 
-- [AAR knowledge sharing 的设计洞察与取舍](knowledge/AAR knowledge sharing 的设计洞察与取舍.md)
+- [AAR knowledge sharing 的设计洞察与取舍](topics/agent-harness-runtime/AAR%20knowledge%20sharing%20的设计洞察与取舍.md)
 
 核心收获:这套 sharing 更像"同步到本地的 agent 工作面 + 可下载的 workspace snapshot",而不是一个更强的在线检索系统;其结构化程度与取舍都高度依赖 weak-to-strong 研究任务本身的统一指标与并行探索场景。
 
@@ -1510,7 +1574,7 @@ LLM 聚合的 5 个作用:
 继续下钻 `alchaincyf/nuwa-skill` 的 `SKILL.md`、`references/extraction-framework.md` 与 `references/skill-template.md`,把 repo map 从顶层结构图扩展到方法论与 workflow 层。
 
 更新页面:
-- [alchaincyf/nuwa-skill 仓库地图](knowledge/alchaincyf-nuwa-skill-repo-map.md)
+- [alchaincyf/nuwa-skill 仓库地图](topics/agent-harness-runtime/alchaincyf-nuwa-skill-repo-map.md)
 
 补充重点:
 - 明确其核心定位是"蒸馏认知操作系统",不是语录模仿
@@ -1521,7 +1585,7 @@ LLM 聚合的 5 个作用:
 
 围绕"联邦方向"与"只共享蒸馏结果"两种公共知识库方向,整理出一条更稳的判断:
 
-- [什么是公共知识库应该共享的公共知识](bridges/什么是公共知识库应该共享的公共知识.md)(原题:公共知识库的联邦底座与蒸馏共享层)
+- [什么是公共知识库应该共享的公共知识](topics/research-knowledge-governance/什么是公共知识库应该共享的公共知识.md)(原题:公共知识库的联邦底座与蒸馏共享层)
 
 核心结论:两者不应被当成同一层面的二选一。联邦更适合作为部署与治理底座;蒸馏共享更适合作为公共工作面的默认内容协议。如果必须压成一句话,就是"系统部署上做联邦,公共工作面上做蒸馏共享"。
 
@@ -1567,7 +1631,7 @@ LLM 聚合的 5 个作用:
 ## [2026-04-22] 维护 | 重写"公共知识库的联邦底座与蒸馏共享层"
 
 根据新一轮分析,重写了页面:
-- [什么是公共知识库应该共享的公共知识](bridges/什么是公共知识库应该共享的公共知识.md)(原题:公共知识库的联邦底座与蒸馏共享层)
+- [什么是公共知识库应该共享的公共知识](topics/research-knowledge-governance/什么是公共知识库应该共享的公共知识.md)(原题:公共知识库的联邦底座与蒸馏共享层)
 
 本次修改去掉了"公共层只共享蒸馏信号"的武断结论,改为明确区分两类问题:
 - 从高噪音数据中提取稳定信号的蒸馏问题
@@ -1580,14 +1644,14 @@ LLM 聚合的 5 个作用:
 将页面
 - `bridges/公共知识库的联邦底座与蒸馏共享层.md`
 更名为
-- [`bridges/什么是公共知识库应该共享的公共知识.md`](bridges/什么是公共知识库应该共享的公共知识.md)
+- [`bridges/什么是公共知识库应该共享的公共知识.md`](topics/research-knowledge-governance/什么是公共知识库应该共享的公共知识.md)
 
 同时调整页面标题与 `wiki/index.md` 中的主题描述,使其从"联邦底座与蒸馏共享层的搭配问题"转向更本质的问题:公共知识库到底应该共享什么样的公共知识。
 
 ## [2026-04-22] 维护 | 补充"什么是公共知识库应该共享的公共知识"页面
 
 根据后续两轮讨论,补充页面:
-- [什么是公共知识库应该共享的公共知识](bridges/什么是公共知识库应该共享的公共知识.md)
+- [什么是公共知识库应该共享的公共知识](topics/research-knowledge-governance/什么是公共知识库应该共享的公共知识.md)
 
 新增要点:
 - `raw/wiki` 可能比"蒸馏信号层"更本质,因为真正高价值的 signal 最终会长成高权重 wiki 节点
@@ -1597,7 +1661,7 @@ LLM 聚合的 5 个作用:
 ## [2026-04-22] 维护 | 简化"什么是公共知识库应该共享的公共知识"中的高价值节点判定
 
 继续更新页面:
-- [什么是公共知识库应该共享的公共知识](bridges/什么是公共知识库应该共享的公共知识.md)
+- [什么是公共知识库应该共享的公共知识](topics/research-knowledge-governance/什么是公共知识库应该共享的公共知识.md)
 
 本次修改进一步简化了"高价值节点"的判定逻辑:
 - 不再强调复杂的多指标权重机制
@@ -1609,7 +1673,7 @@ LLM 聚合的 5 个作用:
 ## [2026-04-22] 维护 | 将"复用"的主语从 agent 修正为人
 
 继续更新页面:
-- [什么是公共知识库应该共享的公共知识](bridges/什么是公共知识库应该共享的公共知识.md)
+- [什么是公共知识库应该共享的公共知识](topics/research-knowledge-governance/什么是公共知识库应该共享的公共知识.md)
 
 本次修改补入一个关键修正:
 - "复用"不应优先理解为 agent reuse,而应优先理解为 human reuse
@@ -1732,7 +1796,7 @@ gogo-app 可立即开始的行动：
 从 `inbox/` 摄取一篇 Superlinear 社区活动笔记，移入 `raw/external/`，并新增一页知识页，保留其中关于 `taste`、事件 / 结构 / 解释三层、`Rewired Index`、`software + labor -> model + compute`、Harness 创业机会与中间层挤压的一组判断。
 
 **新增页面**
-- [AI 时代的投资与生存法则](knowledge/AI%20时代的投资与生存法则.md)
+- [AI 时代的投资与生存法则](topics/ai-industry-investment/AI%20时代的投资与生存法则.md)
 
 **更新页面**
 - `wiki/index.md`
@@ -1949,3 +2013,15 @@ gogo-app 可立即开始的行动：
 - `wiki/knowledge/yvonnegladwellstack-yvskills-repo-map.md`
 - `skills/README.md`
 - `README.md`
+
+## [2026-05-29] lint | 按话题重组 wiki 并生成静态网页
+
+将原 `wiki/knowledge/` 与 `wiki/bridges/` 的维护页合并迁移到 `wiki/topics/`，按话题建立索引；保留 `wiki/self/` 与 `wiki/frameworks/` 作为独立层级。同时生成 `wiki/site/` 静态网页入口，用于从网页视角浏览话题层、自我层与框架层。
+
+**新增结构**
+- `wiki/topics/`
+- `wiki/site/`
+
+**说明**
+- Markdown 仍是维护源，HTML 是可重新生成的浏览视图。
+- 历史维护记录中的旧路径不主动重写。

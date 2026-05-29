@@ -30,13 +30,13 @@
 
 这页刻意只停留在 observation，因为目前主要证据来自单篇桥接长文，还不足以证明这是跨主题、跨材料都稳定出现的写作 pattern。
 
-如果后续多篇 `wiki/bridges/essays/`、`wiki/bridges/` 页面或 `raw/personal/writings/` 中持续出现同样结构，这页才适合升级。
+如果后续多篇 `wiki/topics/` essay、topic 页面或 `raw/personal/writings/` 中持续出现同样结构，这页才适合升级。
 
 ## 来源依据
 
-- [从Andrej Karpathy的LLM Wiki和鸭哥的context infrastructure看信息复利系统的设计](../bridges/essays/从Andrej Karpathy的LLM Wiki和鸭哥的context infrastructure看信息复利系统的设计.md)
+- [从Andrej Karpathy的LLM Wiki和鸭哥的context infrastructure看信息复利系统的设计](../topics/context-memory-knowledge-system/essays/从Andrej%20Karpathy的LLM%20Wiki和鸭哥的context%20infrastructure看信息复利系统的设计.md)
 
 ## 相关页面
 
-- [本地知识库模式](../knowledge/local-knowledge-base-patterns.md)
-- [信息复利系统设计框架](../bridges/information-compounding-systems-design.md)
+- [本地知识库模式](../topics/context-memory-knowledge-system/local-knowledge-base-patterns.md)
+- [信息复利系统设计框架](../topics/context-memory-knowledge-system/information-compounding-systems-design.md)

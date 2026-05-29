@@ -26,7 +26,7 @@ Classify sources by evidence type:
 - `personal`: journals, conversations, drafts, work logs, decision notes, user-authored reflections
 - `mixed`: writing that combines outside materials with the user's own judgment
 
-When unsure, keep the original file in `raw/` or `inbox/` and place the derived page in `wiki/bridges/`.
+When unsure, keep the original file in `raw/` or `inbox/` and place the derived page in the most relevant topic under `wiki/topics/`.
 
 ## Correct Source Locations
 
@@ -43,8 +43,8 @@ Use these default locations:
 For an `external` source:
 
 1. Preserve the source in `raw/external/`.
-2. Look for an existing page in `wiki/knowledge/` that should be updated.
-3. If no good target exists, create a new knowledge page or source summary.
+2. Look for an existing page in `wiki/topics/` that should be updated.
+3. If no good target exists, create a new topic page or source summary under the closest `wiki/topics/<topic>/`.
 4. Capture:
    - what the source is about
    - key claims or takeaways
@@ -74,17 +74,17 @@ Never jump from a single source directly to a strong axiom unless the user expli
 For a `mixed` source:
 
 1. Preserve the original file in the correct raw folder if it is source evidence.
-2. Extract any world-facing knowledge into `wiki/knowledge/` when it has durable value.
+2. Extract any world-facing knowledge into `wiki/topics/` when it has durable value.
 3. Extract any recurring user judgment into `wiki/self/` only if supported by repeated evidence.
-4. Save the integrated interpretation in `wiki/bridges/`.
+4. Save the integrated interpretation in the relevant topic under `wiki/topics/`.
 
-## Bridge Essay Re-Distillation
+## Topic Essay Re-Distillation
 
-Pages under `wiki/bridges/` and especially `wiki/bridges/essays/` may be revisited as secondary evidence for `wiki/self/`, but they should not be treated as raw evidence.
+Essay-like pages under `wiki/topics/` may be revisited as secondary evidence for `wiki/self/`, but they should not be treated as raw evidence.
 
 Use this workflow:
 
-1. Treat the bridge essay as evidence of how the user frames, compares, and expresses ideas, not as direct proof of a stable axiom.
+1. Treat the essay as evidence of how the user frames, compares, and expresses ideas, not as direct proof of a stable axiom.
 2. Extract low-level self signals first, especially:
    - recurring abstractions or framing moves
    - repeated comparison habits
@@ -96,13 +96,13 @@ Use this workflow:
 
 Treat writing-style evidence conservatively:
 
-- one bridge essay can justify a writing-style observation
+- one topic essay can justify a writing-style observation
 - multiple essays or essays plus personal writing are needed for a writing-style pattern
 - style preferences should stay separate from factual conclusions about the outside world
 
-When useful, a bridge essay may therefore produce two outputs at once:
+When useful, a topic essay may therefore produce two outputs at once:
 
-- the essay remains in `wiki/bridges/` or `wiki/bridges/essays/`
+- the essay remains under the relevant `wiki/topics/<topic>/`
 - a new or updated `wiki/self/` page captures repeated judgment or expression signals exposed by that essay
 
 ## Naming And Linking

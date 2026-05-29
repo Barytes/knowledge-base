@@ -15,7 +15,7 @@ Read `schemas/AGENTS.md` and `schemas/ingest.md` first. Treat personal sources a
 4. Promote only repeated, stable tendencies into higher-level pages.
 5. Append a `reflection` or `lint` entry to `wiki/log.md`.
 
-This skill may also re-read maintained bridge essays as secondary evidence when they expose recurring judgment or expression signals, but raw personal evidence still carries more weight than a polished maintained essay.
+This skill may also re-read maintained topic essays as secondary evidence when they expose recurring judgment or expression signals, but raw personal evidence still carries more weight than a polished maintained essay.
 
 ## Promotion Ladder
 
@@ -40,8 +40,8 @@ Look for:
 
 - Keep facts about the world out of `wiki/self/`.
 - Do not confuse mood with principle.
-- If a piece of writing is really an applied essay about an external topic, save the essay to `wiki/bridges/` and only extract self pages when repeated evidence supports them.
-- A single bridge essay can support an `observation`, but not a high-confidence `pattern` or `axiom`.
+- If a piece of writing is really an applied essay about an external topic, save the essay under the relevant `wiki/topics/` directory and only extract self pages when repeated evidence supports them.
+- A single topic essay can support an `observation`, but not a high-confidence `pattern` or `axiom`.
 - Treat writing style as self evidence about expression habits, not as evidence about factual beliefs unless repeated support exists.
 
 ## Output

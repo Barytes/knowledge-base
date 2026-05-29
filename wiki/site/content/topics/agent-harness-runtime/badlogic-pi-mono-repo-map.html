@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>badlogic/pi-mono 仓库地图 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/badlogic-pi-mono-repo-map.md</div>
+      <h1>badlogic/pi-mono 仓库地图</h1>
+<h2>摘要</h2>
+<p>这页是围绕主题“coding agent 架构与工程实践”维护的 <code>badlogic/pi-mono</code> 第一版仓库地图。</p>
+<p>从根 README、<code>package.json</code>、<code>AGENTS.md</code> 与几条 GitHub workflow 看，这不是一个松散堆叠的 monorepo，而是围绕 <code>pi-coding-agent</code> 这个用户入口组织起来的一整套 agent 基础设施仓库：<code>pi-ai</code>、<code>pi-agent-core</code>、<code>pi-tui</code>、<code>pi-web-ui</code>、<code>pi-mom</code>、<code>pi-pods</code> 都被放进同一个发布与开发约束面里。</p>
+<p>当前置信度仍停留在“架构地图”层，而不是“实现已读透”层：它已经足够支撑定向追问，但还不足以裁定每一条工程实践判断。</p>
+<h2>仓库目的</h2>
+<ul>
+<li>README 的公开定位是 “Tools for building AI agents and managing LLM deployments.”</li>
+<li>但根 README 又显式把用户导向 <code>packages/coding-agent</code>，说明对外最核心的产品入口仍然是 <code>pi</code> 这个 coding agent，而不是一个对称的工具箱集合。</li>
+<li>观察时默认分支：<code>main</code></li>
+<li>主要语言：<code>TypeScript</code></li>
+<li>仓库地址：https://github.com/badlogic/pi-mono</li>
+<li>从 README 的 package 表与根级脚本看，实际形态更接近“以 coding agent 为中心的分层 monorepo”：底层是 <code>ai</code>、<code>agent</code>、<code>tui</code>，上层是 <code>coding-agent</code>，再向外扩到 <code>mom</code>、<code>web-ui</code> 与 <code>pods</code>。</li>
+</ul>
+<h2>架构地图</h2>
+<h3>顶层目录</h3>
+<ul>
+<li><code>.github</code></li>
+<li><code>.husky</code></li>
+<li><code>.pi</code></li>
+<li><code>packages</code></li>
+<li><code>scripts</code></li>
+</ul>
+<h3>顶层文件</h3>
+<ul>
+<li><code>.gitattributes</code></li>
+<li><code>.gitignore</code></li>
+<li><code>AGENTS.md</code></li>
+<li><code>CONTRIBUTING.md</code></li>
+<li><code>LICENSE</code></li>
+<li><code>README.md</code></li>
+<li><code>biome.json</code></li>
+<li><code>package-lock.json</code></li>
+<li><code>package.json</code></li>
+<li><code>pi-test.sh</code></li>
+<li><code>test.sh</code></li>
+<li><code>tsconfig.base.json</code></li>
+<li><code>tsconfig.json</code></li>
+</ul>
+<h3>第一版子系统角色判断</h3>
+<ul>
+<li><code>packages/ai</code> 是统一 provider API 层，负责多模型、多 provider 与 tool calling 的底层抽象。</li>
+<li><code>packages/agent</code> 是 agent runtime 层，负责事件流、状态与工具循环。</li>
+<li><code>packages/tui</code> 是终端 UI 基础层，服务于 <code>coding-agent</code> 的交互形态。</li>
+<li><code>packages/coding-agent</code> 是对外主入口，把前面三层编排成可用 CLI。</li>
+<li><code>packages/mom</code>、<code>packages/web-ui</code>、<code>packages/pods</code> 更像侧向扩展，分别把同一套能力投向 Slack、Web UI 和 vLLM pod 管理。</li>
+<li>根级 <code>package.json</code> 的 <code>build</code> / <code>dev</code> 顺序也侧面说明了这种依赖方向：<code>tui -&gt; ai -&gt; agent -&gt; coding-agent -&gt; mom -&gt; web-ui -&gt; pods</code>。</li>
+</ul>
+<h2>机制清单</h2>
+<h3>以 monorepo workspace 固化分层依赖与锁步发布</h3>
+<ul>
+<li>根级 <code>package.json</code> 用 workspaces 管所有包，并把版本升级、release、publish 与 build 顺序都集中在仓库根部。</li>
+<li>这控制的是“多包一起演化时的接口漂移”问题，避免 <code>coding-agent</code>、<code>ai</code>、<code>agent</code>、<code>tui</code> 各自以不同节奏分裂。</li>
+<li>代价是耦合更强。哪怕只改 <code>coding-agent</code>，发布与检查逻辑也天然带着整仓库视角。</li>
+</ul>
+<h3>用 <code>AGENTS.md</code> 把开发约束外化成 agent / contributor contract</h3>
+<ul>
+<li>根级 <code>AGENTS.md</code> 不是简单的风格提示，而是具体规定了初次阅读顺序、测试禁令、issue/PR 工作流、changelog 规则、provider 接入步骤与 release 约束。</li>
+<li>这控制的是 AI 贡献者与人工贡献者在大型 monorepo 中“随意探索、乱跑命令、误改契约”的失败模式。</li>
+<li>它的代价是贡献门槛更高。外部协作者如果不先接受这套契约，很容易在一开始就偏离仓库预期。</li>
+</ul>
+<h3>把公共入口收束到 <code>packages/coding-agent</code>，把其余包留作基础设施层</h3>
+<ul>
+<li>根 README 明确写着 “Looking for the pi coding agent? See <code>packages/coding-agent</code>”，而 package 表则把其余组件解释为支撑或扩展能力。</li>
+<li>这控制的是产品表面的复杂度：用户先看到一个清晰入口，而不是七个并列却难以组合的包。</li>
+<li>代价是理解路径被分成两层。仓库地图要先看根部 contract，再下钻到 <code>packages/coding-agent</code> 及其依赖包，不能只盯单个 package README。</li>
+</ul>
+<h3>用 workflow 门控贡献流量，而不只做 CI 检查</h3>
+<ul>
+<li><code>.github/workflows/pr-gate.yml</code>、<code>approve-contributor.yml</code>、<code>oss-weekend-issues.yml</code>、<code>openclaw-gate.yml</code> 说明这个仓库把“谁可以贡献、何时可以贡献、哪些外部输入值得进入维护者注意力”当成正式控制问题。</li>
+<li>这控制的是维护者注意力被低质量 issue / PR 稀释，以及 open-source inbound 流量在高强度开发时段打断主线工作的失败模式。</li>
+<li>代价是项目对外会显得更强门控，也更依赖维护者显式批准与社交流程。</li>
+</ul>
+<h2>证据锚点</h2>
+<ul>
+<li>Snapshot 来源：<a href="../../../../../raw/external/github-repo-badlogic-pi-mono.md">github-repo-badlogic-pi-mono.md</a></li>
+<li>仓库：<code>badlogic/pi-mono</code></li>
+<li>观察分支：<code>main</code></li>
+<li>解析到的 commit：<code>3b7448d156aab5af1e21fd9ab45d19e4f10865a8</code></li>
+</ul>
+<ul>
+<li><code>.github/workflows/approve-contributor.yml</code></li>
+<li><code>.github/workflows/build-binaries.yml</code></li>
+<li><code>.github/workflows/ci.yml</code></li>
+<li><code>.github/workflows/openclaw-gate.yml</code></li>
+<li><code>.github/workflows/oss-weekend-issues.yml</code></li>
+<li><code>.github/workflows/pr-gate.yml</code></li>
+<li><code>AGENTS.md</code></li>
+<li><code>README.md</code></li>
+<li><code>package.json</code></li>
+<li><code>packages/coding-agent/README.md</code></li>
+<li><code>packages/ai/README.md</code></li>
+<li><code>packages/agent/README.md</code></li>
+<li><code>packages/tui/README.md</code></li>
+</ul>
+<h2>开放问题</h2>
+<ul>
+<li>如果只关心 <code>pi</code> 这个 coding agent，下一轮应先深读 <code>packages/coding-agent/README.md</code> 还是先回到 <code>packages/ai</code> / <code>packages/agent</code> / <code>packages/tui</code> 的实现入口？</li>
+<li>根级 <code>AGENTS.md</code> 里哪些规则只是贡献规范，哪些其实已经塑造了产品与测试架构？</li>
+<li><code>ci.yml</code>、<code>pr-gate.yml</code>、<code>oss-weekend-issues.yml</code> 与 <code>openclaw-gate.yml</code> 各自的实际触发频率和维护价值是否对称，还是其中只有少数是真正关键门控？</li>
+<li><code>build-binaries.yml</code> 与 <code>release</code> 脚本怎样把 monorepo 的锁步版本约束传递到最终的 <code>pi-coding-agent</code> 发布物？</li>
+</ul>
+<h2>来源依据</h2>
+<ul>
+<li><a href="../../../../../raw/external/github-repo-badlogic-pi-mono.md">仓库 snapshot</a></li>
+<li><a href="../../../../../raw/external/pi-mono-coding-agent-readme.md">pi-mono/packages/coding-agent README</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="pi-coding-agent-harness.html">Pi coding agent：一种极简且可观察的 coding harness</a></li>
+<li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+<li><a href="codebases-as-knowledge-sources.html">代码库作为知识来源</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

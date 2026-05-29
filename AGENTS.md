@@ -14,25 +14,25 @@ This repository is a local knowledge base. For repository-related questions, the
 ## Repository Layers
 
 - `raw/`: source evidence
-- `wiki/knowledge/`: maintained world knowledge
+- `wiki/topics/`: topic-organized maintained knowledge and applied analysis
 - `wiki/self/`: maintained personal judgment patterns
 - `wiki/frameworks/`: compact judgment frameworks and query routing surfaces
-- `wiki/bridges/`: applied analyses that combine the two
+- `wiki/site/`: generated static HTML browsing view
 
 ## Wiki Language Policy
 
 - All maintained wiki pages under `wiki/` should default to Chinese.
-- This includes `wiki/index.md`, `wiki/log.md`, and new or updated pages in `wiki/knowledge/`, `wiki/self/`, `wiki/frameworks/`, and `wiki/bridges/`.
+- This includes `wiki/index.md`, `wiki/log.md`, and new or updated pages in `wiki/topics/`, `wiki/self/`, and `wiki/frameworks/`.
 - Keep file paths, repository names, commands, code identifiers, and unavoidable technical terms in their original form when helpful.
 - Do not create new English-first wiki pages unless the user explicitly asks for bilingual or English output.
 
 ## Query Rules
 
-- Factual repository questions: use `wiki/knowledge/`
+- Factual repository questions: use `wiki/topics/`
 - Questions about recurring user preferences or judgment: use `wiki/self/`
 - Reusable judgment frameworks, router pages, and compact entry surfaces: use `wiki/frameworks/`
-- For design, evaluation, comparison, and decision questions, read `wiki/frameworks/router.md` first, then the most relevant framework page, then the relevant `wiki/knowledge/` and `wiki/bridges/` pages when needed
-- Advisory questions: combine the needed layers through `wiki/bridges/` only when a concrete applied analysis is warranted
+- For design, evaluation, comparison, and decision questions, read `wiki/frameworks/router.md` first, then the most relevant framework page, then the relevant `wiki/topics/` pages when needed
+- Advisory questions: write durable applied analysis back to the most relevant topic under `wiki/topics/`
 
 ## Operational Rules
 

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 自演化研究 Harness · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/ai-self-evolution-research-harnesses.md</div>
+      <h1>AI 自演化研究 Harness</h1>
+<h2>摘要</h2>
+<p>从本地关于 ASI-Evolve 的来源来看，AI 自演化并不是让一个更聪明的模型端到端决定一切，而是依赖一套 harness，把研究活动收束成一个有边界的闭环：学习、设计、实验、分析。</p>
+<p>关键的方法论动作是：真正带来进步的，是围绕模型生成过程工程化整个循环。</p>
+<ul>
+<li>在提出候选方案前注入相关先验知识</li>
+<li>在昂贵实验之前先做硬约束校验</li>
+<li>用分阶段实验而不是一次性判断来评估候选方案</li>
+<li>同时分析成功与失败，并把经验写回可复用存储</li>
+</ul>
+<p>这是一种面向研究的 harness engineering，而不是单纯服务于软件任务执行。</p>
+<h2>Harness 在控制什么</h2>
+<h3>1. 搜索由检索到的先验知识锚定</h3>
+<p>ASI-Evolve 会先从人类研究构建结构化认知库，再在每轮中检索相关条目。</p>
+<ul>
+<li>来源把这描述为避免盲搜的方法。</li>
+<li>用 harness 的语言看，这不只是“补上下文”，而是在缩小提案空间，让每一轮都从领域相关的约束与模式出发。</li>
+</ul>
+<h3>2. 候选生成在运行前就被门控</h3>
+<p>设计阶段不会让任意自由输出直接流入完整实验。</p>
+<p>来源描述的关键门包括：</p>
+<ul>
+<li>负责硬约束检查的 static-check agents</li>
+<li>修复实现错误的 debugging agents</li>
+<li>过滤重复提案的 novelty checks</li>
+<li>基于已有强候选做增量修改，而不是每轮全量重写</li>
+</ul>
+<p>这里的方法论模式是：先约束，再消耗算力。</p>
+<h3>3. 评估是分阶段且考虑成本的</h3>
+<p>实验阶段会先用更便宜的早筛，再做完整验证。</p>
+<ul>
+<li>弱候选会在小规模或部分运行中被提前筛掉</li>
+<li>只有在定量与定性维度都超过 baseline 的候选，才会继续进入下一阶段</li>
+</ul>
+<p>这就是典型的 harness 逻辑：先把通过与失败的边界写清楚，只有当中间证据足够强时，才投入稀缺资源。</p>
+<h3>4. 分析是一级控制组件</h3>
+<p>本地材料里最强的一点，是专门的 analyzer。</p>
+<p>系统不会只保留得分最高的候选，而会：</p>
+<ul>
+<li>对照 baseline 与历史最优结果</li>
+<li>识别失败模式</li>
+<li>提炼可执行的设计经验</li>
+<li>把结构化洞见重新写回数据库</li>
+</ul>
+<p>这使实验从“筛选”变成“学习”。Analyzer 实际上相当于研究版的外部验证器加事故复盘回路。</p>
+<h2>方法论</h2>
+<p>根据本地来源，AI 自演化背后的 harness engineering 方法大致是这样：</p>
+<p>1. 把工作建模成可重复闭环，而不是开放式 agent 会话。</p>
+<p>2. 把知识检索、方案生成、实验执行、结果分析拆成明确阶段。</p>
+<p>3. 在昂贵实验之前放置廉价筛选与硬约束。</p>
+<p>4. 依赖客观环境反馈，而不是信任模型自评。</p>
+<p>5. 把失败运行保存成结构化经验，而不只是负分。</p>
+<p>6. 除非有证据表明需要大跳跃，否则优先围绕强候选做局部变异。</p>
+<p>7. 维护一个不仅保存产物与分数，也保存解释、标签与置信度的记忆底座。</p>
+<h2>为什么重要</h2>
+<p>这份来源暗示，“AI 自演化”主要不是自主灵感的故事，而是构建研究 harness 的故事。它会：</p>
+<ul>
+<li>把人类隐性的科研流程拆成机器可执行的阶段</li>
+<li>把算力转化成大量有边界的试验</li>
+<li>让失败变得可读且可复用</li>
+<li>让学习跨轮累积，而不是每次从零开始</li>
+</ul>
+<p>在这个视角下，harness 才是真正的研究引擎，模型只是其中一个组件。</p>
+<h2>与 Automated Weak-to-Strong Researcher 的互补</h2>
+<p>新摄取的 <code>Automated Weak-to-Strong Researcher</code> 让这页原先只停留在 ASI-Evolve 的判断，多了一个很不一样的对照点。</p>
+<p>两者共同说明的一点是：研究自动化真正有价值的，不是让模型“自己想”，而是给它一个能持续试、持续判分、持续写回经验的闭环。</p>
+<p>但两者强调的杠杆并不相同：</p>
+<ul>
+<li>ASI-Evolve 更强调在生成前注入先验知识、分阶段门控实验、保留 analyzer 作为学习器。</li>
+<li>AAR 更强调 outcome-gradable 环境、并行 sandbox、最小 prescriptive scaffold，以及 findings 的共享工作面。</li>
+</ul>
+<p>这让“研究 harness”多出一个很关键的补充判断：</p>
+<ul>
+<li>一旦任务能被可靠判分，瓶颈会迅速转向评测设计与 reward hacking 防护。</li>
+<li>在研究任务里，厚脚手架未必比薄脚手架更好，关键是外部反馈面是否足够强。</li>
+<li>多 worker 的价值主要来自维持探索分布，而不是机械复制更多 agent。</li>
+</ul>
+<h2>来源里的限制</h2>
+<ul>
+<li>系统依然依赖人类来定义任务、约束与指标。</li>
+<li>算力成本仍然是核心瓶颈。</li>
+<li>即便加入 AAR 之后，这页仍然只覆盖了少数“可判分研究环境”里的自动化研究案例。对于更开放、不可直接判分的问题，还缺少足够本地材料。</li>
+</ul>
+<h2>来源依据</h2>
+<ul>
+<li><a href="../../../../../raw/external/将无人类容身之地。。AI加速%20AI系统的闭环时代已至：ASI-Evolve实现从模型架构、预训练数据治理、算法设计到跨领域泛化！.md">ASI-Evolve 来源</a></li>
+<li><a href="../../../../../raw/external/Automated%20Weak-to-Strong%20Researcher.pdf">Automated Weak-to-Strong Researcher PDF</a></li>
+<li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../context-memory-knowledge-system/local-knowledge-base-patterns.html">本地知识库模式</a></li>
+<li><a href="../context-memory-knowledge-system/knowledge-base-operating-model.html">知识库运行模型</a></li>
+<li><a href="automated-weak-to-strong-researcher.html">Automated Weak-to-Strong Researcher</a></li>
+<li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+<li><a href="pi-coding-agent-harness.html">Pi coding agent：一种极简且可观察的 coding harness</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

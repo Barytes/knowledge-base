@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Architect 的 Advanced Architecture 镜头 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/ai-product-product-definition/ai-architect-advanced-architecture.md</div>
+      <h1>AI Architect 的 Advanced Architecture 镜头</h1>
+<h2>摘要</h2>
+<p>这份课程讲义讨论的不是如何再做一个新功能，而是怎样把已经能跑的 AI MVP 升级成更稳、更深、更能长期运行的系统。</p>
+<p>它把升级点集中在四件事上：让 reasoning 过程可调试、把不同模型的长短板显式纳入架构、用上下文隔离来避免 agent 变懒，以及把身份与认证当成“个性化系统能否安全扩展到多人”的前置问题。</p>
+<h2>核心判断</h2>
+<h3><code>Context Debugger</code> 把 agent 调试从猜测变成可重放实验</h3>
+<p>讲义先引入一个很强的 teaching tool：<code>Context Debugger</code>。</p>
+<p>它把单次 AI turn 拆成一串可交互卡片，并提供三种关键能力：</p>
+<p>1. <code>Visualization</code></p>
+<p>   把初始输入、<code>tool_call</code>、<code>tool_result</code>、最终 <code>ai_text</code> 展开成一条清楚的工作流。</p>
+<p>2. <code>Manipulation</code></p>
+<p>   允许直接修改某张卡片的内容，例如改写 tool 参数、替换 tool 返回结果、临时禁用某个步骤。</p>
+<p>3. <code>Replayability</code></p>
+<p>   在改完上下文后，直接重新生成最后一步，观察输出如何变化。</p>
+<p>这让很多以前只能靠猜的故障都能被拆成受控实验：</p>
+<ul>
+<li>是初始 prompt 不清楚</li>
+<li>是 search tool 返回了太多噪音</li>
+<li>是模型误读了工具结果</li>
+<li>还是最终一步自己偷懒或 hallucinate 了</li>
+</ul>
+<p>它本质上是在把 context engineering 变成可观察、可操纵、可回放的调试对象。</p>
+<h3>模型差异不该被当成噪音，而该被当成架构输入</h3>
+<p>讲义提出 <code>AI Personality</code> 这个实践概念：没有一个模型最适合所有子任务。</p>
+<p>一些模型更适合大范围研究与搜索，一些模型更适合严密分析与综合。因此合理的系统设计，不是继续寻找“唯一最强模型”，而是显式设计 hand-off：例如让 researcher model 负责初始信息收集，再把材料交给 analyst model 做最终综合。</p>
+<p>这并不只是“多模型很好”的泛泛而谈。课程进一步强调一个方法论转变：</p>
+<ul>
+<li>在前 AI 时代，错误实现成本高，所以 speculation 常常比 implementation 便宜</li>
+<li>在 AI 时代，让 AI 各实现一版方案的成本大幅下降，所以 implementation 反而常常比 speculation 更便宜</li>
+</ul>
+<p>因此更好的做法是：</p>
+<p>1. 先做一个小型 evaluation set</p>
+<p>2. 让 AI 把两种 hand-off 策略都实现出来</p>
+<p>3. 实测成功率、质量与 latency</p>
+<p>4. 再用数据决定保留哪种架构</p>
+<p>这把架构争论从观点对撞改成度量驱动实验。</p>
+<h3>更好的 multi-agent 范式，不是模仿人类部门分工</h3>
+<p>课程明确反对一种很常见但很浅的做法：按人类社会角色给 agent 命名，例如 PM Agent、Engineer Agent、QA Agent。</p>
+<p>它认为这种做法常常只是把人类限制硬套到 LLM 身上。相较之下，至少有两种更 AI-native 的范式。</p>
+<h4>1. Personality-Based Orchestration</h4>
+<p>不是按人格扮演来分工，而是按模型真实擅长的能力来分工。</p>
+<ul>
+<li>谁更会搜，就负责 research</li>
+<li>谁更会推理，就负责 synthesis</li>
+</ul>
+<p>这种分工来自模型能力差异，而不是来自对组织 chart 的模仿。</p>
+<h4>2. Context Window Separation</h4>
+<p>这是一种更底层也更重要的架构原则。</p>
+<p>高层 Planner 只需要干净的战略相关信息，低层 Executor 在执行 API 调用、爬网页面、trial-and-error 时产生的大量脏上下文，不应原样回灌给 Planner。</p>
+<p>正确做法是：</p>
+<ul>
+<li>Executor 在自己的隔离上下文里处理细节</li>
+<li>完成后只把精炼后的结果摘要返回给 Planner</li>
+<li>Planner 继续在干净上下文里做高层判断</li>
+</ul>
+<p>这里的重点不是“分多个 agent 看起来更高级”，而是用结构化隔离来防止上下文污染，避免高层 agent 因为窗口被执行噪音塞满而逐渐变懒、变钝。</p>
+<h3>生产级稳健性 = 更强能力 + 明确 fallback</h3>
+<p>即使选出了更优的多模型/多 agent 方案，课程仍然强调：LLM 系统有非确定性，所以生产级架构必须为失败预留退路。</p>
+<p>也就是说，一个成熟系统不该只有“高级模式”，还应有 graceful degradation：</p>
+<ul>
+<li>高级 multi-agent workflow 失败时</li>
+<li>自动退回更简单但更稳的 single-model mode</li>
+<li>至少保证系统持续返回“有用但可能不完美”的结果</li>
+</ul>
+<p>这和 <a href="../agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.html">AI 时代的结果确定性 Agentic Runtime 与 Evaluation-First</a> 里“不要执着过程完美，要保证结果可验收”的思路高度一致。</p>
+<h3>个性化 AI 一旦走向多人，身份边界就不再是附属问题</h3>
+<p>讲义后半段从另一个方向谈生产级架构：如果系统已经开始处理 <code>Digital Twin</code>、私有记忆和个性化上下文，那么一旦要给多个人使用，首要问题就变成身份边界。</p>
+<p>没有 user identity 的区分，所谓 personalized AI 会立刻坍塌，因为：</p>
+<ul>
+<li>记忆会串</li>
+<li>上下文会串</li>
+<li>权限会串</li>
+<li>个体信任边界会被破坏</li>
+</ul>
+<p>所以课程把 authentication 重新解释成 trust engineering，而不是普通 Web 项目里最后补上的“登录模块”。</p>
+<p>它建议直接集成 Firebase Authentication，并给出一个很有代表性的 AI-native 学习方式：把官方文档 URL 交给 AI，让 AI 先读懂，再委派它完成实现。</p>
+<h3>真正被放大的 meta-skill，是“带着文档委派 AI”</h3>
+<p>讲义最后补上的，不只是 Firebase 这个具体技术点，而是一种通用工作法：</p>
+<ul>
+<li>官方文档不再只是给人读的 manual</li>
+<li>它也可以成为 AI subordinate 的 source of truth</li>
+<li>人的瓶颈从“亲自啃文档”转向“能否清楚定义任务与验收清单”</li>
+</ul>
+<p>但课程也保留了管理者责任：即使实现委派给 AI，成功标准仍要由人来定义和验证，例如注册、登录、token 校验、保护路由不可未授权访问等。</p>
+<h2>对当前知识库主题的启发</h2>
+<p>这份材料同时连接了几条已经存在的主线。</p>
+<p>第一，它把 <a href="ai-architect-context-intelligence.html">AI Architect 的 Context Intelligence 镜头</a> 里的 context engineering，从“怎么设计记忆系统”推进到“怎么调试、隔离和治理上下文”。</p>
+<p>第二，它给 <a href="../agent-harness-runtime/harness-engineering.html">Harness Engineering（约束壳工程）</a> 补了一组更具体的工程化抓手：可观察的 debugger、按模型 personality 编排、按上下文职责隔离窗口、以及失败时的 fallback。</p>
+<p>第三，它把“identity”重新抬升成 agent 产品的核心基础设施之一。这和知识库里对 long-lived assistant、持续身份层与多用户边界的讨论可以形成互证。</p>
+<h2>来源依据</h2>
+<ul>
+<li><a href="../../../../../raw/external/ai-architect-advanced-architecture.md">AI Architect 讲义：Advanced Architecture</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="ai-architect-context-intelligence.html">AI Architect 的 Context Intelligence 镜头</a></li>
+<li><a href="../agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.html">AI 时代的结果确定性 Agentic Runtime 与 Evaluation-First</a></li>
+<li><a href="../agent-harness-runtime/harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+<li><a href="../agent-harness-runtime/coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a></li>
+<li><a href="../agent-harness-runtime/openclaw-openclaw-repo-map.html">openclaw/openclaw 仓库地图</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

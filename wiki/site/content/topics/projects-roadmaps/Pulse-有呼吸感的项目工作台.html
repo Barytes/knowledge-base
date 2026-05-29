@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pulse：有呼吸感的项目工作台 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/projects-roadmaps/Pulse-有呼吸感的项目工作台.md</div>
+      <h1>Pulse：有呼吸感的项目工作台</h1>
+<p>&gt; 一个新产品设想，从 clawhouse 的反思中生长出来。</p>
+<h2>产品定位</h2>
+<p>**Pulse 是一个移动端优先的项目工作台——项目作为主语，agent 退到幕后。**</p>
+<p>核心意象：项目不是静态数据堆，而是**有呼吸感的东西**。你打开它，能看到它在&quot;活着&quot;——在呼吸、在思考、在等待、在焦躁。</p>
+<p>---</p>
+<h2>核心概念</h2>
+<h3>项目有呼吸感</h3>
+<p>不是静态 dashboard，而是项目状态有某种**动态气息**：</p>
+<p>| 状态 | 视觉表达 |</p>
+<p>|------|----------|</p>
+<p>| agent 工作中 | 轻微&quot;心跳&quot;动画——不是进度条，而是抽象的存在感 |</p>
+<p>| idle | &quot;睡着&quot;——视觉上有静止感、宁静 |</p>
+<p>| 出现问题 | &quot;焦躁&quot;——颜色或节奏变化，吸引注意 |</p>
+<p>| 等待用户输入 | &quot;呼吸等待&quot;——温和的脉动 |</p>
+<p>**酷的点**：项目不再是一堆数据，而是有&quot;生命感&quot;的东西。你看到它就知道它在干嘛，不需要读文字。</p>
+<h3>对话是树，不是线</h3>
+<p>大多数产品的对话是&quot;一长串消息&quot;。但 Pi 的 JSONL 本身就是树状结构——有分支、有节点。</p>
+<p>**Pulse 把对话渲染成一棵可探索的树**：</p>
+<ul>
+<li>可以点击任意节点，&quot;从那里分叉继续&quot;</li>
+<li>可以看到&quot;当时为什么走这条路，而不是另一条&quot;</li>
+<li>可以合并分支、回溯、重新选择</li>
+<li>关键决策点有标记——转折点、犹豫点、分支点</li>
+</ul>
+<p>**酷的点**：对话变成**可探索的决策空间**，不是线性历史记录。</p>
+<h3>时间胶囊：冻结与解冻</h3>
+<p>做一个功能：**&quot;冻结此刻&quot;**。</p>
+<p>点击一个按钮，把当前的项目状态、对话、agent 知道的东西打包成一个&quot;胶囊&quot;。之后可以随时&quot;解冻&quot;——回到那个时刻继续。</p>
+<p>**用途**：</p>
+<ul>
+<li>&quot;上周三做的那版&quot;——冻结一个里程碑</li>
+<li>&quot;还没加那个功能时的状态&quot;——冻结一个干净版本</li>
+<li>&quot;这个方向先不走了&quot;——冻结一个分支，之后可能回来</li>
+</ul>
+<p>**酷的点**：不是 git branch（代码状态），而是**协作状态**。胶囊之间可以跳转，像时间旅行。</p>
+<h3>极简主义美学</h3>
+<p>不走&quot;功能丰富&quot;路线，走**极简美学**：</p>
+<ul>
+<li>单色或双色配色（比如深色背景 + 一个强调色）</li>
+<li>无装饰、无图标堆砌、无卡片网格</li>
+<li>只有必要信息：项目名、状态、下一步</li>
+<li>有&quot;留白&quot;和&quot;呼吸空间&quot;</li>
+</ul>
+<p>**酷的点**：像一台精密仪器，而不是一个吵闹的 app。它不抢注意力，但你打开它就知道该干嘛。</p>
+<h3>移动端原生手势</h3>
+<p>不做&quot;缩水的桌面版&quot;，而是**移动端原生体验**：</p>
+<p>| 手势 | 动作 |</p>
+<p>|------|------|</p>
+<p>| 左右滑动 | 切换项目，像切卡片 |</p>
+<p>| 长按 | 进入&quot;深度模式&quot;——对话历史树 |</p>
+<p>| 双击 | 立刻回到最近的活跃对话 |</p>
+<p>| 捏合缩放 | 项目概览 → 项目详情 → 对话节点 |</p>
+<p>**酷的点**：这些交互桌面版做不到，是移动端独有的&quot;手感&quot;。</p>
+<p>---</p>
+<h2>不做什么</h2>
+<p>| 不做 | 原因 |</p>
+<p>|------|------|</p>
+<p>| 团队协作 | Slock/multica 已经做了 |</p>
+<p>| 任务系统 | multica 已经做了 |</p>
+<p>| 人格化 | OpenClaw 已经做了 |</p>
+<p>| 云端同步 | 云端产品天然解决 |</p>
+<p>| chat UI | 太常见了，不是这个方向 |</p>
+<p>| 桌面版优先 | 移动端才是独特体验所在 |</p>
+<p>---</p>
+<h2>最小但酷的版本</h2>
+<p>如果做一个 MVP，我会选这四个：</p>
+<p>1. **树状对话历史**（利用 Pi JSONL 的天然结构）</p>
+<p>2. **项目有呼吸感**（简单的动态状态表达）</p>
+<p>3. **极简美学**（禅意风格，不堆砌）</p>
+<p>4. **移动端手势**（滑动切换、长按进入）</p>
+<p>这四个加起来，是一个没人做过的工作面——**项目作为有生命的东西，对话作为可探索的树，交互作为手感，美学作为留白**。</p>
+<p>---</p>
+<h2>技术依赖</h2>
+<ul>
+<li>**Pi agent 的 JSONL 格式** — 天然支持树状对话结构</li>
+<li>**移动端开发** — React Native 或 Flutter</li>
+<li>**状态同步** — GitHub / iCloud / 自建后端（可选）</li>
+</ul>
+<p>---</p>
+<h2>与 clawhouse 的关系</h2>
+<p>Pulse 从 clawhouse 的反思中生长出来，但定位已经不同：</p>
+<p>| | clawhouse | Pulse |</p>
+<p>|---|-----------|-------|</p>
+<p>| 核心问题 | 多设备同步 | 新工作面抽象 |</p>
+<p>| 主语 | agent + session | 项目（有呼吸感） |</p>
+<p>| 交互 | 看对话历史 | 探索对话树 |</p>
+<p>| 美学 | 未强调 | 极简禅意 |</p>
+<p>| 独特价值 | 小众刚需 | 体验创新 |</p>
+<p>**clawhouse 消解在 Pulse 里**——不再是&quot;解决痛点&quot;，而是&quot;创造新体验&quot;。</p>
+<p>---</p>
+<h2>为什么叫 Pulse</h2>
+<p>**Pulse = 脉搏、跳动、生命力。**</p>
+<p>项目不是死的数据，而是有脉搏的东西。你打开 Pulse，能看到你的项目在呼吸、在等待、在思考。</p>
+<p>这个名字也暗示了核心交互：不是&quot;点击查看&quot;，而是&quot;感受状态&quot;。</p>
+<p>---</p>
+<h2>下一步</h2>
+<p>1. 用 Pi agent 做一次真实项目，记录对话 JSONL</p>
+<p>2. 把 JSONL 渲染成树状结构，看这个抽象是否成立</p>
+<p>3. 设计极简 UI + 呼吸感动画</p>
+<p>4. 在移动端实现手势交互</p>
+<p>5. 真实用起来，看是否&quot;酷&quot;</p>
+<p>---</p>
+<h2>来源</h2>
+<ul>
+<li>从 clawhouse 产品定位反思中生长（2026-04-18）</li>
+<li>对 Bakery、Slock、multica、OpenClaw、云端产品的对比分析</li>
+<li>用户直觉：项目应该是主语，agent 应该退到幕后</li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../agent-harness-runtime/clawhouse-多设备-agent-工作台.html">Clawhouse：多设备 Agent 工作台</a></li>
+<li><a href="../agent-harness-runtime/pi-coding-agent-harness.html">Pi coding agent：一种极简且可观察的 coding harness</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

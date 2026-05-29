@@ -1,0 +1,177 @@
+# Thin Harness, Fat Skills
+
+Garry Tan 在 2026 年 4 月提出的 AI agent 架构理念：差距不来自模型智能，而来自架构设计。核心主张是把智能推到 skill 层，把执行推到确定性工具层，中间的 harness 保持最薄。
+
+## 核心判断
+
+Steve Yegge 说用 AI coding agent 的人比用 Cursor 聊天的人效率高 10x-100x，比 2005 年的 Google 工程师高 1000x。Garry 的观察：同样的模型，差距来自架构，不是参数。
+
+2026 年 3 月 31 日，Anthropic 意外把 Claude Code 源码发布到 npm registry（51 万行）。Garry 读完后确认：秘密不是模型，是包裹模型的那个东西。
+
+## 五个概念
+
+### 1. Skill Files
+
+Skill file 是用 markdown 写成的可复用程序，描述判断过程而非固定答案。
+
+**核心洞察**：skill file 像方法调用一样接受参数。同一个流程，不同参数，完全不同的能力。
+
+举例：`/investigate` skill 有七个步骤（确定数据范围、构建时间线、文档日记化、综合、正反论证、引用来源），接受三个参数（TARGET、QUESTION、DATASET）。指向安全科学家和 250 万封邮件 → 医学调查分析；指向空壳公司和竞选资金 → 政治献金追踪。
+
+**本质**：这不是 prompt engineering，是 software design。Markdown 是比代码更完美的能力封装，因为它用模型思考的语言描述流程、判断和上下文。
+
+### 2. Thin Harness
+
+Harness 是运行 LLM 的程序。它只做四件事：循环调用模型、读写文件、管理上下文、执行安全策略。这就是"薄"。
+
+**反面模式**：fat harness + thin skills。40+ 工具定义占掉半个上下文窗口，God-tools 每次 MCP 调用 2-5 秒，REST API 包装器把每个端点变成单独工具。三倍 token、三倍延迟、三倍失败率。
+
+**正确做法**：目的明确的窄工具。Playwright CLI 每次浏览器操作 100ms，Chrome MCP 截图-查找-点击-等待-读取要 15 秒。75 倍差距。
+
+### 3. Resolvers
+
+Resolver 是上下文的路由表。任务类型 X 出现时，先加载文档 Y。
+
+Skill 告诉模型怎么做。Resolver 告诉模型何时加载什么。开发者改了 prompt，没有 resolver 会直接发布；有 resolver 会先加载 `docs/EVALS.md`，里面写着：运行评测套件、比较分数、准确率下降超过 2% 就回滚调查。开发者不知道评测套件存在，resolver 在正确时刻加载了正确上下文。
+
+**Garry 的经验**：他的 CLAUDE.md 曾经是 20,000 行。每个 quirk、pattern、lesson 都塞进去。模型注意力退化。Claude Code 直接告诉他砍掉。解决方案是 200 行指针文档，resolver 按需加载正确的那个。20,000 行知识，按需访问，不污染上下文窗口。
+
+### 4. Latent vs Deterministic
+
+系统中每一步要么是 latent，要么是 deterministic。混淆两者是 agent 设计最常见的错误。
+
+**Latent space**：智能所在。模型阅读、解释、决策。判断、综合、模式识别。
+
+**Deterministic space**：信任所在。相同输入、相同输出。SQL 查询、编译代码、算术。
+
+LLM 可以考虑 8 个人的社交动态来安排座位。让它安排 800 人会输出看似合理但完全错误的方案。这是把确定性组合优化问题强行塞进 latent space。
+
+**最差的系统**：把错误的工作放在错误的一边。
+
+**最好的系统**：对这条线保持冷酷。
+
+### 5. Diarization
+
+Diarization 是让 AI 对真实知识工作有用的那一步。模型读取关于某个主体的所有材料，输出一页结构化画像——从几十或几百份文档中蒸馏出的判断。
+
+SQL 查询做不到。RAG pipeline 做不到。模型必须真正阅读、在脑中保持矛盾、注意何时发生了什么变化、综合结构化情报。数据库查询和分析师简报的区别。
+
+**示例**：
+```
+FOUNDER: Maria Santos
+COMPANY: Contrail (contrail.dev)
+SAYS: "Datadog for AI agents"
+ACTUALLY BUILDING: 80% 的 commit 在 billing 模块。她做的是伪装成可观测性的 FinOps 工具。
+```
+
+这个 "says" vs "actually building" 的差距，需要同时读 GitHub 提交历史、申请表和 advisor transcript，三者交叉才能发现。关键词搜索找不到。向量检索找不到。模型必须读完整档案并做出判断。
+
+## 三层架构
+
+```
+┌─────────────────────────────────────┐
+│         Fat Skills (90% value)      │  ← 判断、流程、领域知识
+│   markdown procedures               │
+├─────────────────────────────────────┤
+│         Thin CLI Harness            │  ← ~200 行代码，JSON 进文本出
+│   read-only by default              │
+├─────────────────────────────────────┤
+│         Application Layer           │  ← 确定性基础
+│   QueryDB, ReadDoc, Search, Timeline │
+└─────────────────────────────────────┘
+```
+
+**方向原则**：
+- 智能往上推到 skills
+- 执行往下推到确定性工具
+- harness 保持薄
+
+**结果**：模型每次改进自动惠及每个 skill，确定性层保持完美可靠。
+
+## 实战案例：Startup School 2026
+
+Chase Center，2026 年 7 月，6000 个 founder。每人有结构化申请、问卷回答、1:1 advisor 聊天记录、公开信号（X 帖子、GitHub commit、Claude Code transcript）。
+
+**传统方式**：15 人项目组读申请、做直觉判断、更新 spreadsheet。200 个 founder 能运作。6000 个会崩溃。没人能在工作记忆里同时持有那么多档案，并注意到"AI agent 基础设施 cohort 最合适的三个候选人是拉各斯的 dev tools founder、新加坡的合规 founder、布鲁克林的 CLI 工具 founder——三人在 1:1 聊天里用不同的话描述了同一个痛点"。
+
+模型可以。方式：
+
+### Enrichment
+
+`/enrich-founder` skill 拉取所有来源、运行 enrichments、diarize、高亮"说的和实际在做的"差距。确定性层处理 SQL lookup、GitHub stats、demo URL browser test、social signal pull、CrustData query。cron 每晚运行。6000 个档案，永远新鲜。
+
+Diarization 输出捕获关键词搜索找不到的东西。
+
+### Matching
+
+同一个 matching skill 的三种调用，三种完全不同策略：
+
+- `/match-breakout`：1200 个 founder，按 sector affinity 聚类，每 room 30 人。Embedding + 确定性分配。
+- `/match-lunch`：600 个，跨 sector serendipity matching，每 table 8 人，无重复——LLM 发明主题，确定性算法分配座位。
+- `/match-live`：处理当前在楼里的人，nearest-neighbor embedding，200ms，1:1 pairs，排除已经见过的人。
+
+模型做出聚类算法做不到的判断："Santos 和 Oram 都是 AI infra，但他们不是竞争者——Santos 做成本归因，Oram 做编排。把他们放同一组。"或："Kim 申请时填的是'developer tools'，但 1:1 transcript 揭示他做的是 SOC2 合规自动化。移到 FinTech/RegTech。"
+
+没有 embedding 能捕获 Kim 的重分类。模型必须读完整档案。
+
+### 学习循环
+
+活动后，`/improve` skill 读取 NPS 调查、diarize 那些"还行"的响应（不是差的，是"OK"的，系统差点成功但没成功），提取模式。然后提出新规则写回 matching skills：
+
+```
+When attendee says "AI infrastructure" but startup is 80%+ billing code:
+  → Classify as FinTech, not AI Infra.
+
+When two attendees in same group already know each other:
+  → Penalize proximity. Prioritize novel introductions.
+```
+
+这些规则写回 skill file。下次运行自动使用。
+
+七月活动：12% "OK" 评分。下次活动：4%。skill file 学会了 "OK" 到底意味着什么，系统在没人重写代码的情况下变好。
+
+**模式**：retrieve、read、diarize、count、synthesize。然后：survey、investigate、diarize、rewrite the skill。
+
+## Skills 是永久升级
+
+Garry 的规则：
+
+> 你不能做一次性工作。如果我让你做某件事，而且这种事以后还会发生，你必须：先在 3-10 个项目上手动做一遍。给我看输出。我批准后，把它 codify 成 skill file。如果应该自动运行，放到 cron 上。
+> 
+> 测试：如果我要问你两次，你就失败了。
+
+每个 skill 是系统的永久升级。永不退化。永不遗忘。凌晨 3 点你睡觉时它在跑。下一个模型发布时，每个 skill 瞬间变好——latent 步骤的判断改进，确定性步骤保持完美可靠。
+
+这就是 Yegge 的 100x。不是更聪明的模型。Fat skills，thin harness，加上 codify 一切的纪律。
+
+系统复利。建一次。永远运行。
+
+## 与 grapeot/context-infrastructure 的对应
+
+Superlinear Academy 的解读文章将五个概念映射到 [grapeot/context-infrastructure](https://github.com/grapeot/context-infrastructure) 开源仓库：
+
+| Garry 概念 | context-infrastructure 实现 |
+|-----------|---------------------------|
+| Skill Files | `rules/skills/` 下的 40+ skill 文件，每个有触发词、参数、依赖声明 |
+| Thin Harness | 直接外包给 Claude Code / OpenCode 的 agentic runtime，只写 skills 和 tools |
+| Resolvers | 三级缓存：L1（AGENTS.md，~200 行指针）、L2（Skills/Axioms INDEX）、L3（具体文件按需加载） |
+| Latent vs Deterministic | 公理 T02：结果确定性优于过程确定性 + Leverage Toolkit 处理交界 |
+| Diarization | 三层蒸馏：L1 Observer → L2 Reflector → L3 Axiom（纵向时间过滤 vs Garry 的横向多源交叉）|
+
+**多走的一步**：context-infrastructure 的 resolver 不仅路由到 skill（改变模型怎么做），还路由到 axiom（改变模型用什么判断框架）。两个正交维度。
+
+## 进一步阅读
+
+- [Harness 架构判断框架](../../frameworks/Harness架构判断框架.md)
+
+- [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.md)
+- [coding agent 的上下文压缩工作流](coding%20agent%20的上下文压缩工作流.md)
+- [grapeot/context-infrastructure 仓库地图](../context-memory-knowledge-system/grapeot-context-infrastructure-repo-map.md)
+- [Harness Engineering（约束壳工程）](harness-engineering.md)
+- [Claude Code、Codex 与 pi 的 harness 对比](coding-agent-harness-comparison.md)
+- [信息复利系统设计框架](../context-memory-knowledge-system/information-compounding-systems-design.md)
+
+## 来源
+
+- Garry Tan, [Thin Harness, Fat Skills](https://x.com/garrytan/status/2042925773300908103), X Article, 2026-04-11
+- Superlinear Academy, [Garry Tan的Thin Harness, Fat Skills: 五个概念拆解，以及怎么落地](https://www.superlinear.academy/c/news/garry-tan-thin-harness-fat-skills), 2026-04-15

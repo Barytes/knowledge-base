@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Superlinear 社区 Agent Skill 知识治理信号 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/research-knowledge-governance/Superlinear社区AgentSkill知识治理信号.md</div>
+      <h1>Superlinear 社区 Agent Skill 知识治理信号</h1>
+<p>鸭哥在《团队中共享 AI Skills 的原则与方法》中给出了这个问题的系统性回答，见 [[superlinear-team-skill-sharing]]。</p>
+<h2>事件记录</h2>
+<p>2026-04-17，我在 Superlinear 社区看到 Joey Wu 的求助帖：如何在多人协作中规模化管理 Agent Skill 的知识库。</p>
+<p>他的场景很具体。团队用 YAML 维护数据库的表用途、字段含义、常用 join 逻辑等信息，供 Agent 生成更准确的 SQL query。问题在于，1-2 人时靠沟通能对齐，但人数一多，不同分析师对同一张表、同一字段的理解开始冲突，Agent 的输出也开始偏离。</p>
+<p>他给出的两种方案分别是：</p>
+<ul>
+<li>基础版 + 个人定制</li>
+<li>中心化审核管理</li>
+</ul>
+<p>我当时用“课题组公共知识库”的双层架构回复了他。后来我更强烈的感觉是，这不只是一个回复问题，而是一个可能的市场信号。</p>
+<p>对外一页纸版本见：[[多人协作AgentSkill知识治理-对外一页纸]]。</p>
+<h2>我看到的结构性问题</h2>
+<p>| 问题 | 含义 |</p>
+<p>|---|---|</p>
+<p>| 公共共享池 | 需要一份所有人都能访问、也都能贡献的公共空间 |</p>
+<p>| 个人差异 | 每个人对字段的业务口径、指标定义、join 逻辑的理解都不同 |</p>
+<p>| 冲突治理 | 不同理解不能简单覆盖，否则会污染结果 |</p>
+<p>| 使用路由 | 同一份知识对不同人、不同场景应有不同的使用策略 |</p>
+<p>这个结构和“知识库本身是否存在”无关。真正卡住的是：知识一旦要喂给 Agent，就必须回答“谁的理解算数、在什么情况下算数、另一种理解怎么保留”。</p>
+<h2>和 Reflexio 的关系</h2>
+<p>Reflexio 更像是在处理操作知识。它把用户纠正过的做法聚成可执行 playbook，目标是让 Agent 行为更稳定。</p>
+<p>这个 Superlinear 场景更靠前一步。它处理的是团队里尚未统一的 domain knowledge。这里的关键不是合成一个答案，而是维持基础层、个人层和冲突层之间的关系。</p>
+<p>所以它可能指向一个比“知识库”更窄、也更具体的方向：</p>
+<ul>
+<li>shared base + personal overlay</li>
+<li>conflict-aware aggregation</li>
+<li>per-user / per-scenario routing</li>
+</ul>
+<h2>和 oh-share-it 公共知识库的关系</h2>
+<p>这个场景和 oh-share-it 公共知识库面对的是**同构问题**，只是领域不同。</p>
+<p>Joey Wu 的场景是：分析团队需要把数据库 schema、字段含义、业务口径和常用 join 逻辑喂给 Agent，用来生成 SQL。</p>
+<p>oh-share-it 公共知识库的场景是：课题组需要把文献脉络、方法边界、研究判断、失败经验和项目记忆沉淀下来，供研究者和 Agent 共同使用。</p>
+<p>两者表面差很多，但底层都在处理同一个问题：</p>
+<p>&gt; **多人协作下，知识一旦进入 Agent 工作流，就必须被分层、保留边界，并在使用时按场景路由。**</p>
+<h3>两个场景的结构对应</h3>
+<p>| Joey Wu 场景 | oh-share-it 公共知识库对应 |</p>
+<p>|---|---|</p>
+<p>| 团队共享的 YAML / schema 定义 | <code>public-pool</code> / shared context |</p>
+<p>| 分析师个人对字段、指标、join 的理解 | personal wiki / private context |</p>
+<p>| 不同人的业务口径冲突 | <code>tensions</code> / judgment / hypothesis 页 |</p>
+<p>| 同一个 Agent Skill 在不同人、不同任务下该用哪份知识 | query routing / 未来的 routed context |</p>
+<p>| “基础版 + 个人定制” | shared base + private overlay |</p>
+<p>| “中心化审核管理” | 更重的 shared 层治理与晋升机制 |</p>
+<h3>为什么这正好解释了 oh-share-it 的价值</h3>
+<p>oh-share-it 不该只被看成“课题组公共知识库”，更准确地说，它是在做一种**团队知识基础设施**。</p>
+<p>它真正想解决的不是：</p>
+<ul>
+<li>材料放在哪里</li>
+<li>文档怎么整理</li>
+<li>怎么做一个统一的知识库前端</li>
+</ul>
+<p>而是：</p>
+<ul>
+<li>什么能进入公共共享池，什么需要保留为可路由版本</li>
+<li>什么应该保留在个人层</li>
+<li>冲突应该如何保留，而不是被简单覆盖</li>
+<li>Agent 在什么场景下该优先取哪个版本、何时回到个人判断</li>
+</ul>
+<p>这也是为什么 oh-share-it 的联邦架构、<code>public-pool</code>、个人本地 wiki、语义聚合、<code>tension</code> 页这些设计不是附属细节，而是这个问题的核心解法。</p>
+<h3>Joey Wu 场景和 oh-share-it 的关键差异</h3>
+<p>两者同构，但处理的知识类型不完全一样。</p>
+<ul>
+<li>Joey Wu 场景更靠近**业务语义定锚**：重点是 <code>user_id</code>、<code>revenue</code>、join 逻辑在具体分析任务里的业务口径。</li>
+<li>oh-share-it 场景更靠近**研究认知知识**：重点是概念、方法、判断、张力、下一步值得验证什么。</li>
+</ul>
+<p>所以 Joey Wu 更像是在暴露：</p>
+<p>**操作知识背后还有一层认知定锚没有被治理。**</p>
+<p>而 oh-share-it 更像是在正面承接这件事：</p>
+<p>**把多样性、判断、冲突和写回做成研究组织的可路由公共工作面。**</p>
+<h3>反过来看，Joey Wu 场景像是 oh-share-it 的一个窄垂直样本</h3>
+<p>如果把 oh-share-it 的问题定义抽得更一般，它并不只适用于课题组。</p>
+<p>它描述的是这样一类系统：</p>
+<ul>
+<li>有多人协作</li>
+<li>有共享知识进入 Agent</li>
+<li>有个人判断不能被简单抹平</li>
+<li>有冲突需要保留或分流</li>
+<li>有 query-time 的使用路由问题</li>
+</ul>
+<p>Joey Wu 的 SQL / Agent Skill 场景，正好就是这个更一般问题在分析团队中的一个具体样本。</p>
+<h3>当前对 oh-share-it 的更具体启发</h3>
+<p>这件事让我更确定，oh-share-it 不该只停在“公共知识存储”。</p>
+<p>它至少要同时长出四个能力：</p>
+<ul>
+<li>沉淀公共多样性</li>
+<li>保留个人判断</li>
+<li>管理冲突与张力</li>
+<li>让 Agent 按人、按任务、按场景取用</li>
+</ul>
+<p>其中，oh-share-it 当前已经比较明确的是：</p>
+<ul>
+<li>private / shared 的分层</li>
+<li>保守聚合</li>
+<li>tension 保留</li>
+</ul>
+<p>相对还没被显式做出来的，是：</p>
+<ul>
+<li>**routed context**</li>
+<li>**query-time 的场景化取用策略**</li>
+</ul>
+<p>这正是 Joey Wu 场景给 oh-share-it 的额外提醒：</p>
+<p>**只有 shared + private 还不够，真正决定系统正确性的，是使用时的路由层。**</p>
+<h2>当前判断</h2>
+<p>这是一个值得继续追踪的需求信号，但还不是 PMF 证据。</p>
+<p>我目前更相信的判断是：</p>
+<p>&gt; 团队知识的难点，不是没有知识，而是知识在多人扩张后失去可控的使用边界。</p>
+<p>下一步要验证的，不是这个问题存不存在，而是有多少团队已经被它卡住，以及他们现在愿意为哪种 workaround 付钱。</p>
+<h2>补充问答：Reflexio 到底有没有丢掉 user specific knowledge</h2>
+<p>我的结论是：**没有直接丢掉，但会把它分层处理**。</p>
+<ul>
+<li><code>User Profiles</code> 和 <code>User Playbooks</code> 仍然保留在 per-user 层，作为私人上下文和聚合原料。</li>
+<li>进入共享层的主要是被提炼过、可泛化的 <code>Agent Playbooks</code>。</li>
+<li>所以 Reflexio 共享出去的，并不是完整的个人知识，而是**从个人经验里蒸馏出的 user agnostic 部分**。</li>
+</ul>
+<p>这意味着它更像“压缩和提炼”，不是“删除”。但它确实不擅长保留局部有效、场景依赖、彼此冲突的多版本知识。</p>
+<h2>补充问答：如果有东西能 address this gap，它更像哪一层</h2>
+<p>如果要把这个 gap 归类，我会说它**主要属于 context 层**。</p>
+<p>理由是，这个问题的核心不是模型要更聪明，而是系统要知道：</p>
+<ul>
+<li>哪些知识应进入默认上下文</li>
+<li>哪些知识只对某个用户有效</li>
+<li>哪些冲突要保留，哪些要合并</li>
+<li>哪些场景该路由到不同版本的知识</li>
+</ul>
+<p>这类能力首先是 <code>context infrastructure</code>，其次才是 <code>harness</code> 负责把这些上下文按规则加载、路由、写回。<code>model</code> 只负责语义提取、聚合和判断，不是主要战场。</p>
+<p>换句话说：</p>
+<ul>
+<li>**主层是 context**</li>
+<li>**执行层是 harness**</li>
+<li>**model 是辅助提炼器**</li>
+</ul>
+<h2>三层图：private / shared / routed context</h2>
+<p>这个 gap 如果要被 address，核心就是补齐这三层结构。</p>
+<h3>三层的基本结构</h3>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                    routed context                        │
+│   决定“这个场景下，用谁的 knowledge、用哪个版本”          │
+│   输入：user_id + task_type + query_context             │
+│   输出：应加载的 shared + private 组合                   │
+├─────────────────────────────────────────────────────────┤
+│                    shared context                        │
+│   公共共享层，所有人共享，但按需加载                    │
+│   典型内容：公共 schema、通用定义、基础 SOP              │
+│   特征：可复用、可聚合、低冲突（或已处理）                │
+├─────────────────────────────────────────────────────────┤
+│                    private context                       │
+│   个人层，只对自己可见，不强制共享                        │
+│   典型内容：个人理解、局部经验、偏好、尝试记录            │
+│   特征：高噪声、强场景依赖、可能与其他人冲突              │
+└─────────────────────────────────────────────────────────┘</code></pre>
+<h3>private context</h3>
+<p>这层放的是**不强制共享的个人知识**。</p>
+<p>典型内容：</p>
+<ul>
+<li>个人对某个概念的理解（可能和公共参考不一致）</li>
+<li>自己试过的做法、踩过的坑（别人不一定遇到）</li>
+<li>个人偏好（我喜欢这样表达，我喜欢这样查）</li>
+<li>猜想和待验证判断（还不稳定，不值得进共享层）</li>
+</ul>
+<p>特征：</p>
+<ul>
+<li>**高噪声**：可能混杂情绪、误解、过时信息</li>
+<li>**场景依赖**：只在某种上下文下有效</li>
+<li>**可能冲突**：A 的理解和 B 的理解可能正好相反</li>
+</ul>
+<p>处理方式：</p>
+<ul>
+<li>不进默认检索池</li>
+<li>只有在路由层判定“这个人要用自己的理解”时才加载</li>
+<li>可以作为聚合原料，但不会自动覆盖 shared 层</li>
+</ul>
+<p>例子：</p>
+<ul>
+<li>分析师 A：统计用户数时，<code>user_id</code> 应 JOIN <code>payments</code> 表（只算付费用户）</li>
+<li>分析师 B：统计用户数时，直接 COUNT <code>users</code> 表（算所有注册用户）</li>
+<li>两者都在各自的 private context 里，是**业务口径的差异**，不是字段定义的差异</li>
+</ul>
+<h3>shared context</h3>
+<p>这层放的是**团队可共享、可路由的公共知识**。</p>
+<p>典型内容：</p>
+<ul>
+<li>公共 schema 定义（这张表是什么、字段技术属性是什么——类型、约束、来源）</li>
+<li>通用 SOP（这类任务该怎么做）</li>
+<li>已验证的最佳实践（经过多人验证，可信度高）</li>
+<li>基础概念地图（领域入口、主线、边界）</li>
+</ul>
+<p>注：字段的**技术属性**（类型、主键、外键）是确定的，进 shared；但字段的**业务口径**（统计时用什么筛选条件）可能是多样的，留在 private 或经路由后进入 shared</p>
+<p>特征：</p>
+<ul>
+<li>**低噪声**：经过提炼或验证</li>
+<li>**可复用**：所有人都能用</li>
+<li>**可聚合**：可以从多个 private context 里提炼生成</li>
+</ul>
+<p>处理方式：</p>
+<ul>
+<li>进入默认检索池</li>
+<li>Agent 回答时优先从这层取</li>
+<li>新贡献可以进入，但需要经过聚合策略（不是简单 merge）</li>
+</ul>
+<p>例子：</p>
+<ul>
+<li>公共池里的一条常见口径：统计用户数时用 COUNT <code>users</code> 表（算所有注册用户）</li>
+<li>这个**业务口径**进入 shared context，成为可被 route 调用的候选口径</li>
+<li>A 的私有理解（JOIN <code>payments</code>）保留在 private，但不会覆盖 shared</li>
+</ul>
+<h3>routed context</h3>
+<p>这层不是“存储层”，而是**决策层**。</p>
+<p>它回答的是：</p>
+<ul>
+<li>这次任务，该加载哪块 shared？</li>
+<li>这次任务，要不要加载这个人的 private？</li>
+<li>如果 shared 和 private 冲突，用哪个？</li>
+<li>如果两个人有冲突理解，如何并存或路由？</li>
+</ul>
+<p>典型输入：</p>
+<ul>
+<li>user_id：谁在问</li>
+<li>task_type：什么任务（分析、查询、决策、学习）</li>
+<li>query_context：问的是什么、场景是什么</li>
+</ul>
+<p>典型输出：</p>
+<ul>
+<li>加载 shared context 的某个切片</li>
+<li>可选加载某个 private context</li>
+<li>合成最终给 Agent 的 prompt</li>
+</ul>
+<p>特征：</p>
+<ul>
+<li>**不是数据存储，而是路由逻辑**</li>
+<li>**策略可配置**：不同团队、不同场景，策略不同</li>
+<li>**冲突处理在这里**：保留、合并、选一、按权重混合</li>
+</ul>
+<p>例子：</p>
+<ul>
+<li>分析师 A 问“这个月付费用户增长多少”</li>
+<li>routed context 判定：</li>
+</ul>
+<p>  - 加载 shared context 中可用的业务口径版本（“付费用户”的定义）</p>
+<p>  - 不加载 A 的 private（因为当前问题不需要这条个人理解）</p>
+<ul>
+<li>分析师 B 问“我们组内部对统计用户数的口径有分歧吗”</li>
+<li>routed context 判定：</li>
+</ul>
+<p>  - 加载 shared（有哪些可用口径）</p>
+<p>  - 加载 A 和 B 的 private（展示分歧）</p>
+<p>  - 输出时保留张力，不强行合并</p>
+<h3>三层之间的关系</h3>
+<p>**流向**：</p>
+<pre><code>private → shared（聚合）
+private ← shared（分发）
+shared ↔ routed（选择加载）
+private ↔ routed（选择加载）</code></pre>
+<p>**权限**：</p>
+<ul>
+<li>private：只对自己可见（或路由层可见）</li>
+<li>shared：对所有人可见</li>
+<li>routed：对所有请求可见，但不存储内容</li>
+</ul>
+<p>**策略**：</p>
+<ul>
+<li>默认策略：优先 shared，必要时 private</li>
+<li>冲突策略：shared 优先，private 作为补充或对照</li>
+<li>学习策略：private 可以写回，但聚合后才进 shared</li>
+</ul>
+<h3>和 Reflexio 的对应</h3>
+<p>| 三层 | Reflexio 对应 |</p>
+<p>|------|---------------|</p>
+<p>| private context | User Profile + User Playbook（per-user）|</p>
+<p>| shared context | Agent Playbook（跨用户共享）|</p>
+<p>| routed context | Reflexio 没有，它默认用 Agent Playbook |</p>
+<p>Reflexio 的路由很简单：**共享层生效，private 层主要用于聚合原料和私人上下文。**</p>
+<p>它没有显式的 routed context 来决定“这个场景用谁的知识”。</p>
+<h3>和 oh-share-it 的对应</h3>
+<p>| 三层 | oh-share-it 对应 |</p>
+<p>|------|-----------|</p>
+<p>| private context | 个人 wiki / raw（本地）|</p>
+<p>| shared context | public-pool（服务器）|</p>
+<p>| routed context | 还没设计，可以成为 oh-share-it 的独特价值 |</p>
+<p>oh-share-it 目前设计了：</p>
+<ul>
+<li>personal wiki（private）</li>
+<li>public-pool（shared）</li>
+<li>聚合脚本</li>
+</ul>
+<p>但还没有**显式的 routed context**。</p>
+<p>如果 oh-share-it 要 address 这个 gap，最关键的就是补这一层：</p>
+<ul>
+<li>路由策略</li>
+<li>冲突处理策略</li>
+<li>场景判定逻辑</li>
+</ul>
+<h3>一句话总结</h3>
+<p>&gt; **private 是个人的、shared 是公共共享的，routed 是决定“何时用谁、如何并存、把哪些差异带到当前问题面前”的那一层。**</p>
+<p>如果只做 private + shared，会回到 Reflexio 的路径：**把 private 蒸馏进 shared，共享层变成默认。**</p>
+<p>如果加上 routed，才能做到：</p>
+<ul>
+<li>保留 private 的多样性</li>
+<li>不污染 shared</li>
+<li>按人、按场景、按任务灵活路由</li>
+</ul>
+<p>这正是我看到的 gap，也正是 oh-share-it 可以走出 Reflexio 现有路径的机会。</p>
+<h2>补充洞察：操作知识需要认知知识的「定锚」</h2>
+<h3>核心判断</h3>
+<p>&gt; **操作知识是“怎么做”，但“怎么做”的具体含义，需要认知知识来定锚。**</p>
+<p>所谓定锚，指的是认知知识为操作知识**锚定具体的语义边界和适用场景**。</p>
+<h3>定锚关系的具体例子</h3>
+<p>| 操作知识 | 需要的认知知识定锚 |</p>
+<p>|----------|-------------------|</p>
+<p>| “写 SQL query 用 <code>user_id</code> 字段” | <code>user_id</code> 在这个分析场景下应该用什么业务口径（付费用户？活跃用户？）|</p>
+<p>| “部署前确认目标区域” | 为什么是这个区域（公司规定？性能考虑？合规要求？）|</p>
+<p>| “生成报表用 <code>revenue</code> 指标” | <code>revenue</code> 的计算口径是什么（含未支付？不含？）|</p>
+<p>没有认知知识的定锚：</p>
+<ul>
+<li>操作知识是空壳——可执行，但语义不确定</li>
+<li>不同执行者会赋予不同含义</li>
+<li>执行结果偏离实际意图</li>
+</ul>
+<p>有了认知知识的定锚：</p>
+<ul>
+<li>操作知识有了明确的语义边界</li>
+<li>同一操作在不同场景下可以有不同定锚</li>
+<li>执行结果符合实际意图</li>
+</ul>
+<h3>澄清：技术定义 vs 业务口径</h3>
+<p>一个重要的区分：**字段的技术定义是确定的，但业务口径是多样的。**</p>
+<p>数据库 schema 里：</p>
+<ul>
+<li><code>user_id</code> 是什么类型、是主键还是外键、来自哪个表</li>
+<li>这些是技术定义，写在 schema 里，不存在歧义</li>
+</ul>
+<p>但业务层面的理解：</p>
+<ul>
+<li>“统计用户数时，<code>user_id</code> 应该 JOIN 哪张表”</li>
+<li>“统计活跃用户时，筛选条件是什么”</li>
+<li>“计算 revenue 时，要不要含未支付订单”</li>
+</ul>
+<p>这些是**业务口径**，不同分析师可能有不同的习惯和理解。</p>
+<p>Joey Wu 描述的冲突发生在**业务口径层面**，不是技术定义层面：</p>
+<ul>
+<li>技术定义：<code>user_id = INT PRIMARY KEY</code>（确定）</li>
+<li>业务口径：“统计用户数”时，A 用 JOIN payments，B 用 COUNT users（多样）</li>
+</ul>
+<p>认知知识定锚的是**业务口径**，不是技术定义。</p>
+<h3>这解释了 Reflexio 路径在 Joey Wu 场景会失败</h3>
+<p>Reflexio 处理的是：</p>
+<ul>
+<li>收集用户的操作知识（“部署时应该怎么做”）</li>
+<li>聚合成 Agent Playbook</li>
+<li>Majority-wins 解决冲突</li>
+</ul>
+<p>但 Joey Wu 场景的冲突本质是：</p>
+<ul>
+<li>操作知识相同（“用 <code>user_id</code> 字段写 query”）</li>
+<li>但认知知识的定锚不同（<code>user_id</code> 在这个分析场景下的业务口径是什么）</li>
+</ul>
+<p>Reflexio 的聚合机制处理不了认知层面的定锚冲突，因为它把所有输入都当成操作知识来处理。</p>
+<h3>层级关系</h3>
+<pre><code>认知知识（定锚层）
+  - 决定“这个操作的具体含义是什么”
+  - 可能多版本并存（不同场景、不同理解）
+  ↓ 定锚
+操作知识（执行层）
+  - 决定“Agent 应该怎么做”
+  - 需要认知知识来锚定语义
+  - 执行时只能选一个版本</code></pre>
+<h3>对 routed context 的启发</h3>
+<p>routed context 的真正任务，不是直接路由操作知识，而是：</p>
+<p>&gt; **根据场景，选择合适的认知知识定锚，再让操作知识执行。**</p>
+<p>流程：</p>
+<pre><code>任务进入 → routed context 判定场景
+         → 选择对应的认知知识定锚（哪个定义、哪个口径）
+         → 操作知识用这个定锚执行</code></pre>
+<h3>一句话收束</h3>
+<p>&gt; **操作知识需要认知知识的定锚——认知知识锚定操作的语义边界，操作知识在定锚后执行。**</p>
+<p>这个层级关系解释了：</p>
+<ul>
+<li>为什么 Reflexio 的聚合路径在 Joey Wu 场景会失败</li>
+<li>为什么 routed context 要处理的是认知层面的定锚选择，而不是操作层面的执行合并</li>
+</ul>
+<h2>置信度</h2>
+<p>低到中。它是一个单点样本，但已经足够把“知识库”问题往“知识治理”方向推一层。</p>
+<h2>相关页面</h2>
+<ul>
+<li>[[oh-share-it公共知识库产品]]</li>
+<li>[[gogo]]</li>
+<li>[[课题组公共知识库的产品定义信念]]</li>
+<li>[[课题组公共知识库的联邦架构设计]]</li>
+<li>[[课题组公共知识库的架构风险与分层设计]]</li>
+<li>[[公共知识库、Reflexio与EvoMap的对比分析]]</li>
+<li>[[向Reflexio开发者提问-润色版]]</li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

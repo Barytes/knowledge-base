@@ -1,6 +1,6 @@
 ---
 name: research-ingest
-description: Compile external source materials into maintained knowledge pages. Use when Codex needs to ingest articles, papers, reports, book notes, or clipped webpages from `raw/external/` or `inbox/`, update `wiki/knowledge/`, repair links, and record the ingest in the log.
+description: Compile external source materials into maintained topic pages. Use when Codex needs to ingest articles, papers, reports, book notes, or clipped webpages from `raw/external/` or `inbox/`, update `wiki/topics/`, repair links, and record the ingest in the log.
 ---
 
 # Research Ingest
@@ -26,7 +26,7 @@ For common file operations, use the local shell scripts to avoid token-wasting e
 
 1. Read the source and identify its topic, claims, and likely destination.
 2. Move the source into `raw/external/` if it is still sitting elsewhere in the repository.
-3. Update an existing page in `wiki/knowledge/` when one already covers the topic.
+3. Update an existing page in `wiki/topics/` when one already covers the topic.
 4. Create a new page only when the source introduces a genuinely new topic or comparison.
 5. Add cross-links to related maintained pages.
 6. Append a short `ingest` or `lint` entry to `wiki/log.md`.
@@ -43,8 +43,8 @@ Capture these elements when they matter:
 ## Guardrails
 
 - Prefer updating over duplicating.
-- Keep world-facing claims in `wiki/knowledge/`, not `wiki/self/`.
-- If the source already contains the user's own viewpoint mixed with external material, save the integrated result in `wiki/bridges/` and only extract world knowledge that is durable on its own.
+- Keep world-facing claims in `wiki/topics/`, not `wiki/self/`.
+- If the source already contains the user's own viewpoint mixed with external material, save the integrated result in the most relevant topic under `wiki/topics/` and only extract world knowledge that is durable on its own.
 - Write maintained wiki pages in Chinese by default.
 
 ## Output

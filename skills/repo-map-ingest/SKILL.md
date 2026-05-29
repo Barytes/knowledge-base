@@ -1,6 +1,6 @@
 ---
 name: repo-map-ingest
-description: Study a code repository as a knowledge-source evidence base. Use when Codex is given a GitHub repository or local codebase and needs to create or update a durable repo map in `wiki/knowledge/`, capturing architecture, key mechanisms, evidence anchors, and follow-up directions without copying raw implementation churn into the wiki.
+description: Study a code repository as a knowledge-source evidence base. Use when Codex is given a GitHub repository or local codebase and needs to create or update a durable repo map under the relevant `wiki/topics/` directory, capturing architecture, key mechanisms, evidence anchors, and follow-up directions without copying raw implementation churn into the wiki.
 ---
 
 # Repo Map Ingest
@@ -13,7 +13,7 @@ Read these files first:
 - `schemas/AGENTS.md`
 - `schemas/ingest.md`
 - `schemas/query.md`
-- `wiki/bridges/codebases-as-knowledge-sources.md`
+- `wiki/topics/agent-harness-runtime/codebases-as-knowledge-sources.md`
 - `skills/repo-map-ingest/references/output-template.md`
 
 Use this skill when the main job is to understand a repository as a source of engineering knowledge.
@@ -23,7 +23,7 @@ Use this skill when the main job is to understand a repository as a source of en
 Turn a repository into:
 
 1. a preserved raw evidence snapshot in `raw/external/`
-2. a reusable maintained repo map in `wiki/knowledge/`
+2. a reusable maintained repo map under the relevant `wiki/topics/` directory
 
 Do not skip the raw evidence layer for GitHub repos. 
 
@@ -59,7 +59,7 @@ python3 skills/repo-map-ingest/scripts/github_repo_ingest.py <github-url>
 This creates:
 
 - a compact source snapshot under `raw/external/`
-- a maintained repo map draft under `wiki/knowledge/`
+- a maintained repo map draft under `wiki/topics/`
 - an index entry in `wiki/index.md`
 - an ingest entry in `wiki/log.md`
 
@@ -136,7 +136,7 @@ For engineering-practice questions, pay extra attention to:
 Write or update:
 
 - a raw snapshot in `raw/external/`
-- a maintained repo note in `wiki/knowledge/`
+- a maintained repo note in `wiki/topics/`
 
 Prefer a stable filename such as:
 
@@ -178,6 +178,6 @@ This is the main handoff to `repo-practice-query`.
 
 ## Write-Back
 
-If the repository introduces durable topic knowledge beyond one repo, also update an existing topic page in `wiki/knowledge/`.
+If the repository introduces durable topic knowledge beyond one repo, also update an existing topic page in `wiki/topics/`.
 
 Append an `ingest` or `query` entry to `wiki/log.md` when the repo map becomes a maintained page.

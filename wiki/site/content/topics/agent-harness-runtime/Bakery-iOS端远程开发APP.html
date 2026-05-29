@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bakery：iOS 端远程开发 APP · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/Bakery-iOS端远程开发APP.md</div>
+      <h1>Bakery：iOS 端远程开发 APP</h1>
+<p>&gt; 来源：Superlinear Academy 社区分享</p>
+<p>&gt; 作者：社区成员</p>
+<h2>产品定位</h2>
+<p>Bakery 把 iPhone 变成 Mac 上运行的 Claude Code 的**远程控制器**。</p>
+<p>**官方描述**：</p>
+<p>&gt; Bakery app turns your iPhone into a remote control for Claude Code running on your Mac. Chat with Claude, watch it write and edit code in real time, and preview the result in a live iOS Simulator stream — all from your phone, on the couch, on the train, or next to your Mac when you don&#x27;t feel like sitting at the keyboard.</p>
+<p>**核心价值**：</p>
+<p>1. iPhone → Claude Code（Mac）的远程控制</p>
+<p>2. 实时看到 Claude 写代码、改代码</p>
+<p>3. iOS 模拟器画面实时串流到手机预览</p>
+<p>4. 场景：沙发上、火车上、不想坐键盘前</p>
+<h2>解决的问题</h2>
+<h3>问题 1：iOS App 的空间性体验</h3>
+<p>iOS App 是空间性的——手势、转场、触觉反馈、滚动物理效果。这些东西从代码 diff 里看不出来，只有拿在手里才能发现：1 像素偏移、滚动手感不对、按钮太小拇指点不到。</p>
+<p>**&quot;build succeeded&quot; 只是故事的一半，另一半是拿起手机感受 App 在你手中运行。**</p>
+<h3>问题 2：离开桌面后如何继续使用 Claude Code</h3>
+<p>传统方式：只能坐在 Mac 前、用键盘和终端。</p>
+<p>Bakery 方式：沙发上、火车上、任何地方都能继续和 Claude Code 工作。</p>
+<h2>产品机制</h2>
+<p>| 功能 | 说明 |</p>
+<p>|------|------|</p>
+<p>| **远程控制 Claude Code** | iPhone 作为控制器，Mac 上运行 Claude Code |</p>
+<p>| **实时代码可见性** | 看到 Claude 写代码、改代码的实时 diff |</p>
+<p>| **iOS 模拟器串流** | 模拟器画面实时推送到 iPhone，直接触摸交互 |</p>
+<p>| **完整开发闭环** | 聊天 → 写代码 → 编译 → 预览 → 测试 → 继续改 |</p>
+<h2>与 clawhouse 的核心重叠</h2>
+<p>**Bakery 也强调访问连续性**——让用户离开 Mac 后，能在 iPhone 上继续控制那台 Mac 上运行的 Claude Code。</p>
+<p>这与 clawhouse 的核心目标高度一致：</p>
+<p>&gt; 无论身在何处，都能访问&quot;我的 agent&quot;。</p>
+<h3>Bakery 已经 address 什么</h3>
+<p>| clawhouse 痛点 | Bakery 是否 address |</p>
+<p>|---------------|---------------------|</p>
+<p>| 移动端接回原 agent 工作 | **✅ 已 address** — iPhone 控制 Mac 上的 Claude Code |</p>
+<p>| 实时代码可见性 | **✅ 已 address** — 实时看到 Claude 写/改代码 |</p>
+<p>| 运行时现场可见性 | **✅ 已 address** — iOS 模拟器画面实时串流 |</p>
+<p>| 对话历史同步 | **❓ 未知** — 描述未明确 |</p>
+<p>| 不锁定用户到特定设备 | **⚠️ 单向锁定** — iPhone → Mac，而非任意设备互连 |</p>
+<h3>Bakery 与 clawhouse 的差异</h3>
+<p>| 维度 | Bakery | clawhouse |</p>
+<p>|------|--------|-----------|</p>
+<p>| **方向** | iPhone → Mac（单向） | 任意设备互连（双向） |</p>
+<p>| **场景** | iOS 开发 | 通用 coding agent |</p>
+<p>| **agent 支持** | Claude Code | Codex / pi / Claude Code 等 |</p>
+<p>| **可见性重点** | iOS 模拟器 + 代码 diff | 对话历史 + repo 状态 + 任务进度 |</p>
+<p>| **是否开源** | ❌ 未开源 | 设想开源 |</p>
+<h2>安装方式</h2>
+<p>1. 打开 Bakery Server，自动安装 asc CLI、Claude 服务</p>
+<p>2. 用 iPhone 扫二维码</p>
+<p>3. 开始聊</p>
+<h2>相关链接</h2>
+<ul>
+<li>TestFlight 内测：https://testflight.apple.com/join/cPVeBSjg</li>
+<li>当前验证版本：XCode 26.4</li>
+</ul>
+<h2>与知识库其他主题的关联</h2>
+<ul>
+<li><a href="clawhouse-多设备-agent-工作台.html">Clawhouse：多设备 Agent 工作台</a>：**高度重叠**——都解决离开原设备后如何继续使用 agent</li>
+<li><a href="agent%20复利工作模式.html">Agent 复利工作模式</a>：完整开发循环体现 agent 协作的复利价值</li>
+<li><a href="claude-code-harness.html">Claude Code：较厚的 agentic coding harness</a>：Bakery 作为 Claude Code 的移动端远程控制器</li>
+</ul>
+<h2>解决的问题</h2>
+<p>市场上已有不少 iOS App 支持在手机上写代码，但很少有能在手机上直接测试和体验 App 的功能。</p>
+<p>iOS App 是空间性的：</p>
+<ul>
+<li>手势</li>
+<li>转场</li>
+<li>触觉反馈</li>
+<li>滚动物理效果</li>
+</ul>
+<p>这些东西从代码 diff 里看不出来，只有拿在手里才能发现：1 像素偏移、滚动手感不对、按钮太小拇指点不到。</p>
+<h2>产品机制</h2>
+<p>Bakery 把 iOS 模拟器画面直接串流到 iPhone：</p>
+<ul>
+<li>手机变成控制器</li>
+<li>点击 → 模拟器响应</li>
+<li>滑动 → 滚动</li>
+<li>打字 → 键盘弹出</li>
+</ul>
+<p>尽量减少和 Mac 端开发体验的差异。</p>
+<h2>完整开发循环</h2>
+<p>在手机上实现完整闭环：</p>
+<p>1. 告诉 Claude 需求（&quot;做一个带打卡日历的习惯追踪器&quot;）</p>
+<p>2. 看着 Claude 逐个文件编写，实时 diff 滚动</p>
+<p>3. 看它编译、启动</p>
+<p>4. App 出现在屏幕上</p>
+<p>5. 点一点发现问题</p>
+<p>6. 继续修改（&quot;让打卡圆环在完成时加个动画&quot;）</p>
+<p>7. 结合 Asc CLI 自动发布到 AppStore</p>
+<h2>安装方式</h2>
+<p>1. 打开 Bakery Server，自动安装 asc CLI、Claude 服务</p>
+<p>2. 用 iPhone 扫二维码</p>
+<p>3. 开始聊</p>
+<h2>与其他工具的关系</h2>
+<ul>
+<li>**Claude Code / Codex**：Bakery 作为前端，连接这些 coding agent</li>
+<li>**Asc CLI**：自动发布到 AppStore</li>
+<li>**iOS 模拟器**：串流到手机屏幕</li>
+</ul>
+<h2>相关链接</h2>
+<ul>
+<li>TestFlight 内测：https://testflight.apple.com/join/cPVeBSjg</li>
+<li>当前验证版本：XCode 26.4</li>
+</ul>
+<h2>与知识库其他主题的关联</h2>
+<ul>
+<li><a href="clawhouse-多设备-agent-工作台.html">Clawhouse：多设备 Agent 工作台</a>：同样关注多设备场景下的 agent 访问与连续性</li>
+<li><a href="agent%20复利工作模式.html">Agent 复利工作模式</a>：完整开发循环体现 agent 协作的复利价值</li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

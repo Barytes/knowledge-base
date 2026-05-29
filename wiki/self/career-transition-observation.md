@@ -33,4 +33,4 @@
 
 ## 相关页面
 
-- [科学与技艺双层认知模型](../knowledge/science-and-craft-cognitive-model.md)
+- [科学与技艺双层认知模型](../topics/learning-judgment-mental-models/science-and-craft-cognitive-model.md)

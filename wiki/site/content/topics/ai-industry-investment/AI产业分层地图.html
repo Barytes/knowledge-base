@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 产业分层地图（2026） · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/ai-industry-investment/AI产业分层地图.md</div>
+      <h1>AI 产业分层地图（2026）</h1>
+<h2>背景</h2>
+<p>围绕“怎么了解 AI 市场”这个问题，一个更自然的入口不是先枚举公司，而是先建立一张产业分层地图。</p>
+<p>因为公司是点，产业结构是面。先有面，再看点，认知负担会明显下降。</p>
+<p>这页尝试基于一组截至 <code>2026-04-23</code> 的公开材料，压出一版足够好用的 AI 产业地图。</p>
+<p>需要先说明两点：</p>
+<p>1. 这不是严格意义上的“上下游产业链”图。AI 更像一个 **分层堆栈**，层与层之间既有依赖，也有打包、替代与平台化关系。</p>
+<p>2. 这页明显带有时间性。尤其是融资分布、企业支出重心与模型竞争格局，未来很可能继续快速变化。</p>
+<p>---</p>
+<h2>核心判断</h2>
+<p>如果把今天的 AI 市场压成一句话，可以写成：</p>
+<p>&gt; **AI 产业更像“算力 -&gt; 模型 -&gt; 推理/训练基础设施 -&gt; 数据与运行时基础设施 -&gt; 工作流应用 -&gt; 行业系统重写”的分层结构，而不是一条简单的线性上下游。**</p>
+<p>进一步说，今天至少可以看到三个同时成立的趋势：</p>
+<p>1. **VC 的钱最集中在底层，尤其是 frontier labs 与 compute。**</p>
+<p>2. **企业的真钱更快流向上层，尤其是 coding、copilot、vertical ROI 场景。**</p>
+<p>3. **中间层仍在早期，runtime、eval、observability、agent orchestration 还没有完全定型。**</p>
+<p>---</p>
+<h2>为什么不用“线性上下游”来理解</h2>
+<p>传统产业链常常是：</p>
+<ul>
+<li>原材料</li>
+<li>零部件</li>
+<li>组装</li>
+<li>渠道</li>
+<li>终端产品</li>
+</ul>
+<p>但 AI 更复杂。原因包括：</p>
+<ul>
+<li>同一家公司可能同时做模型、产品和分发</li>
+<li>上层应用会反过来塑造底层模型需求</li>
+<li>数据、runtime、评测、安全不是单纯“上游供货商”，而是横向渗透多层</li>
+<li>企业用户在买的往往不是模型本身，而是“某个工作流被重写后的结果”</li>
+</ul>
+<p>因此，与其问“谁在上下游”，不如先问：</p>
+<ul>
+<li>这个生态主要分哪几层</li>
+<li>每一层在创造什么价值</li>
+<li>每一层的控制点和瓶颈在哪里</li>
+</ul>
+<p>---</p>
+<h2>AI 产业地图 1.0</h2>
+<h3>第一层：算力 / 芯片 / 数据中心 / 电力</h3>
+<p>这是最底层的约束层。</p>
+<p>它之所以重要，不只是因为有 GPU，而是 frontier model 的训练与部署已经高度受制于资本开支、数据中心能力与电力供给。</p>
+<p>外部资料支持：</p>
+<ul>
+<li><a href="https://hai.stanford.edu/ai-index/2024-ai-index-report">Stanford AI Index 2024</a> 提到，<code>GPT-4</code> 训练计算成本约 <code>7800 万美元</code>，<code>Gemini Ultra</code> 约 <code>1.91 亿美元</code>。</li>
+<li><a href="https://hai.stanford.edu/ai-index/2025-ai-index-report/research-and-development">Stanford AI Index 2025 - Research and Development</a> 指出 notable AI models 的训练算力约每 <code>5</code> 个月翻倍，AI 硬件性能、价格性能和能效也持续提升。</li>
+</ul>
+<p>这一层的典型玩家包括：</p>
+<ul>
+<li>芯片与系统：<code>NVIDIA</code>、<code>AMD</code>、<code>TPU</code> 生态</li>
+<li>云与集群：<code>AWS</code>、<code>Azure</code>、<code>GCP</code>、<code>Oracle</code>、<code>CoreWeave</code></li>
+<li>数据中心、电力与配套基础设施</li>
+</ul>
+<p>这层的特点是：**资本密集、赢家通吃、对上层有强约束力。**</p>
+<h3>第二层：基础模型层</h3>
+<p>这是“智能供给层”。</p>
+<p>它的核心不是某个聊天产品，而是谁能持续提供更强、更稳、更便宜、可集成的 intelligence。</p>
+<p>外部资料支持：</p>
+<ul>
+<li><a href="https://hai.stanford.edu/ai-index/2025-ai-index-report/research-and-development">Stanford AI Index 2025 - Research and Development</a> 说，<code>2024</code> 年近 <code>90%</code> 的 notable AI models 来自 industry。</li>
+<li>同页指出，<code>2024</code> 年美国机构产出了 <code>40</code> 个 notable AI models，中国 <code>15</code> 个，欧洲 <code>3</code> 个。</li>
+</ul>
+<p>这层内部可以再分成两种生态：</p>
+<ul>
+<li>**闭源 API 模型**</li>
+</ul>
+<p>  例如 <code>OpenAI</code>、<code>Anthropic</code>、<code>Google</code></p>
+<ul>
+<li>**开源 / 开放权重模型生态**</li>
+</ul>
+<p>  例如 <code>Llama</code>、<code>Qwen</code>、<code>DeepSeek</code>、<code>Mistral</code>、<code>GLM</code>、<code>Kimi</code></p>
+<p>当前更值得注意的不是“谁一定会赢”，而是：</p>
+<ul>
+<li>企业侧更倾向闭源高性能模型</li>
+<li>开发者与 startup 侧对 open-weight / 中国模型的试用和采用更活跃</li>
+</ul>
+<h3>第三层：训练 / 推理基础设施层</h3>
+<p>这一层负责把模型能力变成可规模化供给。</p>
+<p>它包括：</p>
+<ul>
+<li>训练系统</li>
+<li>推理 serving</li>
+<li>模型路由</li>
+<li>推理加速</li>
+<li>低延迟、低成本部署</li>
+</ul>
+<p><a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/">Menlo Ventures 2025: The State of Generative AI in the Enterprise</a> 把基础设施侧支出拆成：</p>
+<ul>
+<li><code>foundation model APIs</code>：<code>125 亿美元</code></li>
+<li><code>model training infrastructure</code>：<code>40 亿美元</code></li>
+<li><code>AI infrastructure</code>：<code>15 亿美元</code></li>
+</ul>
+<p>同页点名的推理平台包括：</p>
+<ul>
+<li><code>Fireworks</code></li>
+<li><code>Baseten</code></li>
+<li><code>Modal</code></li>
+<li><code>Together</code></li>
+</ul>
+<p>这层的本质是：**把“模型能力”工程化成稳定、经济、可复用的服务。**</p>
+<h3>第四层：数据与运行时基础设施层</h3>
+<p>这是模型真正进入工作流之前最容易被低估的一层。</p>
+<p>它更接近：</p>
+<ul>
+<li><code>runtime</code></li>
+<li><code>orchestration</code></li>
+<li><code>state management</code></li>
+<li><code>tool calling</code></li>
+<li><code>RAG</code></li>
+<li><code>eval / tracing / observability</code></li>
+<li><code>security / governance</code></li>
+</ul>
+<p>这层为什么重要，本地已有页 <a href="../agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.html">AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First</a> 已经给出很强解释：很多 AI 产品真正难的，不是模型层，而是运行时层对不确定性的吸收，以及契约层对“什么算完成”的定义。</p>
+<p>外部资料也支持这一点：</p>
+<ul>
+<li><a href="https://openai.com/index/next-phase-of-enterprise-ai/">OpenAI - The next phase of enterprise AI</a> 明确强调 <code>Stateful Runtime Environment</code>、company-wide agents、与 <code>Databricks</code>、<code>Snowflake</code>、<code>AWS</code> 等系统的整合。</li>
+<li><a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/">Menlo 2025 enterprise report</a> 指出，今天真正算得上“真 agent”的生产部署比例仍然不高：企业约 <code>16%</code>，startup 约 <code>27%</code>。多数系统仍然是 prompt、RAG、固定路由等较简单架构。</li>
+</ul>
+<p>这一层的典型玩家包括：</p>
+<ul>
+<li>数据与平台底座：<code>Databricks</code>、<code>Snowflake</code>、<code>MongoDB</code>、<code>Datadog</code></li>
+<li>向量与数据库：<code>Pinecone</code>、<code>Supabase</code>、<code>Neon</code></li>
+<li>开发框架与编排：<code>LangChain</code></li>
+<li>Eval / tracing / observability：<code>Braintrust</code>、<code>Judgment Labs</code></li>
+</ul>
+<p>这层的核心张力是：</p>
+<ul>
+<li>业务价值很大</li>
+<li>市场结构还不稳定</li>
+<li>护城河还在形成</li>
+</ul>
+<h3>第五层：通用应用层（horizontal AI）</h3>
+<p>这是“所有白领都可能用”的层。</p>
+<p>它主要包括：</p>
+<ul>
+<li><code>copilot</code></li>
+<li><code>assistant</code></li>
+<li><code>general-purpose agent platform</code></li>
+<li>个人生产力工具</li>
+</ul>
+<p><a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/">Menlo 2025 enterprise report</a> 的拆法里，horizontal AI 在 <code>2025</code> 年约 <code>84 亿美元</code>，其中：</p>
+<ul>
+<li><code>copilot</code> 占 <code>86%</code></li>
+<li><code>agent platforms</code> 约占 <code>10%</code></li>
+<li>其余为个人生产力工具</li>
+</ul>
+<p>典型代表：</p>
+<ul>
+<li>Copilot：<code>ChatGPT Enterprise</code>、<code>Claude for Work</code>、<code>Microsoft Copilot</code></li>
+<li>Agent platform：<code>Salesforce Agentforce</code>、<code>Writer</code>、<code>Glean</code></li>
+<li>个人生产力：<code>Granola</code>、<code>Fyxer</code></li>
+</ul>
+<p>这一层的核心不是模型最强，而是：**能不能进入默认工作面，成为员工的日常入口。**</p>
+<h3>第六层：部门型工作流应用层（departmental AI）</h3>
+<p>这是某个岗位或部门的 killer use case 层。</p>
+<p>按 <a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/">Menlo 2025 enterprise report</a>：</p>
+<ul>
+<li>部门型 AI 约 <code>73 亿美元</code></li>
+<li>其中 <code>coding</code> 一项约 <code>40 亿美元</code></li>
+<li>占部门型 AI 的 <code>55%</code></li>
+</ul>
+<p>这也是当前最值得注意的现象之一：</p>
+<p>&gt; **coding 已经成为生成式 AI 第一个真正成立的 killer use case。**</p>
+<p>同页还指出：</p>
+<ul>
+<li><code>50%</code> 的开发者现在每天使用 AI coding tools</li>
+<li>顶尖组织里这个比例达到 <code>65%</code></li>
+<li>code completion 之外，<code>code agents</code> 和 <code>AI app builders</code> 在快速上升</li>
+</ul>
+<p>这一层的典型玩家包括：</p>
+<ul>
+<li><code>Cursor</code></li>
+<li><code>Claude Code</code></li>
+<li><code>Codex</code></li>
+<li><code>Lovable</code></li>
+<li><code>Replit</code></li>
+<li><code>OpenHands</code></li>
+<li><code>Graphite</code></li>
+<li><code>Meticulous</code></li>
+<li><code>Harness</code></li>
+</ul>
+<p>这一层的本质是：**把 AI 嵌进某类职业的完整工作回路。**</p>
+<h3>第七层：垂直行业应用层（vertical AI）</h3>
+<p>这是“行业知识 + AI workflow”层。</p>
+<p>按 <a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/">Menlo 2025 enterprise report</a>：</p>
+<ul>
+<li>vertical AI 在 <code>2025</code> 年约 <code>35 亿美元</code></li>
+<li>其中医疗 alone 约 <code>15 亿美元</code></li>
+<li>占 vertical AI 的 <code>43%</code></li>
+</ul>
+<p><a href="https://menlovc.com/perspective/2025-the-state-of-ai-in-the-healthcare/">Menlo 2025: The State of AI in Healthcare</a> 进一步指出：</p>
+<ul>
+<li>医疗 AI 部署速度已达 broader economy 的 <code>2.2x</code></li>
+<li>医疗 AI 支出约 <code>14 亿美元</code></li>
+<li>其中 <code>85%</code> 的 generative AI spend 流向 startup</li>
+</ul>
+<p>这一层当前最强的行业包括：</p>
+<ul>
+<li>医疗</li>
+<li>法律</li>
+<li>金融 / 会计</li>
+<li>政府</li>
+<li>creator economy</li>
+<li>药物发现 / 科学</li>
+</ul>
+<p>这层的护城河通常不是模型本身，而是：</p>
+<ul>
+<li>行业数据</li>
+<li>合规与流程整合</li>
+<li>真实 ROI</li>
+<li>采购路径和切入 wedge</li>
+</ul>
+<p>---</p>
+<h2>两个横切面</h2>
+<h3>一、分发与渠道</h3>
+<p>AI 时代的分发已经不只是传统 enterprise sales。</p>
+<p>更准确地说，今天至少有三种并行渠道：</p>
+<ul>
+<li><code>consumer distribution</code></li>
+<li><code>PLG</code></li>
+<li><code>enterprise sales / partnerships</code></li>
+</ul>
+<p>外部资料支持：</p>
+<ul>
+<li><a href="https://openai.com/index/accelerating-the-next-phase-ai/">OpenAI - Accelerating the next phase of AI</a> 把自己的飞轮明确写成：consumer adoption、enterprise deployment、developer usage、compute。</li>
+<li><a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/">Menlo 2025 enterprise report</a> 指出，AI 的 PLG 在企业里明显强于传统 SaaS，AI 应用层里有相当一部分支出来自 bottom-up adoption。</li>
+</ul>
+<p>这意味着，分发不再只是销售问题，而是在很多场景里变成产品本身的一部分。</p>
+<h3>二、安全 / 治理 / 评测</h3>
+<p>这不是一层独立产品面，而是会横穿多层的能力面。</p>
+<p>外部资料支持：</p>
+<ul>
+<li><a href="https://hai.stanford.edu/ai-index/2024-ai-index-report">Stanford AI Index 2024</a> 明确指出，领先模型在 responsible AI 上缺乏标准化评测。</li>
+<li><a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/">Menlo 2025 enterprise report</a> 预测 explainability、governance、audit logs 会越来越重要。</li>
+</ul>
+<p>这意味着：</p>
+<ul>
+<li>安全不是大厂专属问题</li>
+<li>eval、audit、observability、policy compliance 会越来越成为基础设施的一部分</li>
+</ul>
+<p>---</p>
+<h2>从“钱”来看，这张地图的结构是什么</h2>
+<p>如果只看 <code>2025-2026</code> 的公开资料，可以看到三种不同的钱。</p>
+<h3>1. VC 的钱</h3>
+<p>最集中在底层，尤其是 frontier labs 与 compute。</p>
+<ul>
+<li><a href="https://hai.stanford.edu/ai-index/2025-ai-index-report/economy%C2%A0">Stanford AI Index 2025 - Economy</a> 说，<code>2024</code> 年 corporate AI investment 达到 <code>2523 亿美元</code>，generative AI private investment 达到 <code>339 亿美元</code>。</li>
+<li><a href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/">Crunchbase Q1 2026</a> 则显示，<code>2026 Q1</code> AI 占了全球 venture funding 的 <code>80%</code>，而且高度集中在少数大公司。</li>
+</ul>
+<h3>2. 企业预算的钱</h3>
+<p>更快流向应用层。</p>
+<ul>
+<li><a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/">Menlo 2025 enterprise report</a> 显示，企业 <code>2025</code> 年 generative AI 总支出约 <code>370 亿美元</code>，其中应用层 <code>190 亿美元</code>，基础设施层 <code>180 亿美元</code>。</li>
+</ul>
+<h3>3. 用户时间和注意力的钱</h3>
+<p>更偏 consumer 与工具默认入口。</p>
+<ul>
+<li><a href="https://a16z.com/100-gen-ai-apps-5/">a16z Top 100 Gen AI Consumer Apps - 5th Edition</a> 显示，consumer AI 的主流入口已经开始稳定，<code>ChatGPT</code>、<code>Claude</code>、<code>Perplexity</code>、<code>Cursor</code>、<code>Lovable</code>、<code>Replit</code> 等都在形成长期心智。</li>
+</ul>
+<p>---</p>
+<h2>一个更实用的压缩版本</h2>
+<p>如果只为了建立方向感，而不是写行业报告，这张地图可以再压成四句话：</p>
+<p>1. **最贵的是底层：算力与 frontier model。**</p>
+<p>2. **最热的是上层：coding / developer workflow。**</p>
+<p>3. **最早但重要的是中层：runtime / eval / observability / orchestration。**</p>
+<p>4. **最明确见 ROI 的 vertical 是医疗。**</p>
+<p>---</p>
+<h2>这张地图该怎么用</h2>
+<p>这页的意义，不是让人背公司名，而是让人先回答三个问题：</p>
+<p>1. **哪一层的钱最多？**</p>
+<p>2. **哪一层的结构还没定型？**</p>
+<p>3. **哪一层最适合我的能力进入？**</p>
+<p>如果把它用在职业判断上，一个很直接的后续动作是：</p>
+<ul>
+<li>先选你想研究的层</li>
+<li>再看这一层里有哪些典型玩家</li>
+<li>再看这些玩家分别依赖上下哪几层</li>
+<li>最后才看招聘和公司名单</li>
+</ul>
+<p>也就是说，先看结构，再看公司。</p>
+<p>---</p>
+<h2>限制</h2>
+<p>这页有几个边界需要保留：</p>
+<p>1. **它更偏英文公开市场与美国企业资料。**</p>
+<p>   对中国本土 AI 产业的资本结构、商业化路径与政策约束，这里没有展开足够多。</p>
+<p>2. **很多数字来自投资机构报告。**</p>
+<p>   这类报告有方法论价值，但也会带有自身视角、口径和投资偏好。</p>
+<p>3. **这是一张“足够好用”的地图，不是唯一正确的地图。**</p>
+<p>   不同问题会需要不同切法。比如如果关心科研与国家竞争，地缘与政策层会更重要；如果关心求职，工作流层与应用层会更重要。</p>
+<p>---</p>
+<h2>与现有知识的关联</h2>
+<ul>
+<li><a href="../agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.html">AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First</a>：这页给出 <code>模型 / 协议 / 运行时 / 契约</code> 四层，能直接嵌入本页的中间层理解。</li>
+<li><a href="../agent-harness-runtime/coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a>：这页更细地解释 <code>harness</code> 这类中间层到底在解决什么问题。</li>
+<li><a href="../agent-harness-runtime/agent时代的人机交互新命题.html">Agent 时代的人机交互新命题</a>：可对应上层应用与判断界面的重写。</li>
+<li><a href="衰退期的创业环境与技术判断.html">衰退期的创业环境与技术判断</a>：这页提供“看一项技术是否在重写岗位和产业结构”的宏观标准。</li>
+<li><a href="../career-positioning-job-search/求职范式转变：让工作找到你.html">求职范式转变：让工作找到你</a>：如果把这张产业地图用于职业定位，那页解释如何把自己组织成市场能识别的产品。</li>
+</ul>
+<p>---</p>
+<h2>来源依据</h2>
+<p>以下材料为本页的主要外部依据，均为截至 <code>2026-04-23</code> 可访问的公开网页：</p>
+<ul>
+<li><a href="https://hai.stanford.edu/ai-index/2025-ai-index-report/economy%C2%A0">Stanford AI Index 2025 - Economy</a></li>
+<li><a href="https://hai.stanford.edu/ai-index/2025-ai-index-report/research-and-development">Stanford AI Index 2025 - Research and Development</a></li>
+<li><a href="https://hai.stanford.edu/ai-index/2024-ai-index-report">Stanford AI Index 2024</a></li>
+<li><a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/">Menlo Ventures - 2025: The State of Generative AI in the Enterprise</a></li>
+<li><a href="https://menlovc.com/perspective/2025-the-state-of-ai-in-healthcare/">Menlo Ventures - 2025: The State of AI in Healthcare</a></li>
+<li><a href="https://a16z.com/100-gen-ai-apps-5/">a16z - The Top 100 Gen AI Consumer Apps - 5th Edition</a></li>
+<li><a href="https://openai.com/index/next-phase-of-enterprise-ai/">OpenAI - The next phase of enterprise AI</a></li>
+<li><a href="https://openai.com/index/accelerating-the-next-phase-ai/">OpenAI - Accelerating the next phase of AI</a></li>
+<li><a href="https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/">Crunchbase - Q1 2026 Shatters Venture Funding Records As AI Boom Pushes Startup Investment To $300B</a></li>
+<li><a href="https://news.crunchbase.com/venture/foundational-ai-startup-funding-doubled-openai-anthropic-xai-q1-2026/">Crunchbase - Venture Funding To Foundational AI Startups In Q1 Was Double All Of 2025</a></li>
+</ul>
+<p>&gt; 注：本页中的“产业地图”本身属于基于上述资料的综合推理，而不是任何单一来源原样给出的现成图。</p>
+    </article>
+
+  </main>
+</body>
+</html>

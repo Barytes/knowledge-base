@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AAR knowledge sharing 的设计洞察与取舍 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/AAR knowledge sharing 的设计洞察与取舍.md</div>
+      <h1>AAR knowledge sharing 的设计洞察与取舍</h1>
+<h2>摘要</h2>
+<p><code>safety-research/automated-w2s-research</code> 里的 AAR knowledge sharing，不是一个通用知识管理系统，而是为“少量并行研究 agent 在一个 outcome-gradable 实验环境里持续 hill-climb”这个具体场景定制的共享机制。</p>
+<p>它最核心的设计不是“做一个更聪明的检索接口”，而是把共享知识变成 agent 的本地工作面：中心 server 负责持久化 findings 与 snapshot 元数据，worker 周期性把 findings 同步到本地目录，再依靠 agent 自己的 <code>Read / Glob / Grep</code> 能力去浏览、比较和引用。与此同时，正式 <code>result</code> 会自动带上可下载的 workspace snapshot，用来传递可运行状态，而不只是文字经验。</p>
+<p>这套设计的优点是简单、可扩展到多 worker、很贴近真实研究流程。它的代价是检索精度主要依赖 agent 自身能力，知识共享更偏广播式，且很大程度上建立在任务本身高度结构化、指标统一、研究方向相对收敛的前提上。</p>
+<h2>先看它服务的具体场景</h2>
+<p>分析这套 sharing 设计，必须先把场景钉住。它并不是在解决“开放式研究笔记如何长期积累”的问题，而是在解决下面这类问题：</p>
+<ul>
+<li>同时运行多个 AAR worker</li>
+<li>每个 worker 在隔离 sandbox 中独立探索</li>
+<li>所有 worker 面向同一类研究目标：weak-to-strong generalization</li>
+<li>评估指标相对统一：<code>PGR</code></li>
+<li>每个 worker 要在 5 天左右的预算内不断试想法、实现、训练、评估、复盘</li>
+<li>共享的目的不是长期出版，而是**提高并行探索效率，减少重复踩坑，同时保留可复用的高分实现**</li>
+</ul>
+<p>这决定了它的 knowledge sharing 首先是一个**研究协作基础设施问题**，而不是一个面向人类读者的知识产品问题。</p>
+<h2>设计洞察</h2>
+<h3>1. 把 knowledge sharing 设计成“同步到本地的工作面”，而不是实时检索服务</h3>
+<p>这是最强的一点。</p>
+<p>AAR 并不主要通过一个远程 search API 去查 knowledge。相反，系统会：</p>
+<p>1. 把 findings 存在中心 server</p>
+<p>2. worker 周期性调用 <code>/api/findings/all</code></p>
+<p>3. 把 findings 落到本地 <code>shared_findings/*.json</code></p>
+<p>4. 让 agent 直接在本地文件上做 <code>Read / Glob / Grep</code></p>
+<p>这背后的设计直觉是：研究工作里的“找相关内容”往往不是一个清晰 query，而更像浏览、对比、联想、回看上下文。远程 keyword search 要求 agent 先知道自己要搜什么，而本地工作面允许它像人类研究者翻资料一样探索。</p>
+<p>在这个场景里，这比做一个更花哨的 MCP 检索工具更贴合任务。</p>
+<h3>2. 把共享对象拆成两层：<code>Finding</code> 和 <code>snapshot</code></h3>
+<p>他们没有把所有共享都压成一种对象。</p>
+<ul>
+<li><code>Finding</code> 负责传递：</li>
+</ul>
+<p>  - 发现了什么</p>
+<p>  - 指标如何</p>
+<p>  - 采用了什么配置</p>
+<p>  - 属于哪类 finding（<code>result</code> / <code>hypothesis</code> / <code>insight</code> / <code>error</code>）</p>
+<ul>
+<li><code>snapshot</code> 负责传递：</li>
+</ul>
+<p>  - 当时的 workspace 代码与状态</p>
+<p>  - 哪些文件值得回查</p>
+<p>  - 如何让其他 worker 真正下载并接着做</p>
+<p>这说明他们清楚区分了两种不同共享需求：</p>
+<ul>
+<li>**认知共享**：我学到了什么</li>
+<li>**执行共享**：我具体是怎么做到的</li>
+</ul>
+<p>如果只有 finding，没有 snapshot，别的 worker 很难真正继承成果。如果只有 snapshot，没有 finding，别的 worker 又不知道为什么值得下载。两层一起才构成完整 sharing 面。</p>
+<h3>3. 让“什么值得共享”服从实验纪律，而不是完全自由发帖</h3>
+<p><code>share_finding</code> 并不是完全无门槛的论坛发帖。</p>
+<p>最典型的约束是：</p>
+<ul>
+<li><code>finding_type=&quot;result&quot;</code> 必须要求至少 5 个随机种子</li>
+<li>有 metrics 的 <code>result</code> 才会自动创建 snapshot，并进入 leaderboard 体系</li>
+</ul>
+<p>这说明他们把 knowledge sharing 同时当成一种**实验秩序维护机制**。</p>
+<p>在这个场景里，共享不是越多越好，而是要避免：</p>
+<ul>
+<li>单次偶然高分被误当成可靠进展</li>
+<li>worker 因低质量结果而被噪音带偏</li>
+<li>论坛沦为没有筛选的随手日志</li>
+</ul>
+<p>所以它不是一个中立知识库，而是一个带研究纪律的 sharing 系统。</p>
+<h3>4. 中心 server 主要负责持久化、索引与协调，不直接替 agent 做认知工作</h3>
+<p>这个系统里的 server 很重要，但它不是“中央大脑”。</p>
+<p>server 负责：</p>
+<ul>
+<li>存储 <code>Finding</code></li>
+<li>暴露 <code>/api/findings/all</code>、<code>/api/findings/share</code>、<code>/api/snapshots/*</code></li>
+<li>提供 leaderboard</li>
+<li>记录 snapshot 元数据</li>
+</ul>
+<p>但真正的检索、比较、引用，仍主要发生在 agent 的本地工作面中。这意味着它在架构上更像：</p>
+<ul>
+<li>**薄协调层**</li>
+<li>**厚本地工作面**</li>
+</ul>
+<p>这很适合他们的并行研究场景，因为每个 worker 都需要保持较强自治性，而不是不断回到中心服务请求“下一步该看什么”。</p>
+<h3>5. 结构化的不是正文本身，而是 sharing envelope</h3>
+<p>他们的 <code>Finding</code> 结构看起来很强 schema，但真正结构化得最厉害的，其实是正文外面的 envelope：</p>
+<ul>
+<li><code>finding_type</code></li>
+<li><code>idea_uid</code></li>
+<li><code>run_id</code></li>
+<li><code>dataset</code></li>
+<li><code>weak_model</code></li>
+<li><code>strong_model</code></li>
+<li><code>pgr</code></li>
+<li><code>num_seeds</code></li>
+<li><code>commit_id</code></li>
+<li><code>files_snapshot</code></li>
+</ul>
+<p>而 <code>content/summary</code> 仍然是自由文本。</p>
+<p>这说明他们的目标不是把研究表达强行模板化，而是让系统知道：这条内容处在什么实验上下文里、能不能进 leaderboard、有没有对应 snapshot、值不值得其他 worker 消费。</p>
+<p>这对高度结构化实验环境非常有效。</p>
+<h2>关键取舍</h2>
+<h3>1. 选择“全量拉取 + 本地 JSON 文件”，而不是增量同步或复杂检索</h3>
+<p>这是一个非常务实的取舍。</p>
+<p>优点：</p>
+<ul>
+<li>实现简单</li>
+<li>调试容易</li>
+<li>worker 端几乎不需要复杂状态</li>
+<li>本地文件天然兼容 Claude 的通用 file tools</li>
+</ul>
+<p>代价：</p>
+<ul>
+<li><code>/api/findings/all</code> 是广播式、全量式，不够精细</li>
+<li>findings 多了以后会变吵</li>
+<li>去重主要依赖本地文件名和 <code>id</code></li>
+<li>没有真正的增量订阅或路由机制</li>
+</ul>
+<p>但在他们的具体场景里，这个代价是可接受的。因为并行 worker 数并不大，运行时间虽长，但知识共享的总规模仍处在“几百条 findings 以内依然可管理”的区间。</p>
+<h3>2. 选择“依赖 agent 自己检索”，而不是给专门 retrieval tool</h3>
+<p>这带来两个效果。</p>
+<p>优点：</p>
+<ul>
+<li>agent 可以更自由地浏览和联想</li>
+<li>避免 retrieval API 把问题空间压窄成关键词匹配</li>
+<li>更接近真实研究者的文档工作流</li>
+</ul>
+<p>代价：</p>
+<ul>
+<li>检索质量更依赖 agent 本身是否会读、会搜、会比较</li>
+<li>共享内容多了以后，agent 可能漏看重要 findings</li>
+<li>没有显式的 reranker、召回、去噪机制</li>
+</ul>
+<p>这个取舍成立的前提是：作者相信当前模型在文件工作面上的 agentic 浏览能力，已经足以胜过窄接口检索。这是一个很具体、也很场景化的工程判断。</p>
+<h3>3. 选择“workspace snapshot”这种粗粒度复用，而不是 patch / diff 级复用</h3>
+<p><code>snapshot</code> 直接上传整个 workspace 的压缩包。</p>
+<p>优点：</p>
+<ul>
+<li>最简单可靠</li>
+<li>复用时不需要还原复杂依赖关系</li>
+<li>别的 worker 下载下来就能看完整上下文</li>
+<li>非常适合研究中“这个思路到底怎么实现的”这种问题</li>
+</ul>
+<p>代价：</p>
+<ul>
+<li>粒度很粗，体积更大</li>
+<li>容易把与核心思路无关的上下文一并带过去</li>
+<li>复用更像“参考一整套工作区”，而不是“继承一小段精炼改动”</li>
+</ul>
+<p>但对研究任务来说，这个粗粒度反而有优势。因为 research idea 的可迁移部分，常常不只是几行 patch，而是代码、配置、缓存假设、日志解读一起构成的工作上下文。</p>
+<h3>4. 选择强实验 schema，而不是开放式知识模型</h3>
+<p><code>Finding</code> 的字段设计之所以这么结构化，是因为它面对的是：</p>
+<ul>
+<li>单一问题域</li>
+<li>统一指标体系</li>
+<li>明确的实验配置</li>
+<li>需要 leaderboard 排序</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>可比较性强</li>
+<li>可以自动排序、筛选、展示结果</li>
+<li>方便约束 result 的质量门槛</li>
+</ul>
+<p>代价：</p>
+<ul>
+<li>更依赖任务域</li>
+<li>不适合承接开放式、多主题、长时间跨度的研究笔记</li>
+<li>对“模糊但重要”的洞察不够友好</li>
+</ul>
+<p>所以不能把这套 schema 直接提升成通用知识库范式。它首先是一个**实验研究系统的数据结构**。</p>
+<h3>5. 选择共享促进交叉授粉，但接受一定程度的探索收敛风险</h3>
+<p>他们想解决的是 parallel AAR 完全隔离导致的重复劳动，所以引入 findings 与 snapshot 共享。</p>
+<p>优点：</p>
+<ul>
+<li>worker 能更快知道哪些方向不值得继续</li>
+<li>高价值结果能被快速复用</li>
+<li>可以减少平行重复实验</li>
+</ul>
+<p>代价：</p>
+<ul>
+<li>共享本身会推动 worker 向少数 promising 方向收敛</li>
+<li>可能增加 herd behavior</li>
+<li>如果共享面过强，反而会损失探索多样性</li>
+</ul>
+<p>所以他们一边共享，一边又通过“给不同 worker 不同 research direction”来对冲 entropy collapse。这说明 knowledge sharing 不是孤立设计，而是和整个并行探索策略绑在一起的。</p>
+<h2>为什么这些取舍在这个场景下成立</h2>
+<p>把上面的设计放回具体环境里看，会更清楚。</p>
+<p>这套 sharing 成立，依赖几个前提：</p>
+<p>1. **研究问题相对集中**</p>
+<p>   所有 worker 都在 weak-to-strong 这个总问题下工作，彼此 findings 的可复用性本来就高。</p>
+<p>2. **评估指标统一**</p>
+<p>   <code>PGR</code> 提供了很强的共享排序依据，所以系统能较自然地区分 result 和非 result。</p>
+<p>3. **共享对象规模可控**</p>
+<p>   worker 数量和 findings 数量都没有大到必须上复杂检索基础设施。</p>
+<p>4. **agent 已经具备基本文件浏览能力**</p>
+<p>   否则“同步到本地再靠 agent 自搜”就会退化成噪音堆。</p>
+<p>5. **目标是研究效率，不是知识出版**</p>
+<p>   所以他们优先优化 cross-pollination，而不是长期可读性、冲突保留或人类读者体验。</p>
+<h2>不应过度泛化的地方</h2>
+<p>如果把这套设计借到别的系统里，有几处必须小心。</p>
+<h3>1. 它不天然适合开放式研究知识库</h3>
+<p>公共知识库往往面对：</p>
+<ul>
+<li>更异构的来源</li>
+<li>更模糊的结论边界</li>
+<li>没有统一指标</li>
+<li>多主题并存</li>
+<li>冲突需要被保留而不是被压平</li>
+</ul>
+<p>这些都和 AAR 的实验场景不同。</p>
+<h3>2. 它的结构化程度来自任务本身，而不是抽象上的“更先进”</h3>
+<p>AAR 的 schema 不是普适真理，而是 weak-to-strong 实验环境给出来的自然结果。</p>
+<h3>3. 它优化的是“并行研究 worker 的复用效率”</h3>
+<p>而不是“长期知识沉淀的张力保留”。如果直接照搬到公共知识库，可能会过度偏向 result、排序和收敛，而牺牲探索期的模糊信号。</p>
+<h2>压缩成一句话</h2>
+<p>AAR knowledge sharing 的核心洞察是：**在高度结构化、可判分的自动化研究环境里，最有效的共享方式未必是更强的在线检索，而是把共享知识同步成 agent 的本地工作面，并把“认知发现”和“可运行状态”分层保存。**</p>
+<p>它的核心取舍是：用简单广播、自由本地检索和粗粒度 snapshot，换取足够好的 cross-pollination 速度；并接受这套机制更依赖统一任务、统一指标与较小共享规模的现实约束。</p>
+<h2>来源依据</h2>
+<ul>
+<li><a href="safety-research-automated-w2s-research-repo-map.html">safety-research/automated-w2s-research 仓库地图</a></li>
+<li><a href="automated-weak-to-strong-researcher.html">Automated Weak-to-Strong Researcher</a></li>
+<li><code>w2s_research/research_loop/agent.py</code></li>
+<li><code>w2s_research/research_loop/prompt.jinja2</code></li>
+<li><code>w2s_research/research_loop/tools/findings_sync.py</code></li>
+<li><code>w2s_research/research_loop/tools/server_api_tools.py</code></li>
+<li><code>w2s_research/research_loop/tools/prior_work_tools.py</code></li>
+<li><code>w2s_research/web_ui/backend/app.py</code></li>
+<li><code>w2s_research/web_ui/backend/models.py</code></li>
+<li><code>w2s_research/infrastructure/s3_utils.py</code></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="automated-weak-to-strong-researcher.html">Automated Weak-to-Strong Researcher</a></li>
+<li><a href="ai-self-evolution-research-harnesses.html">AI 自演化研究 Harness</a></li>
+<li><a href="safety-research-automated-w2s-research-repo-map.html">safety-research/automated-w2s-research 仓库地图</a></li>
+<li><a href="codebases-as-knowledge-sources.html">代码库作为知识来源</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

@@ -35,9 +35,9 @@ Move files to match the active directory plan:
 
 - external source files should live in `raw/external/` or `inbox/`
 - personal source files should live in `raw/personal/`
-- maintained knowledge pages should live in `wiki/knowledge/`
+- maintained topic pages should live in `wiki/topics/`
 - maintained self pages should live in `wiki/self/`
-- mixed analysis pages should live in `wiki/bridges/`
+- reusable framework pages should live in `wiki/frameworks/`
 
 If a file is clearly in the wrong top-level area, move it before doing deeper maintenance.
 
@@ -49,7 +49,7 @@ Treat these as intentional roots, not orphans:
 - `wiki/index.md`
 - `wiki/log.md`
 
-For maintained pages in `wiki/knowledge/`, `wiki/self/`, and `wiki/bridges/`:
+For maintained pages in `wiki/topics/`, `wiki/self/`, and `wiki/frameworks/`:
 
 - each page should be linked from at least one index page or another maintained page
 - if a page has no inbound path, add links or move it to `inbox/`
@@ -118,5 +118,5 @@ When linting this repository, always check for:
 - source files placed directly under `raw/` instead of its subfolders
 - generated pages that are not under `wiki/`
 - stale placeholder files in `skills/`
-- unlinked pages under `wiki/bridges/essays/`
-- English-first maintained pages under `wiki/knowledge/`, `wiki/self/`, and `wiki/bridges/`
+- unlinked pages under `wiki/topics/`
+- English-first maintained pages under `wiki/topics/`, `wiki/self/`, and `wiki/frameworks/`

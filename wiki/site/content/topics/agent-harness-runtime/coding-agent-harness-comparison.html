@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claude Code、Codex 与 pi 的 harness 对比 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/coding-agent-harness-comparison.md</div>
+      <h1>Claude Code、Codex 与 pi 的 harness 对比</h1>
+<h2>摘要</h2>
+<p>从当前本地材料看，<code>pi</code>、Claude Code、Codex 都属于 terminal-first 的 coding agent harness。它们共享的基本形状是：给模型一组文件与命令工具、把会话组织成线性消息流、允许读取项目级上下文文件，并围绕长任务构造某种状态保持与交互壳。</p>
+<p>但三者的真正分歧不在“是不是 coding agent”，而在 harness 该有多厚。</p>
+<ul>
+<li><code>pi</code> 倾向把核心压到最薄：少量 prompt、极少默认工具、强可观察性、把复杂能力外置到文件、CLI、<code>tmux</code> 与 extension system。</li>
+<li>Claude Code 在当前本地材料中的形象更像“更厚的内建 orchestration”：更重的 system prompt、更多内建模式、更多隐藏的辅助流程。</li>
+<li>Codex 在当前本地材料里看起来处于中间位置：同样是 terminal chat harness，但工具面和 UI 路径更接近极简壳，而不像 Claude Code 那样把很多策略直接烤进核心工作流。</li>
+</ul>
+<p>需要注意：这页对 <code>pi</code> 的判断主要来自本地一手资料；Claude Code 部分现在已经有官方 <code>How Claude Code works</code> 作为较强依据，因此相关判断比之前更稳；Codex 部分在当前仓库里仍主要来自侧面对照，因此仍应视为中等置信度画像，而不是完整官方定稿。</p>
+<h2><code>pi-coding-agent</code> 是如何实现的</h2>
+<p>按本地仓库地图与说明，<code>pi</code> 不是一个孤立 CLI，而是一套分层实现：</p>
+<ul>
+<li><code>pi-ai</code>：统一多 provider 的 LLM API，负责流式输出、tool calling、reasoning、跨 provider context handoff、token / cost 统计。</li>
+<li><code>pi-agent-core</code>：把模型调用和 tool loop 包成 agent runtime，处理状态、消息队列、附件与 transport。</li>
+<li><code>pi-tui</code>：终端 UI 层，采用保留 scrollback 的 retained-mode + differential rendering 方案，而不是 fullscreen TUI。</li>
+<li><code>pi-coding-agent</code>：最终用户面对的 CLI，负责 session、命令、context files、自定义资源、SDK / RPC 暴露等。</li>
+</ul>
+<p>也就是说，它的实现不是“一个 prompt 加四个工具”，而是：</p>
+<p>1. 先把 provider 抽象和事件流做成基础设施。</p>
+<p>2. 再把 agent loop 做成可复用 runtime。</p>
+<p>3. 再把 TUI、session 与 customization 编排成产品层。</p>
+<p>这种切法的好处是，<code>pi</code> 既能作为 CLI 使用，也能暴露为 SDK 与 RPC runtime，而不必把 UI 和 agent loop 写死在一起。</p>
+<h2><code>pi</code> 的结构长什么样</h2>
+<p>如果只看 <code>packages/coding-agent</code> 这一层，它的结构重点不在“功能列表”，而在四个可组合面：</p>
+<h3>1. 会话与上下文面</h3>
+<ul>
+<li>session 按工作目录自动保存，底层是带 <code>id</code> / <code>parentId</code> 的 JSONL tree。</li>
+<li>支持继续、恢复、fork、tree 导航与 compaction。</li>
+<li>启动时层级加载 <code>AGENTS.md</code> / <code>CLAUDE.md</code>，并允许用 <code>SYSTEM.md</code> / <code>APPEND_SYSTEM.md</code> 覆盖或追加系统提示。</li>
+</ul>
+<p>这说明 <code>pi</code> 把“长期工作上下文”建模成文件系统和会话树，而不是只靠当下 prompt。</p>
+<h3>2. 极简 agent 面</h3>
+<ul>
+<li>默认 system prompt 很短。</li>
+<li>默认工具只有 <code>read</code>、<code>write</code>、<code>edit</code>、<code>bash</code>。</li>
+<li>若要限制能力，可退化成只读工具；若要增强能力，则交给扩展系统。</li>
+</ul>
+<p>这里的核心判断是：现代模型已经懂得基本 coding workflow，harness 不必把太多执行策略提前固化。</p>
+<h3>3. 终端交互面</h3>
+<ul>
+<li><code>pi-tui</code> 走的是“保留终端 scrollback”的路径。</li>
+<li>用 synchronized output 和 differential rendering 减少闪烁。</li>
+<li>编辑器、消息流、工具输出和设置 UI 都是围绕原生终端能力搭起来的。</li>
+</ul>
+<p>这意味着它优先保留终端自带的滚动、搜索和线性阅读体验，而不是追求更强的全屏 UI 表达。</p>
+<h3>4. 扩展与再编排面</h3>
+<ul>
+<li>Prompt templates</li>
+<li>Skills</li>
+<li>Extensions</li>
+<li>Themes</li>
+<li>Pi packages</li>
+<li>SDK</li>
+<li>RPC mode</li>
+</ul>
+<p>这层很关键。<code>pi</code> 不是没有复杂能力，而是把它们移出核心，做成“你可以自己装、自己写、自己换”的二级层。</p>
+<h2>三者的共同点</h2>
+<p>基于当前本地材料，<code>pi</code>、Claude Code、Codex 至少共享这些形状：</p>
+<ul>
+<li>都把 coding task 组织成“用户消息 -&gt; tool 调用 -&gt; assistant 回复”的线性会话。</li>
+<li>都默认运行在 terminal-first 的工作面上，而不是纯 IDE 补全。</li>
+<li>都依赖项目级上下文文件或类似机制，把 repo-specific 规则注入到会话里。</li>
+<li>都把文件读写、命令执行之类的能力视为核心工具面。</li>
+<li>都在处理同一个基本问题：如何让模型在真实代码库里维持上下文、找对文件、执行修改并汇报结果。</li>
+</ul>
+<p>所以它们首先不是三种不同物种，而是同一类 harness 在“补偿面”上做出的不同取舍。</p>
+<h2>三者最重要的不同</h2>
+<h3>1. 对“核心壳厚度”的判断不同</h3>
+<p><code>pi</code> 的默认立场是：核心壳应尽量薄，很多能力不应该 baked in。</p>
+<p>Claude Code 在当前本地材料里的对照位置则更厚：</p>
+<ul>
+<li>更长的 system prompt</li>
+<li>更多内建功能模式</li>
+<li>更多权限与流程编排</li>
+<li>更多由 harness 代替用户决定的工作方式</li>
+</ul>
+<p>Codex 在本地材料里露出的信号较少，但 <code>pi</code> 作者明确把 Codex 的工具定义视为与 <code>pi</code> 相近的极简面。这暗示 Codex 至少在“默认工具协议”上，没有走 Claude Code 那种很厚的工具与流程层。</p>
+<h3>2. 对“可观察性”的优先级不同</h3>
+<p><code>pi</code> 把 observability 放得很高。它反对：</p>
+<ul>
+<li>隐藏的上下文注入</li>
+<li>黑箱 sub-agent</li>
+<li>不可查询的后台 bash</li>
+<li>只给结果、不暴露过程的 plan flow</li>
+</ul>
+<p>Claude Code 在本地材料中的主要批评点，几乎全部围绕可观察性不足：</p>
+<ul>
+<li>plan mode 背后常有不可见的子流程</li>
+<li>背景 bash 的状态不够透明</li>
+<li>sub-agent 是“黑箱中的黑箱”</li>
+<li>system prompt 与 tools 会随版本变化，用户不容易稳定控制</li>
+</ul>
+<p>Codex 在本地材料中没有被这样集中批评。保守地说，本地证据至少说明它和 <code>pi</code> 一样，都更接近“线性终端会话 + 极简工具面”的方向。</p>
+<h3>3. 对“复杂能力该内建还是外置”的判断不同</h3>
+<p><code>pi</code> 明确把很多常见能力外置：</p>
+<ul>
+<li>plan mode -&gt; <code>PLAN.md</code></li>
+<li>to-dos -&gt; <code>TODO.md</code></li>
+<li>background bash -&gt; <code>tmux</code></li>
+<li>MCP -&gt; CLI + README</li>
+<li>sub-agents -&gt; 用 <code>bash</code> 再起一个 <code>pi</code>，或扩展实现</li>
+<li>permission gates -&gt; extension 自己做</li>
+</ul>
+<p>Claude Code 在本地材料里的相反特点，是它把更多这些能力做成了内建产品功能。</p>
+<p>Codex 的本地证据则更偏中间：至少工具面不厚，但本地材料还不够支撑更细的结论。</p>
+<h2>各自独特的设计取舍</h2>
+<h3><code>pi</code></h3>
+<p>独特点：</p>
+<ul>
+<li>用最小 system prompt 和四工具默认面来押注模型先验能力。</li>
+<li>用 <code>pi-ai</code> 把多 provider、cross-provider handoff、tool result split、partial JSON parsing 这些底层抽象做出来。</li>
+<li>用 extension / package system 把“更厚的 harness”变成可选层，而不是默认层。</li>
+</ul>
+<p>代价：</p>
+<ul>
+<li>用户必须更主动地管理工作流。</li>
+<li>默认安全栏杆更弱，<code>YOLO</code> 权限模型风险更高。</li>
+<li>很多“开箱即用”的便利性需要用户自己组装。</li>
+</ul>
+<h3>Claude Code</h3>
+<p>按当前本地材料，独特点主要体现在“更强的产品化 orchestration”：</p>
+<ul>
+<li>更厚的 prompt 与 tool layer</li>
+<li>内建 plan mode、background bash、sub-agent 等高级能力</li>
+<li>更强的权限与运行控制逻辑</li>
+<li>把 session persistence、memory、context compaction、checkpoints 做成核心系统能力</li>
+</ul>
+<p>代价也很明确：</p>
+<ul>
+<li>用户更难完全知道系统到底注入了什么、看了什么、为什么这样做</li>
+<li>工作流更依赖官方默认路径</li>
+<li>版本变化更容易改变 agent 行为</li>
+</ul>
+<h3>Codex</h3>
+<p>当前本地材料里，Codex 最明显的信号有两条：</p>
+<ul>
+<li>终端交互路径上，它和 Claude Code、<code>pi</code> 同属“线性消息流 + 非 fullscreen TUI”的一类。</li>
+<li>工具定义上，它更接近 <code>pi</code> 的极简面，而不是厚重工具层。</li>
+</ul>
+<p>因此一个保守判断是：Codex 的独特取舍可能在于，把核心 agent loop 和工具协议做得相对克制，然后把更多复杂性放到其他层，而不是像 Claude Code 那样在默认 harness 里直接展开很多产品机制。</p>
+<p>但这部分在当前本地仓库里证据不足，不能进一步说得太满。</p>
+<h2>如果把三者放在同一张图里</h2>
+<p>可以把它们粗略放在一条轴上：</p>
+<ul>
+<li>更厚、更强内建 orchestration：Claude Code</li>
+<li>更薄、更强可观察性与可改造性：<code>pi</code></li>
+<li>在终端形态与极简工具面上更接近 <code>pi</code>，但本地证据还不足以完整画像：Codex</li>
+</ul>
+<p>另一条轴则是“内建能力”与“可编排能力”的分配：</p>
+<ul>
+<li>Claude Code：更多能力直接做成产品默认面</li>
+<li><code>pi</code>：默认核心极薄，把能力外移到文件、CLI、<code>tmux</code>、extensions、packages</li>
+<li>Codex：从当前本地材料看，至少在工具面上没有走非常厚的默认层</li>
+</ul>
+<h2>一个更抽象的结论</h2>
+<p>如果用 <a href="harness-engineering.html">Harness Engineering（约束壳工程）</a> 的语言来看，三者都在给模型加补偿层，但它们对“哪些补偿必须内建”有不同判断。</p>
+<ul>
+<li>Claude Code 更像是把较多补偿直接做进产品。</li>
+<li><code>pi</code> 更像是认为很多补偿应该由用户按需拼装，默认只保留最小壳。</li>
+<li>Codex 在当前本地材料里更像是保留较克制的默认壳，但没有像 <code>pi</code> 那样把“反内建哲学”明确写成一整套产品主张。</li>
+</ul>
+<p>所以真正的差异，不只是 feature checklist，而是对 “harness 的职责边界” 的不同回答。</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../../frameworks/Harness架构判断框架.html">Harness 架构判断框架</a></li>
+<li><a href="../../frameworks/AI系统产品判断框架.html">AI 系统产品判断框架</a></li>
+</ul>
+<h2>来源依据</h2>
+<ul>
+<li><a href="claude-code-harness.html">Claude Code：较厚的 agentic coding harness</a></li>
+<li><a href="pi-coding-agent-harness.html">Pi coding agent：一种极简且可观察的 coding harness</a></li>
+<li><a href="badlogic-pi-mono-repo-map.html">badlogic/pi-mono 仓库地图</a></li>
+<li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+<li><a href="../../../../../raw/external/pi-mono-coding-agent-readme.md">pi-mono/packages/coding-agent README</a></li>
+<li><a href="../../../../../raw/external/pi-coding-agent-retrospective.md">What I learned building an opinionated and minimal coding agent</a></li>
+<li><a href="../../../../../raw/external/github-repo-badlogic-pi-mono.md">GitHub repo snapshot: badlogic/pi-mono</a></li>
+<li><a href="../../../../../raw/external/claude-code-how-it-works.md">How Claude Code works</a></li>
+<li><a href="../../../../../raw/external/claude-code-analysis-southbridge.md">Claude Code: An analysis</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="claude-code-harness.html">Claude Code：较厚的 agentic coding harness</a></li>
+<li><a href="pi-coding-agent-harness.html">Pi coding agent：一种极简且可观察的 coding harness</a></li>
+<li><a href="badlogic-pi-mono-repo-map.html">badlogic/pi-mono 仓库地图</a></li>
+<li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>
