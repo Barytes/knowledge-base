@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>refactoringhq/tolaria 仓库地图 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/refactoringhq-tolaria-repo-map.md</div>
+      <h1>refactoringhq/tolaria 仓库地图</h1>
+<h2>摘要</h2>
+<p>这页是围绕主题“仓库架构与工程实践”维护的 <code>refactoringhq/tolaria</code> 第一版仓库地图。</p>
+<p>从 README 与顶层结构看，这个仓库已经形成清晰的主题定位与控制边界，适合继续按机制而非按文件做定向深读。</p>
+<p>当前置信度仍停留在“架构地图”层，而不是“实现已读透”层：它已经足够支撑定向追问，但还不足以裁定每一条工程实践判断。</p>
+<h2>仓库目的</h2>
+<ul>
+<li>公开定位：仓库元数据与 README 表明它有明确主题定位；更精确的中文摘要建议在后续深读时补全。</li>
+<li>观察时默认分支：<code>main</code></li>
+<li>主要语言：<code>TypeScript</code></li>
+<li>仓库地址：https://github.com/refactoringhq/tolaria</li>
+</ul>
+<h2>架构地图</h2>
+<h3>顶层目录</h3>
+<ul>
+<li><code>.claude</code></li>
+<li><code>.github</code></li>
+<li><code>.husky</code></li>
+<li><code>demo-vault-v2</code></li>
+<li><code>design</code></li>
+<li><code>docs</code></li>
+<li><code>e2e</code></li>
+<li><code>mcp-server</code></li>
+<li><code>patches</code></li>
+<li><code>public</code></li>
+<li><code>scripts</code></li>
+<li><code>src</code></li>
+<li><code>src-tauri</code></li>
+<li><code>tests</code></li>
+</ul>
+<h3>顶层文件</h3>
+<ul>
+<li><code>.codescene-thresholds</code></li>
+<li><code>.codesceneignore</code></li>
+<li><code>.codescenerc</code></li>
+<li><code>.env.example</code></li>
+<li><code>.githooks-info</code></li>
+<li><code>.gitignore</code></li>
+<li><code>AGENTS.md</code></li>
+<li><code>CLAUDE.md</code></li>
+<li><code>CONTRIBUTING.md</code></li>
+<li><code>LICENSE</code></li>
+<li><code>README.md</code></li>
+<li><code>SECURITY.md</code></li>
+<li><code>components.json</code></li>
+<li><code>eslint.config.js</code></li>
+<li><code>index.html</code></li>
+<li><code>package.json</code></li>
+<li><code>playwright.config.ts</code></li>
+<li><code>playwright.integration.config.ts</code></li>
+<li><code>playwright.smoke.config.ts</code></li>
+<li><code>pnpm-lock.yaml</code></li>
+<li><code>pnpm-workspace.yaml</code></li>
+<li><code>trademarks.md</code></li>
+<li><code>tsconfig.app.json</code></li>
+<li><code>tsconfig.json</code></li>
+<li><code>tsconfig.node.json</code></li>
+<li><code>ui-design.pen</code></li>
+<li><code>vite.config.ts</code></li>
+</ul>
+<h2>机制清单</h2>
+<h3>自动化与仓库契约</h3>
+<ul>
+<li>这个仓库通过 GitHub Actions 工作流把质量与交付预期外化出来，而不是只依赖贡献者的非正式自觉。</li>
+<li>这很可能是在补偿本地开发与合并时质量检查之间的漂移。</li>
+</ul>
+<h3>构建与依赖边界</h3>
+<ul>
+<li>Manifest 文件把运行时与打包契约显式放在仓库根部。</li>
+<li>这能帮助后续阅读者在深入实现文件之前先找到真正的执行边界。</li>
+</ul>
+<h3>Agent 或贡献者控制层</h3>
+<ul>
+<li>这个仓库似乎包含显式的指令文件或编辑器规则，用来约束自动化贡献者或人工贡献者的行为方式。</li>
+<li>这些文件是研究控制逻辑、权限机制与任务塑形方式的强证据点。</li>
+</ul>
+<h3>验证层</h3>
+<ul>
+<li>单独的 <code>tests/</code> 目录说明这个仓库把验证当作一级维护子系统。</li>
+<li>这里最可迁移的问题不只是“测了什么”，而是测试结构如何与 CI 和发布规则相互作用。</li>
+</ul>
+<h3>实现边界</h3>
+<ul>
+<li>单独的 <code>src/</code> 目录把实现代码与仓库控制文件清楚分开。</li>
+<li>这有助于区分运行支架与核心运行时表面。</li>
+</ul>
+<h2>证据锚点</h2>
+<ul>
+<li>Snapshot 来源：<a href="../../../../../raw/external/github-repo-refactoringhq-tolaria.md">github-repo-refactoringhq-tolaria.md</a></li>
+<li>仓库：<code>refactoringhq/tolaria</code></li>
+<li>观察分支：<code>main</code></li>
+<li>解析到的 commit：<code>622977aeb8baece4a132553ddd082b92659a4ce7</code></li>
+</ul>
+<ul>
+<li><code>.github/workflows/README.md</code></li>
+<li><code>.github/workflows/auto-update-prs.yml</code></li>
+<li><code>.github/workflows/ci.yml</code></li>
+<li><code>.github/workflows/release-stable.yml</code></li>
+<li><code>.github/workflows/release.yml</code></li>
+<li><code>AGENTS.md</code></li>
+<li><code>CLAUDE.md</code></li>
+<li><code>README.md</code></li>
+<li><code>package.json</code></li>
+<li><code>pnpm-workspace.yaml</code></li>
+</ul>
+<h2>开放问题</h2>
+<ul>
+<li>围绕当前研究主题，哪些实现文件承载了主要运行路径？</li>
+<li>README 的叙述与代码、CI 真正执行的路径之间，哪里开始出现偏差？</li>
+<li>哪些 <code>src/</code> 模块定义了杠杆最高的执行路径或架构接缝？</li>
+<li>哪些 workflow 检查是真正的硬门，哪些只是信息性自动化？</li>
+</ul>
+<h2>来源依据</h2>
+<ul>
+<li><a href="../../../../../raw/external/github-repo-refactoringhq-tolaria.md">仓库 snapshot</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../context-memory-knowledge-system/gogo.html">gogo：本地 llm-wiki 桌面应用</a></li>
+<li><a href="../career-positioning-job-search/Naval财富框架应用于求职困境.html">Naval 财富框架应用于求职困境</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

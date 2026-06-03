@@ -20,6 +20,8 @@ Use the local workflow skills as sub-guides when relevant:
 - `skills/bridge-write/`
 - `skills/framework-distill/`
 
+Do not write to `notebook/`. That directory is a user-owned draft notebook. Maintenance workflows may read it only when the user explicitly asks, and must not ingest, lint, normalize, reorganize, move, delete, or otherwise modify its contents.
+
 When this skill creates or updates maintained pages under `wiki/`, write them in Chinese by default. Keep paths, commands, repository names, code identifiers, and necessary technical terms in their original form when useful.
 
 If the user is asking a repository question rather than requesting maintenance, route to `kb-query` instead of doing operational work.
@@ -46,6 +48,9 @@ For common file operations, use the local shell scripts to avoid token-wasting e
 
 # Ingest single file
 ./skills/kb-ops/scripts/kb-ingest.sh file <path>
+
+# Regenerate the generated HTML browsing view
+./skills/kb-ops/scripts/kb-ingest.sh site
 ```
 
 ## Default Invocation
@@ -59,7 +64,8 @@ That default means:
 1. ingest material from `inbox/` when present
 2. update affected maintained pages
 3. run a light lint pass
-4. report what changed and what still needs review
+4. regenerate `wiki/site/`
+5. report what changed and what still needs review
 
 ## Command Modes
 
@@ -83,12 +89,15 @@ When asked to ingest:
 4. Compile the material into `wiki/topics/` or `wiki/self/`.
 5. Update `wiki/index.md` if the maintained structure changed.
 6. Append a short log entry to `wiki/log.md`.
+7. 自动重新生成 `wiki/site/`，再报告 ingest 完成。
 
 Use:
 
 - `research-ingest` for external materials
 - `self-distill` for personal materials
 - `bridge-write` when the result should mix both layers
+
+If a new top-level topic is needed, add its metadata to `wiki/topics/topics.json` before regenerating `wiki/site/`.
 
 ## Update Mode
 
@@ -100,6 +109,7 @@ When asked to update:
 4. Update existing pages instead of creating duplicates.
 5. Write back any durable synthesis.
 6. Log meaningful updates in `wiki/log.md`.
+7. Regenerate `wiki/site/` when any maintained page or index changed.
 
 Use `bridge-write` when the update should reflect the user's recurring judgment, not just external facts.
 Use `framework-distill` when the update should lift reusable judgment skeletons from `wiki/topics/` into `wiki/frameworks/`.
@@ -115,6 +125,7 @@ When asked to lint:
 5. Normalize English-first maintained wiki pages into Chinese when needed.
 6. Repair links or move uncertain content to `inbox/`.
 7. Append a `lint` entry to `wiki/log.md`.
+8. Regenerate `wiki/site/` when maintained wiki files changed.
 
 Be conservative. Prefer moving uncertain material to `inbox/` instead of deleting it.
 
@@ -125,7 +136,8 @@ When asked to run a full maintenance cycle:
 1. Ingest targeted new materials or the contents of `inbox/`.
 2. Update any affected topic, self, or framework pages.
 3. Run a light lint pass at the end.
-4. Return a short summary of what changed and what still needs review.
+4. Regenerate `wiki/site/`.
+5. Return a short summary of what changed and what still needs review.
 
 ## Response Style
 

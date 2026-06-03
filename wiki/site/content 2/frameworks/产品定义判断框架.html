@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>产品定义判断框架 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../index.html">首页</a>
+    <a href="../../layers/topics.html">话题</a>
+    <a href="../../layers/self.html">自我</a>
+    <a href="../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">frameworks/产品定义判断框架.md</div>
+      <h1>产品定义判断框架</h1>
+<p>这页服务于新产品定义、未来场景拆解、MVP 形态判断、记忆系统与 agent 产品定位这类问题。</p>
+<p>它不回答“功能怎么做”，而是先回答“到底在定义什么产品”。</p>
+<h2>先看什么</h2>
+<p>遇到产品定义问题时，优先先问六件事：</p>
+<p>1. 真正值得优化的高价值问题是什么</p>
+<p>2. 用户是谁，关键场景是什么，代价最大的摩擦在哪里</p>
+<p>3. 这到底是搜索工具、研究助手、行为教练，还是别的产品</p>
+<p>4. 什么是最小但仍然像 magic 的 MVP</p>
+<p>5. 成功怎么定义，也就是什么算完成、什么算有效</p>
+<p>6. 第一性决策到底是用途、边界和上下文，还是只是技术栈选择</p>
+<h2>核心判断</h2>
+<h3>1. 最重要的架构决策，往往发生在写第一行代码之前</h3>
+<p>很多看似技术问题，真正的分水岭其实是产品定义问题。核心问题一变，目标、交互、输出格式和技术架构都会一起变。</p>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/ai-product-product-definition/ai-architect-lens.html">AI Architect Lens</a></li>
+</ul>
+<h3>2. builder 先看功能，architect 先看高价值问题</h3>
+<p>同一组能力可以被包装成完全不同的产品。差别不在“能不能做”，而在“到底在解决哪个更值钱的问题”。</p>
+<p>所以产品定义的第一步，不该是列 feature，而该是先找：</p>
+<ul>
+<li>真正的痛点</li>
+<li>痛点为什么重要</li>
+<li>这个问题被解决后，用户世界里什么会明显变好</li>
+</ul>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/ai-product-product-definition/ai-architect-lens.html">AI Architect Lens</a></li>
+</ul>
+<h3>3. 先写 <code>Product Definition Brief</code>，再进入实现</h3>
+<p>在这类问题里，第一阶段产物不该是 prompt、页面或代码，而该是一份足够清楚的 brief，至少回答：</p>
+<ul>
+<li>核心问题是什么</li>
+<li>用户是谁，关键场景是什么</li>
+<li>MVP 的最小形状是什么</li>
+<li>成功标准和 acceptance criteria 是什么</li>
+</ul>
+<p>没有这一层，后面的实现很容易只是更快地做错东西。</p>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/ai-product-product-definition/ai-architect-lens.html">AI Architect Lens</a></li>
+</ul>
+<h3>4. 同一能力，不同目标，会导向不同产品</h3>
+<p>例如同样是实时辅助系统，它可以是：</p>
+<ul>
+<li>信息外包系统</li>
+<li>行为表现教练</li>
+</ul>
+<p>同样是记忆系统，它可以是：</p>
+<ul>
+<li>快速事实检索工具</li>
+<li>研究助手</li>
+<li>长期模式发现系统</li>
+</ul>
+<p>一旦目标不同，所需数据、反馈闭环、评测方式和架构重点都会不同。</p>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/ai-product-product-definition/ai-architect-lens.html">AI Architect Lens</a></li>
+<li><a href="../topics/ai-product-product-definition/ai-architect-context-intelligence.html">AI Architect 的 Context Intelligence 镜头</a></li>
+</ul>
+<h3>5. MVP 的标准不是越糙越快，而是最小且足够可被判断</h3>
+<p>一个有效 MVP 不只是能运行，还要足够像一个值得被评估的产品。否则测试到的可能只是粗糙感，而不是假设本身。</p>
+<p>“最小”不等于“半成品”。更准确的说法是：最小但仍然能让用户产生真实反应。</p>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/ai-product-product-definition/ai-architect-lens.html">AI Architect Lens</a></li>
+<li><a href="../topics/ai-product-product-definition/pre-pmf-validation-playbook.html">Pre-PMF 验证手册</a></li>
+</ul>
+<h3>6. 对 AI 记忆系统，第一性决策是用途与边界，不是向量库</h3>
+<p>高价值记忆系统首先在做个人上下文移植，而不是单纯教模型更多公共知识。</p>
+<p>因此更先该问的是：</p>
+<ul>
+<li>它服务事实检索，还是深层模式发现</li>
+<li>它更像搜索框，还是研究助手</li>
+<li>它应该知道什么，不该知道什么</li>
+<li>访问边界和信任边界怎么划</li>
+</ul>
+<p>这些问题比“先选哪种 RAG 技术”更接近决定性选择。</p>
+<p>主要依据：</p>
+<ul>
+<li><a href="../topics/ai-product-product-definition/ai-architect-context-intelligence.html">AI Architect 的 Context Intelligence 镜头</a></li>
+<li><a href="../topics/context-memory-knowledge-system/ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a></li>
+</ul>
+<h2>常见张力</h2>
+<ul>
+<li>可能性能做 vs 值不值得做</li>
+<li>feature 列表 vs 高价值问题</li>
+<li>MVP 速度 vs 测试可信度</li>
+<li>通用能力 vs 明确产品主语</li>
+<li>全量上下文接入 vs 信任边界</li>
+<li>技术栈选择 vs 产品定义选择</li>
+</ul>
+<h2>推荐阅读顺序</h2>
+<p>1. <a href="../topics/ai-product-product-definition/ai-architect-lens.html">AI Architect Lens</a></p>
+<p>2. <a href="../topics/ai-product-product-definition/ai-architect-context-intelligence.html">AI Architect 的 Context Intelligence 镜头</a></p>
+<p>3. <a href="../topics/context-memory-knowledge-system/ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a></p>
+<p>4. 如涉及早期验证，再读 <a href="产品验证判断框架.html">产品验证判断框架</a></p>
+<p>5. 如涉及运行时与 agent 复杂度，再读 <a href="AI系统产品判断框架.html">AI 系统产品判断框架</a></p>
+<h2>什么时候进入 bridge</h2>
+<p>如果问题已经具体到某个产品 brief、某个记忆系统、某个场景定义或某个方案取舍，再进入相应 <code>bridges/</code> 页面。</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="router.html">框架路由入口</a></li>
+<li><a href="方向与执行判断框架.html">方向与执行判断框架</a></li>
+<li><a href="产品验证判断框架.html">产品验证判断框架</a></li>
+<li><a href="AI系统产品判断框架.html">AI 系统产品判断框架</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

@@ -38,6 +38,9 @@
 
 # 显示帮助
 ./skills/kb-ops/scripts/kb-ingest.sh help
+
+# 重新生成 wiki/site/ 静态网页视图
+./skills/kb-ops/scripts/kb-ingest.sh site
 ```
 
 ## 使用场景
@@ -50,6 +53,12 @@
 ### 场景 2：摄取所有 inbox 文件
 ```bash
 ./skills/kb-ops/scripts/kb-ingest.sh all
+```
+
+`all` 和 `file` 会在移动源文件后自动刷新 `wiki/site/`。当 agent 手动创建或更新了 `wiki/topics/`、`wiki/self/`、`wiki/frameworks/` 中的维护页时，也应在收尾时自动运行：
+
+```bash
+./skills/kb-ops/scripts/kb-ingest.sh site
 ```
 
 ### 场景 3：移动文件后读取内容

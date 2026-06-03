@@ -67,6 +67,16 @@
 <li>要处理模型 provider、session、安全确认等细节</li>
 </ul>
 <p><code>gogo</code> 的价值是把这些东西收进一个可下载、可启动、可观察的桌面壳里，让用户第一天就能完成“浏览知识库 + 问 agent + 回到 markdown 资产”的基本闭环。</p>
+<h2>AI 协作草稿本方向</h2>
+<p>当前 Codex 更适合充当知识库的协作 agent，而不是完整的手动工作台。它可以读写本地文件、运行维护脚本、生成页面、做局部编辑和回答 query；但它本身不是一个稳定的 markdown 文件编辑器、看板或长期草稿界面。</p>
+<p>因此，如果知识库需要一个“自己可以写东西，同时能和 AI 协作”的草稿本，比较自然的方向不是把所有东西都塞进 Codex，而是在 <code>gogo</code> 这类本地入口里补一个轻量工作面：</p>
+<ul>
+<li><code>Drafts</code>：面向人的草稿区，承接临时想法、半成品段落、待整理材料和正在形成的判断。</li>
+<li><code>Board</code>：面向任务状态的低摩擦看板，只追踪少量与知识库维护相关的状态，例如 <code>inbox</code>、<code>drafting</code>、<code>review</code>、<code>write-back</code>、<code>done</code>。</li>
+<li><code>Agent</code>：面向 AI 协作的对话区，可以把草稿整理进 <code>raw/</code>、提升到 <code>wiki/topics/</code>，或按规则更新 <code>wiki/self/</code> 与 <code>wiki/frameworks/</code>。</li>
+</ul>
+<p>这个方向的关键不是复制 Notion、Obsidian 或 Linear，而是补上 <code>llm-wiki</code> 工作流缺的中间层：人在这里自由写，agent 在这里帮忙整理、引用、迁移和写回，最终资产仍然落回本地 markdown 知识库。</p>
+<p>从边界上看，草稿本应优先服务个人知识工作流，不应重新扩张成公共知识库产品。多人协作、公共池、贡献治理和同步机制仍应归入 <code>oh-share-it</code>，而不是作为草稿本的第一阶段目标。</p>
 <h2>设计原则</h2>
 <p>这版仓库中最稳定的设计原则有六条。</p>
 <p>1. **gogo 服务于本地 llm-wiki knowledge-base**</p>

@@ -1,0 +1,79 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=2pt}
+\titleformat{\section}{\large\bfseries}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+\newcommand{\resumeItem}[1]{\item #1}
+\newcommand{\resumeSubheading}[4]{
+  \textbf{#1} \hfill #2 \\
+  \textit{#3} \hfill \textit{#4}
+}
+\newcommand{\projectHeading}[2]{
+  \textbf{#1} \hfill \textit{#2}
+}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE \textbf{Beiyan Liu}} \\
+  \vspace{2pt}
+  Software Engineer \,|\, AI Engineer \,|\, Context Infrastructure \\
+  \vspace{2pt}
+  \href{mailto:liuby57@foxmail.com}{liuby57@foxmail.com} \,|\,
+  \href{https://github.com/Barytes}{github.com/Barytes} \,|\,
+  China / Remote
+\end{center}
+
+\section{Selected Projects}
+
+\projectHeading{\href{https://github.com/Barytes/gogo}{gogo}}{}
+\begin{itemize}
+  \resumeItem{Built a Tauri desktop app for local \texttt{llm-wiki} knowledge bases, combining wiki browsing/editing, agent chat, session history, knowledge-base switching, onboarding, and provider configuration.}
+  \resumeItem{Integrated Pi agent interaction into a local markdown knowledge workflow, with visible repository rules, schemas, skills, audit logs, security mode, and user-owned files.}
+  \resumeItem{Documented architecture, session management, security boundaries, knowledge-base workflow, and developer setup.}
+\end{itemize}
+
+\projectHeading{\href{https://github.com/Barytes/oh-share-it}{oh-share-it}}{}
+\begin{itemize}
+  \resumeItem{Built an early shared research knowledge-base system with \texttt{server + cli + client + tests}, exposing routing, sync, URI, index, rules, and JSON API surfaces.}
+  \resumeItem{Implemented file-based knowledge sharing primitives for search, read, route, sync, and structured API access across maintained markdown knowledge assets.}
+\end{itemize}
+
+\projectHeading{\href{https://github.com/Barytes/my-little-chating-agent}{my-little-chating-agent}}{}
+\begin{itemize}
+  \resumeItem{Built a FastAPI-based agent prototype with tool use, web search, page reading, local Markdown/FAISS retrieval, and workflow scanning.}
+  \resumeItem{Combined local knowledge retrieval and external source reading in a simple agent loop for research and information monitoring workflows.}
+\end{itemize}
+
+\section{Research}
+
+\resumeSubheading{Strategic User Offloading and Service Provider Pricing in Mobile Edge Computing}{ICASSP 2026}
+{Accepted paper}{}
+\begin{itemize}
+  \resumeItem{Studied strategic user offloading and provider pricing in mobile edge computing using game-theoretic and optimization methods.}
+\end{itemize}
+
+\section{Public Work}
+\begin{itemize}
+  \resumeItem{Publishes an open knowledge base on AI systems, knowledge workflows, product judgment, and career positioning: \href{https://barytes.github.io/knowledge-base}{barytes.github.io/knowledge-base}.}
+  \resumeItem{Writes essays and technical notes on Applied AI and agent systems: \href{https://barytes.substack.com}{barytes.substack.com}.}
+\end{itemize}
+
+\section{Education}
+
+\resumeSubheading{Sun Yat-sen University}{Guangzhou, China}
+{B.S. and M.S. in Software Engineering}{}
+
+\end{document}

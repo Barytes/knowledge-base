@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Architect 的 Context Intelligence 镜头 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/ai-product-product-definition/ai-architect-context-intelligence.md</div>
+      <h1>AI Architect 的 Context Intelligence 镜头</h1>
+<h2>摘要</h2>
+<p>这份课程讲义把 AI 记忆系统重新定义成一个 <code>Digital Twin</code> 的产品设计问题，而不是一个“先搭 RAG 再调参数”的实现问题。</p>
+<p>它的核心主张是：真正稀缺的不是让模型知道更多公共知识，而是让它理解你的长期个人上下文。为此，最重要的架构决策不是选哪套向量库，而是先决定这个记忆系统究竟服务于哪类问题、允许知道什么、以及检索是否应该只是 agent 工具箱中的一个环节。</p>
+<h2>核心判断</h2>
+<h3>记忆系统首先是在做个人上下文移植</h3>
+<p>讲义把通用 AI 的限制描述成一种“持续失忆”：</p>
+<ul>
+<li>每次对话都从零开始</li>
+<li>对公共知识的掌握无法替代对个人上下文的掌握</li>
+<li>真正高价值的问题，往往都埋在个人笔记、会议纪要、博客、日志这些私有材料里</li>
+</ul>
+<p>所以这类系统的目标，不是再教 AI 更多世界知识，而是把“你的世界”移植给它。</p>
+<h3>第一性决策是用途，不是技术栈</h3>
+<p>在这套镜头里，builder 会把任务描述成“做一个能查笔记的工具”，但 architect 会先问：</p>
+<ul>
+<li>它主要服务快速事实检索，还是深层模式发现</li>
+<li>它更像搜索框，还是研究助手</li>
+<li>它应该读取全部材料，还是需要边界、分区与访问控制</li>
+</ul>
+<p>这些问题会直接决定后续的 index 设计、agent prompt、工具编排方式，甚至决定这个系统是否值得被建。</p>
+<h3>Static RAG 和 Agentic RAG 是两种不同架构</h3>
+<p>讲义把两者的分水岭讲得很明确：</p>
+<ul>
+<li><code>Static RAG</code> 把用户原问题直接当查询，把相似文本块塞回 prompt。它是线性的、一次性的流程。</li>
+<li><code>Agentic RAG</code> 则把检索视作 agent 的一个研究工具。agent 可以改写查询、进行多轮探索、在检索后再调用代码分析或外部搜索，最后综合成答案。</li>
+</ul>
+<p>对于“项目延期最常见原因”这类需要跨文档聚合、统计和解释的问题，单轮相似度召回并不够。系统需要的不只是 retrieval，而是 retrieval 加 processing 加 synthesis 的闭环。</p>
+<h3>真正关键的是信息架构与边界设计</h3>
+<p>这份讲义没有把记忆系统想成一个无差别数据池，而是强调：</p>
+<ul>
+<li>应先定义 <code>Digital Twin</code> 应该知道什么</li>
+<li>也应明确它不该知道什么</li>
+<li>私密日志、公开博客、工作材料和个人反思未必应放在同一访问面上</li>
+</ul>
+<p>因此，访问控制、记忆分区与信任边界不是上线后补的安全项，而是第一批架构决策。</p>
+<h2>为什么课程刻意不教常见 RAG</h2>
+<h3>不是否定检索，而是否定一个过渡态实现</h3>
+<p>讲义批评的不是“从大规模信息里取回稀疏相关知识”这个目标，而是行业里那套常见的朴素实现：</p>
+<ul>
+<li>简单切块</li>
+<li>embedding 相似度召回</li>
+<li>把召回结果塞进上下文窗口后直接生成</li>
+</ul>
+<p>它认为这种默认范式有三类问题。</p>
+<h3>1. 它在重新发明搜索，而且起点很低</h3>
+<p>搜索与信息检索本来就是成熟领域，但流行 RAG 往往绕开既有积累，用很基础的切块和相似度搜索重新开始。这让大量优化只是迟到地补课，而不是站在现成能力上继续向前走。</p>
+<h3>2. 它的工作流过静态</h3>
+<p>在常见 RAG 里，search 只是给 LLM 喂原材料，整个链路无法自我调整。讲义认为这会给智能上限封顶，因为真正的复杂问题需要反复试探、改写问题、交叉验证和多工具配合。</p>
+<h3>3. 它依赖的瓶颈正在快速变化</h3>
+<p>讲义把 RAG 看成对“上下文窗口不够大、调用太贵”的一类过渡性补丁。随着上下文窗口、成本和推理速度持续变化，围绕旧瓶颈构造一整套复杂系统，未必是长期最稳的下注。</p>
+<h2>更值得学的方向</h2>
+<p>课程真正强调的是两件事：</p>
+<ul>
+<li><code>LLM</code> 与 search engine 的联合优化，而不是简单串接</li>
+<li>动态、agentic 的 retrieval workflow，而不是固定两步流水线</li>
+</ul>
+<p>也就是说，检索仍然重要，但它更像一套被 agent 主动调用和重组的能力，而不是唯一主流程。</p>
+<h2>Build Workflow 的真正重点</h2>
+<p>这份讲义还把 context intelligence 的实现过程，重新收束回上一模块的 <code>manage-and-create workflow</code>。</p>
+<h3>先做评测，再做系统</h3>
+<p>课程建议先定义一个小型评测集，而不是边做边凭感觉测试。示例 OKR 包括：</p>
+<ul>
+<li><code>Hallucination Rate</code> 小于 10%</li>
+<li><code>Needle in a Haystack</code> 检索精度达到 100%</li>
+</ul>
+<p>这个动作的重要性在于，它把“感觉还行”的主观判断改成可重复的质量门槛。</p>
+<h3>先写 assignment brief，再让 AI 实现</h3>
+<p>课程没有把 prompt 视为咒语，而是把它视为一份任务说明书。真正重要的是：</p>
+<ul>
+<li>目标是否清楚</li>
+<li>约束是否明确</li>
+<li>工具职责是否定义得足够清楚</li>
+<li>agent 是否被明确要求把检索当研究工具而不只是搜索框</li>
+</ul>
+<h3>迭代要先判断故障位于 retrieval 还是 generation</h3>
+<p>当系统失败时，讲义建议先分辨：</p>
+<ul>
+<li>是检索没找到对的材料</li>
+<li>还是材料找到了，但生成阶段误读或幻觉了</li>
+</ul>
+<p>只有先分清这一层，后续的改动才知道该落在 chunk size、indexing strategy、tool description，还是 system prompt 上。</p>
+<h2>对本仓库主题的启发</h2>
+<p>这份来源和当前知识库已有页面之间，有几条很强的连接：</p>
+<ul>
+<li>它把 <code>AI Architect Lens</code> 从一般产品定义推进到“个人记忆系统”的具体架构决策。</li>
+<li>它和 <a href="../context-memory-knowledge-system/local-knowledge-base-patterns.html">本地知识库模式</a> 一起说明，长期可用的知识系统不该只是 query-time 检索。</li>
+<li>它和 <a href="../context-memory-knowledge-system/ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a> 形成互证：真正高价值的系统，往往先决定默认工作面与蒸馏目标，再决定检索工具怎么接入。</li>
+</ul>
+<h2>来源依据</h2>
+<ul>
+<li><a href="../../../../../raw/external/ai-architect-context-intelligence.md">Context Intelligence: Granting Your AI a Memory</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="ai-architect-lens.html">AI Architect Lens</a></li>
+<li><a href="ai-architect-proactive-intelligence.html">AI Architect 的 Proactive Intelligence 镜头</a></li>
+<li><a href="ai-architect-advanced-architecture.html">AI Architect 的 Advanced Architecture 镜头</a></li>
+<li><a href="../context-memory-knowledge-system/ai-knowledge-systems-product-definition-beliefs.html">AI 知识系统的产品定义信念</a></li>
+<li><a href="../context-memory-knowledge-system/local-knowledge-base-patterns.html">本地知识库模式</a></li>
+<li><a href="../agent-harness-runtime/harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

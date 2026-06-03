@@ -16,6 +16,7 @@ Read this file first, then consult the more specific schema for the task:
 
 ## Repository Map
 
+- `notebook/`: user-owned draft notebook; agents may read but must not write, ingest, lint, normalize, reorganize, move, or delete its contents
 - `raw/external/`: immutable outside sources
 - `raw/personal/`: immutable personal records
 - `wiki/topics/`: topic-organized maintained knowledge and applied analysis
@@ -48,7 +49,7 @@ The agent has four jobs:
 1. Ingest new source material.
 2. Update the wiki incrementally.
 3. Answer queries using the right layer.
-4. Keep the wiki navigable and internally consistent.
+4. Keep the wiki and generated `wiki/site/` view navigable and internally consistent.
 
 Use local skills when the task matches:
 
@@ -61,6 +62,8 @@ Use local skills when the task matches:
 
 ## Layer Boundaries
 
+- Treat `notebook/` as user-only working space. It is readable context, not an agent-maintained layer.
+- Do not include `notebook/` in automatic ingest, lint cleanup, generated site updates, link repair, or repository reorganization.
 - Treat files in `raw/` as source evidence.
 - Do not rewrite source content in `raw/` unless explicitly asked.
 - Put world-facing claims and mixed applied analysis in the relevant topic under `wiki/topics/`.
@@ -90,6 +93,7 @@ When ingesting an external source:
 2. Create or update a relevant page in `wiki/topics/<topic>/`.
 3. Link it from existing related pages when appropriate.
 4. Append a short note to `wiki/log.md`.
+5. Automatically regenerate `wiki/site/`.
 
 When ingesting a personal source:
 
@@ -97,6 +101,7 @@ When ingesting a personal source:
 2. Extract observations before proposing principles.
 3. Only promote repeated, stable patterns into higher-level self pages.
 4. Append a short note to `wiki/log.md`.
+5. Automatically regenerate `wiki/site/`.
 
 For detailed routing and write targets, follow `schemas/ingest.md`.
 

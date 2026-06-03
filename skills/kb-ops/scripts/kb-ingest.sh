@@ -4,12 +4,23 @@
 
 set -e
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. && pwd)"
 INBOX_DIR="$ROOT_DIR/inbox"
 RAW_EXTERNAL_DIR="$ROOT_DIR/raw/external"
 RAW_PERSONAL_DIR="$ROOT_DIR/raw/personal"
 WIKI_KNOWLEDGE_DIR="$ROOT_DIR/wiki/knowledge"
 WIKI_LOG="$ROOT_DIR/wiki/log.md"
+
+refresh_site() {
+    local builder="$ROOT_DIR/scripts/reorganize_wiki.py"
+    if [ ! -f "$builder" ]; then
+        echo "错误：找不到站点生成脚本：$builder"
+        exit 1
+    fi
+
+    echo "重新生成 wiki/site/ 静态网页视图..."
+    python3 "$builder"
+}
 
 # 从 inbox 摄取所有文件
 ingest_all() {
@@ -34,6 +45,7 @@ ingest_all() {
     done
 
     echo "完成：处理了 $count 个文件"
+    refresh_site
     echo ""
     echo "下一步：使用 kb-scripts.sh read 查看文件内容，或手动创建 wiki 页面"
 }
@@ -62,6 +74,7 @@ ingest_file() {
     local today=$(date +%Y-%m-%d)
     local log_entry="## [$today] 摄取 | $filename\n\n已移动到 $target_dir/\n\n"
 
+    refresh_site
     echo "完成：已处理 $filename"
 }
 
@@ -96,11 +109,13 @@ show_help() {
     echo "  all              - 摄取 inbox 中所有文件到 raw/external"
     echo "  file <path>      - 摄取单个文件到指定目录"
     echo "  list             - 详细列出 inbox 内容"
+    echo "  site             - 重新生成 wiki/site/ 静态网页视图"
     echo "  help             - 显示帮助信息"
     echo ""
     echo "示例:"
     echo "  $0 all                        # 处理所有 inbox 文件"
     echo "  $0 file inbox/article.md      # 处理单个文件"
+    echo "  $0 site                       # 刷新 HTML 网站"
     echo "  $0 list                       # 查看详细列表"
 }
 
@@ -119,6 +134,9 @@ case "${1:-help}" in
         ;;
     list)
         list_inbox_detail
+        ;;
+    site)
+        refresh_site
         ;;
     help|*)
         show_help

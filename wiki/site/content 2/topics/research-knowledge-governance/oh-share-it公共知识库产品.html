@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>oh-share-it 公共知识库产品 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/research-knowledge-governance/oh-share-it公共知识库产品.md</div>
+      <h1>oh-share-it 公共知识库产品</h1>
+<h2>摘要</h2>
+<p><code>oh-share-it</code> 是原先被混在 <code>gogo</code> 名字下的公共知识库产品方向。</p>
+<p>它的核心不是再做一个笔记工具，也不是把本地文件夹简单搬到云上，而是把多人研究中的知识、判断、冲突、贡献和 agent 调用做成一个可治理的公共工作面。</p>
+<p>一句话定义：</p>
+<p>**<code>oh-share-it</code> 是面向课题组和知识密集团队的公共研究知识库，让个人知识在保留边界的前提下进入共享池，并被人和 agent 按场景复用。**</p>
+<h2>为什么从 gogo 拆出来</h2>
+<p><code>gogo</code> 当前已经收束为本地 <code>llm-wiki</code> 桌面应用。继续让它同时代表“本地 app”和“公共知识库产品”，会造成三个混淆：</p>
+<ul>
+<li>app 能力和公共知识治理能力混在一起；</li>
+<li>本地入口的完成度被误读成公共知识库系统已经实现；</li>
+<li>微信、MCP、联邦同步等 agent 化想法会反过来冲散 <code>gogo</code> 的清晰边界。</li>
+</ul>
+<p>因此新的命名边界是：</p>
+<p>| 名称 | 负责什么 | 不负责什么 |</p>
+<p>|---|---|---|</p>
+<p>| <code>gogo</code> | 本地 <code>llm-wiki</code> 桌面入口 | 多人公共知识库治理 |</p>
+<p>| <code>oh-share-it</code> | 公共知识库、联邦同步、贡献聚合、agent-facing tools | 桌面 app 的具体 UI 壳 |</p>
+<p><code>gogo</code> 可以成为 <code>oh-share-it</code> 的客户端或参考实现，但不是 <code>oh-share-it</code> 本身。</p>
+<h2>核心问题</h2>
+<p><code>oh-share-it</code> 主要解决四类问题。</p>
+<h3>1. 知识孤岛</h3>
+<p>每个研究者都有自己的材料、判断、失败经验和临时结论。问题不在于没有知识，而在于这些知识没有稳定进入团队默认工作面。</p>
+<h3>2. 判断不复利</h3>
+<p>高价值问答、导师点评、实验失败原因、方法边界和概念区分，经常消失在聊天记录、个人笔记和项目碎片里。</p>
+<p><code>oh-share-it</code> 要把这类判断沉淀成可被后人查询、引用、修订和继续追问的公共资产。</p>
+<h3>3. 冲突被错误合并</h3>
+<p>研究知识不是 SOP。很多冲突观点不应该被 majority-wins 合成一个答案，而应该被保留为 tension。</p>
+<p>对认知知识来说，冲突经常就是价值本身。</p>
+<h3>4. Agent 需要可路由上下文</h3>
+<p>多人知识一旦进入 agent 工作流，就必须回答：</p>
+<ul>
+<li>哪些知识是公共默认层；</li>
+<li>哪些知识只属于某个人或某个项目；</li>
+<li>冲突版本什么时候保留，什么时候合并；</li>
+<li>当前 query 应该加载哪一层、哪一版、谁的判断。</li>
+</ul>
+<p>这也是 <code>oh-share-it</code> 和普通 RAG 的关键差异：它不只是“搜到相关片段”，而是管理可复用知识在多人场景里的边界、来源和路由。</p>
+<h2>产品形态</h2>
+<p><code>oh-share-it</code> 可以被理解成三层系统。</p>
+<h3>1. 文件系统知识资产</h3>
+<p>每个人仍然有自己的本地知识库：</p>
+<pre><code>raw/
+wiki/
+bridges/
+self/
+skills/
+schemas/
+AGENTS.md</code></pre>
+<p>这层保留 <code>llm-wiki</code> 的核心优点：可读、可改、可迁移、可审计。</p>
+<h3>2. 联邦公共知识库</h3>
+<p>公共层不一定需要中心化推理服务。更稳的初始架构是联邦式：</p>
+<pre><code>个人本地知识库
+  -&gt; submit / push pending-pool
+  -&gt; public repo 做保守聚合
+  -&gt; public-pool / tensions / related views
+  -&gt; 每个人 pull 回本地</code></pre>
+<p>这个设计把推理成本分散到个人端，把公共端收束为同步、审计、聚合和页面维护。</p>
+<h3>3. Agent-facing capability layer</h3>
+<p>OpenViking 的 MCP 设计带来的启发是：公共知识库也可以不是一个“网页产品”，而是一组 agent 可调用能力。</p>
+<p><code>oh-share-it</code> 可以暴露为 tool / skill / MCP server：</p>
+<ul>
+<li><code>search_public_pool</code>: 检索公共池中的知识与判断；</li>
+<li><code>read_public_page</code>: 读取公共页或 tension 页；</li>
+<li><code>contribute_page</code>: 把本地页面或问答提交为候选贡献；</li>
+<li><code>propose_tension</code>: 当发现冲突观点时，提出 tension 页；</li>
+<li><code>sync_public_pool</code>: 拉取公共池更新；</li>
+<li><code>aggregate_pending</code>: 对 pending contribution 做保守聚合；</li>
+<li><code>list_related_views</code>: 查找同一主题下的多视角页面；</li>
+<li><code>explain_source_basis</code>: 回答某个判断来自哪些页面与来源。</li>
+</ul>
+<p>如果做成 <code>skill</code>，重点是教 agent 何时、如何使用公共知识库工作流。</p>
+<p>如果做成 <code>tool</code> 或 MCP server，重点是给 agent 一个稳定接口，直接执行检索、写回、同步与聚合。</p>
+<h2>和 agent 的关系</h2>
+<p><code>oh-share-it</code> 不应该先被做成“一个聊天机器人”。更稳的顺序是先把公共知识库能力拆成 tools，再接各种入口。</p>
+<p>推荐分层：</p>
+<pre><code>oh-share-it-core
+  文件系统知识资产 + 公共池规范 + schemas + skills
+
+oh-share-it-tools
+  query / ingest / writeback / contribute / sync / aggregate / lint
+
+oh-share-it-mcp
+  把 oh-share-it-tools 暴露给任意 MCP client
+
+oh-share-it-agent
+  默认 agent，连接微信 / 飞书 / Telegram / 桌面聊天入口
+
+gogo
+  可选的人类本地桌面入口</code></pre>
+<p>微信、飞书、桌面聊天框都只是 channel。核心产品能力应放在 tools 和公共知识库协议里。</p>
+<p>这能避免 channel 牵着产品走，也能保留一个重要原则：知识库仍然是用户和团队拥有的文件系统资产，app、agent、bot 都只是入口。</p>
+<h2>与 RAG 和 file-based context 管理的不同</h2>
+<p><code>oh-share-it</code> 可以用 RAG，也可以保留 file-based context，但它的产品问题比二者更高一层。</p>
+<p>| 方案 | 主要解决 | 主要不足 |</p>
+<p>|---|---|---|</p>
+<p>| 直接 file-based context | 文件可读、可编辑、可由 agent 调用 | 缺少多人贡献、冲突治理和使用路由 |</p>
+<p>| 普通 RAG | 在大材料集合中找相关片段 | 容易只做检索，不处理判断沉淀和公共层维护 |</p>
+<p>| <code>oh-share-it</code> | 多人知识如何进入公共工作面，并被人和 agent 按边界复用 | 需要定义贡献、聚合、冲突、权限和评测机制 |</p>
+<p>所以 <code>oh-share-it</code> 的目标不是替代文件系统或 RAG，而是把它们放进一个更明确的知识治理流程里。</p>
+<h2>最小可验证版本</h2>
+<p>第一版不需要做完整平台。可以先验证一个问题：</p>
+<p>&gt; 外部 agent 调用 <code>oh-share-it-tools</code>，是否比直接用文件系统工具更稳定地完成公共知识库查询、贡献、写回和维护？</p>
+<p>最小版本可以包含：</p>
+<ul>
+<li><code>search</code>: 按 <code>wiki/index.md</code>、维护页和全文检索查相关页面；</li>
+<li><code>read</code>: 读取并压缩一个页面或一组页面；</li>
+<li><code>query</code>: 按 <code>schemas/query.md</code> 生成回答；</li>
+<li><code>contribute</code>: 把本地页面、问答或判断提交为候选贡献；</li>
+<li><code>writeback</code>: 把高价值问答写回合适层；</li>
+<li><code>sync</code>: 同步公共池；</li>
+<li><code>lint</code>: 做轻量结构检查、孤页检查和索引修复。</li>
+</ul>
+<p>后续再增加 <code>aggregate_pending</code>、<code>propose_tension</code>、<code>list_related_views</code> 和 <code>explain_source_basis</code>。</p>
+<h2>风险与边界</h2>
+<p><code>oh-share-it</code> 的主要风险不是技术不够炫，而是边界过早膨胀。</p>
+<ul>
+<li>如果先做 bot，容易被微信、飞书等 channel 的限制牵走。</li>
+<li>如果先做中心化平台，容易过早承担账号、权限、成本和运营复杂度。</li>
+<li>如果只做 RAG，容易把公共知识库降级成搜索框。</li>
+<li>如果过早自动聚合，容易把真正有价值的冲突抹平。</li>
+<li>如果写操作没有确认和审计，知识资产会被黑盒 agent 污染。</li>
+</ul>
+<p>因此初期应优先验证：公共知识库 tool surface 能否让 agent 更稳定地查询、贡献、写回和维护，而不是先追求完整平台形态。</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../context-memory-knowledge-system/gogo.html">gogo：本地 llm-wiki 桌面应用</a></li>
+<li><a href="课题组公共知识库的产品定义信念.html">课题组公共知识库的产品定义信念</a></li>
+<li><a href="课题组公共知识库的联邦架构设计.html">课题组公共知识库的联邦架构设计</a></li>
+<li><a href="课题组公共知识库的架构风险与分层设计.html">课题组公共知识库的架构风险与分层设计</a></li>
+<li><a href="什么是公共知识库应该共享的公共知识.html">什么是公共知识库应该共享的公共知识</a></li>
+<li><a href="公共知识库、Reflexio与EvoMap的对比分析.html">公共知识库、Reflexio 与 EvoMap 的对比分析</a></li>
+<li><a href="Superlinear社区AgentSkill知识治理信号.html">Superlinear 社区 Agent Skill 知识治理信号</a></li>
+<li><a href="../context-memory-knowledge-system/volcengine-openviking-repo-map.html">volcengine/openviking 仓库地图</a></li>
+</ul>
+<h2>当前压缩结论</h2>
+<p><code>oh-share-it</code> 是公共知识库产品。它继承原先公共知识库愿景里的多人知识治理、联邦架构和 agent-facing capability layer，但不再和 <code>gogo</code> 桌面 app 混用同一个名字。</p>
+<p><code>gogo</code> 负责让个人使用本地 <code>llm-wiki</code> 更顺手。<code>oh-share-it</code> 负责让多人知识进入公共工作面，并能被 agent 稳定、透明、可审计地调用。</p>
+    </article>
+
+  </main>
+</body>
+</html>

@@ -6,7 +6,7 @@
 
 围绕 agent 外层控制壳、运行时、coding harness、多设备工作面与可验证执行系统的页面。
 
-- 页面数：31
+- 页面数：32
 
 ## [Context / Memory / 知识系统](context-memory-knowledge-system/index.md)
 
@@ -18,7 +18,7 @@
 
 围绕 AI 产品分层、AI Architect、产品定义、MVP、Pre-PMF 与 go-to-market 的页面。
 
-- 页面数：8
+- 页面数：10
 
 ## [研究知识库 / 公共知识治理](research-knowledge-governance/index.md)
 
@@ -48,4 +48,4 @@
 
 围绕当前项目路线图、月度执行计划、agent harness core、Codex-like harness 与产品设想的页面。
 
-- 页面数：5
+- 页面数：6

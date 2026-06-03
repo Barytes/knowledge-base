@@ -4,10 +4,12 @@
 from __future__ import annotations
 
 import html
+import json
 import re
 import shutil
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 from urllib.parse import unquote
 
 
@@ -15,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WIKI = ROOT / "wiki"
 TOPICS_DIR = WIKI / "topics"
 SITE_DIR = WIKI / "site"
+TOPICS_CONFIG = TOPICS_DIR / "topics.json"
 
 
 @dataclass(frozen=True)
@@ -26,62 +29,54 @@ class Topic:
     self_pages: tuple[str, ...] = ()
 
 
-TOPICS: tuple[Topic, ...] = (
-    Topic(
-        "agent-harness-runtime",
-        "Agent / Harness / Runtime",
-        "围绕 agent 外层控制壳、运行时、coding harness、多设备工作面与可验证执行系统的页面。",
-        ("Harness架构判断框架.md", "AI系统产品判断框架.md"),
-    ),
-    Topic(
-        "context-memory-knowledge-system",
-        "Context / Memory / 知识系统",
-        "围绕 context、memory、本地知识库、信息复利、AI 知识系统与 context infra 的页面。",
-        ("知识系统判断框架.md", "Harness架构判断框架.md"),
-        ("工作面摩擦敏感观察.md", "研究知识系统中的反共识写回观察.md"),
-    ),
-    Topic(
-        "ai-product-product-definition",
-        "AI 产品 / 产品定义 / 验证",
-        "围绕 AI 产品分层、AI Architect、产品定义、MVP、Pre-PMF 与 go-to-market 的页面。",
-        ("AI系统产品判断框架.md", "产品定义判断框架.md", "产品验证判断框架.md"),
-        ("开箱即用洞察优先产品观察.md", "用户自主性优先产品取舍观察.md", "聚焦优先于通用观察.md"),
-    ),
-    Topic(
-        "research-knowledge-governance",
-        "研究知识库 / 公共知识治理",
-        "围绕课题组公共知识库、多人知识治理、共享 AI Skills、公共层边界与研究判断基础设施的页面。",
-        ("研究判断框架.md", "知识系统判断框架.md"),
-        ("公共知识库实践启发他人写作观察.md", "知识库公开分享的阻力降低观察.md"),
-    ),
-    Topic(
-        "career-positioning-job-search",
-        "职业 / 定位 / 求职",
-        "围绕 AI 时代职业路径、Agent Systems Engineer 定位、简历叙事、JD 信号与求职策略的页面。",
-        ("职业判断框架.md", "职业信号与叙事框架.md"),
-        ("职业决策与求职策略观察.md", "产品判断力与能力焦虑分离观察.md", "投简历恐惧观察.md", "go-to-market-strategy.md"),
-    ),
-    Topic(
-        "ai-industry-investment",
-        "AI 产业 / 投资 / 创业位置",
-        "围绕 AI 产业分层、付钱地图、资本结构、创业环境与技术成熟度判断的页面。",
-        ("AI产业与投资判断框架.md", "产品验证判断框架.md"),
-    ),
-    Topic(
-        "learning-judgment-mental-models",
-        "学习 / 判断 / 心智模型",
-        "围绕 taste、科学与技艺、数学基础、Naval、内心游戏、人际理解与长期适配的页面。",
-        ("方向与执行判断框架.md",),
-        ("自由与当下的观察.md", "物理模型抽象人生问题观察.md"),
-    ),
-    Topic(
-        "projects-roadmaps",
-        "项目 / 路线图 / 执行计划",
-        "围绕当前项目路线图、月度执行计划、agent harness core、Codex-like harness 与产品设想的页面。",
-        ("产品定义判断框架.md", "Harness架构判断框架.md", "职业信号与叙事框架.md"),
-        ("go-to-market-strategy.md",),
-    ),
-)
+def required_string(entry: dict[str, Any], key: str, index: int) -> str:
+    value = entry.get(key)
+    if not isinstance(value, str) or not value.strip():
+        raise SystemExit(f"{TOPICS_CONFIG.relative_to(ROOT)} topic #{index} must define non-empty {key!r}")
+    return value
+
+
+def optional_string_tuple(entry: dict[str, Any], key: str, index: int) -> tuple[str, ...]:
+    value = entry.get(key, [])
+    if not isinstance(value, list) or not all(isinstance(item, str) for item in value):
+        raise SystemExit(f"{TOPICS_CONFIG.relative_to(ROOT)} topic #{index} {key!r} must be a list of strings")
+    return tuple(value)
+
+
+def load_topics() -> tuple[Topic, ...]:
+    if not TOPICS_CONFIG.exists():
+        raise SystemExit(f"Missing topic config: {TOPICS_CONFIG.relative_to(ROOT)}")
+    try:
+        config = json.loads(TOPICS_CONFIG.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"Invalid JSON in {TOPICS_CONFIG.relative_to(ROOT)}: {exc}") from exc
+
+    entries = config.get("topics")
+    if not isinstance(entries, list) or not entries:
+        raise SystemExit(f"{TOPICS_CONFIG.relative_to(ROOT)} must contain a non-empty 'topics' list")
+
+    topics: list[Topic] = []
+    seen_slugs: set[str] = set()
+    for index, entry in enumerate(entries, start=1):
+        if not isinstance(entry, dict):
+            raise SystemExit(f"{TOPICS_CONFIG.relative_to(ROOT)} topic #{index} must be an object")
+        slug = required_string(entry, "slug", index)
+        if slug in seen_slugs:
+            raise SystemExit(f"{TOPICS_CONFIG.relative_to(ROOT)} contains duplicate topic slug: {slug}")
+        seen_slugs.add(slug)
+        topics.append(
+            Topic(
+                slug=slug,
+                title=required_string(entry, "title", index),
+                summary=required_string(entry, "summary", index),
+                frameworks=optional_string_tuple(entry, "frameworks", index),
+                self_pages=optional_string_tuple(entry, "self_pages", index),
+            )
+        )
+    return tuple(topics)
+
+
+TOPICS: tuple[Topic, ...] = load_topics()
 
 TOPIC_BY_SLUG = {topic.slug: topic for topic in TOPICS}
 

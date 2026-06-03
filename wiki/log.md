@@ -2,6 +2,37 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-05-30] ingest | The Founder's Playbook
+
+从用户提供的 PDF 摄取 Claude《The Founder's Playbook: Building an AI-Native Startup》，源文件归档为 `raw/external/the-founders-playbook-2026-05.pdf`，并新增 source note `raw/external/the-founders-playbook-2026-05.md`。新增维护页 [The Founder's Playbook：AI-native startup 的阶段纪律](topics/ai-product-product-definition/the-founders-playbook-ai-native-startup.md)，把材料收束为 AI-native startup 的 Idea / MVP / Launch / Scale 四阶段纪律：AI 压缩执行周期，但 founder 更需要验证、架构、scope、metrics、security 与运营系统化。
+
+**新增页面**
+- [The Founder's Playbook：AI-native startup 的阶段纪律](topics/ai-product-product-definition/the-founders-playbook-ai-native-startup.md)
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/index.md`
+- `wiki/topics/ai-product-product-definition/pre-pmf-validation-playbook.md`
+- `wiki/frameworks/产品验证判断框架.md`
+
+**源文件新增**
+- `raw/external/the-founders-playbook-2026-05.pdf`
+- `raw/external/the-founders-playbook-2026-05.md`
+
+## [2026-05-29] ingest | Claude Code Dynamic Workflows
+
+按用户提供链接摄取 Claude 官方博客《Introducing dynamic workflows in Claude Code》。新增 `raw/external/claude-code-dynamic-workflows.md` source note 与维护页 [Claude Code Dynamic Workflows](topics/agent-harness-runtime/claude-code-dynamic-workflows.md)，把 dynamic workflows 收束为 Claude Code 的内建多 subagent workflow layer：动态规划、并行 fan out、独立验证、adversarial checking、长任务恢复与更高 token 成本。
+
+**新增页面**
+- [Claude Code Dynamic Workflows](topics/agent-harness-runtime/claude-code-dynamic-workflows.md)
+
+**更新页面**
+- `wiki/topics/agent-harness-runtime/claude-code-harness.md`
+- `wiki/topics/agent-harness-runtime/index.md`
+- `wiki/frameworks/Harness架构判断框架.md`
+
+**源文件新增**
+- `raw/external/claude-code-dynamic-workflows.md`
+
 ## [2026-05-28] ingest | Agent 系统作为 OS 与 Cloud Runtime 问题
 
 从 `inbox/` 摄取外部文章《Agent 系统正在重新走一遍 OS 和 Cloud Runtime 的老路》，移入 `raw/external/`，并新增知识页。页面把材料收束为 agent runtime 的系统工程视角：`context window` 不是 runtime，append-only session log 类似 event sourcing，brain / hands 对应 control plane / data plane，sandbox 趋向 disposable runtime，稳定接口比具体实现更重要。
@@ -2025,3 +2056,59 @@ gogo-app 可立即开始的行动：
 **说明**
 - Markdown 仍是维护源，HTML 是可重新生成的浏览视图。
 - 历史维护记录中的旧路径不主动重写。
+
+## [2026-05-31] query | 补充 AI 协作草稿本方向
+
+围绕“Codex 是否适合承担看板、文件编辑器、AI 协作草稿本”这一问题，更新 `gogo` 维护页。新增结论是：Codex 更适合作为本地知识库的协作 agent，而不是主编辑器或看板；如果要降低知识库的工作面摩擦，草稿本应更自然地成为 `gogo` 这类本地入口的轻量工作面，承接 `Drafts / Board / Agent` 三类功能，并最终写回本地 markdown 知识库。
+
+**更新页面**
+- `wiki/topics/context-memory-knowledge-system/gogo.md`
+
+## [2026-05-31] 维护 | 增加用户专属草稿本目录
+
+新增 `drafts/` 作为用户自己的草稿本目录。该目录不是 agent 维护层，agent 只能在用户明确相关时读取，不得写入、摄取、lint、整理、移动或删除其中内容。同步更新根 `AGENTS.md`、`schemas/AGENTS.md` 与 `skills/kb-ops/SKILL.md`，避免后续维护流程误碰草稿本。
+
+**新增目录**
+- `drafts/`
+
+**新增规则**
+- `drafts/AGENTS.md`
+
+**更新页面**
+- `AGENTS.md`
+- `schemas/AGENTS.md`
+- `skills/kb-ops/SKILL.md`
+
+## [2026-05-31] 维护 | 草稿本目录改名为 notebook
+
+按用户要求，将用户专属草稿本目录从 `drafts/` 改名为 `notebook/`。只读边界保持不变：agent 只能在用户明确相关时读取，不得写入、摄取、lint、整理、移动或删除其中内容。同步更新根规则、schema 和 `kb-ops` skill 中的路径引用。
+
+**重命名**
+- `drafts/` -> `notebook/`
+
+**更新页面**
+- `AGENTS.md`
+- `schemas/AGENTS.md`
+- `skills/kb-ops/SKILL.md`
+- `notebook/AGENTS.md`
+
+## [2026-06-01] query | 郑元杰创业想法与 AI 基础设施取舍评估
+
+围绕 `life-record/郑元杰-创业想法.md` 与 `life-record/陈子深- AI教育产品定义.md`，新增一页应用分析。分析区分郑元杰提出的可商品化垂直机会，与用户提出的长期 AI 基础设施 / 知识系统积累方向，并建议先用真实付费验证窄场景，再把 AI 框架作为内部交付系统沉淀。随后补充“无聊但能收钱”的判断：付费信号不等于 PMF，更不等于 founder-market fit；这类场景更适合作为短期市场训练和现金流实验，而不是自动成为长期主线。进一步补充“拒绝 promising 但无聊机会”的判断：正确的不是拒绝市场，而是拒绝把低兴趣、低资产沉淀的现金流机会误当成事业。最后补充现实选择结论：不建议加入陈子深 / 郑元杰项目作为共同创业主线，主时间应投入 agent infra 项目、履历证据包与求职市场验证。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/郑元杰创业想法评估.md`
+
+## [2026-06-01] query | 空窗期、RA 与 Agent Systems 求职主线取舍
+
+围绕毕业后去处选择，更新 `Agent系统求职与项目路线图-2026-05.md`。新增判断：空窗期不是第一风险，profile-market fit 未完成才是第一风险；不建议为了填补空窗而进入低相关研究助理岗位或不感兴趣创业项目。更合理的做法是把这段时间组织成 `Agent Systems Engineer profile-market fit sprint`，用旗舰项目、eval、真实试点、case study、portfolio 和定向外联把空窗转化成可解释资产。随后补充“先投还是先做项目”的判断：不应大规模投递弱画像，也不应闭门等项目完成；应先做最小可投递画像，再用少量高定向投递和外联校准，同时继续补项目证据。
+
+**更新页面**
+- `wiki/topics/projects-roadmaps/Agent系统求职与项目路线图-2026-05.md`
+
+## [2026-06-02] query | Agentic Canvas Workbench 产品定义
+
+围绕“可写写画画做思维导图、coding agent 可实时观看并总结建议、并链接 file-based 知识库”的设想，新增一页产品定义。核心结论是：这个方向不应被定义成通用白板或聊天机器人，而应定义成“人类用空间思考、agent 用结构观看、知识库用文件沉淀”的协作工作面。第一版应优先验证结构化画板状态能否成为 agent-facing context surface，并打通画板摘要、节点链接、本地文件写回和用户确认。
+
+**新增页面**
+- `wiki/topics/projects-roadmaps/Agentic-canvas-workbench.md`

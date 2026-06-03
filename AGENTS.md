@@ -13,6 +13,7 @@ This repository is a local knowledge base. For repository-related questions, the
 
 ## Repository Layers
 
+- `notebook/`: user-owned draft notebook; agents may read but must not write, move, delete, ingest, lint, normalize, or reorganize its contents
 - `raw/`: source evidence
 - `wiki/topics/`: topic-organized maintained knowledge and applied analysis
 - `wiki/self/`: maintained personal judgment patterns
@@ -36,8 +37,10 @@ This repository is a local knowledge base. For repository-related questions, the
 
 ## Operational Rules
 
+- Treat `notebook/` as user-only working space. Do not include it in maintenance workflows, automatic ingest, lint cleanup, site generation, or repository reorganization.
 - For maintenance workflows, use `skills/kb-ops/`.
 - For local-only question answering, use `skills/kb-query/`.
+- After creating or updating maintained wiki pages, run `./skills/kb-ops/scripts/kb-ingest.sh site` so `wiki/site/` stays in sync automatically.
 - For detailed repository policy, read:
   - `COMMUNICATION.md`
   - `schemas/AGENTS.md`

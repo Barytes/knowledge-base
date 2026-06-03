@@ -115,6 +115,23 @@
 
 这让“验证”从抽象原则变成了可执行动作。
 
+## AI-native startup 的补充风险
+
+[The Founder's Playbook：AI-native startup 的阶段纪律](the-founders-playbook-ai-native-startup.md) 没有推翻这套 Pre-PMF 框架，而是补了一个 2026 年更尖锐的执行环境变化：
+
+> AI 让 prototype、MVP、运营自动化和 GTM 材料都变得更容易生成，因此 founder 更容易把“已经做出来”误当成“已经验证过”。
+
+这让本页里的验证纪律更重要，而不是更可跳过。尤其在 Idea 和 MVP 阶段，founder 应该把 AI 用在：
+
+- disconfirming evidence search
+- customer discovery 设计
+- competitor feedback synthesis
+- architecture / scope / metrics 文档
+- security review
+- false PMF 分析
+
+而不是一开始就让 Claude Code 全速构建一个尚未证明值得构建的产品。
+
 ## 实际用途
 
 这份手册特别适合那些已经有 MVP 或早期产品，但仍需要纪律化判断方式的小型 AI 团队，用来决定：
@@ -141,5 +158,6 @@
 
 - [产品验证判断框架](../../frameworks/产品验证判断框架.md)
 - [Go to Market Multiple Times：把高价值工作与早期产品反复推向市场](go-to-market-multiple-times.md)
+- [The Founder's Playbook：AI-native startup 的阶段纪律](the-founders-playbook-ai-native-startup.md)
 - [科学与技艺双层认知模型](../learning-judgment-mental-models/science-and-craft-cognitive-model.md)
 - [Harness Engineering（约束壳工程）](../agent-harness-runtime/harness-engineering.md)

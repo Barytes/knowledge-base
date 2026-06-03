@@ -4,7 +4,7 @@
 
 set -e
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. && pwd)"
 INBOX_DIR="$ROOT_DIR/inbox"
 RAW_EXTERNAL_DIR="$ROOT_DIR/raw/external"
 

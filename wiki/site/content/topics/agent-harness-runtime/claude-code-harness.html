@@ -26,6 +26,7 @@
 <li>把长期协作里的关键控制问题内建进核心，包括 context compaction、session persistence、permissions、checkpoints 与 subagents。</li>
 <li>接受更厚的系统层和更多内建机制，以换取更强的开箱即用能力，而不是把这些能力主要留给用户自己拼装。</li>
 </ul>
+<p>2026-05 的 Dynamic Workflows 更新把这条路线又推进了一层：Claude Code 不只提供 subagent primitive，还开始让 Claude 动态生成 orchestration scripts，在一个 session 中并行运行数十到数百个 subagents，并在结果返回前做独立验证和 adversarial checking。</p>
 <h2>证据分层</h2>
 <p>这页的依据分成两类：</p>
 <ul>
@@ -95,6 +96,19 @@
 <li>subagents</li>
 </ul>
 <p>也就是说，Claude Code 的设计不是“尽量没有二级系统”，而是“核心 loop 之外，再叠一层正式支持的可扩展控制面”。</p>
+<h3>7. Dynamic Workflows 把 subagents 推成临时 agent team</h3>
+<p>2026-05-28 的官方博客 <a href="../../../../../raw/external/claude-code-dynamic-workflows.md">Introducing dynamic workflows in Claude Code</a> 进一步说明，Claude Code 的 subagent 不只是上下文隔离工具，也可以被组织成动态工作流。</p>
+<p>Dynamic Workflows 的核心机制是：</p>
+<ul>
+<li>Claude 根据 prompt 动态规划 workflow</li>
+<li>将任务拆成 subtasks</li>
+<li>fan out 给并行 subagents</li>
+<li>对结果做独立检查</li>
+<li>让一部分 agents 尝试反驳已有发现</li>
+<li>持续迭代直到收敛</li>
+<li>保存进度，支持长时间任务中断后继续</li>
+</ul>
+<p>这让 Claude Code 从“单 agent + 可调用 subagent”进一步接近“官方内建 agent team harness”。它适合代码库级 bug hunt、安全审计、大规模迁移、language port 和高风险方案复核。代价是 token 使用显著上升，且用户更需要看清 workflow 到底做了什么、怎样验证和怎样收敛。</p>
 <h2>从外部分析稿里能谨慎补出的东西</h2>
 <p>外部分析稿不是官方定稿，但有几点作为“可能的实现风格”仍然有参考价值。</p>
 <h3>1. 它很可能是 streaming-first 的</h3>
@@ -170,9 +184,11 @@
 </ul>
 <p>换句话说，它代表的是一种更强 productized orchestration 的路线。</p>
 <p>如果 <code>pi</code> 代表的是“极简核心 + 用户自编排”，那么 Claude Code 更接近“较厚核心 + 官方默认工作流”。</p>
+<p>Dynamic Workflows 让这个判断更明确：Claude Code 的产品方向不是只把单个 agent 做强，而是把多 agent 编排、独立验证和长任务恢复也收进默认 harness。</p>
 <h2>来源依据</h2>
 <ul>
 <li><a href="../../../../../raw/external/claude-code-how-it-works.md">How Claude Code works</a></li>
+<li><a href="../../../../../raw/external/claude-code-dynamic-workflows.md">Introducing dynamic workflows in Claude Code</a></li>
 <li><a href="../../../../../raw/external/claude-code-analysis-southbridge.md">Claude Code: An analysis</a></li>
 <li><a href="coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a></li>
 <li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
@@ -180,6 +196,7 @@
 <h2>相关页面</h2>
 <ul>
 <li><a href="coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a></li>
+<li><a href="claude-code-dynamic-workflows.html">Claude Code Dynamic Workflows</a></li>
 <li><a href="pi-coding-agent-harness.html">Pi coding agent：一种极简且可观察的 coding harness</a></li>
 <li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
 </ul>

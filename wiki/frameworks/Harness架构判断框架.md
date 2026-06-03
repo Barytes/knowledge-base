@@ -87,9 +87,12 @@
 
 这时它真正解决的是上下文污染，而不是角色感。
 
+Claude Code Dynamic Workflows 补了另一种形态：subagent 也可以成为动态生成 workflow 中的并行执行单元。此时它既隔离上下文，也承担独立搜索、交叉验证和 adversarial checking。判断这类厚壳能力时，要同时看覆盖面、token 成本、过程可观察性和最终验证门禁。
+
 主要依据：
 - [coding agent 的上下文压缩工作流](../topics/agent-harness-runtime/coding%20agent%20的上下文压缩工作流.md)
 - [Thin Harness, Fat Skills](../topics/agent-harness-runtime/thin-harness-fat-skills.md)
+- [Claude Code Dynamic Workflows](../topics/agent-harness-runtime/claude-code-dynamic-workflows.md)
 
 ### 6. 复杂代码库里的核心资源是上下文预算，不是上下文总量
 
@@ -121,6 +124,7 @@
 - latent 判断 vs deterministic 执行
 - 内建 orchestration vs 外置编排
 - subagent 角色化 vs 上下文隔离
+- dynamic workflow 覆盖面 vs token 成本与可观察性
 - 更多上下文 vs 更干净的工作台
 
 ## 推荐阅读顺序

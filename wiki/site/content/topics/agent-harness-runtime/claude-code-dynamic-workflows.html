@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claude Code Dynamic Workflows · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">topics/agent-harness-runtime/claude-code-dynamic-workflows.md</div>
+      <h1>Claude Code Dynamic Workflows</h1>
+<p>**来源：** <a href="../../../../../raw/external/claude-code-dynamic-workflows.md">Introducing dynamic workflows in Claude Code</a></p>
+<p>**标签：** Claude Code，dynamic workflows，subagents，coding agent，harness</p>
+<p>---</p>
+<h2>核心判断</h2>
+<p>Dynamic Workflows 把 Claude Code 的 subagent 能力从“用户或 harness 分发子任务”推进到“Claude 动态生成临时 orchestration workflow”。</p>
+<p>它的关键不只是并行运行更多 agents，而是把一组长任务控制动作产品化：</p>
+<ul>
+<li>动态拆分任务</li>
+<li>并行 fan out</li>
+<li>独立角度探索</li>
+<li>结果验证</li>
+<li>adversarial checking</li>
+<li>中断恢复</li>
+<li>最终收敛成单一协调答案</li>
+</ul>
+<p>这说明 Claude Code 的厚壳路线继续加深：复杂工程任务的编排不再主要交给用户在外部用脚本、<code>tmux</code> 或手工计划管理，而是被做进 Claude Code 自身。</p>
+<p>---</p>
+<h2>这项功能是什么</h2>
+<p>Claude 官方将 Dynamic Workflows 定位为 Claude Code 的 research preview。用户可以直接要求 Claude 创建 workflow，也可以开启 <code>ultracode</code> 设置，让 Claude 在 <code>xhigh</code> effort 下自行判断何时启用 workflow。</p>
+<p>可用入口包括：</p>
+<ul>
+<li>Claude Code CLI</li>
+<li>Desktop</li>
+<li>VS Code extension</li>
+<li>Claude API</li>
+<li>Amazon Bedrock</li>
+<li>Vertex AI</li>
+<li>Microsoft Foundry</li>
+</ul>
+<p>Max、Team、Enterprise 可用；Enterprise 默认关闭，需 admin 开启。官方也明确提示，这类 workflow 会比典型 Claude Code session 消耗更多 tokens。</p>
+<p>---</p>
+<h2>适合什么任务</h2>
+<p>官方给出的典型场景都指向同一类问题：任务空间很大、可并行拆分、需要独立验证，单个 agent 线性执行容易漏。</p>
+<ul>
+<li>全代码库 bug hunt</li>
+<li>profiler-guided optimization audit</li>
+<li>security audit</li>
+<li>大规模 framework migration</li>
+<li>API deprecation migration</li>
+<li>language port</li>
+<li>高风险方案 review</li>
+</ul>
+<p>这些任务过去往往需要人类先写 plan，再分派给多个 agent 或多轮 session。Dynamic Workflows 的产品信号是：Claude Code 开始把这套分派和复核流程变成默认能力。</p>
+<p>---</p>
+<h2>Bun rewrite 例子说明了什么</h2>
+<p>原文用 Bun 从 Zig 到 Rust 的 rewrite 作为规模示例：</p>
+<ul>
+<li>使用者是 Jarred Sumner。</li>
+<li>目标是把 Bun 从 Zig port 到 Rust。</li>
+<li>结果达到已有测试套件 99.8% 通过。</li>
+<li>产出约 750,000 行 Rust。</li>
+<li>从 first commit 到 merge 大约 11 天。</li>
+<li>workflow 分别处理 Rust lifetime mapping、逐文件行为等价 port、build / test fix loop，以及后续不必要数据复制清理。</li>
+<li>每个文件有并行 agents 处理，并配有两个 reviewers。</li>
+<li>官方同时注明该 port 当时尚未进入生产。</li>
+</ul>
+<p>这个例子的重要性不在“自动写了很多代码”，而在于它展示了一种新的 coding-agent workload：大规模迁移被拆成可并行、可复核、可循环修复的工作流。</p>
+<p>---</p>
+<h2>工作机制</h2>
+<p>从原文看，Dynamic Workflows 的机制可以压缩成四步：</p>
+<p>1. **计划**：Claude 根据用户 prompt 动态规划任务。</p>
+<p>2. **拆分与分发**：任务被拆成 subtasks，并 fan out 给并行 subagents。</p>
+<p>3. **检查与反驳**：结果先被独立检查，部分 agents 从反方向尝试推翻已有结论。</p>
+<p>4. **收敛**：workflow 多轮迭代，直到产出一个协调后的答案。</p>
+<p>它还强调 long-running 支持：任务可以持续数小时到数天，进度会保存；如果被中断，可以从中断点继续。coordination 发生在 conversation 外部，因此主对话不需要承载完整编排状态。</p>
+<p>---</p>
+<h2>对 Claude Code harness 画像的增量</h2>
+<p>这篇文章更新了 <a href="claude-code-harness.html">Claude Code：较厚的 agentic coding harness</a> 的判断。</p>
+<p>原先 Claude Code 已经体现出厚壳特征：</p>
+<ul>
+<li>session persistence</li>
+<li>context compaction</li>
+<li>permissions</li>
+<li>checkpoints</li>
+<li>subagents</li>
+<li>MCP / hooks / skills</li>
+</ul>
+<p>Dynamic Workflows 进一步把“多个 subagents 如何协作”也产品化。它不只是提供 subagent primitive，而是提供一个由 Claude 动态生成的 workflow layer。</p>
+<p>所以 Claude Code 的厚度可以再加一层：</p>
+<p>1. 普通 agent loop</p>
+<p>2. plan / permissions / checkpoints</p>
+<p>3. subagent isolation</p>
+<p>4. dynamic workflow orchestration</p>
+<p>这让 Claude Code 更接近“官方内建 agent team harness”，而不只是“单 agent + 子任务工具”。</p>
+<p>---</p>
+<h2>和 Harness 判断框架的关系</h2>
+<p>这篇材料给 <a href="../../frameworks/Harness架构判断框架.html">Harness 架构判断框架</a> 补了一个新判断：</p>
+<p>&gt; subagent 不只是在隔离上下文，也可以成为动态生成工作流中的并行执行单元。</p>
+<p>但这也会带来新的张力：</p>
+<ul>
+<li>开箱即用能力更强，但 token 成本显著上升。</li>
+<li>任务覆盖面更大，但过程可观察性更重要。</li>
+<li>独立验证更强，但不能替代人工 review 与真实测试门禁。</li>
+<li>官方默认 workflow 更有吸引力，但用户对编排细节的控制会更少。</li>
+</ul>
+<p>---</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="claude-code-harness.html">Claude Code：较厚的 agentic coding harness</a></li>
+<li><a href="coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a></li>
+<li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+<li><a href="coding%20agent%20的上下文压缩工作流.html">coding agent 的上下文压缩工作流</a></li>
+<li><a href="agent-runtime-os-cloud-runtime.html">Agent 系统作为 OS 与 Cloud Runtime 问题</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

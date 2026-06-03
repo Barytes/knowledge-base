@@ -25,6 +25,7 @@
 - [Agentic Design Patterns](agentic-design-patterns.md): AI Agent 设计模式实践指南，系统讲解如何构建可靠的 Agent 系统。
 - [Automated Weak-to-Strong Researcher](automated-weak-to-strong-researcher.md): 这篇材料最值得保留的，不只是它在 weak-to-strong supervision 上拿到了很高的 PGR，而是它把“自动化研究”收束成了一个可操作的 harness 问题。
 - [Bakery：iOS 端远程开发 APP](Bakery-iOS端远程开发APP.md): > 来源：Superlinear Academy 社区分享
+- [Claude Code Dynamic Workflows](claude-code-dynamic-workflows.md): **标签：** Claude Code，dynamic workflows，subagents，coding agent，harness
 - [Claude Code、Codex 与 pi 的 harness 对比](coding-agent-harness-comparison.md): 从当前本地材料看，pi、Claude Code、Codex 都属于 terminal-first 的 coding agent harness。它们共享的基本形状是：给模型一组文件与命令工具、把会话组织成线性消息流、允许读取项目级上下文文件，并围绕长任务构造某种状态保持与交互壳。
 - [Claude Code：较厚的 agentic coding harness](claude-code-harness.md): 按当前本地资料，Claude Code 不是“给 Claude 加几个工具”的薄壳，而是一套较厚的 agentic harness。它把模型、工具、上下文管理、权限系统、checkpoint、memory、subagents、MCP、hooks 与多界面运行方式整合成一个统一产品面。
 - [Clawhouse：多设备 Agent 上下文同步](clawhouse-多设备-agent-工作台.md): 你手头有很多设备：

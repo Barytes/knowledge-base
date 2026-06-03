@@ -12,6 +12,8 @@
 - 把长期协作里的关键控制问题内建进核心，包括 context compaction、session persistence、permissions、checkpoints 与 subagents。
 - 接受更厚的系统层和更多内建机制，以换取更强的开箱即用能力，而不是把这些能力主要留给用户自己拼装。
 
+2026-05 的 Dynamic Workflows 更新把这条路线又推进了一层：Claude Code 不只提供 subagent primitive，还开始让 Claude 动态生成 orchestration scripts，在一个 session 中并行运行数十到数百个 subagents，并在结果返回前做独立验证和 adversarial checking。
+
 ## 证据分层
 
 这页的依据分成两类：
@@ -96,6 +98,22 @@
 - subagents
 
 也就是说，Claude Code 的设计不是“尽量没有二级系统”，而是“核心 loop 之外，再叠一层正式支持的可扩展控制面”。
+
+### 7. Dynamic Workflows 把 subagents 推成临时 agent team
+
+2026-05-28 的官方博客 [Introducing dynamic workflows in Claude Code](../../../raw/external/claude-code-dynamic-workflows.md) 进一步说明，Claude Code 的 subagent 不只是上下文隔离工具，也可以被组织成动态工作流。
+
+Dynamic Workflows 的核心机制是：
+
+- Claude 根据 prompt 动态规划 workflow
+- 将任务拆成 subtasks
+- fan out 给并行 subagents
+- 对结果做独立检查
+- 让一部分 agents 尝试反驳已有发现
+- 持续迭代直到收敛
+- 保存进度，支持长时间任务中断后继续
+
+这让 Claude Code 从“单 agent + 可调用 subagent”进一步接近“官方内建 agent team harness”。它适合代码库级 bug hunt、安全审计、大规模迁移、language port 和高风险方案复核。代价是 token 使用显著上升，且用户更需要看清 workflow 到底做了什么、怎样验证和怎样收敛。
 
 ## 从外部分析稿里能谨慎补出的东西
 
@@ -193,9 +211,12 @@ Claude Code 的重要性，不只在于它“做了很多功能”，而在于�
 
 如果 `pi` 代表的是“极简核心 + 用户自编排”，那么 Claude Code 更接近“较厚核心 + 官方默认工作流”。
 
+Dynamic Workflows 让这个判断更明确：Claude Code 的产品方向不是只把单个 agent 做强，而是把多 agent 编排、独立验证和长任务恢复也收进默认 harness。
+
 ## 来源依据
 
 - [How Claude Code works](../../../raw/external/claude-code-how-it-works.md)
+- [Introducing dynamic workflows in Claude Code](../../../raw/external/claude-code-dynamic-workflows.md)
 - [Claude Code: An analysis](../../../raw/external/claude-code-analysis-southbridge.md)
 - [Claude Code、Codex 与 pi 的 harness 对比](coding-agent-harness-comparison.md)
 - [Harness Engineering（约束壳工程）](harness-engineering.md)
@@ -203,5 +224,6 @@ Claude Code 的重要性，不只在于它“做了很多功能”，而在于�
 ## 相关页面
 
 - [Claude Code、Codex 与 pi 的 harness 对比](coding-agent-harness-comparison.md)
+- [Claude Code Dynamic Workflows](claude-code-dynamic-workflows.md)
 - [Pi coding agent：一种极简且可观察的 coding harness](pi-coding-agent-harness.md)
 - [Harness Engineering（约束壳工程）](harness-engineering.md)

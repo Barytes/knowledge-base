@@ -17,6 +17,7 @@ Process new materials in this order:
 3. Place or move the source into the correct raw or inbox location if needed.
 4. Update the correct wiki layer.
 5. Append a short note to `wiki/log.md`.
+6. 自动重新生成 `wiki/site/`，确保 HTML 浏览视图反映维护后的 wiki。
 
 ## Source Classification
 
@@ -51,6 +52,7 @@ For an `external` source:
    - important tensions, caveats, or contradictions
    - links to related knowledge pages
 5. Prefer updating over creating duplicates.
+6. Regenerate `wiki/site/`.
 
 ## Personal Ingest
 
@@ -60,6 +62,7 @@ For a `personal` source:
 2. Extract one or more observations.
 3. Compare those observations against existing self pages.
 4. Promote to higher-level pages only when the evidence is stable.
+5. Regenerate `wiki/site/`.
 
 Use this promotion ladder:
 
@@ -77,6 +80,7 @@ For a `mixed` source:
 2. Extract any world-facing knowledge into `wiki/topics/` when it has durable value.
 3. Extract any recurring user judgment into `wiki/self/` only if supported by repeated evidence.
 4. Save the integrated interpretation in the relevant topic under `wiki/topics/`.
+5. Regenerate `wiki/site/`.
 
 ## Topic Essay Re-Distillation
 
@@ -110,6 +114,7 @@ When useful, a topic essay may therefore produce two outputs at once:
 - Prefer short, stable filenames based on topic rather than date-only filenames.
 - Add at least one link from a maintained page to another maintained page.
 - Update `wiki/index.md` when a new durable page changes the shape of the repository.
+- After creating or updating maintained pages, refresh `wiki/site/` automatically.
 
 ## Logging
 
@@ -120,3 +125,15 @@ Use:
 - `ingest` for new source compilation
 - `reflection` for self distillation
 - `lint` for reclassification or cleanup
+
+## Site Refresh
+
+Markdown remains the source of truth, but ingest is not complete until the static HTML view has been regenerated.
+
+Run:
+
+```bash
+./skills/kb-ops/scripts/kb-ingest.sh site
+```
+
+This refreshes topic indexes, `wiki/index.md`, and generated HTML under `wiki/site/`.
