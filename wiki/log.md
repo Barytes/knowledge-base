@@ -2112,3 +2112,12 @@ gogo-app 可立即开始的行动：
 
 **新增页面**
 - `wiki/topics/projects-roadmaps/Agentic-canvas-workbench.md`
+
+## [2026-06-03] query | AI 鞭子、Accountability 与 AI-native 团队
+
+围绕“AI 何时成为助理，何时成为上级追加要求的鞭子”这一观察，新增一页应用分析。核心结论是：AI 是否解放人，不取决于模型能力本身，而取决于工作关系中判断权、责任、成本和验证标准是否被正确分配。页面进一步区分非 AI-native 团队中的“AI 许愿机式加码”，以及 AI-native 团队中“执行速度领先于判断速度”的隐性鞭子风险。
+
+随后补充 accountability 主轴：AI-native 团队和非 AI-native 团队的本质区别不是工具使用频率，而是组织是否把目标定义权、价值判断权、路径选择权、停止权和结果解释权给到真正做事的人。
+
+**新增页面**
+- `wiki/topics/agent-harness-runtime/AI鞭子-accountability与AI-native团队.md`

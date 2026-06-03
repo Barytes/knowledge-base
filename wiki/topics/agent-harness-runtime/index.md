@@ -7,11 +7,11 @@
 - [AAR knowledge sharing 的设计洞察与取舍](AAR%20knowledge%20sharing%20的设计洞察与取舍.md)
 - [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.md)
 - [AI 自演化研究 Harness](ai-self-evolution-research-harnesses.md)
+- [AI 鞭子：Accountability、AI 理解与 AI-native 团队](AI鞭子-accountability与AI-native团队.md)
 - [Agent 复利工作模式](agent%20复利工作模式.md)
 - [Agent 时代的人机交互新命题](agent时代的人机交互新命题.md)
 - [Agent 系统作为 OS 与 Cloud Runtime 问题](agent-runtime-os-cloud-runtime.md)
 - [Agentic Design Patterns](agentic-design-patterns.md)
-- [Automated Weak-to-Strong Researcher](automated-weak-to-strong-researcher.md)
 - 其余页面可按下面的完整列表继续浏览。
 
 ## 页面
@@ -19,6 +19,7 @@
 - [AAR knowledge sharing 的设计洞察与取舍](AAR%20knowledge%20sharing%20的设计洞察与取舍.md): safety-research/automated-w2s-research 里的 AAR knowledge sharing，不是一个通用知识管理系统，而是为“少量并行研究 agent 在一个 outcome-gradable 实验环境里持续 hill-climb”这个具体场景定制的共享机制。
 - [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.md): **标签：** agentic runtime，evaluation-first，Claude Code，运行时层，契约层
 - [AI 自演化研究 Harness](ai-self-evolution-research-harnesses.md): 从本地关于 ASI-Evolve 的来源来看，AI 自演化并不是让一个更聪明的模型端到端决定一切，而是依赖一套 harness，把研究活动收束成一个有边界的闭环：学习、设计、实验、分析。
+- [AI 鞭子：Accountability、AI 理解与 AI-native 团队](AI鞭子-accountability与AI-native团队.md): 这页讨论一个组织现象：AI 在什么条件下会成为个人的助理，又在什么条件下会成为上级追加要求的鞭子。
 - [Agent 复利工作模式](agent%20复利工作模式.md): 这份材料从一道复利数学题出发（1.03^200 = 1.02^200 × 7），说明 AI 工作中的复利效应来源。核心洞察是：
 - [Agent 时代的人机交互新命题](agent时代的人机交互新命题.md): 这两篇文章合起来，提出了一个彼此咬合的判断：agent 时代真正变化的，不只是交互入口，而是**人在人机闭环里的位置**。
 - [Agent 系统作为 OS 与 Cloud Runtime 问题](agent-runtime-os-cloud-runtime.md): **标签：** agent runtime，session log，control plane，data plane，sandbox，observability
