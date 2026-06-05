@@ -79,12 +79,56 @@ def test_topics_config_is_externalized() -> None:
             raise AssertionError(f"topic entries should include {key!r}")
 
 
+def test_site_search_indexes_all_maintained_pages() -> None:
+    result = run(["./skills/kb-ops/scripts/kb-ingest.sh", "site"])
+    if result.returncode != 0:
+        raise AssertionError(result.stdout)
+
+    site = ROOT / "wiki" / "site"
+    search_index_path = site / "search-index.json"
+    search_page_path = site / "search.html"
+    search_script_path = site / "search.js"
+
+    for path in [search_index_path, search_page_path, search_script_path]:
+        if not path.exists():
+            raise AssertionError(f"site search should generate {path.relative_to(ROOT)}")
+
+    index = json.loads(search_index_path.read_text(encoding="utf-8"))
+    if not isinstance(index, list) or len(index) < 20:
+        raise AssertionError("site search index should cover maintained pages across the wiki")
+
+    required_fields = {"title", "url", "path", "layer", "summary", "body"}
+    for entry in index:
+        if not isinstance(entry, dict) or not required_fields.issubset(entry):
+            raise AssertionError(f"search index entry missing fields: {entry!r}")
+
+    def matching_titles(keyword: str) -> list[str]:
+        lowered = keyword.lower()
+        return [
+            entry["title"]
+            for entry in index
+            if lowered in f"{entry['title']} {entry['summary']} {entry['body']}".lower()
+        ]
+
+    munger_hits = matching_titles("latticework")
+    if "穷查理宝典" not in munger_hits:
+        raise AssertionError("search should find 穷查理宝典 by a body keyword")
+
+    runtime_hits = matching_titles("Claude Code")
+    if not any("Claude Code" in title for title in runtime_hits):
+        raise AssertionError("search should find a different page by another keyword")
+
+    index_html = (site / "index.html").read_text(encoding="utf-8")
+    assert_contains(index_html, "search.html", "site home navigation")
+
+
 def main() -> None:
     tests = [
         test_kb_ingest_uses_repo_root,
         test_kb_ingest_exposes_site_refresh,
         test_ingest_docs_require_site_refresh,
         test_topics_config_is_externalized,
+        test_site_search_indexes_all_maintained_pages,
     ]
     for test in tests:
         test()

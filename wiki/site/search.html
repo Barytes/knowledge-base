@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>搜索 · Knowledge Base</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html">首页</a>
+    <a href="layers/topics.html">话题</a>
+    <a href="layers/self.html">自我</a>
+    <a href="layers/frameworks.html">框架</a>
+    <a href="search.html">搜索</a>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>搜索</h1>
+      <p class="subtitle">按标题、摘要和正文关键词搜索维护层页面。搜索在浏览器本地完成，适用于 GitHub Pages。</p>
+    </section>
+    <section class="search-panel">
+      <input class="search-input" type="search" placeholder="输入关键词，例如 context、latticework、求职、accountability" data-search-input autofocus>
+      <div class="count" data-search-count>正在加载搜索索引...</div>
+    </section>
+    <section class="result-list" data-search-results></section>
+    <script src="search.js"></script>
+
+  </main>
+</body>
+</html>

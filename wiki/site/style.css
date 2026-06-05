@@ -43,6 +43,44 @@ p { margin: 8px 0 12px; }
 }
 .meta { color: var(--accent-2); font-size: 13px; margin-bottom: 4px; }
 .count { color: var(--muted); font-size: 14px; }
+.search-panel {
+  max-width: 860px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  padding: 18px;
+  margin-bottom: 18px;
+}
+.search-input {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  background: #fff;
+  color: var(--ink);
+}
+.search-input:focus {
+  outline: 2px solid rgba(45, 106, 106, 0.22);
+  border-color: var(--accent);
+}
+.result-list {
+  display: grid;
+  gap: 12px;
+  max-width: 860px;
+}
+.result {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  padding: 14px 16px;
+}
+.snippet mark {
+  background: #f4d98f;
+  padding: 0 2px;
+  border-radius: 3px;
+}
 .article {
   max-width: 860px;
   border: 1px solid var(--line);

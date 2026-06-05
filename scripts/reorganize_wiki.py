@@ -230,6 +230,41 @@ def page_summary(path: Path) -> str:
     return "暂无摘要。"
 
 
+def markdown_to_plain_text(path: Path) -> str:
+    text = read_text(path)
+    text = re.sub(r"```.*?```", " ", text, flags=re.DOTALL)
+    text = re.sub(r"`([^`]+)`", r"\1", text)
+    text = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"^#+\s*", "", text, flags=re.MULTILINE)
+    text = re.sub(r"^[>-]\s*", "", text, flags=re.MULTILINE)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+def page_layer(path: Path) -> str:
+    rel = path.relative_to(WIKI)
+    if rel.parts[0] == "topics" and len(rel.parts) > 1:
+        topic = TOPIC_BY_SLUG.get(rel.parts[1])
+        return topic.title if topic else "话题层"
+    if rel.parts[0] == "self":
+        return "自我层"
+    if rel.parts[0] == "frameworks":
+        return "框架层"
+    return "首页"
+
+
+def searchable_pages() -> list[Path]:
+    pages = []
+    for path in WIKI.rglob("*.md"):
+        if SITE_DIR in path.parents:
+            continue
+        if path == WIKI / "log.md":
+            continue
+        pages.append(path)
+    return sorted(pages, key=lambda p: str(p.relative_to(WIKI)))
+
+
 def topic_pages(topic_slug: str) -> list[Path]:
     topic_dir = TOPICS_DIR / topic_slug
     if not topic_dir.exists():
@@ -522,6 +557,7 @@ def page_shell(title: str, body: str, current: Path) -> str:
     topics_href = site_href(current, SITE_DIR / "layers" / "topics.html")
     self_href = site_href(current, SITE_DIR / "layers" / "self.html")
     frameworks_href = site_href(current, SITE_DIR / "layers" / "frameworks.html")
+    search_href = site_href(current, SITE_DIR / "search.html")
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -536,6 +572,7 @@ def page_shell(title: str, body: str, current: Path) -> str:
     <a href="{topics_href}">话题</a>
     <a href="{self_href}">自我</a>
     <a href="{frameworks_href}">框架</a>
+    <a href="{search_href}">搜索</a>
   </header>
   <main>
 {body}
@@ -601,6 +638,44 @@ p { margin: 8px 0 12px; }
 }
 .meta { color: var(--accent-2); font-size: 13px; margin-bottom: 4px; }
 .count { color: var(--muted); font-size: 14px; }
+.search-panel {
+  max-width: 860px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  padding: 18px;
+  margin-bottom: 18px;
+}
+.search-input {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  background: #fff;
+  color: var(--ink);
+}
+.search-input:focus {
+  outline: 2px solid rgba(45, 106, 106, 0.22);
+  border-color: var(--accent);
+}
+.result-list {
+  display: grid;
+  gap: 12px;
+  max-width: 860px;
+}
+.result {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  padding: 14px 16px;
+}
+.snippet mark {
+  background: #f4d98f;
+  padding: 0 2px;
+  border-radius: 3px;
+}
 .article {
   max-width: 860px;
   border: 1px solid var(--line);
@@ -619,6 +694,127 @@ ul { padding-left: 1.4rem; }
 }
 """
     write_text(SITE_DIR / "style.css", css.strip() + "\n")
+
+
+def write_search_assets() -> None:
+    entries = []
+    for md_path in searchable_pages():
+        html_path = md_to_site_path(md_path)
+        body = markdown_to_plain_text(md_path)
+        entries.append(
+            {
+                "title": page_title(md_path),
+                "url": site_href(SITE_DIR / "search.html", html_path),
+                "path": str(md_path.relative_to(WIKI)),
+                "layer": page_layer(md_path),
+                "summary": page_summary(md_path),
+                "body": body,
+            }
+        )
+    write_text(SITE_DIR / "search-index.json", json.dumps(entries, ensure_ascii=False, indent=2) + "\n")
+
+    search_js = r"""
+(function () {
+  const input = document.querySelector("[data-search-input]");
+  const results = document.querySelector("[data-search-results]");
+  const count = document.querySelector("[data-search-count]");
+  if (!input || !results || !count) return;
+
+  let pages = [];
+
+  const escapeHtml = (value) => value.replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[char]));
+
+  const normalize = (value) => value.toLowerCase().trim();
+
+  const snippetFor = (page, query) => {
+    const haystack = `${page.title} ${page.summary} ${page.body}`;
+    const lowerHaystack = haystack.toLowerCase();
+    const lowerQuery = query.toLowerCase();
+    const index = lowerHaystack.indexOf(lowerQuery);
+    if (index < 0) return escapeHtml(page.summary || page.body.slice(0, 160));
+    const start = Math.max(0, index - 56);
+    const end = Math.min(haystack.length, index + query.length + 96);
+    const prefix = start > 0 ? "..." : "";
+    const suffix = end < haystack.length ? "..." : "";
+    const excerpt = haystack.slice(start, end);
+    const escaped = escapeHtml(excerpt);
+    const pattern = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+    return `${prefix}${escaped.replace(pattern, (match) => `<mark>${match}</mark>`)}${suffix}`;
+  };
+
+  const score = (page, query) => {
+    const q = normalize(query);
+    const title = normalize(page.title);
+    const summary = normalize(page.summary);
+    const body = normalize(page.body);
+    let total = 0;
+    if (title.includes(q)) total += 100;
+    if (summary.includes(q)) total += 40;
+    if (body.includes(q)) total += 10;
+    return total;
+  };
+
+  const render = () => {
+    const query = input.value.trim();
+    if (!query) {
+      count.textContent = `${pages.length} 个页面可搜索`;
+      results.innerHTML = "";
+      return;
+    }
+    const matches = pages
+      .map((page) => ({ page, score: score(page, query) }))
+      .filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score || a.page.title.localeCompare(b.page.title, "zh-CN"))
+      .slice(0, 40);
+
+    count.textContent = `${matches.length} 个结果`;
+    results.innerHTML = matches.map(({ page }) => `
+      <article class="result">
+        <div class="meta">${escapeHtml(page.layer)} · ${escapeHtml(page.path)}</div>
+        <h3><a href="${page.url}">${escapeHtml(page.title)}</a></h3>
+        <p class="snippet">${snippetFor(page, query)}</p>
+      </article>
+    `).join("");
+  };
+
+  fetch("search-index.json")
+    .then((response) => response.json())
+    .then((data) => {
+      pages = Array.isArray(data) ? data : [];
+      render();
+      input.addEventListener("input", render);
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get("q");
+      if (query) {
+        input.value = query;
+        render();
+      }
+    })
+    .catch(() => {
+      count.textContent = "搜索索引加载失败";
+    });
+}());
+"""
+    write_text(SITE_DIR / "search.js", search_js.strip() + "\n")
+
+    search_body = """    <section class="hero">
+      <h1>搜索</h1>
+      <p class="subtitle">按标题、摘要和正文关键词搜索维护层页面。搜索在浏览器本地完成，适用于 GitHub Pages。</p>
+    </section>
+    <section class="search-panel">
+      <input class="search-input" type="search" placeholder="输入关键词，例如 context、latticework、求职、accountability" data-search-input autofocus>
+      <div class="count" data-search-count>正在加载搜索索引...</div>
+    </section>
+    <section class="result-list" data-search-results></section>
+    <script src="search.js"></script>
+"""
+    write_text(SITE_DIR / "search.html", page_shell("搜索", search_body, SITE_DIR / "search.html"))
 
 
 def write_site() -> None:
@@ -704,6 +900,8 @@ def write_site() -> None:
     </article>
 """
         write_text(html_path, page_shell(page_title(md_path), body, html_path))
+
+    write_search_assets()
 
 
 def append_log_entry() -> None:
