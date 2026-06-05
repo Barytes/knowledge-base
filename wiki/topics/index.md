@@ -6,7 +6,13 @@
 
 围绕 agent 外层控制壳、运行时、coding harness、多设备工作面与可验证执行系统的页面。
 
-- 页面数：33
+- 页面数：32
+
+## [人 / AI 关系 / 协作观察](human-ai-relationship/index.md)
+
+围绕人和 AI 的关系、协作方式、组织权责、工作心智与 AI 介入后的人类处境观察。
+
+- 页面数：1
 
 ## [Context / Memory / 知识系统](context-memory-knowledge-system/index.md)
 
@@ -42,7 +48,7 @@
 
 围绕 taste、科学与技艺、数学基础、Naval、内心游戏、人际理解与长期适配的页面。
 
-- 页面数：11
+- 页面数：12
 
 ## [项目 / 路线图 / 执行计划](projects-roadmaps/index.md)
 

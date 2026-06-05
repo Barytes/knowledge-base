@@ -2,6 +2,20 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-06-05] ingest | 穷查理宝典
+
+从用户提供的 PDF 摄取 Charles T. Munger 的 *Poor Charlie's Almanack: The Wit and Wisdom of Charles T. Munger, Expanded Third Edition*，源文件复制归档为 `raw/external/poor-charlies-almanack-2023.pdf`。新增维护页 [穷查理宝典](topics/learning-judgment-mental-models/穷查理宝典.md)，把材料收束为判断力训练入口：多元 mental models、latticework、逆向思考、激励、lollapalooza effect、能力圈、少数重注与心理误判清单。
+
+**新增页面**
+- [穷查理宝典](topics/learning-judgment-mental-models/穷查理宝典.md)
+
+**更新页面**
+- `wiki/topics/learning-judgment-mental-models/index.md`
+- `wiki/topics/learning-judgment-mental-models/naval-mental-models.md`
+
+**源文件新增**
+- `raw/external/poor-charlies-almanack-2023.pdf`
+
 ## [2026-05-30] ingest | The Founder's Playbook
 
 从用户提供的 PDF 摄取 Claude《The Founder's Playbook: Building an AI-Native Startup》，源文件归档为 `raw/external/the-founders-playbook-2026-05.pdf`，并新增 source note `raw/external/the-founders-playbook-2026-05.md`。新增维护页 [The Founder's Playbook：AI-native startup 的阶段纪律](topics/ai-product-product-definition/the-founders-playbook-ai-native-startup.md)，把材料收束为 AI-native startup 的 Idea / MVP / Launch / Scale 四阶段纪律：AI 压缩执行周期，但 founder 更需要验证、架构、scope、metrics、security 与运营系统化。
@@ -2119,5 +2133,11 @@ gogo-app 可立即开始的行动：
 
 随后补充 accountability 主轴：AI-native 团队和非 AI-native 团队的本质区别不是工具使用频率，而是组织是否把目标定义权、价值判断权、路径选择权、停止权和结果解释权给到真正做事的人。
 
+后续重排文章结构，按陌生读者的理解顺序改为：常见场景、AI 鞭子定义、accountability 定义、AI 理解、两条件叠加、团队差异、论文实验场景和判断清单。
+
+随后将页面从 `agent-harness-runtime` 迁移到新话题 `human-ai-relationship`。该话题用于承接人和 AI 的关系、协作方式、组织权责、工作心智与 AI 介入后的人类处境观察，避免稀释 `Agent / Harness / Runtime` 的 agent harness 边界。
+
+随后将文章开头改为第一人称论文实验场景，并补充从卡尔·罗杰斯人本主义视角看 accountability-first AI-native 团队的展望。
+
 **新增页面**
-- `wiki/topics/agent-harness-runtime/AI鞭子-accountability与AI-native团队.md`
+- `wiki/topics/human-ai-relationship/AI鞭子-accountability与AI-native团队.md`

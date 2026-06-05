@@ -8,6 +8,7 @@
 
 - [话题总览](topics/index.md)
 - [Agent / Harness / Runtime](topics/agent-harness-runtime/index.md): 围绕 agent 外层控制壳、运行时、coding harness、多设备工作面与可验证执行系统的页面。
+- [人 / AI 关系 / 协作观察](topics/human-ai-relationship/index.md): 围绕人和 AI 的关系、协作方式、组织权责、工作心智与 AI 介入后的人类处境观察。
 - [Context / Memory / 知识系统](topics/context-memory-knowledge-system/index.md): 围绕 context、memory、本地知识库、信息复利、AI 知识系统与 context infra 的页面。
 - [AI 产品 / 产品定义 / 验证](topics/ai-product-product-definition/index.md): 围绕 AI 产品分层、AI Architect、产品定义、MVP、Pre-PMF 与 go-to-market 的页面。
 - [研究知识库 / 公共知识治理](topics/research-knowledge-governance/index.md): 围绕课题组公共知识库、多人知识治理、共享 AI Skills、公共层边界与研究判断基础设施的页面。

@@ -11,6 +11,16 @@
       "self_pages": []
     },
     {
+      "slug": "human-ai-relationship",
+      "title": "人 / AI 关系 / 协作观察",
+      "summary": "围绕人和 AI 的关系、协作方式、组织权责、工作心智与 AI 介入后的人类处境观察。",
+      "frameworks": [
+        "AI系统产品判断框架.md",
+        "方向与执行判断框架.md"
+      ],
+      "self_pages": []
+    },
+    {
       "slug": "context-memory-knowledge-system",
       "title": "Context / Memory / 知识系统",
       "summary": "围绕 context、memory、本地知识库、信息复利、AI 知识系统与 context infra 的页面。",

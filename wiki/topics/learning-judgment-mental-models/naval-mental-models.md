@@ -259,7 +259,7 @@ Mental models 是判断力的核心训练材料。
 
 ## 待进一步探索
 
-- [ ] Charlie Munger 的具体 mental models 清单（*Poor Charlie's Almanack*）
+- [x] Charlie Munger 的具体 mental models 清单（见 [穷查理宝典](穷查理宝典.md)）
 - [ ] Nassim Taleb 的"反脆弱"、"黑天鹅"、"Skin in the Game"框架的详细分析
 - [ ] 如何设计一个自己的 mental models 收集和调用系统
 - [ ] Mental models 与 AI Agent 的"默认工作面"概念的关系
@@ -270,3 +270,4 @@ Mental models 是判断力的核心训练材料。
 
 - PDF：`raw/external/Eric-Jorgenson_The-Almanack-of-Naval-Ravikant_Final.pdf`
 - 相关章节：Building Judgment (pp. 93-125)
+- 补充来源：`raw/external/poor-charlies-almanack-2023.pdf`

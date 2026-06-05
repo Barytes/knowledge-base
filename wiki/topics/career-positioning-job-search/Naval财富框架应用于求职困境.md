@@ -107,6 +107,25 @@ Naval 的判断：
 
 **你的直觉本身就是你判断力的体现。需要相信这个判断力，并用它来指导行动。**
 
+### 5. 用创业者式 Accountability 承接职业选择
+
+Accountability 在当前阶段的落地，不一定是立刻注册公司、融资或全职创业，而是先用创业者视角承接一个具体方向：
+
+- 以自己的名义把 agent / knowledge system 项目做出来
+- 面向具体用户或团队验证它是否有用
+- 尝试把它卖出去，或至少换取真实使用、反馈、引荐和合作机会
+- 把验证过程沉淀为作品集、案例、文章和职业叙事
+
+这条路径有两种上行。
+
+第一，如果项目真的解决了强痛点，就可能形成早期产品、顾问服务、合作机会，甚至投资入口。这里的投资不是最早目标，而是强市场信号之后的外部杠杆。
+
+第二，即使项目暂时没有变成公司，它也会成为高质量作品集。它证明的不是"我会做一个 demo"，而是：我能发现问题、定义用户、设计系统、验证价值，并对结果负责。
+
+所以当前最合适的 accountability 不是空泛地说"我要创业"，而是进入一条可验证路径：
+
+**项目 → 用户 → 反馈 → 改进 → 公开证据 → 工作机会或创业机会。**
+
 ---
 
 ## 关键洞察总结
@@ -116,6 +135,7 @@ Naval 的判断：
 | You're never going to get rich renting out your time | 找工作 = 出卖时间 = Agent路径 = 低杠杆 |
 | The best jobs are neither decreed nor degreed | 真正好的机会不会在招聘网站上 |
 | Be a maker who makes something interesting | 做东西 + 公开展示 = 让机会来找你 |
+| Embrace accountability | 以自己的名义做项目、找用户、承接反馈，把结果变成作品集和机会 |
 | Hourly rate should be absurdly high | 跳过"别人希望你做的事"，只剩下"自己真正想做的事" |
 | Building specific knowledge feels like play to you | 你已经建了知识库 → 这是play → 这是specific knowledge的雏形 |
 | Judgment is underrated | 你的直觉判断本身就是判断力 |
