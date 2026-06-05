@@ -1,0 +1,4 @@
+interface:
+  display_name: "Topic Deep Ingest"
+  short_description: "Turn a source into linked topic pages."
+  default_prompt: "Use $topic-deep-ingest to extract every concrete topic from this material into separate linked wiki pages, update indexes, regenerate the site, and verify search coverage."

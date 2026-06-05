@@ -16,6 +16,7 @@ Use the local workflow skills as sub-guides when relevant:
 
 - `skills/kb-query/`
 - `skills/research-ingest/`
+- `skills/topic-deep-ingest/`
 - `skills/self-distill/`
 - `skills/bridge-write/`
 - `skills/framework-distill/`

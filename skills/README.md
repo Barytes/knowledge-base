@@ -14,6 +14,7 @@ Current workflow skills:
 - `repo-map-ingest/`: fetch a compact GitHub or local repo evidence snapshot, auto-generate a maintained repo map note, and refresh index/log entries
 - `repo-practice-query/`: answer focused engineering-practice questions from a studied repo
 - `research-ingest/`: compile external sources into `wiki/topics/`
+- `topic-deep-ingest/`: extract every concrete topic from a material into separate linked wiki pages and verify site search coverage
 - `self-distill/`: distill personal records into `wiki/self/`
 - `bridge-write/`: combine topic material and `self` into applied analysis under `wiki/topics/`
 - `framework-distill/`: lift reusable judgment skeletons from `topics` into `wiki/frameworks/`

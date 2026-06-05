@@ -2184,6 +2184,19 @@ gogo-app 可立即开始的行动：
 - `wiki/topics/learning-judgment-mental-models/穷查理宝典具体模型索引.md`
 - `wiki/topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md`
 
+## [2026-06-05] 维护 | 新增具体话题深度摄取 skill
+
+将《纳瓦尔宝典》和《穷查理宝典》深度 ingest 的方法沉淀为仓库内 skill。新 skill 面向“给定材料，抽取每个具体话题，逐项建立 wiki 页面，并构造页面和知识库之间关联”的工作流，要求先做候选话题清单，再建页面、更新索引和主题地图，最后重新生成 site 并验证搜索索引。
+
+**新增 skill**
+- `skills/topic-deep-ingest/SKILL.md`
+- `skills/topic-deep-ingest/agents/openai.yaml`
+- `skills/topic-deep-ingest/scripts/topic_coverage_audit.py`
+
+**更新页面**
+- `skills/README.md`
+- `skills/kb-ops/SKILL.md`
+
 ## [2026-06-05] ingest | 补齐跨书数学、经济学与受托判断主题
 
 补齐主题地图中剩余的跨书缺口：数学、概率与期望值；学院经济学的优点与缺陷；受托资金与机构投资。随后将主题地图的“待补齐主题页”改为覆盖状态，后续维护重点转为补充案例与复用记录。
