@@ -2,6 +2,24 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-06-05] update | 纳瓦尔 Part II 幸福与哲学话题展开
+
+补齐《纳瓦尔宝典》Part II 的 Happiness、Saving Yourself 和 Philosophy 具体话题页。新增 [幸福是选择](topics/learning-judgment-mental-models/幸福是选择.md)、[幸福需要在场](topics/learning-judgment-mental-models/幸福需要在场.md)、[幸福需要平静](topics/learning-judgment-mental-models/幸福需要平静.md)、[成功不等于幸福](topics/learning-judgment-mental-models/成功不等于幸福.md)、[幸福习惯](topics/learning-judgment-mental-models/幸福习惯.md)、[接受现实](topics/learning-judgment-mental-models/接受现实.md)、[选择成为自己](topics/learning-judgment-mental-models/选择成为自己.md)、[自我照顾与健康](topics/learning-judgment-mental-models/自我照顾与健康.md)、[冥想与心理强度](topics/learning-judgment-mental-models/冥想与心理强度.md)、[构建自己](topics/learning-judgment-mental-models/构建自己.md)、[成长自己](topics/learning-judgment-mental-models/成长自己.md)、[自由自己](topics/learning-judgment-mental-models/自由自己.md)、[人生意义](topics/learning-judgment-mental-models/人生意义.md)、[价值观](topics/learning-judgment-mental-models/价值观.md)、[理性佛教](topics/learning-judgment-mental-models/理性佛教.md) 与 [当下是全部](topics/learning-judgment-mental-models/当下是全部.md)。同步更新 [纳瓦尔与穷查理主题地图](topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md)，使 Naval 全书目录中的主要章节均有对应话题页入口。
+
+## [2026-06-05] update | 纳瓦尔 Part I 具体话题展开
+
+继续把《纳瓦尔宝典》从总览页拆成具体话题页。新增 [纳瓦尔宝典具体话题索引](topics/learning-judgment-mental-models/纳瓦尔宝典具体话题索引.md)，并首批展开 Part I 中的财富与判断主题：[财富如何被创造](topics/learning-judgment-mental-models/财富如何被创造.md)、[长期游戏与长期的人](topics/learning-judgment-mental-models/长期游戏与长期的人.md)、[建立或购买企业股权](topics/learning-judgment-mental-models/建立或购买企业股权.md)、[以判断力获得报酬](topics/learning-judgment-mental-models/以判断力获得报酬.md)、[优先级与专注](topics/learning-judgment-mental-models/优先级与专注.md)、[像玩一样工作](topics/learning-judgment-mental-models/像玩一样工作.md)、[如何获得好运](topics/learning-judgment-mental-models/如何获得好运.md)、[耐心](topics/learning-judgment-mental-models/耐心.md)、[清晰思考](topics/learning-judgment-mental-models/清晰思考.md)、[放下身份看现实](topics/learning-judgment-mental-models/放下身份看现实.md)、[决策技能](topics/learning-judgment-mental-models/决策技能.md) 与 [阅读与经典](topics/learning-judgment-mental-models/阅读与经典.md)。同步更新 [纳瓦尔宝典](topics/learning-judgment-mental-models/纳瓦尔宝典.md) 和 [纳瓦尔与穷查理主题地图](topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md)。
+
+## [2026-06-05] update | 穷查理心理误判二十五项逐页展开
+
+继续扩展《穷查理宝典》的具体模型层。将 Munger 在“The Psychology of Human Misjudgment”中列出的二十五项心理误判全部拆成独立 wiki 页，包括奖励与惩罚超级反应、喜欢/讨厌倾向、避免怀疑、避免不一致、嫉妒、互惠、社会证明、权威误导、废话倾向、尊重理由倾向与 Lollapalooza 心理倾向等。同步更新 [心理误判清单](topics/learning-judgment-mental-models/心理误判清单.md)、[穷查理宝典具体模型索引](topics/learning-judgment-mental-models/穷查理宝典具体模型索引.md) 与 [纳瓦尔与穷查理主题地图](topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md)，让每个具体误判都能从索引页和站点搜索进入。
+
+## [2026-06-05] update | 纳瓦尔与穷查理主题展开
+
+开始把《纳瓦尔宝典》和《穷查理宝典》从单页摘要扩展为可检索、可互链的主题页面组。新增 [纳瓦尔与穷查理主题地图](topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md)，先落地财富、Specific Knowledge、Accountability、杠杆、长期游戏、判断力、逆向、激励、心理误判、幸福和欲望/接受等主题页。
+
+根据“不要只囊括大主题”的反馈，进一步新增 [穷查理宝典具体模型索引](topics/learning-judgment-mental-models/穷查理宝典具体模型索引.md)，并首批展开 [Latticework of Mental Models](topics/learning-judgment-mental-models/Latticework-of-Mental-Models.md)、[Invert, Always Invert](topics/learning-judgment-mental-models/Invert-Always-Invert.md)、[能力圈](topics/learning-judgment-mental-models/能力圈.md)、[激励导致的偏误](topics/learning-judgment-mental-models/激励导致的偏误.md)、[Lollapalooza Effect](topics/learning-judgment-mental-models/Lollapalooza-Effect.md) 与 [检查清单与实践思考](topics/learning-judgment-mental-models/检查清单与实践思考.md)。后续仍需按索引逐项补齐心理误判二十五项、投资与商业判断模型、学习模型和人格伦理话题。
+
 ## [2026-06-05] ingest | 穷查理宝典
 
 从用户提供的 PDF 摄取 Charles T. Munger 的 *Poor Charlie's Almanack: The Wit and Wisdom of Charles T. Munger, Expanded Third Edition*，源文件复制归档为 `raw/external/poor-charlies-almanack-2023.pdf`。新增维护页 [穷查理宝典](topics/learning-judgment-mental-models/穷查理宝典.md)，把材料收束为判断力训练入口：多元 mental models、latticework、逆向思考、激励、lollapalooza effect、能力圈、少数重注与心理误判清单。
@@ -2141,3 +2159,65 @@ gogo-app 可立即开始的行动：
 
 **新增页面**
 - `wiki/topics/human-ai-relationship/AI鞭子-accountability与AI-native团队.md`
+
+## [2026-06-05] ingest | 补齐《穷查理宝典》投资与商业判断模型
+
+围绕《穷查理宝典》中投资不是价格预测、而是企业所有权和商业判断这一主线，新增一组具体模型页。重点把安全边际、机会成本、少数重注、耐心等待、好生意、护城河、定价权、保险浮存金等从大主题拆成可检索、可互链、可复用的独立页面。
+
+**新增页面**
+- `wiki/topics/learning-judgment-mental-models/股票是企业所有权.md`
+- `wiki/topics/learning-judgment-mental-models/企业分析而非市场预测.md`
+- `wiki/topics/learning-judgment-mental-models/好生意.md`
+- `wiki/topics/learning-judgment-mental-models/公平价格买伟大企业.md`
+- `wiki/topics/learning-judgment-mental-models/内在价值.md`
+- `wiki/topics/learning-judgment-mental-models/安全边际.md`
+- `wiki/topics/learning-judgment-mental-models/机会成本.md`
+- `wiki/topics/learning-judgment-mental-models/少数重注.md`
+- `wiki/topics/learning-judgment-mental-models/耐心等待与果断行动.md`
+- `wiki/topics/learning-judgment-mental-models/持久竞争优势.md`
+- `wiki/topics/learning-judgment-mental-models/护城河.md`
+- `wiki/topics/learning-judgment-mental-models/定价权.md`
+- `wiki/topics/learning-judgment-mental-models/保险浮存金.md`
+
+**更新页面**
+- `wiki/topics/learning-judgment-mental-models/穷查理宝典.md`
+- `wiki/topics/learning-judgment-mental-models/穷查理宝典具体模型索引.md`
+- `wiki/topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md`
+
+## [2026-06-05] ingest | 补齐跨书数学、经济学与受托判断主题
+
+补齐主题地图中剩余的跨书缺口：数学、概率与期望值；学院经济学的优点与缺陷；受托资金与机构投资。随后将主题地图的“待补齐主题页”改为覆盖状态，后续维护重点转为补充案例与复用记录。
+
+**新增页面**
+- `wiki/topics/learning-judgment-mental-models/数学概率与期望值.md`
+- `wiki/topics/learning-judgment-mental-models/学院经济学的优点与缺陷.md`
+- `wiki/topics/learning-judgment-mental-models/受托资金与机构投资.md`
+
+**更新页面**
+- `wiki/topics/learning-judgment-mental-models/穷查理宝典.md`
+- `wiki/topics/learning-judgment-mental-models/穷查理宝典具体模型索引.md`
+- `wiki/topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md`
+- `wiki/topics/learning-judgment-mental-models/index.md`
+
+## [2026-06-05] ingest | 补齐《穷查理宝典》学习与人格伦理模型
+
+继续把《穷查理宝典》从大主题拆成具体话题页。新增学习与思考模型，包括基础普世智慧、多学科大思想、数字敏感性、主动摧毁最爱的想法、避免意识形态和持续阅读；新增人格伦理模型，包括声誉、可信任、配得的成功、避免嫉妒与怨恨、可靠和独立思考。
+
+**新增页面**
+- `wiki/topics/learning-judgment-mental-models/基础普世智慧.md`
+- `wiki/topics/learning-judgment-mental-models/多学科大思想.md`
+- `wiki/topics/learning-judgment-mental-models/数字敏感性.md`
+- `wiki/topics/learning-judgment-mental-models/主动摧毁最爱的想法.md`
+- `wiki/topics/learning-judgment-mental-models/避免意识形态.md`
+- `wiki/topics/learning-judgment-mental-models/持续阅读.md`
+- `wiki/topics/learning-judgment-mental-models/声誉.md`
+- `wiki/topics/learning-judgment-mental-models/可信任.md`
+- `wiki/topics/learning-judgment-mental-models/配得的成功.md`
+- `wiki/topics/learning-judgment-mental-models/避免嫉妒与怨恨.md`
+- `wiki/topics/learning-judgment-mental-models/可靠.md`
+- `wiki/topics/learning-judgment-mental-models/独立思考.md`
+
+**更新页面**
+- `wiki/topics/learning-judgment-mental-models/穷查理宝典.md`
+- `wiki/topics/learning-judgment-mental-models/穷查理宝典具体模型索引.md`
+- `wiki/topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md`
