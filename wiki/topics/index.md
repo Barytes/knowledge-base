@@ -6,7 +6,7 @@
 
 围绕 agent 外层控制壳、运行时、coding harness、多设备工作面与可验证执行系统的页面。
 
-- 页面数：32
+- 页面数：34
 
 ## [人 / AI 关系 / 协作观察](human-ai-relationship/index.md)
 
@@ -30,13 +30,13 @@
 
 围绕课题组公共知识库、多人知识治理、共享 AI Skills、公共层边界与研究判断基础设施的页面。
 
-- 页面数：11
+- 页面数：12
 
 ## [职业 / 定位 / 求职](career-positioning-job-search/index.md)
 
 围绕 AI 时代职业路径、Agent Systems Engineer 定位、简历叙事、JD 信号与求职策略的页面。
 
-- 页面数：16
+- 页面数：21
 
 ## [AI 产业 / 投资 / 创业位置](ai-industry-investment/index.md)
 

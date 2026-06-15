@@ -2,6 +2,20 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-06-15] query | 课题组网站低响应启动策略
+
+根据“经验贴 + 成员信息”课题组网站在群里初次发起后响应较少的情境，新增 [课题组网站的低响应启动策略](topics/research-knowledge-governance/课题组网站的低响应启动策略.md)。页面把低响应解释为弱信号而非需求否定，并建议采用发起人样板、私聊小请求、成员信息 opt-in、展示成品后再群发的启动方式。同步更新 [研究知识库 / 公共知识治理](topics/research-knowledge-governance/index.md)。
+
+## [2026-06-12] query | Google DeepMind 多智能体安全资金池
+
+按用户要求在线追踪 Google DeepMind、Schmidt Sciences、ARIA、Cooperative AI Foundation 和 Google.org 的 1000 万美元多智能体安全资助新闻。新增 [Google DeepMind 多智能体安全资金池](topics/agent-harness-runtime/Google-DeepMind多智能体安全资金池.md)，把新闻信号收束为 agent safety 从单 agent 行为扩展到 multi-agent runtime、protocol、真实沙盒、身份权限、可观测性和系统性风险研究的结构变化。同步更新 [Agent / Harness / Runtime](topics/agent-harness-runtime/index.md)。
+
+继续追踪新闻中的 Google 相关工作线、组织和人物网络，新增 [Google 多智能体安全相关工作与组织人物地图](topics/agent-harness-runtime/Google多智能体安全相关工作与组织人物地图.md)。页面把 Google DeepMind 的 AGI safety、A2A、Concordia、SIMA / embodied agents、Evals、AP2 / agentic commerce 与 Schmidt Sciences、ARIA、CAIF、Google.org 的角色分工放到一张图里，并整理 Rohin Shah、James Fox、Lewis Hammond、Thore Graepel、Joel Leibo、Allan Dafoe、Alex Obadia 等关键人物。
+
+## [2026-06-12] ingest | Getting a Seat at the Table as a Data Scientist
+
+从用户提供的 Markdown 剪藏摄取 Yuzheng Sun 的《Getting a Seat at the Table as a Data Scientist》，源文件归档为 `raw/external/Getting a Seat at the Table as a Data Scientist.md`。新增维护入口页 [Data Scientist 的决策桌位置](topics/career-positioning-job-search/Data%20Scientist的决策桌位置.md)，并把材料拆成具体话题页：[数据科学家的三种角色](topics/career-positioning-job-search/数据科学家的三种角色.md)、[分析型 DS 的 AI 替代风险](topics/career-positioning-job-search/分析型DS的AI替代风险.md)、[数据科学家的可信数据与判断](topics/career-positioning-job-search/数据科学家的可信数据与判断.md)、[数据科学家的决策影响力武器](topics/career-positioning-job-search/数据科学家的决策影响力武器.md)。同步更新 [真本事：从会工作到会赚钱](topics/career-positioning-job-search/真本事-从会工作到会赚钱.md)、[AI 让我们重新开始享受自己的职业](topics/career-positioning-job-search/AI%20让我们重新开始享受自己的职业.md) 与 [Go to Market Multiple Times](topics/ai-product-product-definition/go-to-market-multiple-times.md)，把 DS 决策影响力接回已有职业、AI 与产品验证框架。
+
 ## [2026-06-05] update | 纳瓦尔 Part II 幸福与哲学话题展开
 
 补齐《纳瓦尔宝典》Part II 的 Happiness、Saving Yourself 和 Philosophy 具体话题页。新增 [幸福是选择](topics/learning-judgment-mental-models/幸福是选择.md)、[幸福需要在场](topics/learning-judgment-mental-models/幸福需要在场.md)、[幸福需要平静](topics/learning-judgment-mental-models/幸福需要平静.md)、[成功不等于幸福](topics/learning-judgment-mental-models/成功不等于幸福.md)、[幸福习惯](topics/learning-judgment-mental-models/幸福习惯.md)、[接受现实](topics/learning-judgment-mental-models/接受现实.md)、[选择成为自己](topics/learning-judgment-mental-models/选择成为自己.md)、[自我照顾与健康](topics/learning-judgment-mental-models/自我照顾与健康.md)、[冥想与心理强度](topics/learning-judgment-mental-models/冥想与心理强度.md)、[构建自己](topics/learning-judgment-mental-models/构建自己.md)、[成长自己](topics/learning-judgment-mental-models/成长自己.md)、[自由自己](topics/learning-judgment-mental-models/自由自己.md)、[人生意义](topics/learning-judgment-mental-models/人生意义.md)、[价值观](topics/learning-judgment-mental-models/价值观.md)、[理性佛教](topics/learning-judgment-mental-models/理性佛教.md) 与 [当下是全部](topics/learning-judgment-mental-models/当下是全部.md)。同步更新 [纳瓦尔与穷查理主题地图](topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md)，使 Naval 全书目录中的主要章节均有对应话题页入口。

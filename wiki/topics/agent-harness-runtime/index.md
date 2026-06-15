@@ -30,6 +30,8 @@
 - [Claude Code：较厚的 agentic coding harness](claude-code-harness.md): 按当前本地资料，Claude Code 不是“给 Claude 加几个工具”的薄壳，而是一套较厚的 agentic harness。它把模型、工具、上下文管理、权限系统、checkpoint、memory、subagents、MCP、hooks 与多界面运行方式整合成一个统一产品面。
 - [Clawhouse：多设备 Agent 上下文同步](clawhouse-多设备-agent-工作台.md): 你手头有很多设备：
 - [EvoMap：Agent 互联网与集体潜意识](EvoMap-Agent%20互联网与集体潜意识.md): EvoMap 是一个 Agent 互联网络平台，由前腾讯游戏策划张昊阳（seikiko）在 2026 年 2 月从零搭建。其核心目标是为全球 Agent 构建一个"集体潜意识"——通过 GEP-A2A 协议实现 Agent 之间的经验传承，避免重复试错。
+- [Google DeepMind 多智能体安全资金池](Google-DeepMind多智能体安全资金池.md): 这条 2026-06-11 的资金池信号把 agent safety 从单个模型或单个 agent 的行为，推进到多主体系统、协议、runtime、真实沙盒和可回放评测层。
+- [Google 多智能体安全相关工作与组织人物地图](Google多智能体安全相关工作与组织人物地图.md): Google 的多智能体安全资助新闻，应放在一张更大的 agent 生态图里看。
 - [Harness Engineering（约束壳工程）](harness-engineering.md): Harness engineering 指的是围绕模型外侧搭建的一层运行控制壳，让 agent 在处理漫长、混乱、跨步骤的任务时，不至于漂移、卡住，或错误地宣布自己已经完成。
 - [LuliYanng/Nono-Cowork 仓库地图](luliyanng-nono-cowork-repo-map.md): 这页是 LuliYanng/Nono-Cowork 的第一版仓库地图，观察主题是“仓库架构与工程实践”。
 - [Pi coding agent：一种极简且可观察的 coding harness](pi-coding-agent-harness.md): pi 把 coding agent harness 重新收缩成一个很小的壳：少量系统提示、四个默认工具、尽量透明的会话与 UI，再把更多状态与扩展能力外置到文件、CLI 工具和包机制里。

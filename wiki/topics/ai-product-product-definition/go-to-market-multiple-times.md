@@ -67,6 +67,17 @@
 
 这样做至少有两个直接收益。
 
+### Data Scientist 的版本
+
+[Data Scientist 的决策桌位置](../career-positioning-job-search/Data%20Scientist的决策桌位置.md) 把这件事放进 DS 影响力语境里：分析、观点和文档不应该只交付一次。一个 DS 可能已经有高价值判断，但第一次 presentation 没被听见，可能只是受众不对、角度不对或时机不对。
+
+所以对 DS 来说，`go to market multiple times` 具体意味着：
+
+- 先向朋友、同组队友或直属 manager 试讲，找出别人听不懂的地方。
+- 再向 PM、engineering lead、跨组 stakeholder 讲，观察谁真正关心这个问题。
+- 根据不同受众的反应改 framing，而不是只把报告越写越长。
+- 用内容和多次传播为后续的 [sponsor](../career-positioning-job-search/数据科学家的决策影响力武器.md) 与高杠杆会议创造入口。
+
 ### 1. 反馈不再停留在脑内
 
 你会更快知道：
@@ -192,6 +203,7 @@
 
 - [求职范式转变：让工作找到你](../career-positioning-job-search/求职范式转变：让工作找到你.md)：那页讨论求职市场结构；本文补上怎样把自己和自己的工作反复推向市场。
 - [增长工程师的职业押注与面试叙事](../career-positioning-job-search/增长工程师的职业押注与面试叙事.md)：那页强调把能力翻译成市场语言；本文补上这种翻译应该如何通过多轮市场接触来完成。
+- [Data Scientist 的决策桌位置](../career-positioning-job-search/Data%20Scientist的决策桌位置.md)：把本文方法落到 DS 影响力上：同一个分析或产品判断要多次推向不同组织受众，才可能变成决策桌上的议题。
 - [Pre-PMF 验证手册](pre-pmf-validation-playbook.md)：那页给出 PMF 前的验证框架；本文补上 `think backwards`、`MVP` 与多轮 `go to market` 的更具体动作感。
 - [真本事：从会工作到会赚钱](../career-positioning-job-search/真本事-从会工作到会赚钱.md)：本文里“把自己和工作当作可被市场识别的产品”与那页的“了解市场 + 打造产品 + 利用杠杆”高度同构。
 
