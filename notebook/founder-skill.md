@@ -19,3 +19,5 @@ founder playbook包括四个stage：Idea、MVP、Launch、Scale。我认为目�
 
 ## 思考
 主要目标是answer a set of questions。更具体地说，评估how well he can answer these questions?
+
+这是我非常想不明白的问题。理论上只要给出一个idea，AI能从头到尾生成所有东西跑完整个idea stage。但是这样其实没有意义？但是把所有功能做好，人需要的时候调用，感觉又不太AI native，有点太繁琐。不清楚AI在这里应该是一个什么角色。请你头脑风暴一下？然后拆解一下这个问题的本质
