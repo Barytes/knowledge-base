@@ -18,7 +18,7 @@
 
 围绕 context、memory、本地知识库、信息复利、AI 知识系统与 context infra 的页面。
 
-- 页面数：12
+- 页面数：13
 
 ## [AI 产品 / 产品定义 / 验证](ai-product-product-definition/index.md)
 
@@ -42,7 +42,7 @@
 
 围绕 AI 产业分层、付钱地图、资本结构、创业环境与技术成熟度判断的页面。
 
-- 页面数：5
+- 页面数：6
 
 ## [学习 / 判断 / 心智模型](learning-judgment-mental-models/index.md)
 

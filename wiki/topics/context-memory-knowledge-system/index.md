@@ -7,11 +7,11 @@
 - [AI 知识系统的产品定义信念](ai-knowledge-systems-product-definition-beliefs.md)
 - [Agent Context Infra 前沿调研（2026-05-25）](agent-context-infra-2026-05-25.md)
 - [Agent Context Infra 调研报告（2026-05-24）](agent-context-infra-2026-05-24.md)
+- [Context Engine：上下文编排层](context-engine.md)
 - [Context-Core 技术前沿调研报告（2026-05-25）](context-core-technical-frontier-2026-05-25.md)
 - [gogo：本地 llm-wiki 桌面应用](gogo.md)
 - [grapeot/context-infrastructure 仓库地图](grapeot-context-infrastructure-repo-map.md)
 - [volcengine/openviking 仓库地图](volcengine-openviking-repo-map.md)
-- [从Andrej Karpathy的LLM Wiki和鸭哥的context infrastructure看信息复利系统的设计](essays/从Andrej%20Karpathy的LLM%20Wiki和鸭哥的context%20infrastructure看信息复利系统的设计.md)
 - 其余页面可按下面的完整列表继续浏览。
 
 ## 页面
@@ -19,6 +19,7 @@
 - [AI 知识系统的产品定义信念](ai-knowledge-systems-product-definition-beliefs.md): llm-wiki 和 context-infrastructure 的共同点，不在于它们都用了 markdown、schema 或 agent，而在于它们都把“从原始数据里提取高价值信息，并把这些信息变成可持续复利的中间层”当成核心任务。
 - [Agent Context Infra 前沿调研（2026-05-25）](agent-context-infra-2026-05-25.md): 截至 2026-05-25，agent context infrastructure 已经从“给 agent 加长期记忆”升级成一条更完整的基础设施主线：
 - [Agent Context Infra 调研报告（2026-05-24）](agent-context-infra-2026-05-24.md): 截至 2026-05-24，agent context infra 已经不能再被简单理解成 RAG、向量库或“记忆功能”。更准确的定义是：
+- [Context Engine：上下文编排层](context-engine.md): Context Engine 可以理解成 AI 系统里的上下文编排层。它的核心职能不是“保存更多信息”，而是在每一轮任务前决定：
 - [Context-Core 技术前沿调研报告（2026-05-25）](context-core-technical-frontier-2026-05-25.md): 本文只讨论 context layer / context-core，刻意排除通用 agent runtime、MCP/A2A 这类连接协议、OpenAI Agents SDK 这类编排框架、普通 tool orchestration 和泛工作流平台。
 - [gogo：本地 llm-wiki 桌面应用](gogo.md): gogo 是一个本地 llm-wiki 风格 knowledge-base 的桌面应用原型。
 - [grapeot/context-infrastructure 仓库地图](grapeot-context-infrastructure-repo-map.md): 这页是围绕主题“仓库架构与工程实践”维护的 grapeot/context-infrastructure 第一版仓库地图。

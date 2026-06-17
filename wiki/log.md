@@ -2,6 +2,10 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-06-17] ingest | Context Engine 与 AI Infra 抗模型吞噬地图
+
+从用户粘贴的概念讨论中摄取 `Context Engine`、`LLM Wiki`、上下文测评和 AI Infra future-proof 判断。源文件归档为 `raw/personal/conversations/context-engine-ai-infra-2026-06-17.md`。新增 [Context Engine：上下文编排层](topics/context-memory-knowledge-system/context-engine.md)，把 Context Engine 和 RAG、memory、LLM Wiki、agent runtime、eval 的边界拆清，并补入最小可行测评方法。新增 [AI Infra 的抗模型吞噬地图](topics/ai-industry-investment/AI-Infra的抗模型吞噬地图.md)，把 AI Infra 分成容易被模型吞掉、需要做深、以及更 future proof 的方向。同步更新相关 topic 索引。
+
 ## [2026-06-15] query | 课题组网站低响应启动策略
 
 根据“经验贴 + 成员信息”课题组网站在群里初次发起后响应较少的情境，新增 [课题组网站的低响应启动策略](topics/research-knowledge-governance/课题组网站的低响应启动策略.md)。页面把低响应解释为弱信号而非需求否定，并建议采用发起人样板、私聊小请求、成员信息 opt-in、展示成品后再群发的启动方式。同步更新 [研究知识库 / 公共知识治理](topics/research-knowledge-governance/index.md)。
