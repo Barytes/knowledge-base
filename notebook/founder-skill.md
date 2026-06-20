@@ -11,13 +11,49 @@
 - 个人的创业：A guide for building and selling.
 
 ## North Star
-为创业者提供一个guided process来build and sell his product。
+Help founders uncover real market problems and sharpen solutions worth building, based on real customer and market evidence.
 
 ## 2026-06-05的产品判断：专注于Idea Stage
 founder playbook包括四个stage：Idea、MVP、Launch、Scale。我认为目前可以先做Idea和MVP这两个Stage。因为它们最好开始、最符合founder-skill这个产品的当下阶段、用户群最大（从前往后的用户数量逐级递减——但实际上可能MVP Stage的人数是最多的，因为building是其中最容易的）
 
-
 ## 思考
-主要目标是answer a set of questions。更具体地说，评估how well he can answer these questions?
+Idea stage可以看作一个loop，具体而言是一个针对problem hypothesis和solution concept的research-validation loop，其中包括四个loop：
+1. 将Idea打磨成一个robust problem hypothesis，通过收集资料以及用反例pressure testing
+2. 根据problem hypothesis进行市场调研，根据公开资料调研竞争者，确定市场缺口，并打磨调整problem hypothesis
+3. 寻找目标用户进行访谈，根据访谈得到的supporting/challenging evidence打磨problem hypothesis
+4. 设计一个solution concept，并pressure test，直到它能够address所有证据指向的市场缺口
+5. 根据最终的problem hypothesis和solution concept设计一个轻量化原型
+注：在整个产品的生命周期都要不断通过market research来evolve your thinking
 
-这是我非常想不明白的问题。理论上只要给出一个idea，AI能从头到尾生成所有东西跑完整个idea stage。但是这样其实没有意义？但是把所有功能做好，人需要的时候调用，感觉又不太AI native，有点太繁琐。不清楚AI在这里应该是一个什么角色。请你头脑风暴一下？然后拆解一下这个问题的本质
+### 人机角色
+
+> **外包了行动，往往也就外包了思考**
+
+理论上只要给出一个idea，AI能从头到尾生成所有东西跑完整个idea stage。但是这样其实没有意义？但是把所有功能做好，人需要的时候调用，感觉又不太AI native，有点太繁琐。不清楚AI在这里应该是一个什么角色。
+目标是：人类能清楚地回答idea stage exit criteria的问题。or evolve your thinking
+而不是：AI能回答这类问题，或者AI调研出一份完备的报告来回答这方面的问题。
+
+这个工具本质上的目标是希望evolve founder's thinking about the idea，或者about how the idea fits the market。在这之中，最理想的情况是founder actively think and reflect on the idea based on the observed evidences。但是让AI来辅助很容易让founder放弃思考，offload his thinking to AI。假如有一条边界将idea stage要做的所有事情区分成AI做的事情和人类做的事情，那么维护founder active thinking的那条边界我觉得非常模糊，我目前的想法是这条边界要大部分事情让人来做，即便只是让AI来搜集资料，也很容易卸载掉founder的thinking，让他陷入AI收集的长篇大论资料无所适从——如果让AI再来根据资料总结观点，那么founder就彻底不用思考了。因为很多想法和思考是在做事情的时候诞生和演化的。
+
+然而，放弃AI也会使得Founder陷入自己的Bias，从而走一些弯路。例如：
+1. 只在脑内循环，迟迟不接触用户。
+2. 做了很多阅读，但没有形成可检验假设。
+3. 只记住支持自己想法的信息。
+4. 访谈时问 leading questions。
+5. 收集到证据后没有系统复盘，最后靠感觉决定 build。
+6. 因为过程太散、太累，直接跳到 coding，获得虚假的进展感。
+也就是说，“人类自己做”并不自动等于 active thinking。很多时候只是 **低质量、无结构、逃避反证的 thinking**。
+
+然而，这个产品不应当试图处理founder自己的心理障碍。我们追求一种人机和谐的 AI-native ：
+> AI 系统旨在保护人类价值最高的事，也就是在打造产品过程中独特的思考、体验
+
+也就是说，founder-skill旨在减小产生insightful thinking的行动摩擦。由于founder's thinking必须由他本人的行动产生，所以这个产品的目标是减小这些行动的friction，而不是完成这些行动。
+
+这引出了[[一种人类中心的Agent Harness设想：AI应该在你想拉屎的时候递纸]]
+Founder-skill应当依托于一个人类中心的Agent harness，我想目前的agent harness还没有办法很好地完成这个事情。现在的agent harness可以很快地跑通整个环节，完成任务，生成判断，然而它不能evolve founder's thinking。
+
+
+## 核心问题
+
+
+## Founder Skill MVP设计

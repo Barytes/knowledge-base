@@ -15,6 +15,7 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 WIKI = ROOT / "wiki"
+NOTEBOOK_DIR = ROOT / "notebook"
 TOPICS_DIR = WIKI / "topics"
 SITE_DIR = WIKI / "site"
 TOPICS_CONFIG = TOPICS_DIR / "topics.json"
@@ -188,6 +189,17 @@ PAGE_TOPICS: dict[str, str] = {
 LINK_RE = re.compile(r"(?P<prefix>!?\[[^\]]*\]\()(?P<url>[^)\n]+?\.md)(?P<anchor>#[^)]+)?(?P<suffix>\))")
 
 
+def redact_private_lines(text: str) -> str:
+    redacted: list[str] = []
+    for line in text.splitlines():
+        if "life-record/" in line:
+            prefix = "- " if line.lstrip().startswith("- ") else ""
+            redacted.append(f"{prefix}私密记录路径已隐藏。")
+        else:
+            redacted.append(line)
+    return "\n".join(redacted)
+
+
 def relative_link(target: Path, source_dir: Path) -> str:
     from os.path import relpath
 
@@ -212,7 +224,7 @@ def page_title(path: Path) -> str:
 
 
 def page_summary(path: Path) -> str:
-    text = read_text(path)
+    text = redact_private_lines(read_text(path))
     in_frontmatter = False
     if text.startswith("---"):
         in_frontmatter = True
@@ -231,7 +243,7 @@ def page_summary(path: Path) -> str:
 
 
 def markdown_to_plain_text(path: Path) -> str:
-    text = read_text(path)
+    text = redact_private_lines(read_text(path))
     text = re.sub(r"```.*?```", " ", text, flags=re.DOTALL)
     text = re.sub(r"`([^`]+)`", r"\1", text)
     text = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", text)
@@ -243,6 +255,8 @@ def markdown_to_plain_text(path: Path) -> str:
 
 
 def page_layer(path: Path) -> str:
+    if NOTEBOOK_DIR in path.parents:
+        return "笔记层"
     rel = path.relative_to(WIKI)
     if rel.parts[0] == "topics" and len(rel.parts) > 1:
         topic = TOPIC_BY_SLUG.get(rel.parts[1])
@@ -254,7 +268,16 @@ def page_layer(path: Path) -> str:
     return "首页"
 
 
-def searchable_pages() -> list[Path]:
+def notebook_pages() -> list[Path]:
+    if not NOTEBOOK_DIR.exists():
+        return []
+    return sorted(
+        [p for p in NOTEBOOK_DIR.rglob("*.md") if p.name not in {"AGENTS.md", "README.md"}],
+        key=lambda p: page_title(p),
+    )
+
+
+def site_source_pages() -> list[Path]:
     pages = []
     for path in WIKI.rglob("*.md"):
         if SITE_DIR in path.parents:
@@ -262,7 +285,20 @@ def searchable_pages() -> list[Path]:
         if path == WIKI / "log.md":
             continue
         pages.append(path)
-    return sorted(pages, key=lambda p: str(p.relative_to(WIKI)))
+    pages.extend(notebook_pages())
+    return sorted(pages, key=site_source_sort_key)
+
+
+def display_path(path: Path) -> str:
+    return str(path.relative_to(ROOT))
+
+
+def site_source_sort_key(path: Path) -> str:
+    return display_path(path)
+
+
+def searchable_pages() -> list[Path]:
+    return site_source_pages()
 
 
 def topic_pages(topic_slug: str) -> list[Path]:
@@ -432,6 +468,7 @@ def write_wiki_index() -> None:
             "## 按层级浏览",
             "",
             "- [主题层](topics/index.md): 原外部知识与应用分析的主入口。",
+            "- [笔记层](../notebook/): 用户草稿笔记；可同步和网页浏览，但不属于 agent 维护的 wiki 层。",
             "- [自我层](self/README.md): 稳定偏好、判断模式与个人观察。",
             "- [框架层](frameworks/README.md): 可复用判断框架与 query 路由入口。",
             "",
@@ -439,6 +476,7 @@ def write_wiki_index() -> None:
             "",
             "- [知识库网页首页](site/index.html)",
             "- [话题层网页](site/layers/topics.html)",
+            "- [笔记层网页](site/layers/notebook.html)",
             "- [自我层网页](site/layers/self.html)",
             "- [框架层网页](site/layers/frameworks.html)",
             "",
@@ -466,7 +504,10 @@ def write_wiki_readme() -> None:
 
 
 def md_to_site_path(md_path: Path) -> Path:
-    rel = md_path.relative_to(WIKI)
+    if NOTEBOOK_DIR in md_path.parents:
+        rel = Path("notebook") / md_path.relative_to(NOTEBOOK_DIR)
+    else:
+        rel = md_path.relative_to(WIKI)
     if rel.name == "index.md":
         rel = rel.with_name("index.html")
     else:
@@ -485,7 +526,7 @@ def md_link_to_html(url: str, source_md: Path, html_path: Path) -> str:
     target = (source_md.parent / decoded).resolve()
     if target == WIKI / "log.md":
         return relative_link(target, html_path.parent)
-    if target.exists() and target.suffix == ".md" and WIKI in target.parents:
+    if target.exists() and target.suffix == ".md" and (WIKI in target.parents or NOTEBOOK_DIR in target.parents):
         return site_href(html_path, md_to_site_path(target))
     if target.exists():
         return relative_link(target, html_path.parent)
@@ -501,6 +542,11 @@ def simple_markdown_to_html(md_path: Path, html_path: Path) -> str:
     def inline(text: str) -> str:
         escaped = html.escape(text)
         escaped = re.sub(
+            r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]",
+            lambda m: wikilink_to_html(m.group(1), m.group(2), md_path, html_path),
+            escaped,
+        )
+        escaped = re.sub(
             r"\[([^\]]+)\]\(([^)]+)\)",
             lambda m: f'<a href="{md_link_to_html(html.unescape(m.group(2)), md_path, html_path)}">{m.group(1)}</a>',
             escaped,
@@ -508,7 +554,7 @@ def simple_markdown_to_html(md_path: Path, html_path: Path) -> str:
         escaped = re.sub(r"`([^`]+)`", r"<code>\1</code>", escaped)
         return escaped
 
-    for raw in read_text(md_path).splitlines():
+    for raw in redact_private_lines(read_text(md_path)).splitlines():
         line = raw.rstrip()
         if line.startswith("```"):
             if in_code:
@@ -551,10 +597,48 @@ def simple_markdown_to_html(md_path: Path, html_path: Path) -> str:
     return "\n".join(result)
 
 
+def wikilink_to_html(target_name: str, label: str | None, source_md: Path, html_path: Path) -> str:
+    decoded_target = html.unescape(target_name).strip()
+    decoded_label = html.unescape(label).strip() if label else decoded_target
+    if not decoded_target:
+        return html.escape(decoded_label)
+    target_path = resolve_wikilink(decoded_target, source_md)
+    if target_path is None:
+        return html.escape(decoded_label)
+    href = site_href(html_path, md_to_site_path(target_path))
+    return f'<a href="{href}">{html.escape(decoded_label)}</a>'
+
+
+def resolve_wikilink(target_name: str, source_md: Path) -> Path | None:
+    base = target_name.split("#", 1)[0].strip()
+    if not base:
+        return None
+    candidates = [base]
+    if not base.endswith(".md"):
+        candidates.append(f"{base}.md")
+
+    search_roots = [source_md.parent, NOTEBOOK_DIR, WIKI]
+    for candidate in candidates:
+        candidate_path = Path(candidate)
+        for root in search_roots:
+            target = (root / candidate_path).resolve()
+            if target.exists() and target.suffix == ".md" and (WIKI in target.parents or NOTEBOOK_DIR in target.parents):
+                return target
+        for root in [NOTEBOOK_DIR, WIKI]:
+            if not root.exists():
+                continue
+            matches = sorted(root.rglob(candidate_path.name))
+            for target in matches:
+                if target.suffix == ".md" and target.name not in {"AGENTS.md", "README.md"}:
+                    return target
+    return None
+
+
 def page_shell(title: str, body: str, current: Path) -> str:
     css_href = site_href(current, SITE_DIR / "style.css")
     home_href = site_href(current, SITE_DIR / "index.html")
     topics_href = site_href(current, SITE_DIR / "layers" / "topics.html")
+    notebook_href = site_href(current, SITE_DIR / "layers" / "notebook.html")
     self_href = site_href(current, SITE_DIR / "layers" / "self.html")
     frameworks_href = site_href(current, SITE_DIR / "layers" / "frameworks.html")
     search_href = site_href(current, SITE_DIR / "search.html")
@@ -570,6 +654,7 @@ def page_shell(title: str, body: str, current: Path) -> str:
   <header class="topbar">
     <a href="{home_href}">首页</a>
     <a href="{topics_href}">话题</a>
+    <a href="{notebook_href}">笔记</a>
     <a href="{self_href}">自我</a>
     <a href="{frameworks_href}">框架</a>
     <a href="{search_href}">搜索</a>
@@ -583,10 +668,9 @@ def page_shell(title: str, body: str, current: Path) -> str:
 
 
 def card(title: str, href: str, summary: str, meta: str = "") -> str:
-    meta_html = f'<div class="meta">{html.escape(meta)}</div>' if meta else ""
+    meta_html = f'  <div class="meta">{html.escape(meta)}</div>\n' if meta else ""
     return f"""<article class="card">
-  {meta_html}
-  <h3><a href="{href}">{html.escape(title)}</a></h3>
+{meta_html}  <h3><a href="{href}">{html.escape(title)}</a></h3>
   <p>{html.escape(summary)}</p>
 </article>"""
 
@@ -705,7 +789,7 @@ def write_search_assets() -> None:
             {
                 "title": page_title(md_path),
                 "url": site_href(SITE_DIR / "search.html", html_path),
-                "path": str(md_path.relative_to(WIKI)),
+                "path": display_path(md_path),
                 "layer": page_layer(md_path),
                 "summary": page_summary(md_path),
                 "body": body,
@@ -832,6 +916,7 @@ def write_site() -> None:
     </section>
     <section class="grid">
       {''.join(topic_cards)}
+      {card('笔记层', site_href(SITE_DIR / 'index.html', SITE_DIR / 'layers' / 'notebook.html'), '用户草稿笔记的网页浏览入口。')}
       {card('自我层', site_href(SITE_DIR / 'index.html', SITE_DIR / 'layers' / 'self.html'), '稳定偏好、判断模式与个人观察。')}
       {card('框架层', site_href(SITE_DIR / 'index.html', SITE_DIR / 'layers' / 'frameworks.html'), '可复用判断框架与 query 路由入口。')}
     </section>
@@ -862,19 +947,21 @@ def write_site() -> None:
 
     layer_pages = {
         "topics": [(TOPICS_DIR / topic.slug / "index.md") for topic in TOPICS],
+        "notebook": notebook_pages(),
         "self": sorted((WIKI / "self").glob("*.md"), key=lambda p: page_title(p)),
         "frameworks": sorted((WIKI / "frameworks").glob("*.md"), key=lambda p: page_title(p)),
     }
-    layer_titles = {"topics": "话题层", "self": "自我层", "frameworks": "框架层"}
+    layer_titles = {"topics": "话题层", "notebook": "笔记层", "self": "自我层", "frameworks": "框架层"}
     layer_summaries = {
         "topics": "原知识层与桥接层的按话题入口。",
+        "notebook": "用户草稿笔记的网页浏览入口。这里随 notebook 同步发布，但不进入维护 wiki 层。",
         "self": "稳定偏好、判断模式与个人观察。",
         "frameworks": "可复用判断框架与 query 路由入口。",
     }
     for layer, pages in layer_pages.items():
         current = SITE_DIR / "layers" / f"{layer}.html"
         cards = [
-            card(page_title(page), site_href(current, md_to_site_path(page)), page_summary(page), str(page.relative_to(WIKI)))
+            card(page_title(page), site_href(current, md_to_site_path(page)), page_summary(page), display_path(page))
             for page in pages
         ]
         body = f"""    <section class="hero">
@@ -888,14 +975,10 @@ def write_site() -> None:
 """
         write_text(current, page_shell(layer_titles[layer], body, current))
 
-    for md_path in sorted(WIKI.rglob("*.md")):
-        if SITE_DIR in md_path.parents:
-            continue
-        if md_path == WIKI / "log.md":
-            continue
+    for md_path in site_source_pages():
         html_path = md_to_site_path(md_path)
         body = f"""    <article class="article">
-      <div class="meta">{html.escape(str(md_path.relative_to(WIKI)))}</div>
+      <div class="meta">{html.escape(display_path(md_path))}</div>
       {simple_markdown_to_html(md_path, html_path)}
     </article>
 """

@@ -8,6 +8,8 @@ This repository is a lightweight local knowledge base designed for two jobs:
 Core idea:
 
 - `raw/` stores source materials and is the evidence layer.
+- `notebook/` stores user-authored draft notes. It may be synced and mirrored into the static site as a separate notebook layer, but it is not an agent-maintained wiki layer.
+- `life-record/` stores private local-only records and must not be pushed, published, indexed, or included in site output.
 - `wiki/` stores LLM-maintained pages and is the working knowledge layer.
 - `schemas/` stores the operating rules the agent should follow.
 - `skills/` stores task-specific prompts or workflows, including local workflow skills and imported external skills.

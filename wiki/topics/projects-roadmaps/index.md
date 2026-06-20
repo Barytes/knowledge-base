@@ -5,6 +5,7 @@
 ## 推荐阅读顺序
 
 - [Agent harness core 与三种 adapter 路线](Agent-harness-core与三种adapter路线.md)
+- [Agent infra 目标一致性判断（2026-06-20）](Agent-infra目标一致性判断-2026-06-20.md)
 - [Agent 系统月度执行计划（2026-05-24 至 2026-06-21）](Agent系统月度执行计划-2026-05-24.md)
 - [Agent 系统求职与项目路线图（2026-05）](Agent系统求职与项目路线图-2026-05.md)
 - [Agentic Canvas Workbench：可被 agent 观看的知识画板](Agentic-canvas-workbench.md)
@@ -14,6 +15,7 @@
 ## 页面
 
 - [Agent harness core 与三种 adapter 路线](Agent-harness-core与三种adapter路线.md): 这页记录一个从 “复刻 Codex” 往外扩展的判断：真正值得做的不是三个彼此独立的 agent harness，而是一个可复用的 agent-harness-core，再接三个不同方向的 demo / adapter。
+- [Agent infra 目标一致性判断（2026-06-20）](Agent-infra目标一致性判断-2026-06-20.md): 当前问题不是 founder-skill、oh-share-it 和 agent infra / context infra 风马牛不相及，而是它们必须被放回同一张分层图里。
 - [Agent 系统月度执行计划（2026-05-24 至 2026-06-21）](Agent系统月度执行计划-2026-05-24.md): 这个月的核心目标是把 context-core、oh-share-it、my-little-agent-loop 收束成一个可以写进简历的生产级旗舰证据包。
 - [Agent 系统求职与项目路线图（2026-05）](Agent系统求职与项目路线图-2026-05.md): 当前阶段的主目标不是继续增加项目数量，而是把已有项目收束成一个市场可识别的 Agent Systems Engineer 证据包。
 - [Agentic Canvas Workbench：可被 agent 观看的知识画板](Agentic-canvas-workbench.md): Agentic Canvas Workbench 是一个面向个人知识工作流的可视化思考工作面。

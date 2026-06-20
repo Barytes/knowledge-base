@@ -30,6 +30,7 @@
 - [传统职业路径与 Naval 路径的投资模型](传统职业路径与Naval路径的投资模型.md): 这页试图把前面对 Naval 的讨论，从价值观语言收束成一个更可操作的投资模型比较。
 - [分析型 DS 的 AI 替代风险](分析型DS的AI替代风险.md): 这页讨论一种很具体的风险：Data Scientist 做出长、复杂、技术上完整的分析，但没有让任何人知道下一步应该怎么做。这类工作看起来像高质量产出，实际上最容易被 GenAI 压缩。
 - [增长工程师的职业押注与面试叙事](增长工程师的职业押注与面试叙事.md): ---
+- [失败处理系统与职业路径风险](失败处理系统与职业路径风险.md): 这页记录一次围绕“读博还是进入市场”的职业风险讨论。
 - [数据科学家的三种角色](数据科学家的三种角色.md): Yuzheng Sun 把数据团队里的 Data Scientist / Data Analyst 分成三类：SQL Monkey、Scientist、Decision Maker。这个区分有用，是因为它不是按职级划分，而是按你在组织决策链条里的位置划分。
 - [数据科学家的决策影响力武器](数据科学家的决策影响力武器.md): 进入决策桌只靠“我分析得对”不够。文章把 Data Scientist 的影响力放大机制总结成三件武器：sponsor、contrarian product vision 和 scalable experimentation。
 - [数据科学家的可信数据与判断](数据科学家的可信数据与判断.md): Data Scientist 进入决策桌的前提不是“永远有数据”，而是“别人相信你对数据和判断的边界诚实”。这页把文章中的 trustworthy data 和 opinions without data 放在一起看。

@@ -2,6 +2,14 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-06-20] query | 失败处理系统与职业路径风险
+
+根据一次围绕“读博还是进入市场”的家庭对话，新增 [失败处理系统与职业路径风险](topics/career-positioning-job-search/失败处理系统与职业路径风险.md)。页面把父亲关于失业、稳定路径和尾部风险的提醒吸收进职业决策框架，同时区分“不接受博士作为唯一解法”和“不忽略市场失败风险”，将“不能靠信念硬扛失败”收束为一个带现金流、外部反馈、资产沉淀、失败分级和转向触发器的最小系统。同步更新 [职业 / 定位 / 求职](topics/career-positioning-job-search/index.md)。
+
+## [2026-06-20] query | Agent infra 目标一致性判断
+
+根据用户对 `founder-skill`、`oh-share-it` 与 agent infra / context infra 主线是否一致的疑问，新增 [Agent infra 目标一致性判断（2026-06-20）](topics/projects-roadmaps/Agent-infra目标一致性判断-2026-06-20.md)。页面把 `context-core` 定为主线核心，`oh-share-it` 定为真实部署和评测面，`my-little-agent-loop` / `agent-harness-core` 定为 runtime ownership 支撑，并把 `founder-skill` 收束为 workload / eval case / human-first workflow 案例，避免膨胀成独立主线。同步更新 [项目 / 路线图 / 执行计划](topics/projects-roadmaps/index.md)。
+
 ## [2026-06-17] ingest | Context Engine 与 AI Infra 抗模型吞噬地图
 
 从用户粘贴的概念讨论中摄取 `Context Engine`、`LLM Wiki`、上下文测评和 AI Infra future-proof 判断。源文件归档为 `raw/personal/conversations/context-engine-ai-infra-2026-06-17.md`。新增 [Context Engine：上下文编排层](topics/context-memory-knowledge-system/context-engine.md)，把 Context Engine 和 RAG、memory、LLM Wiki、agent runtime、eval 的边界拆清，并补入最小可行测评方法。新增 [AI Infra 的抗模型吞噬地图](topics/ai-industry-investment/AI-Infra的抗模型吞噬地图.md)，把 AI Infra 分成容易被模型吞掉、需要做深、以及更 future proof 的方向。同步更新相关 topic 索引。

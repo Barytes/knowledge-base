@@ -36,7 +36,7 @@
 
 围绕 AI 时代职业路径、Agent Systems Engineer 定位、简历叙事、JD 信号与求职策略的页面。
 
-- 页面数：21
+- 页面数：22
 
 ## [AI 产业 / 投资 / 创业位置](ai-industry-investment/index.md)
 
@@ -54,4 +54,4 @@
 
 围绕当前项目路线图、月度执行计划、agent harness core、Codex-like harness 与产品设想的页面。
 
-- 页面数：6
+- 页面数：7

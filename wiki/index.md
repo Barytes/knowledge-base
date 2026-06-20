@@ -20,6 +20,7 @@
 ## 按层级浏览
 
 - [主题层](topics/index.md): 原外部知识与应用分析的主入口。
+- [笔记层](../notebook/): 用户草稿笔记；可同步和网页浏览，但不属于 agent 维护的 wiki 层。
 - [自我层](self/README.md): 稳定偏好、判断模式与个人观察。
 - [框架层](frameworks/README.md): 可复用判断框架与 query 路由入口。
 
@@ -27,6 +28,7 @@
 
 - [知识库网页首页](site/index.html)
 - [话题层网页](site/layers/topics.html)
+- [笔记层网页](site/layers/notebook.html)
 - [自我层网页](site/layers/self.html)
 - [框架层网页](site/layers/frameworks.html)
 

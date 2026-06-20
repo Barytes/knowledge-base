@@ -21,7 +21,9 @@ Use the local workflow skills as sub-guides when relevant:
 - `skills/bridge-write/`
 - `skills/framework-distill/`
 
-Do not write to `notebook/`. That directory is a user-owned draft notebook. Maintenance workflows may read it only when the user explicitly asks, and must not ingest, lint, normalize, reorganize, move, delete, or otherwise modify its contents.
+Do not write to `notebook/`. That directory is a user-owned draft notebook. Maintenance workflows may sync it to git and mirror it into the generated static site, but must not ingest it into maintained wiki pages, lint, normalize, reorganize, move, delete, or otherwise modify its contents.
+
+Treat `life-record/` as private local-only material. Never stage, commit, push, publish, ingest, index, or include it in generated site output.
 
 When this skill creates or updates maintained pages under `wiki/`, write them in Chinese by default. Keep paths, commands, repository names, code identifiers, and necessary technical terms in their original form when useful.
 

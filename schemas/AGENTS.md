@@ -16,7 +16,8 @@ Read this file first, then consult the more specific schema for the task:
 
 ## Repository Map
 
-- `notebook/`: user-owned draft notebook; agents may read but must not write, ingest, lint, normalize, reorganize, move, or delete its contents
+- `notebook/`: user-owned draft notebook; agents may read it and may include it in git sync and generated website output, but must not write, ingest into maintained wiki, lint, normalize, reorganize, move, or delete its contents
+- `life-record/`: private life records; local-only and excluded from git sync, ingest, indexing, and generated site output
 - `raw/external/`: immutable outside sources
 - `raw/personal/`: immutable personal records
 - `wiki/topics/`: topic-organized maintained knowledge and applied analysis
@@ -62,8 +63,9 @@ Use local skills when the task matches:
 
 ## Layer Boundaries
 
-- Treat `notebook/` as user-only working space. It is readable context, not an agent-maintained layer.
-- Do not include `notebook/` in automatic ingest, lint cleanup, generated site updates, link repair, or repository reorganization.
+- Treat `notebook/` as user-owned working space. It is readable context and may be mirrored to the generated website, but it is not an agent-maintained wiki layer.
+- Do not include `notebook/` in automatic ingest, lint cleanup, link repair, or repository reorganization.
+- Treat `life-record/` as private local-only material. Never stage, commit, push, publish, ingest, index, or include it in generated site output.
 - Treat files in `raw/` as source evidence.
 - Do not rewrite source content in `raw/` unless explicitly asked.
 - Put world-facing claims and mixed applied analysis in the relevant topic under `wiki/topics/`.

@@ -122,6 +122,31 @@ def test_site_search_indexes_all_maintained_pages() -> None:
     assert_contains(index_html, "search.html", "site home navigation")
 
 
+def test_site_exposes_notebook_but_not_life_record() -> None:
+    result = run(["./skills/kb-ops/scripts/kb-ingest.sh", "site"])
+    if result.returncode != 0:
+        raise AssertionError(result.stdout)
+
+    site = ROOT / "wiki" / "site"
+    notebook_layer = site / "layers" / "notebook.html"
+    notebook_page = site / "content" / "notebook" / "founder-skill.html"
+    search_index_path = site / "search-index.json"
+
+    for path in [notebook_layer, notebook_page, search_index_path]:
+        if not path.exists():
+            raise AssertionError(f"notebook site output should generate {path.relative_to(ROOT)}")
+
+    index_html = (site / "index.html").read_text(encoding="utf-8")
+    layer_html = notebook_layer.read_text(encoding="utf-8")
+    search_index_text = search_index_path.read_text(encoding="utf-8")
+
+    assert_contains(index_html, "layers/notebook.html", "site home notebook navigation")
+    assert_contains(layer_html, "notebook/founder-skill.md", "notebook layer listing")
+    assert_contains(search_index_text, "notebook/founder-skill.md", "search index notebook coverage")
+    if "life-record/" in search_index_text:
+        raise AssertionError("life-record must stay out of the generated search index")
+
+
 def main() -> None:
     tests = [
         test_kb_ingest_uses_repo_root,
@@ -129,6 +154,7 @@ def main() -> None:
         test_ingest_docs_require_site_refresh,
         test_topics_config_is_externalized,
         test_site_search_indexes_all_maintained_pages,
+        test_site_exposes_notebook_but_not_life_record,
     ]
     for test in tests:
         test()

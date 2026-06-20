@@ -5,7 +5,9 @@ on:
     branches:
       - main
     paths:
+      - "notebook/**"
       - "wiki/site/**"
+      - "scripts/reorganize_wiki.py"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
@@ -30,6 +32,9 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
+      - name: Build wiki site
+        run: python3 scripts/reorganize_wiki.py
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

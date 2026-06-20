@@ -13,7 +13,8 @@ This repository is a local knowledge base. For repository-related questions, the
 
 ## Repository Layers
 
-- `notebook/`: user-owned draft notebook; agents may read but must not write, move, delete, ingest, lint, normalize, or reorganize its contents
+- `notebook/`: user-owned draft notebook; agents may read it and may include it in git sync and the generated website view, but must not rewrite, move, delete, lint, normalize, reorganize, or convert it into maintained wiki pages
+- `life-record/`: private life records; never stage, commit, push, publish, ingest, index, or include in generated site output
 - `raw/`: source evidence
 - `wiki/topics/`: topic-organized maintained knowledge and applied analysis
 - `wiki/self/`: maintained personal judgment patterns
@@ -37,7 +38,8 @@ This repository is a local knowledge base. For repository-related questions, the
 
 ## Operational Rules
 
-- Treat `notebook/` as user-only working space. Do not include it in maintenance workflows, automatic ingest, lint cleanup, site generation, or repository reorganization.
+- Treat `notebook/` as user-owned working space. It may be synced as source files and mirrored into the generated website under a separate notebook navigation entry, but do not rewrite, move, delete, lint, normalize, reorganize, or ingest it into maintained wiki pages.
+- Treat `life-record/` as private local-only material. Never stage, commit, push, publish, ingest, index, or include it in generated site output.
 - For maintenance workflows, use `skills/kb-ops/`.
 - For local-only question answering, use `skills/kb-query/`.
 - After creating or updating maintained wiki pages, run `./skills/kb-ops/scripts/kb-ingest.sh site` so `wiki/site/` stays in sync automatically.
