@@ -1,0 +1,94 @@
+\documentclass[10pt,letterpaper,fontset=fandol]{ctexart}
+
+\usepackage[margin=0.36in]{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=0pt, parsep=0pt, partopsep=0pt}
+\titleformat{\section}{\large\bfseries}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+
+\newcommand{\resumeItem}[1]{\item #1}
+\newcommand{\resumeSubheading}[4]{
+  \textbf{#1} \hfill #2 \\
+  \textit{#3} \hfill \textit{#4}
+}
+\newcommand{\projectHeading}[2]{
+  \textbf{#1} \hfill \textit{#2}
+}
+
+\begin{document}
+\small
+
+\begin{center}
+  {\LARGE \textbf{刘倍延}} \\
+  \vspace{2pt}
+  AI 全栈工程师 \,|\, AI Agent 工程师 \\
+  \vspace{2pt}
+  \href{mailto:liuby57@foxmail.com}{liuby57@foxmail.com} \,|\,
+  \href{https://github.com/Barytes}{github.com/Barytes} \,|\, 中国 / 远程 
+\end{center}
+
+\section{个人简介}
+\begin{itemize}
+  \resumeItem{\textbf{具备产品架构思维：}能清晰定义问题价值、用户场景、上下文边界和成功标准，并设计 AI 产品架构与 AI Agent 架构。}
+  \resumeItem{\textbf{具备算法设计能力：}能对实际问题进行数学建模，并设计运筹学、博弈论算法进行求解。}
+\end{itemize}
+
+\section{AI 产品与工程项目}
+
+\projectHeading{\href{https://github.com/Barytes/gogo}{gogo} -- 本地知识库 AI 工作台}{\href{https://github.com/Barytes/gogo}{github.com/Barytes/gogo}}
+\begin{itemize}
+  \resumeItem{产品功能：构建 \texttt{llm-wiki} 知识库桌面应用，支持本地文档查看与 AI 辅助研究工作流。}
+  \resumeItem{产品架构判断：聚焦 \texttt{llm-wiki} 知识库，把文档查看和 Agent 对话放进同一应用，降低配置与切换成本，开箱即用且新手友好。}
+  \resumeItem{技术实现：提供 Agent 对话、Session 管理、模型配置、权限控制、技能定义；用 Tauri + FastAPI + Pi RPC 支撑流式聊天与本地文件操作。}
+\end{itemize}
+
+\projectHeading{\href{https://github.com/Barytes/oh-share-it}{oh-share-it} -- 研究团队共享知识库}{\href{https://github.com/Barytes/oh-share-it}{github.com/Barytes/oh-share-it}}
+\begin{itemize}
+  \resumeItem{产品功能：为研究团队构建共享 Agent Context 层，让成员按规则共享 Agent 上下文，供团队成员与 Agent 检索调用，形成知识复利。}
+  \resumeItem{产品架构判断：针对团队上下文散落在个人、不同 Agent 无法借鉴与复用的问题，设计联邦式共享架构：个人维护本地知识库，公共层负责索引、同步与路由。}
+  \resumeItem{技术实现：支持规则化文件过滤和权限校验，按 resource / memory / skill 生成 L0 / L1 / L2 多层索引，支持 CLI 与 Web UI。}
+\end{itemize}
+
+\projectHeading{\href{https://github.com/Barytes/my-little-chating-agent}{my-little-chating-agent} -- AI 研究助手原型}{\href{https://github.com/Barytes/my-little-chating-agent}{github.com/Barytes/my-little-chating-agent}}
+\begin{itemize}
+  \resumeItem{产品功能：构建 AI 研究助手，支持网页搜索、页面阅读、本地笔记问答和外部信息扫描。}
+  \resumeItem{Agent 实现：从零实现 tool-calling agent loop，支持工具选择、执行、观察结果回填与多轮推理。}
+  \resumeItem{RAG 实现：基于 FAISS 构建本地笔记 RAG 检索工具，接入 Agent 回答流程。}
+\end{itemize}
+
+\section{研究经历}
+
+\resumeSubheading{移动边缘计算中的战略性用户卸载与服务商定价}{ICASSP 2026（CCF-B）}
+{第一作者}{}
+\begin{itemize}
+  \resumeItem{将边缘服务商、网络服务商和用户之间的策略交互建模为两阶段斯塔克尔伯格博弈，同时刻画服务商定价与用户资源购买行为。}
+  \resumeItem{将用户卸载竞争建模为广义纳什均衡问题，证明用户均衡存在，并设计贪心算法求解社会最优用户均衡。}
+  \resumeItem{设计服务商定价的增量改进算法和斯塔克尔伯格均衡的分支定界框架；仿真结果高效逼近斯塔克尔伯格均衡。}
+\end{itemize}
+
+\resumeSubheading{边缘系统中高效且公平的算力供给}{《计算机网络》（CCF-B）在投}
+{第一作者}{}
+\begin{itemize}
+  \resumeItem{提出面向边缘系统的协作算力供给框架，使边缘服务提供商在高峰需求下利用附近移动设备的闲置算力，并对自利参与者进行公平激励。}
+  \resumeItem{将任务分发、算力分配和奖励分配联合建模为纳什议价问题，并将其分解为社会福利最大化和最优奖励分配两个子问题。}
+  \resumeItem{设计基于交替方向乘子法的分布式算法和奖励协商算法，在不暴露移动设备隐私信息的情况下求解；仿真结果显示，相比基线方法，社会福利最高提升 140\%，最大时延最高降低 60\%。}
+\end{itemize}
+
+\section{教育经历}
+
+\textbf{中山大学}  \\
+\textit{软件工程硕士} \hfill \textit{2023--2026} \\
+\textit{软件工程本科} \hfill \textit{2018--2022}
+
+\section{写作与知识系统}
+维护公开知识库：\href{https://barytes.github.io/knowledge-base}{barytes.github.io/knowledge-base} \\
+发布博客：\href{https://barytes.substack.com}{barytes.substack.com} \,|\,
+\href{https://www.superlinear.academy/u/e062296f}{superlinear.academy/u/e062296f}
+
+\end{document}

@@ -1,0 +1,98 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=0.36in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=0pt, parsep=0pt, partopsep=0pt}
+\titleformat{\section}{\large\bfseries}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+
+\newcommand{\resumeItem}[1]{\item #1}
+\newcommand{\resumeSubheading}[4]{
+  \textbf{#1} \hfill #2 \\
+  \textit{#3} \hfill \textit{#4}
+}
+\newcommand{\projectHeading}[2]{
+  \textbf{#1} \hfill \textit{#2}
+}
+
+\begin{document}
+\small
+
+\begin{center}
+  {\LARGE \textbf{Beiyan Liu}} \\
+  \vspace{2pt}
+  AI Full-Stack Engineer \,|\, Applied AI Research \,|\, Knowledge Systems \\
+  \vspace{2pt}
+  \href{mailto:liuby57@foxmail.com}{liuby57@foxmail.com} \,|\,
+  \href{https://github.com/Barytes}{github.com/Barytes} \,|\, China / Remote \\
+  \href{https://barytes.github.io/knowledge-base}{barytes.github.io/knowledge-base} \,|\,
+  \href{https://barytes.substack.com}{barytes.substack.com}
+\end{center}
+
+\section{Profile}
+\begin{itemize}
+  \resumeItem{\textbf{Product architecture mindset:} Able to define problem value, user scenarios, context boundaries, and success criteria, then design AI product architecture and AI Agent architecture.}
+  \resumeItem{\textbf{Algorithm design ability:} Able to model real-world problems mathematically and design operations research and game-theoretic algorithms to solve them.}
+\end{itemize}
+
+\section{Selected AI Product Work}
+
+\projectHeading{\href{https://github.com/Barytes/gogo}{gogo} -- Local Knowledge Workbench for AI-Assisted Research}{\href{https://github.com/Barytes/gogo}{github.com/Barytes/gogo}}
+\begin{itemize}
+  \resumeItem{Product function: built an \texttt{llm-wiki} desktop knowledge-base app for local document viewing and AI-assisted research workflows.}
+  \resumeItem{Architecture judgment: focused on \texttt{llm-wiki}, combining document viewing and Agent chat to reduce setup and switching cost while staying beginner-friendly out of the box.}
+  \resumeItem{Technical implementation: supports Agent chat, sessions, model setup, permissions, and skills; uses Tauri + FastAPI + Pi RPC for streaming chat and local files.}
+\end{itemize}
+
+\projectHeading{\href{https://github.com/Barytes/oh-share-it}{oh-share-it} -- Shared Research Knowledge Base}{\href{https://github.com/Barytes/oh-share-it}{github.com/Barytes/oh-share-it}}
+\begin{itemize}
+  \resumeItem{Product function: built a shared Agent Context layer for research teams, letting members share Agent context by rules so people and Agents can retrieve, reuse, and compound team knowledge.}
+  \resumeItem{Architecture judgment: addressed scattered personal context and Agents' inability to learn from one another by using a federated sharing architecture: members maintain local knowledge bases, while the public layer handles indexing, sync, and routing.}
+  \resumeItem{Technical implementation: supports rule-based file filtering and permission checks; generates L0 / L1 / L2 indexes over resource / memory / skill entries, with CLI and Web UI access.}
+\end{itemize}
+
+\projectHeading{\href{https://github.com/Barytes/my-little-chating-agent}{my-little-chating-agent} -- AI Research Assistant Prototype}{\href{https://github.com/Barytes/my-little-chating-agent}{github.com/Barytes/my-little-chating-agent}}
+\begin{itemize}
+  \resumeItem{Product function: built an AI research assistant for web search, page reading, local-note QA, and external information scans.}
+  \resumeItem{Agent implementation: built the tool-calling agent loop from scratch, supporting tool selection, execution, observation feedback, and multi-step reasoning.}
+  \resumeItem{RAG implementation: built a local-note RAG retrieval tool with FAISS and integrated it into the Agent answer flow.}
+\end{itemize}
+
+\section{Research}
+
+\resumeSubheading{Strategic User Offloading and Service Provider Pricing in Mobile Edge Computing}{ICASSP 2026 (CCF-B)}
+{First author}{}
+\begin{itemize}
+  \resumeItem{Modeled strategic interactions among an edge service provider, a network service provider, and users as a two-stage Stackelberg game covering provider pricing and user resource-purchasing decisions.}
+  \resumeItem{Formulated user offloading competition as a generalized Nash equilibrium problem, proved equilibrium existence, and designed a greedy algorithm for the socially optimal user equilibrium.}
+  \resumeItem{Designed an incremental improvement algorithm for service-provider pricing and a branch-and-bound framework for the Stackelberg equilibrium; simulations efficiently approximate the Stackelberg equilibrium.}
+\end{itemize}
+
+\resumeSubheading{Efficient and Fair Computing Power Provision for Edge Systems}{Computer Networks (CCF-B), under review}
+{First author}{}
+\begin{itemize}
+  \resumeItem{Proposed a cooperative edge computing framework where an edge service provider recruits nearby mobile devices to handle peak demand while fairly incentivizing self-interested contributors.}
+  \resumeItem{Formulated task dispatch, computing-power allocation, and reward distribution as a Nash bargaining problem; decomposed it into social-welfare maximization and optimal reward distribution subproblems.}
+  \resumeItem{Designed an ADMM-based distributed algorithm and a negotiation algorithm; simulations show up to 140\% social-welfare improvement and up to 60\% maximum-delay reduction over baselines.}
+\end{itemize}
+
+\section{Education}
+
+\textbf{Sun Yat-sen University} \hfill Guangzhou, China \\
+\textit{M.S. in Software Engineering} \hfill \textit{2023--2026} \\
+\textit{B.S. in Software Engineering} \hfill \textit{2018--2022}
+
+\section{Writing and Knowledge Systems}
+Open knowledge base: \href{https://barytes.github.io/knowledge-base}{barytes.github.io/knowledge-base} \\
+Blogs: \href{https://barytes.substack.com}{barytes.substack.com} \,|\,
+\href{https://www.superlinear.academy/u/e062296f}{superlinear.academy/u/e062296f}
+
+\end{document}
