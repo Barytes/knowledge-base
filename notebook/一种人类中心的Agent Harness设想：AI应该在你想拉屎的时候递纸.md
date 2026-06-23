@@ -89,11 +89,14 @@ Human-centered harness 的强，是：
 ### 核心问题
 
 
-### 用户和关键场景
-
 
 ### MVP
 给定一组本地文件，以及一个操作台。Agent阅读用户当前操作，尝试推断用户当前想要输入的prompt。然后
 
 
 ## 从当前的Agent范式看
+当前的Agent范式是ReAct（还是Agent loop？）：给定一个prompt，generate-tool use，loop until finish。Loop工程，一个大点的loop，just用来拓展上下文窗口。如果你能把上下文窗口无限，那就是只要输入初始prompt就好了。
+
+尝试一个不同的agent范式？观察用户操作-推断用户目标、需要的帮助-提供帮助。
+- 入口从 prompt 扩展到 human activity
+- 需要一个循环：不希望停顿然后反复去prompt

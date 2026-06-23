@@ -1,0 +1,3825 @@
+{
+  "capturedAt": "2026-06-22",
+  "source": "Superlinear Academy logged-in in-app browser",
+  "scope": "课程与洞见 group",
+  "count": 535,
+  "categories": [
+    {
+      "path": "/c/coding/",
+      "title": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent” | Superlinear Academy",
+      "total": 50,
+      "counts": {
+        "other": 23,
+        "category": 7,
+        "lesson": 20
+      }
+    },
+    {
+      "path": "/c/ai/",
+      "title": "From Users to Builders: Transform Yourself for the Age of AI | Superlinear Academy",
+      "total": 98,
+      "counts": {
+        "other": 23,
+        "category": 7,
+        "lesson": 68
+      }
+    },
+    {
+      "path": "/c/aa/",
+      "title": "The AI Architect | Superlinear Academy",
+      "total": 76,
+      "counts": {
+        "other": 23,
+        "category": 7,
+        "lesson": 46
+      }
+    },
+    {
+      "path": "/c/public/",
+      "title": "公开课与行业交流 | Superlinear Academy",
+      "total": 50,
+      "counts": {
+        "other": 23,
+        "category": 7,
+        "lesson": 20
+      }
+    },
+    {
+      "path": "/c/ai-resources/",
+      "title": "Knowledge Bank | Superlinear Academy",
+      "total": 193,
+      "counts": {
+        "other": 23,
+        "category": 7,
+        "post": 163
+      }
+    },
+    {
+      "path": "/c/news/",
+      "title": "Deep News | Superlinear Academy",
+      "total": 230,
+      "counts": {
+        "other": 23,
+        "category": 7,
+        "post": 200
+      }
+    },
+    {
+      "path": "/c/agentic-ai/",
+      "title": "Agentic AI的原理与实践 | Superlinear Academy",
+      "total": 48,
+      "counts": {
+        "other": 23,
+        "category": 7,
+        "lesson": 18
+      }
+    }
+  ],
+  "items": [
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/851840/lessons/3237239",
+      "listText": "第一课：观念重塑——为什么 AI 时代还需要编程基础？ 11:41"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/851840/lessons/3237227",
+      "listText": "第二课：环境亲和力——第一次配置开发环境 19:09"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/851840/lessons/3237228",
+      "listText": "第三课：报错耐受力——红字不是灾难，是线索 12:47"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/851840/lessons/3237229",
+      "listText": "第四课：逻辑描述力——从隐含假设到明确合同 18:02"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/851840/lessons/3237244",
+      "listText": "结语：从AI User到AI Builder，以及推荐的学习路径 10:21"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/851840/lessons/3852807",
+      "listText": "加课：三分钟，学会Codex和Claude Code 03:04"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/851840/lessons/3699779",
+      "listText": "应用篇 #1：做PPT，如何第二次比第一次快 10 倍？"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/851840/lessons/3788405",
+      "listText": "应用篇 #2：Stop Chatting, Start Scaling: How AI Agents Transform Work - 亚马逊内部讲座 40:12"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/851840/lessons/3855724",
+      "listText": "应用篇 #3：非技术岗位，如何用AI达成十倍提效？ 21:04"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853511/lessons/3245587",
+      "listText": "Video - Module #1：如何学习AI？｜理解AI的技术本质与机会 01:06:12"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853511/lessons/3245588",
+      "listText": "项目 2：从 Instagram 账号下载图片 / Project 2: Downloading Images from an Instagram Account"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853511/lessons/3245589",
+      "listText": "Lesson 34: 第 1 步：识别你工作流程中的瓶颈 / Step 1: Identify the bottleneck of your workflow"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853511/lessons/3245590",
+      "listText": "Lesson 35: 学习要点 1：有选择地把任务委托给 AI / Learning 1: Delegate to AI selectively"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853512/lessons/3245592",
+      "listText": "Lesson 1: 我们要学什么？ / Video #1: What are we learning? 19:38"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853512/lessons/3245593",
+      "listText": "Lesson 10: 阶段 A 演示与讲解 / Video #4: Phase A Demos and Walkthrough 47:37"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853512/lessons/3245594",
+      "listText": "Lesson 11: 打好基础——你的第一个 FastAPI 应用 / Laying the Foundation — Your First FastAPI Application"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853512/lessons/3245607",
+      "listText": "Lesson 30: AI 架构师视角：为你的数据设计一个“灵魂” / The AI Architect's Lens: Designing a Soul for Your Data"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853483/lessons/3242933",
+      "listText": "第一章，第一课：从 “我问你答” 到“我说你做”【视频2】 14:24"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853483/lessons/3242982",
+      "listText": "第一章，第二课：Agentic AI的范式转变"
+    },
+    {
+      "category": "/c/coding/",
+      "categoryTitle": "AI编程入门：一晚上，学会指挥AI动手干活，搞懂“Agent”",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/coding/sections/853483/lessons/3243017",
+      "listText": "第三章，第二课：四大关键技术组件：如何系统构建 Agentic AI【视频6】 20:07"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334452/lessons/1240487",
+      "listText": "视频（英文） - 模块 #1：理解生成式 AI 的力量及其驾驭之道 / Video - Module #1: Understand the power of GenAI and how to yield it 01:21:05"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334452/lessons/3337185",
+      "listText": "视频（中文） - Module #1：如何学习 AI？｜理解 AI 的技术本质与机会 01:06:12"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334452/lessons/1240488",
+      "listText": "欢迎 / Welcome"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334452/lessons/1240489",
+      "listText": "技术洞察 1：批处理 / Technical Insight 1: Batch processing"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334452/lessons/1240492",
+      "listText": "技术洞察 2：GUI 与 API / Technical Insight 2: GUI and API"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334452/lessons/1240493",
+      "listText": "技术洞察 3：从用户到构建者 / Technical Insight 3: From a user to a builder"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334452/lessons/1240529",
+      "listText": "课后作业 / Homework"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334453/lessons/1240527",
+      "listText": "视频 - 模块 #2：深入解析使用 AI 构建的五个阶段 / Video - Module #2: Deep dive into the five stages of building with AI 01:11:41"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334453/lessons/1240494",
+      "listText": "研究：LLM 的内部运作机制 —— 记忆、知识与上下文窗口 / Research: How LLMs work internally - Memory, knowledge, and context window"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334453/lessons/1240518",
+      "listText": "理解常见陷阱——偷懒 / Make sense of common pitfalls - Laziness"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334453/lessons/1240519",
+      "listText": "理解常见陷阱 —— 遗忘 / Make sense of common pitfalls - Forgetting"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334453/lessons/1240520",
+      "listText": "理解常见陷阱——文件与网页 / Make sense of common pitfalls - Files and webpages"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334453/lessons/1240521",
+      "listText": "应用：使用 ChatGPT 的新方式——编辑，而非对话 / Applicaiton: New way to use ChatGPT -- Edit, not chat"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334453/lessons/1240523",
+      "listText": "案例研究：周度业务回顾——问题分析 / Case study: Weekly business review - Problem analysis"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334453/lessons/1240524",
+      "listText": "案例研究：周业务回顾——具体实现 / Case study: Weekly business review - Implementation"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334453/lessons/1240526",
+      "listText": "自动化的力量，以及生成式 AI 的角色 / The power of automation, and the role of GenAI"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334458/lessons/1240626",
+      "listText": "概述 / Overview"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334458/lessons/1240530",
+      "listText": "项目 1：从 CVPR 会议官网抓取数据 / Project 1: Extracting Data from the CVPR Conference Website"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334458/lessons/1240531",
+      "listText": "项目 2：从 Instagram 账号下载图片 / Project 2: Downloading Images from an Instagram Account"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334458/lessons/1240532",
+      "listText": "项目 3：用 Bookmarklet 增强网页搜索 / Project 3: Enhancing Web Search with Bookmarklets"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334458/lessons/1240533",
+      "listText": "项目 4：使用 GPT-5 进行图像内容分析 / Project 4: Image Content Analysis Using GPT-5"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334458/lessons/1240534",
+      "listText": "项目 5：自动化 Pi Day Challenge 中的 GUI 交互 / Project 5: Automating GUI Interactions in the Pi Day Challenge"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334458/lessons/1299628",
+      "listText": "总结与反思 / Summary and Reflection"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334458/lessons/1240535",
+      "listText": "视频 - Office Hours：课程项目实战讲解 / Video - Office Hours: Walkthrough of class projects 01:40:19"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334458/lessons/1635040",
+      "listText": "邀请你的朋友加入我们的社区 / Invite your friends to our community"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240536",
+      "listText": "视频 - 模块 #3：成为高效的 AI 管理者 / Video - Module #3: Becoming an effective manager of AI 01:21:19"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240537",
+      "listText": "引言 / Introduction"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240539",
+      "listText": "第 1 步：识别你工作流程中的瓶颈 / Step 1: Identify the bottleneck of your workflow"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240540",
+      "listText": "学习要点 1：有选择地把任务委托给 AI / Learning 1: Delegate to AI selectively"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240541",
+      "listText": "第二步：探索技术可行性 / Step 2: Explore the technical feasibility"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240543",
+      "listText": "学习 2：面向 AI 的文档管理 / Learning 2: Document management for AI"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240544",
+      "listText": "第三步：探索智能可行性 / Step 3: Explore the intelligence feasibility"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240547",
+      "listText": "学习 3：评估机制 / Learning 3: Assessment mechanisms"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240549",
+      "listText": "第 4 步：构建 / Step 4: Build"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240550",
+      "listText": "心得 4：风险管理 / Learning 4: Risk management"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334459/lessons/1240551",
+      "listText": "技术洞察：像管理者一样思考 / Technical insight: Think like a manager"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334462/lessons/3345296",
+      "listText": "视频 - 模块 #4：如何思考和抓住 AI 机会？ / Video - Module #4: 如何思考和抓住AI机会？ 48:57"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334462/lessons/1240554",
+      "listText": "引言 / Introduction"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334462/lessons/1240555",
+      "listText": "提出正确的问题 / Asking the right questions"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334462/lessons/1240556",
+      "listText": "研究：生成式 AI 建立在共识之上 / Research: GenAI is built on consensus"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334462/lessons/1240557",
+      "listText": "猜想：GenAI 与人类有何不同？ / Conjecture: How is GenAI different from humans?"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334462/lessons/1240558",
+      "listText": "要点 1：与幻觉共处 / Takeaway 1: Work with hallucination"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334462/lessons/1240560",
+      "listText": "可落地的指南：哪些任务该交给 GenAI？ / Actionable guildline: Which tasks shall I delegate to GenAI?"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/334462/lessons/1240561",
+      "listText": "要点二：有价值的观点都是反共识的，而这恰恰是 GenAI 无法提供的 / Takeaway 2: Valuable opinions are contrarian, which GenAI cannot offer"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/443905/lessons/1657490",
+      "listText": "为什么我们要讨论开源模型？ / Why Are We Discussing Open-Source Models?"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/443905/lessons/1657491",
+      "listText": "Ollama 与 Open WebUI / Ollama and Open WebUI"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/443905/lessons/1657493",
+      "listText": "Open WebUI 的配置与功能 / Configuration and Features of Open WebUI"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/443905/lessons/1657494",
+      "listText": "无需写代码，搭建完全本地化的 RAG / Implementing a Fully Local RAG Without Coding"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/443905/lessons/1657496",
+      "listText": "用 Agent 增强 LLM 能力 / Enhancing LLM Capabilities with Agents"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/443905/lessons/1657498",
+      "listText": "重新审视上下文窗口管理：使用 Open WebUI 自动管理上下文窗口 / Revisiting Context Window Management: Automatically Managing Context Windows with Open WebUI"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/443905/lessons/1657499",
+      "listText": "重访自动化周业务复盘（WBR）：用 Agent 访问私有数据 / Revisiting Automated Weekly Business Review (WBR): Using Agents to Access Private Data"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/336476/lessons/1247920",
+      "listText": "训练机器学习模型 / Training a Machine Learning Model"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/336476/lessons/1247921",
+      "listText": "预训练大语言模型 / Pre-Training an LLM"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/336476/lessons/1247923",
+      "listText": "“嘈杂微调”带来的问题 / Problem of the Noisy Nudge"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/336476/lessons/1247924",
+      "listText": "指令微调（Instruction Fine Tuning）"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/336476/lessons/1247926",
+      "listText": "基于人类反馈的强化学习（RLHF） / Reinforcement Learning from Human Feedback (RLHF)"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/336476/lessons/1247927",
+      "listText": "LLM 推理中的 Temperature（温度）参数 / Temperature in LLM Inference"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/336476/lessons/1247928",
+      "listText": "我们为什么不教 RAG：对其原理与未来的深入思考 / Why We Don’t Teach RAG: A Deeper Dive into Its Principles and Future"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/427052/lessons/1599899",
+      "listText": "课程简介与视频概览 / Introduction and Video Overview 43:06"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/427052/lessons/1599881",
+      "listText": "Cursor 入门：你的 AI 编程搭档 / Getting Started with Cursor: Your AI Coding Partner"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/427052/lessons/1599894",
+      "listText": "注释驱动编程：让 AI 来填补空白 / Comment-Oriented Programming: Let the AI Fill in the Gaps"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/427052/lessons/1599895",
+      "listText": "面向提示词的编程：通过对话写出更好的代码 / Prompt-Oriented Programming: Chatting Your Way to Better Code"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/427052/lessons/1599896",
+      "listText": "目标导向编程：让智能体动起来 / Objective-Oriented Programming: Agents at Work"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/427052/lessons/1599897",
+      "listText": "精炼 Cursor 的角色：用规则引导它的行为 / Refining Cursor’s Role: Guiding Its Behavior with Rules"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/427052/lessons/1616750",
+      "listText": "通过外部工具扩展 Cursor 的能力 / Expanding Cursor’s Capabilities with External Tools"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/427052/lessons/1616751",
+      "listText": "把 Cursor 作为通用 AI 入口 / Using Cursor as a General AI Entry Point"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/427052/lessons/1599898",
+      "listText": "突破局限与最佳实践 / Overcoming Limitations and Best Practices"
+    },
+    {
+      "category": "/c/ai/",
+      "categoryTitle": "From Users to Builders: Transform Yourself for the Age of AI",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/ai/sections/1033605/lessons/3929632",
+      "listText": "课代表立正 X 新物种联盟：OPC的10倍提效之路 01:56:59"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812392/lessons/3182190",
+      "listText": "视频 #1：我们要学什么？ / Video #1: What are we learning? 19:38"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812392/lessons/3089114",
+      "listText": "成为 AI 架构师 / Become an AI Architect"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812392/lessons/3190159",
+      "listText": "视频 #2：我们将获得什么？ / Video #2: What will we get? 14:29"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812392/lessons/3089115",
+      "listText": "你的作品：一个买不到的系统 / Your Creation: A System You Can't Buy"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812392/lessons/3089116",
+      "listText": "你将构建的三大超能力 / Three Superpowers You Will Build"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812392/lessons/3190267",
+      "listText": "视频 #3：我们如何抵达目标？ / Video #3: How to get there? 11:50"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812392/lessons/3089117",
+      "listText": "我们的方法：通往精通的结构化路径 / Our Approach: A Structured Approach to Mastery"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812392/lessons/3089118",
+      "listText": "终点目标：你将锻造出什么 / The Destination: What You Will Forge"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812392/lessons/3189617",
+      "listText": "课程更新与改进日志 / Course Updates & Improvement Log"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812393/lessons/3211881",
+      "listText": "视频 #4：阶段 A 演示与讲解 / Video #4: Phase A Demos and Walkthrough 47:37"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812393/lessons/3089119",
+      "listText": "打好基础——你的第一个 FastAPI 应用 / Laying the Foundation — Your First FastAPI Application"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812393/lessons/3189525",
+      "listText": "视频 #5：Builder Space 操作演示 / Video #5: Builder Space Walkthrough 10:27"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812393/lessons/3089120",
+      "listText": "集成核心智能引擎 / Integrating the Core Intelligence"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812393/lessons/3089121",
+      "listText": "用 Agentic 工具扩展能力 / Extending Capabilities with Agentic Tools"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812393/lessons/3089122",
+      "listText": "手动调试 Agent 的“思维” / Manually Debugging the Agent's Mind"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812393/lessons/3089123",
+      "listText": "用全栈体验闭合产品闭环 / Closing the Loop with a Full-Stack Experience"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812393/lessons/3089124",
+      "listText": "模块小结 / Module Summary"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812393/lessons/3131825",
+      "listText": "视频 #6：使用 Build Space 构建 ChatGPT 克隆版；问答 / Video #6: Building a ChatGPT Clone with Build Space; Q&A 53:08"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812394/lessons/3089125",
+      "listText": "回顾与跃迁：从引擎构建者到应用架构师 / Recap and The Leap Forward: From Engine Builder to Application Architect"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812394/lessons/3089126",
+      "listText": "你的战略加速器：深入解读 AI Builder 学员门户 / Your Strategic Accelerator: A Deep Dive into the AI Builder Student Portal"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812394/lessons/3089127",
+      "listText": "前路展望：你在 Phase B 的学习路径 / The Road Ahead: Your Learning Path in Phase B"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812395/lessons/3089128",
+      "listText": "新大陆——由无摩擦交互解锁的世界 / The New Continent — A World Unlocked by Frictionless Interaction"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812395/lessons/3089129",
+      "listText": "AI 架构师的视角：在可能性中找到真正的价值 / The AI Architect's Lens: Finding Value Within Possibility"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812395/lessons/3089130",
+      "listText": "点燃飞轮：你的全新“管理—创造”工作流 / Igniting the Flywheel: Your New Manage-and-Create Workflow"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812395/lessons/3089131",
+      "listText": "你的起点：从想法到你的第一个魔法产品 / Your Starting Point: From Idea to Your First Magical Product"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812395/lessons/3089132",
+      "listText": "阶段 1：产品定义简报 / Phase 1: Product Definition Brief"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812395/lessons/3089133",
+      "listText": "阶段二：构建 MVP / Phase 2: Building the MVP"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812395/lessons/3089134",
+      "listText": "第三阶段：你的任务——设计并构建属于你自己的超能力 / Phase 3: Your Mission - Design and Build Your Own Superpower"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812396/lessons/3089135",
+      "listText": "核心愿景：为你的 AI 注入记忆 / The Core Vision: Granting Your AI a Memory"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812396/lessons/3089136",
+      "listText": "AI 架构师视角：为你的数据设计一个“灵魂” / The AI Architect's Lens: Designing a Soul for Your Data"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812396/lessons/3089137",
+      "listText": "再次点燃飞轮：运用“管理-创造”工作流 / Igniting the Flywheel, Again: Applying the Manage-and-Create Workflow"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812396/lessons/3089138",
+      "listText": "你的起点：从你的数据到你的魔法 / Your Starting Point: From Your Data to Your Magic"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812396/lessons/3089139",
+      "listText": "你的任务：设计并构建属于你自己的数字分身 / Your Mission: Design and Build Your Own Digital Twin"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812397/lessons/3089140",
+      "listText": "核心愿景：赋予 AI 主动出击的能力 / The Core Vision: Granting Your AI the Power of Initiative"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812397/lessons/3089141",
+      "listText": "AI 架构师的视角：把智慧设计进自动化 / The AI Architect's Lens: Designing Wisdom into Automation"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812397/lessons/3089142",
+      "listText": "飞轮的最后一转：实践“管理 + 创造”工作流 / The Flywheel's Final Turn: Applying the Manage-and-Create Workflow"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812397/lessons/3089143",
+      "listText": "你的起点：构建你的第一个自主智能体 / Your Starting Point: Building Your First Autonomous Agent"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812397/lessons/3089144",
+      "listText": "你的任务：设计并打造属于你自己的战略顾问 / Your Mission: Design and Build Your Own Strategic Advisor"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812398/lessons/3089145",
+      "listText": "导论：从“能跑起来”到“可长期运行” / Introduction: From It Works to It Lasts"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812398/lessons/3089146",
+      "listText": "架构师的驾驶舱：精通 Context Debugger / The Architect's Cockpit: Mastering the Context Debugger"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812398/lessons/3089147",
+      "listText": "智能的深度：多模型编排与 AI 原生决策 / The Depth of Intelligence: Multi-Model Orchestration & AI-Native Decisions"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812398/lessons/3089148",
+      "listText": "系统的鲁棒性：生产级工程 / The Robustness of the System: Production-Grade Engineering"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/812398/lessons/3089149",
+      "listText": "结业总结：你已亲手锻造未来 / Final Summary: You Have Forged the Future"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/840969/lessons/3196086",
+      "listText": "什么时候不该用 AI / When to not use AI"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/840969/lessons/3196109",
+      "listText": "无摩擦交互——探索 Android 手表的边界 / Frictionless Interaction -- Exploring the constraint of an Android watch"
+    },
+    {
+      "category": "/c/aa/",
+      "categoryTitle": "The AI Architect",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/aa/sections/840969/lessons/3929070",
+      "listText": "课代表和鸭哥工作的实况 | how the sausage is made 02:02:11"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900177/lessons/3964350",
+      "listText": "腾讯 - 研发团队AI转型的常见误区与正确坐标系 01:56:30"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900177/lessons/3990267",
+      "listText": "小红书 - 从30%到×10 ：AI 时代的个人生产力跃迁 01:34:14"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900177/lessons/4030640",
+      "listText": "美团 - 从User到Builder：AI时代的个人进化指南 01:54:49"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900177/lessons/3409683",
+      "listText": "Pinterest - 数据科学家如何不被AI取代，并持续从AI进步中获益？（英文） 58:26"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900177/lessons/3409707",
+      "listText": "DoorDash - 如何通过管理context，让AI高质量完成工作？（英文） 24:42"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900177/lessons/3409920",
+      "listText": "Amazon - AI自动化weekly business review的五层境界（中文） 54:10"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900178/lessons/3410175",
+      "listText": "Data Analytics in the Age of AI: OpenAI, Anthroic, Gen, Lyft, Doordash 01:38:25"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900178/lessons/3411670",
+      "listText": "AI会如何改变教育？@耶鲁大学中国中心 02:51:10"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900178/lessons/3522631",
+      "listText": "为什么感受不到AI的颠覆？ @Lead Forward 01:25:05"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900178/lessons/3522640",
+      "listText": "Decision Making in the Age of AI: 课代表，Cassie Kozyrkov， Tim Chan 59:09"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900178/lessons/3522668",
+      "listText": "与The Pragmatic Engineer，关于AI对软件行业影响的访谈 54:10"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900181/lessons/3523449",
+      "listText": "AI Coding, 第二课：环境亲和力——第一次配置开发环境 19:09"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900181/lessons/3523451",
+      "listText": "Agentic AI, 第一课：从 “我问你答” 到“我说你做”【视频2】 14:24"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900181/lessons/3523452",
+      "listText": "AI Builders, 第八课：Deep dive into the five stages of building with AI 01:20:06"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900181/lessons/3523475",
+      "listText": "AI Architect, 第十课：Phase A Demos and Walkthrough 47:37"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900180/lessons/3522621",
+      "listText": "Production Grade AI Evals by Braintrust.dev with Mengying Li"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900180/lessons/3522622",
+      "listText": "How I Won First Places in the YC and OpenAI Hackathons? with Riley Shu"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900180/lessons/3522624",
+      "listText": "The MCP Myth: Do You Really Need a Unified Agentic Protocol? with Yan Wang"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900180/lessons/3522626",
+      "listText": "Level up team productivity with personalized AI agents with Yan Wang"
+    },
+    {
+      "category": "/c/public/",
+      "categoryTitle": "公开课与行业交流",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/public/sections/900180/lessons/3522627",
+      "listText": "Why is your ChatGPT lazy and dumb? (and how to fix it) with Yan Wang"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-builders",
+      "listText": "Dec 28, 2024"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-ai-611e79",
+      "listText": "7"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-productivity-trap",
+      "listText": "15"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/spectrum",
+      "listText": "7"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/howie-2026",
+      "listText": "6"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-ai-accountability",
+      "listText": "13"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/skill-first",
+      "listText": "36"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-7d06dc",
+      "listText": "11"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-sleep",
+      "listText": "15"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-product",
+      "listText": "8"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/anxiety",
+      "listText": "7"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/quality",
+      "listText": "20"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/verb",
+      "listText": "6"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-mastery",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-native-orgs",
+      "listText": "22"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/interview",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/context-infrastructure",
+      "listText": "97"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/stop-using-chatgpt",
+      "listText": "72"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/evomap",
+      "listText": "16"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/liujia",
+      "listText": "25"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-key-decisions",
+      "listText": "40"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-transformation",
+      "listText": "1"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/openclaw",
+      "listText": "51"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-tutorial",
+      "listText": "4"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-builder-space",
+      "listText": "21"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/benchmark-singularity-ai",
+      "listText": "13"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/cursor-ryo-builder",
+      "listText": "13"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/result-certainty",
+      "listText": "37"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/result-certainty-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-architect-ai-architect-video-update-en-in-2-weeks-cn-en-split-in-q1-2026",
+      "listText": "5"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/nano-banana-pro",
+      "listText": "15"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/nano-banana-pro-en",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/build-to-refund",
+      "listText": "55"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/competency",
+      "listText": "4"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/architect",
+      "listText": "83"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-native-cost-structure-4e4d27",
+      "listText": "37"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-native-cost-structure",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ideas",
+      "listText": "324"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-software-engineering",
+      "listText": "26"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-software-engineering-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-management-3",
+      "listText": "19"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-management-3-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/2025-10-24-ai",
+      "listText": "5"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/wide-research",
+      "listText": "17"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/wide-research-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/mcp-revisited",
+      "listText": "9"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/why-openai-s-apps-sdk-signals-a-crisis-for-mcp",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-management-2",
+      "listText": "16"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-management-2-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-finance",
+      "listText": "28"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-finance-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/gpt-5",
+      "listText": "19"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/gpt-5-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-unlearn",
+      "listText": "16"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-unlearn-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/11-ai",
+      "listText": "7"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/kimi-k2-chinese",
+      "listText": "11"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/kimi-k2",
+      "listText": "1"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-eternity",
+      "listText": "34"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-eternity-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-paddler",
+      "listText": "5"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/the-age-of-ai-navigation-stop-paddling-and-start-steering",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/fanren",
+      "listText": "21"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/fanren-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-products",
+      "listText": "29"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-products-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/water-quality",
+      "listText": "6"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/water-quality-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-185744",
+      "listText": "5"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/my-last-article-was-a-flop-but-it-wasn-t-ai-s-fault",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-creativity",
+      "listText": "8"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-creativity-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/life-api-part3",
+      "listText": "29"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/life-api-part3-en",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-3c56b0",
+      "listText": "20"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/you-re-not-just-giving-tasks-you-re-building-a-world-for-ai-to-become-smarter",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/life-api-part2",
+      "listText": "10"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/life-api-part2-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/life-api",
+      "listText": "46"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/life-api-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-commander",
+      "listText": "21"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-commander-en",
+      "listText": "3"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/o3",
+      "listText": "27"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/o3-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/structured-notes-en",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/structured-notes",
+      "listText": "12"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-book-wechat",
+      "listText": "20"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/we-fed-an-ai-three-years-of-our-group-chat-history-it-wrote-a-surprisingly-deep-book",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-book-draft",
+      "listText": "21"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-last-mile-en",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-last-mile",
+      "listText": "22"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/gpt",
+      "listText": "8"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/toy-or-productivity-tool-four-steps-to-achieve-commercial-grade-visual-expression-with-gpt-image-generation",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-e0a3e6",
+      "listText": "13"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/from-context-amnesia-to-document-driven-development-overcoming-the-project-scale-trap-in-agentic-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/mcp",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/the-lure-of-a-unified-tool-protocol-the-business-and-technical-dynamics-behind-mcp",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/claude-code-ai-native",
+      "listText": "4"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/the-underestimated-claude-code-a-key-puzzle-piece-for-ai-native-software-development",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/20-x",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/using-math-to-find-planetary-alignments-in-the-past-20-years",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/openai-deep-research",
+      "listText": "5"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/from-data-mining-to-cognitive-alchemy-a-full-simulated-car-buying-workflow-using-openai-deep-research",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/200-o1-pro",
+      "listText": "37"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/paying-200-usd-to-a-mentor-why-i-renewed-o1-pro",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/behind-manus-s-wild-popularity-how-agentic-ai-builds-lasting-competitive-advantages",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/manus-agentic-ai",
+      "listText": "14"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/why-is-the-first-step-to-learning-agentic-ai-to-forget-all-frameworks",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-frameworks",
+      "listText": "7"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/llm",
+      "listText": "7"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-12f63b",
+      "listText": "25"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/when-ai-becomes-your-direct-report-three-management-pitfalls-tech-people-must-overcome",
+      "listText": "1"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/multi-agent-cursor",
+      "listText": "35"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/taking-cursor-s-intelligence-to-the-next-level-with-multi-agent",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai",
+      "listText": "14"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/the-dilemma-of-agentic-ai-how-to-solve-the-productionization-challenge",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/deepseek-r1-aad131",
+      "listText": "16"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/reflections-on-using-deepseek-r1",
+      "listText": "1"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/from-prompting-to-fine-tuning-making-ai-more-like-me",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-bd0188",
+      "listText": "11"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/redefining-open-source-ai-surprising-insights-into-openwebui",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/openwebui",
+      "listText": "10"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/deepseek",
+      "listText": "11"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/from-the-all-purpose-hospital-to-smart-triage-using-a-hospital-analogy-to-understand-the-evolution-of-deepseek-s-models",
+      "listText": "1"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/using-gpt-real-time-voice-api-to-achieve-zero-latency-ai-writing-assistance",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/gpt-api-ai",
+      "listText": "26"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/seeking-help-effectively-through-human-oriented-prompt-engineering",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/prompt-engineering-8ab697",
+      "listText": "15"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/o3-vs-cursor",
+      "listText": "7"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/comparison-of-assemblyai-and-openai-whisper-api",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/assemblyai-api",
+      "listText": "8"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/what-makes-a-large-model-a-foundation-model-a-historical-perspective",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/chatgpt-foundation",
+      "listText": "4"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/deepseek-r1",
+      "listText": "12"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/5",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/from-object-oriented-programming-to-comment-oriented-programming-effective-ai-assisted-programming",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-3d2806",
+      "listText": "8"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/when-and-how-not-to-use-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-e579f8",
+      "listText": "5"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-alpha-test",
+      "listText": "74"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/prompt-engineering",
+      "listText": "13"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/effective-prompt-engineering",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/it",
+      "listText": "22"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/how-ai-is-reshaping-the-entire-it-field",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/integrating-ai-with-robotics-systems-to-impact-the-world",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai-00a09f",
+      "listText": "5"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/ai",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/the-guide-to-enslave-ai-for-coding-how-to-be-the-first-to-fall-in-the-robot-revolution",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-using-cursor-as-a-universal-entry-point-for-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-cursor-ai",
+      "listText": "3"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-turning-20-into-500-transforming-cursor-into-devin-in-one-hour",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-20-500-cursor-devin",
+      "listText": "9"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-from-thinker-to-doer-the-paradigm-revolution-and-technical-architecture-of-agentic-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-agentic-ai",
+      "listText": "4"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-comparison-between-devin-and-agent-cursor",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/agentic-ai-devin-agent-cursor",
+      "listText": "1"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/chatgpt",
+      "listText": "3"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/cursor-25-agentic-ai",
+      "listText": "14"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/free",
+      "listText": "379"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/launching-a-new-module-agentic-ai",
+      "listText": "3"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/mastering-cursor-from-comments-to-agents",
+      "listText": "2"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/a-template-to-apply-for-reimbursement-from-your-manager",
+      "listText": "0"
+    },
+    {
+      "category": "/c/ai-resources/",
+      "categoryTitle": "Knowledge Bank",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/ai-resources/community-introduction",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/how-to-subscribe",
+      "listText": "Apr 15"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-3d4454",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-b120bc",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-ai-37b3c5",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/midjourney",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/android",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ceo-agent-friendly-kpi-salesforce-unix",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/vercel-eve-agent",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-f1273d",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-e9816d",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-566acb",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/2024-9-openai-o1-chatgpt",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-agent-e57e4f",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/agentjacking-85-claude-code",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/meta-73-token",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-work-ai",
+      "listText": "3"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-p-6-15-pty-acp",
+      "listText": "5"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/mythos-5-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/fable-5-mythos-5-api",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/139",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/norton",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/fable-5-anthropic-8c1486",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/user-generated-software",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/javascript-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/fable-opus-ai",
+      "listText": "3"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/fable-5-anthropic",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/fable-5",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/siri-xbox",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/vision-banana",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/midi-c-note",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/chatgpt-dreaming-v3",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-design-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/130m-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/google-spacex-9-2-gpu",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/vercel-ai-cloud-2026",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/grok-build-0-1-xai-breadth",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/openai-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/alphaevolve",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/microsoft-ai-mai-thinking-1-f96729",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/vibe-coding-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/microsoft-ai-mai-thinking-1",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/tavily-agent",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-agent-8c29b2",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-agent",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-96a774",
+      "listText": "5"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-eaafb8",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/alpha-beta",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/llm-sglang-omni",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-83ae16",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/mfa-passkey",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/pipeline",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-7ff483",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-code-dynamic-workflow",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-opus-4-8",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/opus-4-8-system-card",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/swe-bench-pro",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-typescript-python",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/e34d8f",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/b6b625",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/whisper",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-ba533d",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/302b24",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/rag-1d3f94",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-fa7311",
+      "listText": "5"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/glm-5-1-400-tokens-s-scaling-law",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/mac-deepseek-v4-flash-ds4",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/80-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-4157de",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/2026-5-20-spacex-sec-s-1",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/spacex-s-1",
+      "listText": "3"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/5-18-anthropic-3-stainless",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-031d3a",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/pi-ai",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/vibe-coding",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/zero-cloudflare-ai-api",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-d43c8c",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/openai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/agent-runtime-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/2025-dinamicka-claude",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-32e28f",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-503da6",
+      "listText": "3"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/connector-google-ai",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-126492",
+      "listText": "4"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/api-key",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/google-project-mariner-anthropic-openai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/deployco-openai-anthropic",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/anthropic-computer-use",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/tdd-ai",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/chrome-4gb-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/2024-fbi-christopher-wray-salt",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/agent-dbf741",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/anthropic-xai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/skill-openai-cursor",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-3657a5",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-ai-e3bb9b",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-25d259",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-fde",
+      "listText": "7"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/2026-ai-rag",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-9e8b30",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/evaluation-first-cursor-agent-harness",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/2026-4-arxiv-incompressible-knowledge",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/deepseek-v4-agentic",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-13b493",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-coding",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/openclaw-api",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/agent-photoshop-action-claude-for-creative-work",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/manus-cursor",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/glm-5-1-deepseek-v4-pro-kimi-k2-6-api-ollama-cloud",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/manus-meta",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/tpu-cuda-cloud-next-2026",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/anthropic-claude",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/anthropic-claude-cowork",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/skill",
+      "listText": "3"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/gpt-5-5-claude-opus-4-7-deepseek-v4",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-code-product-cat-wu-product-manager-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-skills",
+      "listText": "6"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-design-google-design-md",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/2026-04-22",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-c42f1f",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-8613e5",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/elon-musk-2-3-ai-jeff-bezos",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-ui",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/cursor-600-100",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/everybody-talks-about-it-nobody-knows-what-it-is-harness-engineering",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-llm",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/openrouter-ai-sandbox",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-e7c740",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/2faaeb",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-767b72",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/harness",
+      "listText": "12"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-182d19",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/20",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-3a1a62",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-code-routines-agent-coding",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/mythos-opus-4-7-232-system-card",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-ai",
+      "listText": "10"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-116f00",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/garry-tan-thin-harness-fat-skills",
+      "listText": "4"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/abliteration-ai",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/unitree-g1",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/75fd51",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/shopify-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/markitdown-8-star-markdown",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/google-agentic",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/lark",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/agent-f47083",
+      "listText": "4"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/gpu",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-e7211f",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/gpu-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/2026-3-eon-systems",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/meta-muse-spark",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-managed-agents-anthropic-agent",
+      "listText": "10"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-code-runtime",
+      "listText": "10"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-cot-anthropic-244",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/anthropic-project-glasswing-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/llm",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-9798bf",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/f4f7f5",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/evaluator-agent",
+      "listText": "3"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/prompt-caching-harness",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/anthropic-you-are-absolutely-right",
+      "listText": "3"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-ai-claude-code",
+      "listText": "3"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/slack-workspace",
+      "listText": "4"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-code-990aff",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-code",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-claude-code",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/mlx-apple-silicon",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/pretext",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/78bc6f",
+      "listText": "7"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/cli-mcp-first",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/anthropic-mythos-ai-practitioner",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/neurips",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/agent-634520",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/openai-sora-api-9aff66",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/lancedb",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/coding-agent-grep",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/2026-03-27-a-b",
+      "listText": "5"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/rag",
+      "listText": "5"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/meta-ai-builder-pods",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-2423f1",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/turboquant-google-kv-cache-3-bit",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/litellm-pypi-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-4d2aa0",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/msa",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-code-subscription-anthropic",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/agent",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/composer-2-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-dispatch-anthropic-openclaw-ai-agent",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/attention-residuals-attention-transformer",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/nvidia-gtc-2026",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/cli-anything-harness-md",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/claude-interactive-visualizations-anthropic",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-mrna",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/long-context-1m",
+      "listText": "1"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/cursorbench-benchmark",
+      "listText": "2"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/codex-cli-production-grade-agent",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/vinext-ai",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/ai-2026-3",
+      "listText": "0"
+    },
+    {
+      "category": "/c/news/",
+      "categoryTitle": "Deep News",
+      "kind": "post",
+      "href": "https://www.superlinear.academy/c/news/harness-engineering-agent",
+      "listText": "0"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451911/lessons/1693921",
+      "listText": "引言：Agentic AI会带来18个月的机会窗口，如何抓住？【视频1】 19:19"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451911/lessons/1685923",
+      "listText": "第一课：从 “我问你答” 到“我说你做”【视频2】 14:24"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451911/lessons/1685924",
+      "listText": "第二课：Agentic AI的范式转变"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451911/lessons/1685926",
+      "listText": "第三课：Agentic AI 的三大核心特征【视频3】 09:25"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451911/lessons/1685928",
+      "listText": "第四课：典型案例回溯：这三个特征融合在一起有多厉害？"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451911/lessons/1685929",
+      "listText": "第五课：从操作员到 AI Manager"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451912/lessons/1685930",
+      "listText": "引言"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451912/lessons/1685931",
+      "listText": "第一课：三种编程思维：Command / Prompt / Objective Oriented Programming"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451912/lessons/1685932",
+      "listText": "第二课：因地制宜运用三种模式【视频4】 16:16"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451912/lessons/1685933",
+      "listText": "第三课：.cursorrules：原理与自我进化【视频5】 13:28"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451912/lessons/1685935",
+      "listText": "第四课：拓展工具：引入搜索 / 爬虫实现 Access Web"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451912/lessons/1685953",
+      "listText": "第五课：对比 Devin：如何实现 500 美元/月 的高级 Agentic 效果"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451912/lessons/1788635",
+      "listText": "第六课：Cursor手把手配置教程"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451913/lessons/1685956",
+      "listText": "引言"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451913/lessons/1685936",
+      "listText": "第一课：产品形态：从“工具”到“抽象组合”的范式转变"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451913/lessons/1685938",
+      "listText": "第二课：四大关键技术组件：如何系统构建 Agentic AI【视频6】 20:07"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451913/lessons/1823334",
+      "listText": "第三课：为什么学习Agentic AI的第一步是忘记所有框架？"
+    },
+    {
+      "category": "/c/agentic-ai/",
+      "categoryTitle": "Agentic AI的原理与实践",
+      "kind": "lesson",
+      "href": "https://www.superlinear.academy/c/agentic-ai/sections/451913/lessons/1693944",
+      "listText": "结语：如何在工作中用好AI？【视频7】 22:05"
+    }
+  ]
+}

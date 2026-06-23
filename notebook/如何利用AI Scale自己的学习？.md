@@ -3,3 +3,4 @@
 AI should run way faster, then guide human.
 [[一种人类中心的Agent Harness设想：AI应该在你想拉屎的时候递纸]]
 
+探子？

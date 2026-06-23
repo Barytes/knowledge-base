@@ -24,6 +24,7 @@
 - [GenAI 的共识边界与任务委托框架](GenAI%20的共识边界与任务委托框架.md): **标签：** GenAI，任务委托，幻觉，创造力，职业能力
 - [Go to Market Multiple Times：把高价值工作与早期产品反复推向市场](go-to-market-multiple-times.md): ---
 - [Pre-PMF 验证手册](pre-pmf-validation-playbook.md): Pre-PMF 这组材料把 PMF 之前的阶段视为一个独立的验证阶段，而不是增长的早期版本。
+- [Superlinear Academy 课程与洞见总索引](superlinear-academy-course-insights-index.md): **标签：** Superlinear Academy，AI Builder，AI Architect，Agentic AI，Deep News，Knowledge Bank，AI 产品，agent runtime
 - [The Founder's Playbook：AI-native startup 的阶段纪律](the-founders-playbook-ai-native-startup.md): **标签：** AI-native startup，founder，Pre-PMF，MVP，Launch，Scale
 - [郑元杰创业想法评估](郑元杰创业想法评估.md): 这页评估 life-record 中郑元杰提出的几条可商品化创业路径，并区分用户自己提出的 AI 基础设施 / 知识系统长期积累方向。
 

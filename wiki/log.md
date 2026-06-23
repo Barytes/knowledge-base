@@ -2,6 +2,10 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-06-22] ingest | Superlinear Academy 课程与洞见全量归档
+
+使用已登录的 in-app browser 摄取 Superlinear Academy 左侧导航“课程与洞见”分组下 7 个空间的全部可见内容，共 535 条 lesson / post。原文归档为 `raw/external/superlinear-academy-course-insights-2026-06-22/`，其中 `manifest.json` 保存空间和 URL 清单，`pages.jsonl` 保存逐条原文、标题、链接和正文。新增维护页 [Superlinear Academy 课程与洞见总索引](topics/ai-product-product-definition/superlinear-academy-course-insights-index.md)，把材料收束为 AI Builder / AI Architect / Agentic AI 课程地图、Knowledge Bank 主题簇和 Deep News 趋势雷达，并同步更新 [AI 产品 / 产品定义 / 验证](topics/ai-product-product-definition/index.md)。
+
 ## [2026-06-20] query | 失败处理系统与职业路径风险
 
 根据一次围绕“读博还是进入市场”的家庭对话，新增 [失败处理系统与职业路径风险](topics/career-positioning-job-search/失败处理系统与职业路径风险.md)。页面把父亲关于失业、稳定路径和尾部风险的提醒吸收进职业决策框架，同时区分“不接受博士作为唯一解法”和“不忽略市场失败风险”，将“不能靠信念硬扛失败”收束为一个带现金流、外部反馈、资产沉淀、失败分级和转向触发器的最小系统。同步更新 [职业 / 定位 / 求职](topics/career-positioning-job-search/index.md)。
