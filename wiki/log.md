@@ -2,6 +2,10 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-06-24] query | 计划挫败与能力焦虑归因
+
+更新 [产品判断力与能力焦虑的分离观察](self/产品判断力与能力焦虑分离观察.md)，补入“很多计划没有实现时，不要直接归因为能力不行”的判断：顶尖人才密度确实提高复杂项目实现概率，但个人计划失败更常混合方向、执行、反馈、资源、协作密度和失败处理系统等多层问题。页面将“清北 / 斯坦福 / IMO / Cursor”式比较收束为可诊断的能力与资源拆分，而不是总括性的自我否定。
+
 ## [2026-06-22] ingest | Superlinear Academy 课程与洞见全量归档
 
 使用已登录的 in-app browser 摄取 Superlinear Academy 左侧导航“课程与洞见”分组下 7 个空间的全部可见内容，共 535 条 lesson / post。原文归档为 `raw/external/superlinear-academy-course-insights-2026-06-22/`，其中 `manifest.json` 保存空间和 URL 清单，`pages.jsonl` 保存逐条原文、标题、链接和正文。新增维护页 [Superlinear Academy 课程与洞见总索引](topics/ai-product-product-definition/superlinear-academy-course-insights-index.md)，把材料收束为 AI Builder / AI Architect / Agentic AI 课程地图、Knowledge Bank 主题簇和 Deep News 趋势雷达，并同步更新 [AI 产品 / 产品定义 / 验证](topics/ai-product-product-definition/index.md)。
