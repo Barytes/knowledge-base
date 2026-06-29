@@ -100,3 +100,6 @@ Human-centered harness 的强，是：
 尝试一个不同的agent范式？观察用户操作-推断用户目标、需要的帮助-提供帮助。
 - 入口从 prompt 扩展到 human activity
 - 需要一个循环：不希望停顿然后反复去prompt
+
+接入不同产品：Word, Excel, ....
+专注一个切入点：什么场景更好地呈现这个范式？产品形态？

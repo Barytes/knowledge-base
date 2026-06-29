@@ -2,6 +2,10 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-06-25] query | 外部教育 demo 与 Agent infra 主线边界
+
+更新 [Agent infra 目标一致性判断（2026-06-20）](topics/projects-roadmaps/Agent-infra目标一致性判断-2026-06-20.md)，补入外部教育 demo 的边界判断：若 demo 只承担真实 workload、低并发试点、数据建模、AI workflow、eval、trace 和 failure taxonomy，它可以服务 `Agent Systems Engineer` 主线；若开始承诺生产级后端、万人级扩展、教培运营和完整教育平台责任，则应引入生产级系统经验者，并避免把该项目升级成独立主线。
+
 ## [2026-06-24] query | 计划挫败与能力焦虑归因
 
 更新 [产品判断力与能力焦虑的分离观察](self/产品判断力与能力焦虑分离观察.md)，补入“很多计划没有实现时，不要直接归因为能力不行”的判断：顶尖人才密度确实提高复杂项目实现概率，但个人计划失败更常混合方向、执行、反馈、资源、协作密度和失败处理系统等多层问题。页面将“清北 / 斯坦福 / IMO / Cursor”式比较收束为可诊断的能力与资源拆分，而不是总括性的自我否定。
@@ -2217,6 +2221,28 @@ gogo-app 可立即开始的行动：
 - `wiki/topics/learning-judgment-mental-models/穷查理宝典.md`
 - `wiki/topics/learning-judgment-mental-models/穷查理宝典具体模型索引.md`
 - `wiki/topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md`
+
+## [2026-06-28] ingest | 摄取 AI 时代人才筛选与学习潜力判断
+
+保存 Superlinear Academy 社区文章《正确的学习方法比大家想象中稀缺很多，那我们如何筛选人才？》到 `raw/external/`，并将其压缩为职业/人才筛选主题页。核心增量是把早期候选人判断从“当前存量”扩展到“遇到正确方法后的学习斜率”，包括从不会到会的真实经历、现场机制理解、follow-up 小任务和高质量学习场。
+
+**新增页面**
+- `wiki/topics/career-positioning-job-search/AI时代人才筛选与学习潜力判断.md`
+
+**更新页面**
+- `wiki/topics/career-positioning-job-search/index.md`
+- `wiki/frameworks/职业信号与叙事框架.md`
+
+## [2026-06-28] ingest | 摄取 AI 时代面试与作品化简历信号
+
+保存 Superlinear Academy 社区文章《别用昨天的方法准备今天的面试：AI 时代最好的简历，是做出来的》到 `raw/external/`，并新增职业/求职主题页。核心增量是：AI 让口头叙事、简历包装和项目描述更容易生成，因而候选人更需要用 GitHub、真实项目、`CLAUDE.md`、`AGENTS.md`、skills、公开复盘等可检查材料证明自己真的具备 AI 时代的动手能力。
+
+**新增页面**
+- `wiki/topics/career-positioning-job-search/AI时代最好的简历是做出来的.md`
+
+**更新页面**
+- `wiki/topics/career-positioning-job-search/index.md`
+- `wiki/frameworks/职业信号与叙事框架.md`
 
 ## [2026-06-05] 维护 | 新增具体话题深度摄取 skill
 

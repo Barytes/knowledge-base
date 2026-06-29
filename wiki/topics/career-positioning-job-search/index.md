@@ -5,19 +5,21 @@
 ## 推荐阅读顺序
 
 - [AI Infrastructure Engineer](真实JD记录.md)
+- [AI 时代人才筛选与学习潜力判断](AI时代人才筛选与学习潜力判断.md)
 - [AI 时代大厂打工人的五条路](AI%20时代大厂打工人的五条路.md)
+- [AI 时代最好的简历是做出来的](AI时代最好的简历是做出来的.md)
 - [AI 焦虑的三种形态与行动解法](AI%20焦虑的三种形态与行动解法.md)
 - [AI 让我们重新开始享受自己的职业](AI%20让我们重新开始享受自己的职业.md)
 - [Agent Systems Engineer 职业定位](Agent%20Systems%20Engineer职业定位.md)
 - [Agent 岗位 JD 抽样与能力信号](Agent岗位JD抽样与能力信号.md)
-- [Anthropic 与 OpenAI 的 Agent Systems 履历 North Star](Anthropic与OpenAI的Agent%20Systems履历North%20Star.md)
-- [Barytes GitHub 项目与 Agent 履历层次评估](Barytes-GitHub项目与Agent层次评估.md)
 - 其余页面可按下面的完整列表继续浏览。
 
 ## 页面
 
 - [AI Infrastructure Engineer](真实JD记录.md): Engineering
+- [AI 时代人才筛选与学习潜力判断](AI时代人才筛选与学习潜力判断.md): **主题：** AI 时代人才筛选，学习潜力，校招生，实习生，高潜判断
 - [AI 时代大厂打工人的五条路](AI%20时代大厂打工人的五条路.md): **原始出处：** https://www.superlinear.academy/c/share-your-insights/career-transition
+- [AI 时代最好的简历是做出来的](AI时代最好的简历是做出来的.md): **主题：** AI 时代面试准备，简历信号，GitHub，AI 工作流，作品集
 - [AI 焦虑的三种形态与行动解法](AI%20焦虑的三种形态与行动解法.md): **原始出处：** https://www.superlinear.academy/c/ai-resources/anxiety
 - [AI 让我们重新开始享受自己的职业](AI%20让我们重新开始享受自己的职业.md): **原始出处：** https://www.superlinear.academy/c/news/ai-182d19
 - [Agent Systems Engineer 职业定位](Agent%20Systems%20Engineer职业定位.md): 我想走的不是“用 AI 很快 build 一个 product”的路线，也不是纯粹的 AI Product Manager 路线，而是：

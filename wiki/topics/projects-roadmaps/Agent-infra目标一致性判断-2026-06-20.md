@@ -80,6 +80,34 @@
 - 让 `context-core` 生成 `ContextBundle` 和 `Trace`；
 - 用 harness replay 同一批 case，标注失败来自 retrieval、routing、context packaging、tool execution 还是 model judgment。
 
+## 外部教育 demo 的位置
+
+如果一个外部教育项目已经从泛泛合作变成明确的 demo 交付，它不必自动视为偏离主线。关键要看它承担的是哪一层。
+
+它服务主线的方式不是把自己升级成“教育产品 founder”，而是提供一个真实 workload 和 deployment 约束：
+
+- 真实学生 / 老师 / 机构场景；
+- 学情、题目、错因、反馈报告等结构化对象；
+- 低并发但真实使用的 demo；
+- 可记录的失败案例、人工接管边界和反馈闭环；
+- 从 demo 走向多人试点时暴露出的可靠性、权限、数据、成本和观测问题。
+
+这类项目在 10 到 100 人量级内，可以作为 `Agent Systems Engineer` 主线的训练场。它补的不是“大型后端工程师”身份，而是从产品定义、数据建模、AI workflow、eval、trace、deployment boundary 到 real usage 的一组系统证据。
+
+但它开始偏航的信号也很明确：
+
+- 主要时间被教培运营、销售、渠道和交付细节吃掉；
+- demo 目标从验证核心诊断假设，膨胀成完整教育平台；
+- 需要承诺生产级稳定性、万人级并发、合规安全和 SRE 责任；
+- 没有沉淀 `EvalCase`、trace、failure taxonomy、context schema 或 case study；
+- 无法解释这段工作如何回到 `context / harness / eval / reliability`。
+
+因此更稳的边界是：
+
+> 可以接 demo 与架构验证，不能把自己包装成生产级后端负责人；可以补后端基础，不能把万人级扩展能力当作短期个人承诺。
+
+如果 demo 顺利，应尽早引入有生产级系统经验的人。自己的位置保留在产品定义、数据结构、AI workflow、验证指标、失败分析和原型架构上，同时借这个项目补齐最小后端工程常识。
+
 ## 下一步收束
 
 建议把接下来两周的判断标准改成一句话：
