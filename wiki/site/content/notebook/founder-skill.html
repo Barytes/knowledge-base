@@ -64,6 +64,11 @@
 <p>Founder-skill应当依托于一个人类中心的Agent harness，我想目前的agent harness还没有办法很好地完成这个事情。现在的agent harness可以很快地跑通整个环节，完成任务，生成判断，然而它不能evolve founder&#x27;s thinking。</p>
 <h2>核心问题</h2>
 <h2>Founder Skill MVP设计</h2>
+<ul>
+<li>我觉得可以做多个独立可调用的skill，每个skill可以做轻量前置检查，然后做一个总的诊断skill来判断当前idea stage走到哪里了，这个idea处于什么状态。然后这些skill的输出我希望落地成artifacts。并且我希望这些artifacts是和founder的认知对齐的——不要AI觉得对就记录下来，这样只会是AI slop。另外这些artifacts是要跟现实世界对齐的。</li>
+<li>我认为这个是一个大问题。在我处理context的时候我通常会遇到这样的问题：1）AI把自己的分析当成真的，而我实际上不同意AI的分析，然而花时间逐一改正反驳又是很耗时间；2）在连续的对话我对某些事情的决定和看法发生了转向，然后AI并没有捕捉到这种转向，即之后的信息否决掉了之前的信息，而是要么还把之前的信息作为真理，要么就把前后的信息强行结合在一块。根源在于，上下文管理和Context Curation做得不好，有些不该进入上下文的东西进入了上下文。另外隐性知识没有被显性化。我认为需要设计一个底层的context architecture（可以只是不同地组织文件的形式），以便于做好context curation和隐性知识显性化。我认为你设计的这个artifact格式并不能实现这两点。一方面是四个部分全部堆叠在一个artifact里面，会导致上下文污染（特别是Agent读文件时喜欢用grep），有时候我们希望排除掉某些上下文（如AI analysis）。另一方面是，founder-confirmed是一个非常不好的产品设计——这意味着founder需要去confirm某些内容，这是非常exhausting的。我倾向于founder直接输入，而不要去confirm</li>
+<li>problem hypothesis必须address下面的几个问题：who exactly has this problem？ how often how severely what do they currently do about it? 如果没有则不算problem hypothesis。</li>
+</ul>
     </article>
 
   </main>

@@ -81,6 +81,27 @@
 
 **更新页面**
 - `wiki/topics/ai-product-product-definition/index.md`
+
+## [2026-06-30] ingest | 摄取 dogfooding 做产品方法论来源
+
+继续检索并保存 dogfooding / eating your own dog food 相关产品方法论材料，覆盖 Joel Spolsky、Graphite、GitLab Customer 0、GitLab R&D dogfooding、IBM Cloud、智能家居研究和 Codex agentic AI 相关案例。新增主题页将 dogfooding 定义为产品验证链条中的内部真实使用层，重点区分真实任务验证、低频关键路径、基础设施可靠性验证，以及它不能替代外部用户研究的边界。
+
+**新增原始材料**
+- `raw/external/dogfooding-product-sources/`
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/Dogfooding作为产品验证机制.md`
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/index.md`
+- `wiki/frameworks/产品验证判断框架.md`
+
+## [2026-06-30] query | 补充陈子深项目 dogfooding 与市场调研顺序判断
+
+围绕陈子深 AI 教育项目当前找方向的问题，补充一条产品验证判断：不应在“先做给自己用的完整 dogfooding 产品”和“先做泛市场调研”之间二选一，而应先做内部诊断工作台，用它产出一道题的错因诊断样本，再立刻拿给小样本真实老师和学生验证。核心边界是：dogfooding 验证任务路径和样本生产能力，外部验证才判断学生 aha moment、老师教学动作改变和需求强度。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/陈子深AI教育项目notebook-idea整理.md`
 - `wiki/topics/ai-product-product-definition/pre-pmf-validation-playbook.md`
 - `wiki/frameworks/产品验证判断框架.md`
 
@@ -2294,3 +2315,39 @@ gogo-app 可立即开始的行动：
 - `wiki/topics/learning-judgment-mental-models/穷查理宝典.md`
 - `wiki/topics/learning-judgment-mental-models/穷查理宝典具体模型索引.md`
 - `wiki/topics/learning-judgment-mental-models/纳瓦尔与穷查理主题地图.md`
+## [2026-06-30] query | 整理陈子深 AI 教育项目 notebook idea
+
+从 `notebook/陈子深- AI教育产品想法.md` 和 `notebook/一道题.md` 中整理陈子深 AI 教育项目相关草稿，只保留 notebook 层来源，不混入 `life-record/` 访谈层。新增主题页将方向收束为认知原因级诊断、解题 copilot、`一道题` MVP、未解问题和个人参与边界。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/陈子深AI教育项目notebook-idea整理.md`
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/index.md`
+
+## [2026-06-30] ingest | 摄取 Codex 与 AI 产品工作形态访谈
+
+保存微信文章《砍掉PM、全员做Builder？OpenAI Codex主管：人人皆可做产品就是“毒鸡汤”，别总觉得别的岗位只是在摸鱼！》到 `raw/external/`，并整理为 AI 产品定义主题页。核心增量是：当 AI 让实现和原型成本下降后，产品工作的稀缺点转向品味、策展、系统嵌入、媒介选择和模型能力时机判断，而不是简单取消 PM / 设计 / 工程角色。
+
+**新增原始材料**
+- `raw/external/wechat-openai-codex-product-taste-csdn.html`
+- `raw/external/wechat-openai-codex-product-taste-csdn.txt`
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/Codex与AI产品工作的实现廉价化.md`
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/index.md`
+
+## [2026-06-30] ingest | 摄取 AI User 到 AI Builder 五条差距文章束
+
+保存 Superlinear Academy 两篇关于 AI User / AI Builder 差距的 Markdown clipping，并整理为 AI 产品定义主题页。核心增量是：AI 使用能力差距不主要来自 prompt 技巧，而来自 context、验收标准、质量诊断、Agentic Loop、经验沉淀和个人/团队基础设施。
+
+**新增原始材料**
+- `raw/external/superlinear-ai-user-builder-five-gaps/`
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/AI-User到AI-Builder的五个能力差距.md`
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/index.md`

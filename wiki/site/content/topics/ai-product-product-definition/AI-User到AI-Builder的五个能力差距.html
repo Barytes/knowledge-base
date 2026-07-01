@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI User 到 AI Builder 的五个能力差距 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/notebook.html">笔记</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+    <a href="../../../search.html">搜索</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">wiki/topics/ai-product-product-definition/AI-User到AI-Builder的五个能力差距.md</div>
+      <h1>AI User 到 AI Builder 的五个能力差距</h1>
+<p>**来源：** <a href="../../../../../raw/external/superlinear-ai-user-builder-five-gaps/README.md">Superlinear AI User / AI Builder 五条差距文章束</a></p>
+<p>**标签：** AI Builder，AI 使用能力，Context Curation，Agentic Loop，Context Architecture，任务委托</p>
+<h2>核心判断</h2>
+<p>这两篇材料把“AI 用得好不好”从 prompt 技巧问题，改写成一组更底层的工作系统能力问题。</p>
+<p>它们共同指向一个判断：**AI 会放大人的方法层级。差距不主要来自工具选择，而来自一个人或团队是否能给 AI 足够清楚的 context、标准、闭环和沉淀机制。**</p>
+<p>大厂打工人版强调团队与工程语境里的 AI Builder；非技术岗位版强调个体如何把 AI 变成个人生产力基础设施。两者的底层结构相近，但起点和终点不同：</p>
+<ul>
+<li>团队语境的起点通常是已有文档、代码库、流程和同事实践；目标是让 AI 从执行工具演化成思考伙伴。</li>
+<li>个体语境的起点通常是隐性经验、模糊标准和缺少基础设施；目标是让一个人能够突破原本的能力边界。</li>
+</ul>
+<h2>五个共同能力层</h2>
+<h3>1. 产出可用：关键不是 prompt，而是 AI 看到了什么</h3>
+<p>两篇材料都反复强调，AI 输出质量首先取决于输入的 context，而不是单句 prompt 是否漂亮。</p>
+<p>有效做法包括：</p>
+<ul>
+<li><code>Document-First</code>：把项目规范、风格偏好、品牌调性、验收标准、历史决策和常用术语写成 AI 可读文档。</li>
+<li><code>Context Curation</code>：为当前任务选择高信噪比材料，而不是把所有文件和聊天记录全部塞进去。</li>
+<li>结果导向指令：定义目标、边界、验收标准和输出形态，而不是逐步遥控每一个动作。</li>
+</ul>
+<p>这和本库已有 <a href="ai-architect-lens.html">AI Architect Lens</a> 呼应：prompt 更像 assignment brief，人的关键角色是定义问题、背景和成功标准。</p>
+<h3>2. 质量诊断：AI 失效不是一种问题</h3>
+<p>大厂版特别强调，AI Builder 和普通用户的差距在于能否判断 AI 为什么错。</p>
+<p>常见失效类型至少包括：</p>
+<ul>
+<li>context 缺失，导致 hallucination</li>
+<li>context window 饱和，导致信息丢失或局部遗忘</li>
+<li>指令歧义，导致目标偏移</li>
+<li>模型能力边界，导致任务本身超出当前模型的稳定能力</li>
+</ul>
+<p>所以有效改进不是“换个 prompt 再试一次”，而是先定位问题类型，再选择补 context、拆任务、改验收、换模型或降低复杂度。</p>
+<p>这条能力和 <a href="../agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.html">AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First</a> 是同一条线：可验证的验收标准会把 AI 从一次性生成，推进到可诊断、可纠错的工作流。</p>
+<h3>3. 完整委托：从单步遥控到 Agentic Loop</h3>
+<p>普通使用者常停在“我说一句，AI 做一步，我再改一句”的状态。AI Builder 更接近一次性给出完整任务：目标、边界、资源、验收标准和可用工具，然后让 AI 自行执行、自检、诊断、修正。</p>
+<p>材料里这条能力可以压缩为三件事：</p>
+<ul>
+<li><code>Agentic Loop</code>：执行、观察、自检、修正、再检查。</li>
+<li><code>Skill Writing</code>：把一类任务的做法沉淀成可复用能力，而不是每次从零解释。</li>
+<li>脚手架管理：任务不熟时给高密度约束，任务稳定后逐步释放执行空间。</li>
+</ul>
+<p>这里的重点不是追逐 multi-agent 这个词，而是让 AI 能看到动作后果，并且知道什么叫完成。</p>
+<h2>团队版与个体版的分化</h2>
+<h3>团队版：经验变成团队资产</h3>
+<p>科技大厂语境里，第四个差距是团队复利。</p>
+<p>一个人踩过的坑、验证过的做法、发现的边界，如果只留在个人聊天记录里，就不会成为团队能力。它需要被写进：</p>
+<ul>
+<li><code>AGENTS.md</code></li>
+<li><code>MEMORY.md</code></li>
+<li>项目规则</li>
+<li>验收清单</li>
+<li>失败案例库</li>
+<li>context 组织规范</li>
+</ul>
+<p>这说明团队 AI 能力不是“每个人都更会聊天”，而是把个人经验沉淀成可被 AI 和新人共同读取的基础设施。</p>
+<h3>个体版：个人系统替代团队基础设施</h3>
+<p>非技术岗位版把这条改写成“系统复利”。</p>
+<p>个体没有团队 wiki、代码仓库和同事实践作为默认 context，因此必须自己建立轻量个人系统：</p>
+<ul>
+<li>长期稳定 context：品牌定位、写作风格、价值判断原则。</li>
+<li>项目 context：客户背景、具体需求、当前约束。</li>
+<li>更新型 context：行业动态、模型能力边界、新工具体验。</li>
+<li>模板与 skill：高频任务的起点、步骤、验收标准和改进记录。</li>
+</ul>
+<p>这和本库 <a href="../context-memory-knowledge-system/knowledge-base-operating-model.html">知识库运行模型</a> 的判断一致：原始材料、维护层和复用规则要分层，经验才会复利。</p>
+<h2>终点差异：思考伙伴 vs 能力跃迁</h2>
+<p>大厂版的终点是“AI 作为思考伙伴”。当前四层做到位后，AI 积累了足够密度的 context，才可能指出原则冲突、提出盲区、帮助人在已有专业领域想得更深。</p>
+<p>个体版的终点是“能力跃迁”。当认知校准、可用产出、战略分工和系统复利都建立后，AI 不只是帮个体把会做的事做快，而是帮他做到原本不会做或没有团队才能做的事，例如设计、代码、调研、客户管理、多线运营。</p>
+<p>这个差异很重要。团队里 AI 更像把已有组织能力放大；个体那里 AI 更像补齐缺失的角色和基础设施。</p>
+<h2>与 AI 产品定义的关系</h2>
+<p>这两篇材料虽然表面是 AI 学习文章，但对 AI 产品定义有三个直接启发。</p>
+<h3>1. 用户能力层级本身会决定产品形态</h3>
+<p>同一个 AI 工具，对 <code>AI User</code>、<code>AI Builder</code>、<code>AI Architect</code> 的价值完全不同。</p>
+<p>如果产品面向普通用户，就不能假设用户已经会写规则、沉淀 context、定义 eval、管理 agent loop。产品需要把这些能力包装成默认路径。</p>
+<p>如果产品面向 builder / architect，就应该暴露更多 context、skill、eval、trace、权限和回放接口，让高级用户能把系统接进自己的工作流。</p>
+<h3>2. AI 教育产品不应只交付内容</h3>
+<p>这组材料反复出现“通过 build 学 AI”的立场。</p>
+<p>真正需要被训练的不是工具名，而是：</p>
+<ul>
+<li>判断信号和噪音</li>
+<li>写出 AI 可读 context</li>
+<li>设计验收标准</li>
+<li>调试 failure pattern</li>
+<li>把经验沉淀成 skill</li>
+<li>把任务从单步聊天迁移到闭环委托</li>
+</ul>
+<p>所以一个好的 AI 教育产品，更像工作面、项目库、反馈系统和实践社区的组合，而不只是课程视频。</p>
+<h3>3. 个人 AI 基础设施是产品机会，也是使用门槛</h3>
+<p>非技术岗位版把个人用户的真实门槛说得很清楚：他们缺少团队基础设施，很多判断和标准还藏在脑子里。</p>
+<p>这说明个人 AI 产品如果只提供聊天入口，很容易把问题留给用户。更高价值的产品形态应帮助用户逐步生成：</p>
+<ul>
+<li>个人 context architecture</li>
+<li>高频任务模板</li>
+<li>可复用 skill 文档</li>
+<li>任务光谱和人机分工地图</li>
+<li>自检清单和迁移路线</li>
+</ul>
+<p>也就是说，个人 AI 产品的核心不只是“帮用户做一次任务”，而是帮助用户把一次任务变成可复利的系统资产。</p>
+<h2>需要避免的误读</h2>
+<h3>不是所有人都应该直接追求 agent</h3>
+<p>材料强调 Agentic Loop，但这不等于所有任务都要上复杂 agent。若任务标准不清、输入不稳、风险边界不明，先做 document-first 和 eval-first 往往更重要。</p>
+<h3>不是把核心判断交给 AI</h3>
+<p>AI Builder 的能力不是“什么都交给 AI”。恰恰相反，它要求人更清楚地区分：哪些是 AI 可执行的任务，哪些是必须由人保留的关系、战略、品味、信任和非共识判断。</p>
+<p>这和 <a href="GenAI%20的共识边界与任务委托框架.html">GenAI 的共识边界与任务委托框架</a> 一致：高价值判断不能因为 AI 表达流畅就被外包。</p>
+<h3>不是一次性搭一个复杂系统</h3>
+<p>非技术岗位版给出的路径是渐进迁移：先从一个高频、标准化任务开始，把 context、模板、验收和复盘跑通，再迁移下一个任务。个人系统应从最小可复用单元长出来，而不是先设计一个庞大知识库。</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="AI%20产品六层与%20L3-L6%20能力分层.html">AI 产品六层与 L3-L6 能力分层</a></li>
+<li><a href="ai-architect-lens.html">AI Architect Lens</a></li>
+<li><a href="GenAI%20的共识边界与任务委托框架.html">GenAI 的共识边界与任务委托框架</a></li>
+<li><a href="../agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.html">AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First</a></li>
+<li><a href="../context-memory-knowledge-system/knowledge-base-operating-model.html">知识库运行模型</a></li>
+<li><a href="superlinear-academy-course-insights-index.html">Superlinear Academy 课程与洞见总索引</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

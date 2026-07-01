@@ -3,4 +3,4 @@
 AI should run way faster, then guide human. 全景图式地掌握用户当前执行的工作现状。
 [[一种人类中心的Agent Harness设想：AI应该在你想拉屎的时候递纸]]
 
-探子？
+[[Build-your-own-X playground]]
