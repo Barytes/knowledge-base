@@ -2351,3 +2351,65 @@ gogo-app 可立即开始的行动：
 
 **更新页面**
 - `wiki/topics/ai-product-product-definition/index.md`
+
+## [2026-07-01] ingest | 摄取后台守护进程式 Agent 形态材料
+
+保存 Superlinear Academy clipping《AI Agent 的下一个形态：从聊天窗口到后台守护进程》到 `raw/external/`，并新增主题页把材料整理为 `chat window -> agentic tool -> background agent -> consumer ambient agent` 的产品形态迁移。核心增量是：当前 personal agent 实验应从“低入口摩擦”进一步压缩为“持续存在的 personal context daemon / 持续情境理解层”，重点验证 agent 是否能在用户不显式 call 的情况下持续同步事件流、更新 context state，并在相关场景主动 resurfacing。
+
+**新增原始材料**
+- `raw/external/AI Agent的下一个形态-从聊天窗口到后台守护进程.md`
+
+**新增页面**
+- `wiki/topics/agent-harness-runtime/后台守护进程式Agent与持续情境理解.md`
+
+## [2026-07-01] query | Superlinear 视角下的个人 AI 工作流迁移
+
+根据用户关于“现在大部分还是拿 AI 作为问答工具”的提问，综合 Superlinear Academy 课程索引、AI User / AI Builder 差距、AI 产品六层、AI Architect、Context Intelligence、Proactive Intelligence、Agentic Runtime / Evaluation-First 与 GenAI 任务委托边界，新增一页应用分析。核心增量是：个人 AI 工作流优化不应停留在 prompt 技巧，而应从 `context.md`、`brief.md`、`result.md`、`review.md` 这样的文件工作面开始，把高频任务迁移成有上下文、验收、执行循环和 write-back 的系统化委托。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/个人AI工作流从问答到系统化委托.md`
+
+## [2026-07-01] query | AI 泡沫破裂后的死亡名单与留存层
+
+根据用户把 2000 年互联网泡沫迁移到当前 AI 周期的追问，综合 AI 产业分层、付钱地图、AI Infra 抗模型吞噬、AI 时代投资与生存法则、衰退期技术判断和 AI 产品 runtime 分层，新增主题页。核心增量是：会破的是把 AI 当估值叙事、融资故事和薄包装能力的公司；会留下的是算力、模型、inference、eval、security、context / memory governance、agent runtime、workflow harness 和高 ROI 垂直应用这些真实系统层。
+
+**新增页面**
+- `wiki/topics/ai-industry-investment/AI泡沫破裂后的死亡名单与留存层.md`
+
+**更新页面**
+- `wiki/topics/ai-industry-investment/index.md`
+
+## [2026-07-01] query | 修正 AI 泡沫判断中的前沿公司图谱
+
+根据用户指出“2026 年前沿公司已经很少是 prompt wrapper / 普通 chatbot builder / 简单 RAG wrapper”的反馈，追加外部调研并修正页面。新增判断是：当前主战场已经迁移到 coding agent、企业 work AI、customer support agent、vertical workflow、consumer/prosumer AI 和推理/评测基础设施；真正的死亡风险不再是“是不是 wrapper”，而是复杂 agent / workflow 公司能否兑现可靠性、权限治理、可验证 ROI、服务交付毛利、默认工作面和分发控制。
+
+**更新页面**
+- `wiki/topics/ai-industry-investment/AI泡沫破裂后的死亡名单与留存层.md`
+
+## [2026-07-01] query | AI 泡沫破裂后留下来的用户需求
+
+根据用户追问“AI 泡沫破裂后留下来的用户需求有哪些”，在既有 AI 泡沫页面中补充用户需求层。核心增量是：泡沫后留下来的不是“我要 AI 产品”，而是把任务做完、降低专业服务成本、安全执行、携带上下文、操作软件和数据、更快创造数字作品、信息过载中的判断辅助、陪伴表达与身份建构、降低 AI 使用成本和风险、重新组织人类工作这十类长期需求。
+
+**更新页面**
+- `wiki/topics/ai-industry-investment/AI泡沫破裂后的死亡名单与留存层.md`
+
+## [2026-07-01] query | 用 2000 年互联网泡沫事实压测 AI 用户需求判断
+
+根据用户要求用 2000 年互联网泡沫事实反向 pressure test 既有 claim，在 AI 泡沫页面中新增压测小节。核心修正是：需求存在只是必要条件，不是公司、产品形态或估值穿越周期的充分条件；`Pets.com`、`Webvan`、门户、个人主页和光纤建设等案例都说明，真实需求可能留下，但错误时机、错误资本结构、错误履约模型和缺少分发入口会让公司死亡。压测后将十类 AI 用户需求重分为终端强需求、基础设施型需求、消费与表达型需求、组织转型型需求。
+
+**更新页面**
+- `wiki/topics/ai-industry-investment/AI泡沫破裂后的死亡名单与留存层.md`
+
+## [2026-07-01] query | 深哥 AI 教育项目的泡沫穿越标准
+
+根据用户追问“这些对深哥和我的创业项目有什么启发”，把 AI 泡沫穿越标准迁移到陈子深 AI 教育项目。核心判断是：不要把项目定义成泛泛 AI 教育、AI tutor、拍照搜题、题库或学生聊天 app；更可能穿越泡沫的主线是把好老师对学生“为什么不会”的隐性判断产品化，并让诊断改变下一步教学动作。新增取舍包括优先诊断闭环、老师校准面、可评测样本和真实分发路径；如果 `3-5` 个学生与 `2-3` 个老师的小样本不能证明 L5-L7 诊断价值，就应停在 workload / demo / 学习资产层，而不是升级为长期共同创业主线。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/陈子深AI教育项目notebook-idea整理.md`
+
+## [2026-07-01] query | 标注陈子深 AI 教育方向已停止推进
+
+根据用户纠正“我们已经不再做 AI 教育项目了”，更新陈子深 AI 教育项目整理页的当前状态。新增页面顶部状态说明：该方向不再作为当前创业项目推进，本文仅保留为历史想法整理、产品定义复盘和 AI workflow / eval / diagnostic harness 案例。同步把此前“泡沫穿越标准”小节改为历史复盘语气，避免后续继续把该方向当成正在推进的创业项目。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/陈子深AI教育项目notebook-idea整理.md`

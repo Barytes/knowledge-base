@@ -29,8 +29,9 @@
 - [Pre-PMF 验证手册](pre-pmf-validation-playbook.md): Pre-PMF 这组材料把 PMF 之前的阶段视为一个独立的验证阶段，而不是增长的早期版本。
 - [Superlinear Academy 课程与洞见总索引](superlinear-academy-course-insights-index.md): **标签：** Superlinear Academy，AI Builder，AI Architect，Agentic AI，Deep News，Knowledge Bank，AI 产品，agent runtime
 - [The Founder's Playbook：AI-native startup 的阶段纪律](the-founders-playbook-ai-native-startup.md): **标签：** AI-native startup，founder，Pre-PMF，MVP，Launch，Scale
+- [个人 AI 工作流：从问答到系统化委托](个人AI工作流从问答到系统化委托.md): 如果现在大部分 AI 使用还停在问答工具，真正要升级的不是“问得更会”，而是把 AI 放进稳定工作流里。
 - [郑元杰创业想法评估](郑元杰创业想法评估.md): 这页评估 life-record 中郑元杰提出的几条可商品化创业路径，并区分用户自己提出的 AI 基础设施 / 知识系统长期积累方向。
-- [陈子深 AI 教育项目 notebook idea 整理](陈子深AI教育项目notebook-idea整理.md): 私密记录路径已隐藏。
+- [陈子深 AI 教育项目 notebook idea 整理](陈子深AI教育项目notebook-idea整理.md): **状态更新（2026-07-01）：** 该方向已经不再作为当前创业项目推进。本文保留为历史想法整理、产品定义复盘和 AI workflow / eval / diagnostic harness 案例，不应再被理解为“你们正在做的创业项目”。
 
 ## 相关框架
 
