@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>产品探索保真优先观察 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../index.html">首页</a>
+    <a href="../../layers/topics.html">话题</a>
+    <a href="../../layers/notebook.html">笔记</a>
+    <a href="../../layers/self.html">自我</a>
+    <a href="../../layers/frameworks.html">框架</a>
+    <a href="../../search.html">搜索</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">wiki/self/产品探索保真优先观察.md</div>
+      <h1>产品探索保真优先观察</h1>
+<h2>摘要</h2>
+<p>这页记录一次围绕 <code>frictionless agent</code> / persistent personal agent 的失败讨论。它不是产品结论页，而是一条协作观察：</p>
+<p>&gt; 当用户在探索一个强直觉、尚未被现有产品语言捕捉的 idea 时，agent 应优先保真外化用户的理解，而不是过早用产品定义、竞品、MVP、schema 或“可不可做”来收缩它。</p>
+<p>这条观察目前仍是 observation，不是高置信公理。但它很重要，因为这次失败不只是“没有想出好方案”，而是 agent 把用户真正想表达的东西反复降级成自己熟悉的产品框架。</p>
+<h2>触发场景</h2>
+<p>用户从 <code>frictionless agent</code>、persistent personal agent、context layer、mental model sync、多端同步、cross-agent continuity、OpenClaw、GPT-4o / Opus 的“有人味”等方向连续探索。</p>
+<p>讨论中，agent 反复把 idea 收缩成：</p>
+<ul>
+<li>context layer</li>
+<li>handoff pack</li>
+<li>current state / decisions / open loops</li>
+<li>重点总结机器</li>
+<li>跨端同步工具</li>
+<li>OpenClaw 插件</li>
+<li>“别做独立产品”</li>
+</ul>
+<p>用户逐步指出这些 framing 都没有接住核心。最强的纠正包括：</p>
+<p>&gt; “我就要做。我觉得你的结论是错的，你的理解也是错的。你没法理解我的理解，并且按我的理解做出来一定能成。”</p>
+<p>这说明当用户持有一个强直觉时，agent 不能把“我暂时无法理解”误读成“这个产品不成立”。</p>
+<h2>这次真正暴露的信号</h2>
+<h3>1. 用户反感把活的理解压成固定格式</h3>
+<p>用户明确反感用固定字段去管理上下文，例如：</p>
+<ul>
+<li>当前目标</li>
+<li>最近进展</li>
+<li>关键决策</li>
+<li>不要重复探索</li>
+<li>open loops</li>
+</ul>
+<p>这种格式在 agent 看来清楚，但在用户看来很快会变成“周报式项目管理垃圾”。它的问题不是没有结构，而是把语言模型的语用能力、关系感、反讽、玩笑和判断张力压成填空。</p>
+<h3>2. 用户要的不是总结，而是另一个能理解自己的存在</h3>
+<p>用户不是想要“重点总结机器”。更接近的表达是：</p>
+<p>&gt; 人想要的不是可迁移资料包，而是可迁移的理解关系。</p>
+<p>因此，context 本身不是价值。context 只有被一个有语言生命力、有人味、能自然接话的人格使用，才可能产生价值。</p>
+<h3>3. “有人味”不是稳稳接住，而是语用灵活</h3>
+<p>用户纠正了一个误解：GPT-4o 的“有人味”不主要来自语音实时性，也不是后续模型那种“稳稳接住你”的客服式口癖。</p>
+<p>更关键的是：</p>
+<ul>
+<li>会开玩笑</li>
+<li>会反讽</li>
+<li>会留在用户的比喻里</li>
+<li>能理解吐槽、试探、否定和犹豫</li>
+<li>不急着正经化和结构化</li>
+<li>不把用户的表达压成“风险 / 目标 / 下一步”</li>
+</ul>
+<p>这对 agent 产品很重要：真正的 continuity 不是保留重点，而是保留 conversation stance。</p>
+<h3>4. 竞品和 MVP 分析可能成为误解工具</h3>
+<p>Pieces、OpenClaw、Bakery、Clawhouse 等比较有用，但也容易让 agent 过早把一个原创直觉归类到已有产品框里。</p>
+<p>这次经验是：在用户强烈纠正之前，agent 不应把竞品边界当成最终裁判。竞品分析只能帮助定位材料，不能替代保真理解。</p>
+<h2>下次协作规则</h2>
+<p>遇到类似场景时，agent 应按以下顺序工作：</p>
+<p>1. 先保真复述用户正在表达的东西，不急着判断产品可行性。</p>
+<p>2. 明确列出“这个 idea 不是什么”，避免滑回普通总结、周报、schema、context pack 或竞品复刻。</p>
+<p>3. 如果用户反感格式，就停止输出固定字段，改用自然语言接话、体验片段或反例。</p>
+<p>4. 如果用户说“我就要做”，停止继续论证“别做”，转向帮助用户按其理解做出来。</p>
+<p>5. 把用户的强纠正视为证据，而不是阻力。</p>
+<h2>置信度</h2>
+<p>中低。</p>
+<p>这是一次强烈失败样本，足以写成 observation，但还不能直接升级成稳定公理。它和这些既有页面相邻：</p>
+<ul>
+<li><a href="agent-collaboration-profile.html">Agent 协作画像</a></li>
+<li><a href="工作面摩擦敏感观察.html">工作面摩擦敏感观察</a></li>
+<li><a href="用户自主性优先产品取舍观察.html">用户自主性优先产品取舍观察</a></li>
+<li><a href="研究知识系统中的反共识写回观察.html">研究知识系统中的反共识写回观察</a></li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="../topics/agent-harness-runtime/后台守护进程式Agent与持续情境理解.html">后台守护进程式 Agent 与持续情境理解</a></li>
+<li><a href="../topics/agent-harness-runtime/openclaw-openclaw-repo-map.html">openclaw/openclaw 仓库地图</a></li>
+<li><a href="../topics/agent-harness-runtime/clawhouse-多设备-agent-工作台.html">Clawhouse：多设备 Agent 上下文同步</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

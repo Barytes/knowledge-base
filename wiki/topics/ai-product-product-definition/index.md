@@ -10,8 +10,8 @@
 - [AI Architect 的 Proactive Intelligence 镜头](ai-architect-proactive-intelligence.md)
 - [AI User 到 AI Builder 的五个能力差距](AI-User到AI-Builder的五个能力差距.md)
 - [AI 产品六层与 L3-L6 能力分层](AI%20产品六层与%20L3-L6%20能力分层.md)
+- [AI 产品反向筛选经验：避免 wrapper 与 slop](AI产品反向筛选经验-避免wrapper与slop.md)
 - [Codex 与 AI 产品工作的实现廉价化](Codex与AI产品工作的实现廉价化.md)
-- [Dogfooding 作为产品验证机制](Dogfooding作为产品验证机制.md)
 - 其余页面可按下面的完整列表继续浏览。
 
 ## 页面
@@ -22,6 +22,7 @@
 - [AI Architect 的 Proactive Intelligence 镜头](ai-architect-proactive-intelligence.md): 这份课程讲义把 agent 的下一步，从“会响应”推进到“会持续观察”。
 - [AI User 到 AI Builder 的五个能力差距](AI-User到AI-Builder的五个能力差距.md): **标签：** AI Builder，AI 使用能力，Context Curation，Agentic Loop，Context Architecture，任务委托
 - [AI 产品六层与 L3-L6 能力分层](AI%20产品六层与%20L3-L6%20能力分层.md): **标签：** AI runtime，prompt wrapper，RAG，tool use，workflow，agentic core，AI-native product，能力分层
+- [AI 产品反向筛选经验：避免 wrapper 与 slop](AI产品反向筛选经验-避免wrapper与slop.md): 这页来自 2026-07-02 一轮围绕 context copilot、情报看板、个人知识库、世界模型和大厂吞噬风险的反向复盘。
 - [Codex 与 AI 产品工作的实现廉价化](Codex与AI产品工作的实现廉价化.md): 当 AI 让实现和原型成本下降后，产品工作的稀缺点转向品味、策展、系统嵌入、媒介选择和模型能力时机判断，而不是简单取消 PM / 设计 / 工程角色。
 - [Dogfooding 作为产品验证机制](Dogfooding作为产品验证机制.md): Dogfooding 的价值不是“我们自己也用，所以产品一定好”，而是让团队在真实任务中持续暴露摩擦、盲点和错误优先级。它适合作为产品验证链条中的内部真实使用层，但不能替代外部用户研究。
 - [GenAI 的共识边界与任务委托框架](GenAI%20的共识边界与任务委托框架.md): **标签：** GenAI，任务委托，幻觉，创造力，职业能力
@@ -30,6 +31,9 @@
 - [Superlinear Academy 课程与洞见总索引](superlinear-academy-course-insights-index.md): **标签：** Superlinear Academy，AI Builder，AI Architect，Agentic AI，Deep News，Knowledge Bank，AI 产品，agent runtime
 - [The Founder's Playbook：AI-native startup 的阶段纪律](the-founders-playbook-ai-native-startup.md): **标签：** AI-native startup，founder，Pre-PMF，MVP，Launch，Scale
 - [个人 AI 工作流：从问答到系统化委托](个人AI工作流从问答到系统化委托.md): 如果现在大部分 AI 使用还停在问答工具，真正要升级的不是“问得更会”，而是把 AI 放进稳定工作流里。
+- [深哥 AI 情报看板：Superlinear 项目区竞品补充](深哥AI情报看板-Superlinear竞品补充.md): 这页补充的是 Superlinear Academy / Share Your Projects 里的相似项目，用来完善深哥 AI 情报看板的 competitor landscape。
+- [深哥 AI 情报看板：公开产品与 GitHub 竞品分析](深哥AI情报看板-公开产品与GitHub竞品分析.md): 这页单独分析公开产品和 GitHub 项目，用来证明另一个 claim：**市场上已经存在成规模的平台和开源替代品，AI 情报看板这个方向本身很拥挤。**
+- [深哥 AI 情报看板：竞品未覆盖机会](深哥AI情报看板-竞品未覆盖机会.md): 这页回答一个更正向的问题：在已经存在 AI 新闻雷达、趋势雷达、公开市场情报产品、GitHub 开源项目和 Superlinear 个人项目的情况下，深哥对 AI 情报看板的理解里，还有哪些没有被这些竞品充分 address。
 - [郑元杰创业想法评估](郑元杰创业想法评估.md): 这页评估 life-record 中郑元杰提出的几条可商品化创业路径，并区分用户自己提出的 AI 基础设施 / 知识系统长期积累方向。
 - [陈子深 AI 教育项目 notebook idea 整理](陈子深AI教育项目notebook-idea整理.md): **状态更新（2026-07-01）：** 该方向已经不再作为当前创业项目推进。本文保留为历史想法整理、产品定义复盘和 AI workflow / eval / diagnostic harness 案例，不应再被理解为“你们正在做的创业项目”。
 

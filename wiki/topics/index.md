@@ -12,7 +12,7 @@
 
 围绕人和 AI 的关系、协作方式、组织权责、工作心智与 AI 介入后的人类处境观察。
 
-- 页面数：1
+- 页面数：2
 
 ## [Context / Memory / 知识系统](context-memory-knowledge-system/index.md)
 
@@ -24,7 +24,7 @@
 
 围绕 AI 产品分层、AI Architect、产品定义、MVP、Pre-PMF 与 go-to-market 的页面。
 
-- 页面数：16
+- 页面数：20
 
 ## [研究知识库 / 公共知识治理](research-knowledge-governance/index.md)
 

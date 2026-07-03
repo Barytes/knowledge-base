@@ -5,6 +5,8 @@ This repository is a local knowledge base. For repository-related questions, the
 ## Default Behavior
 
 - Read `COMMUNICATION.md` for writing and interaction style.
+- For open-ended collaboration, agent behavior, preference, or judgment questions, also read `wiki/self/agent-collaboration-profile.md`.
+- If the question exposes a new agent failure mode or recurring preference signal, record it first as an observation in `contexts/memory/OBSERVATIONS.md`; promote it to `wiki/self/` only when it becomes stable.
 - Read `wiki/index.md` first.
 - Answer from `wiki/` before reading `raw/`.
 - Use `raw/` only when the maintained wiki is incomplete.
@@ -16,6 +18,7 @@ This repository is a local knowledge base. For repository-related questions, the
 - `notebook/`: user-owned draft notebook; agents may read it and may include it in git sync and the generated website view, but must not rewrite, move, delete, lint, normalize, reorganize, or convert it into maintained wiki pages
 - `life-record/`: private life records; never stage, commit, push, publish, ingest, index, or include in generated site output
 - `raw/`: source evidence
+- `contexts/`: low-confidence working memory and observation logs for future distillation; not a substitute for maintained `wiki/self/` pages
 - `wiki/topics/`: topic-organized maintained knowledge and applied analysis
 - `wiki/self/`: maintained personal judgment patterns
 - `wiki/frameworks/`: compact judgment frameworks and query routing surfaces

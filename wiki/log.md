@@ -2,6 +2,26 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-07-02] query | 深哥 AI 情报看板 Superlinear 竞品补充
+
+按用户要求从 Superlinear Academy 的 Share Your Projects 项目区补充 AI 情报看板竞品 landscape。公开访问边界是：项目区主页主要暴露 Circle 应用壳，单个项目页可读取标题和 meta description；因此本次只作为首轮相似项目筛查，不声称完整全文覆盖。新增 [深哥 AI 情报看板：Superlinear 项目区竞品补充](topics/ai-product-product-definition/深哥AI情报看板-Superlinear竞品补充.md)，把 AI Daily Picks、niche topic news app、AI Bubble Radar、Finance News & Stock Monitor、Stock Event AI、SocialAlpha 等归入 `UGS / personal builder projects` 竞品层，并收束结论：`新闻聚合 + AI 摘要 + dashboard` 与 `任意 topic 订阅 + 自动更新` 已经是个人开发者可快速替代的低门槛形态，深哥看板若继续做，应转向高质量信号源、来源链条、异常簇、用户当前问题匹配和历史判断复盘。
+
+进一步按用户要求补充公开产品和 GitHub 项目的直接/间接竞品排序。公开产品按公开规模信号排序，直接竞品包括 There's An AI For That、Toolify、Futurepedia、AI 工具集、FutureTools；间接竞品包括 Product Hunt、Hugging Face、Exploding Topics、AlphaSense、CB Insights / Crunchbase 和 AI 搜索。GitHub 项目按 stars 排序，直接竞品以 Horizon、auto-news、ai-news-aggregator、AI-Search、yuv-ai-trends、info_hub、my-focal-ai、tech-digest-daily、trend-monitor 为主；间接竞品以 ai-directories、aigotools、devo、hacker-feeds-cli、world-intel-mcp、blossom-terminal 为主。结论更新为四层竞争：大型 AI 工具发现平台、产品/技术生态源头、开源个人新闻雷达、企业级市场情报平台。
+
+按用户修正，把 Superlinear 项目区和公开产品 / GitHub 项目拆成不同文档，因为二者证明的 claim 不同：Superlinear 页只证明 `user-generated software` 竞争层；新建 [深哥 AI 情报看板：公开产品与 GitHub 竞品分析](topics/ai-product-product-definition/深哥AI情报看板-公开产品与GitHub竞品分析.md)，专门证明公开市场和开源生态已有成规模竞品与替代品。
+
+继续按用户修正公开产品竞品口径：直接竞品不再放 AI 工具发现平台，而是收窄为 AI 新闻 / 资讯雷达与行业趋势 / 媒体情报雷达，例如 The Rundown AI、Superhuman AI、TLDR AI、ReadPartner、Feedly。There's An AI For That、Toolify、Futurepedia、AI 工具集等降为弱间接竞品，只用于说明“找工具 / 看工具榜”拥挤，不再主导深哥看板的产品定义。GitHub 间接竞品中 AI directory / directory builder 类项目也同步降权。
+
+新增 [深哥 AI 情报看板：竞品未覆盖机会](topics/ai-product-product-definition/深哥AI情报看板-竞品未覆盖机会.md)，把深哥看板的机会从“更好的 AI 新闻雷达”改写为“面向 AI builder 的判断工作台”。核心判断是：竞品大多 address 信息摄入、摘要、排序、趋势发现和投递，但较少维护当前问题、判断状态、证据 / 反证链条、异常簇、来源可靠性和判断复盘。可把握的机会包括问题驱动雷达、机会评分、信号簇、判断复盘，以及先从内部 dogfooding 工作台长出外部产品。
+
+## [2026-07-02] reflection | frictionless agent 产品探索失败复盘
+
+根据围绕 frictionless / persistent personal agent、context layer、OpenClaw、Clawhouse、GPT-4o / Opus“有人味”的长讨论，沉淀一次协作失败经验：agent 过早把用户强直觉压缩成产品定义、MVP、context pack、固定 schema 和“别做”判断，导致用户认为讨论没有提供价值。新增 [产品探索保真优先观察](self/产品探索保真优先观察.md)，更新 [Agent 协作画像](self/agent-collaboration-profile.md) 与 `contexts/memory/OBSERVATIONS.md`，并修正 [后台守护进程式 Agent 与持续情境理解](topics/agent-harness-runtime/后台守护进程式Agent与持续情境理解.md)：后续不应把该方向降级为会议纪要、重点总结或固定字段 handoff，而应优先保真用户对“另一个人格、有人味、关系连续性、自然接话”的理解。
+
+## [2026-07-02] update | 轻量 context-infrastructure 协作入口
+
+按 `grapeot/context-infrastructure` 的 setup guide，新增本仓库适配版的 agent 协作入口 [Agent 协作画像](self/agent-collaboration-profile.md)，并新增 `contexts/memory/OBSERVATIONS.md` 作为低置信度观察日志。更新 `AGENTS.md`，要求开放式协作、agent 行为、偏好和判断问题先读协作画像，并把新的失败样本先沉淀为 observation，再视稳定性晋升到 `wiki/self/`。
+
 ## [2026-06-25] query | 外部教育 demo 与 Agent infra 主线边界
 
 更新 [Agent infra 目标一致性判断（2026-06-20）](topics/projects-roadmaps/Agent-infra目标一致性判断-2026-06-20.md)，补入外部教育 demo 的边界判断：若 demo 只承担真实 workload、低并发试点、数据建模、AI workflow、eval、trace 和 failure taxonomy，它可以服务 `Agent Systems Engineer` 主线；若开始承诺生产级后端、万人级扩展、教培运营和完整教育平台责任，则应引入生产级系统经验者，并避免把该项目升级成独立主线。
@@ -2413,3 +2433,27 @@ gogo-app 可立即开始的行动：
 
 **更新页面**
 - `wiki/topics/ai-product-product-definition/陈子深AI教育项目notebook-idea整理.md`
+
+## [2026-07-02] ingest | 摄取 Anthropic Claude's Character
+
+保存 Anthropic 文章 `Claude's Character` 的 source capsule，并新增 AI 关系主题页。核心增量是：模型性格不只是聊天风格或产品拟人化，而是 alignment、关系边界和行为先验问题；好的 character 需要在诚实、开放、非迎合、非伪客观、温暖关系与防依赖之间保持可治理的张力。
+
+**新增原始材料**
+- `raw/external/anthropic-claude-character.md`
+
+**新增页面**
+- `wiki/topics/human-ai-relationship/claude-character.md`
+
+**更新页面**
+- `wiki/topics/human-ai-relationship/index.md`
+
+## [2026-07-02] query | 沉淀 AI 产品反向筛选经验
+
+根据用户对 `context copilot`、情报看板、个人知识库、世界模型和大厂吞噬风险的连续反驳，新增一页反向筛选经验。核心增量是：不要继续用抽象概念拯救高 slop 风险方向；遇到 `copilot`、`dashboard`、`world model`、`memory` 等 AI 产品名时，先检查非 prompt 资产、真实工作流、可追溯信号源和不给 AI 解释时是否仍有价值。同步把“抽象框架默认会滑向 AI slop”的协作失败样本追加到 `contexts/memory/OBSERVATIONS.md`。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/AI产品反向筛选经验-避免wrapper与slop.md`
+
+**更新页面**
+- `contexts/memory/OBSERVATIONS.md`
+- `wiki/topics/ai-product-product-definition/index.md`

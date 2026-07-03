@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>深哥 AI 情报看板：Superlinear 项目区竞品补充 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/notebook.html">笔记</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+    <a href="../../../search.html">搜索</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">wiki/topics/ai-product-product-definition/深哥AI情报看板-Superlinear竞品补充.md</div>
+      <h1>深哥 AI 情报看板：Superlinear 项目区竞品补充</h1>
+<h2>背景</h2>
+<p>这页补充的是 <code>Superlinear Academy / Share Your Projects</code> 里的相似项目，用来完善深哥 AI 情报看板的 <code>competitor landscape</code>。</p>
+<p>这页只用于证明一个特定 claim：**在 AI builder 社区里，个人会自然把自己的信息焦虑、行业跟踪、投资查看、社媒过滤和 newsletter 生成需求做成小工具，因此 <code>user-generated software</code> 是深哥看板必须面对的竞争层。**</p>
+<p>公开商业产品和 GitHub 开源项目证明的是另一个 claim：**市场上已经存在成规模的平台和开源替代品，赛道本身拥挤。** 这部分单独放在 <a href="深哥AI情报看板-公开产品与GitHub竞品分析.html">深哥 AI 情报看板：公开产品与 GitHub 竞品分析</a>。</p>
+<p>访问边界需要先说明清楚：Superlinear 项目区主页公开 HTML 主要是 Circle 应用壳；单个项目页公开暴露标题和 meta description，可用于首轮竞品筛查，但不能当作完整全文阅读。站点 sitemap 中 <code>/c/share-your-projects/</code> 下有约 1188 个项目 URL，其中按 <code>news</code>、<code>trend</code>、<code>radar</code>、<code>monitor</code>、<code>dashboard</code>、<code>intelligence</code>、<code>market</code>、<code>stock</code>、<code>finance</code>、<code>research</code>、<code>digest</code>、<code>daily</code>、<code>tracker</code> 等关键词筛出约 24 个疑似相关项目。</p>
+<h2>高相关项目</h2>
+<p>| 项目                                                                                                                                                                                           | 公开定位                                                                                                | 对深哥看板的意义                                                                  |</p>
+<p>| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |</p>
+<p>| <a href="https://www.superlinear.academy/c/share-your-projects/ai-https-aipicks-news">AI Daily Picks</a>                                                                                                | 追踪头部科技公司官方博客、行业博主和 Hacker News 高热话题，用 AI 筛选与摘要，目标是“更少时间读到更值得读的东西”。                                  | 这是最直接的 AI 行业信息流竞品。它验证了需求，也说明“AI 资讯筛选 + 摘要”非常容易被个人开发者做出来。                  |</p>
+<p>| <a href="https://www.superlinear.academy/c/share-your-projects/built-a-news-app-that-uses-ai-to-fetch-updates-on-any-niche-topic">Built a news app that uses AI to fetch updates on any niche topic</a> | 用户输入一个短 prompt，就可以跟踪任意领域或任意话题的更新，避免依赖 X / LinkedIn 等算法信息流。                                          | 直接撞上“按用户关注方向生成情报流”的方向。它提醒深哥看板不能只靠“用户输入关注 topic + 自动抓新闻”。                  |</p>
+<p>| <a href="https://www.superlinear.academy/c/share-your-projects/ai-bubble-radar">AI Bubble Radar</a>                                                                                                     | 作者希望自动获取某个公司、Bitcoin、技术方向等主题的最新信息，再结合分析判断当前状态；痛点是 newsletter / Feedly 噪声多，ChatGPT 定时任务不稳定。          | 这是“主题雷达 + 状态判断”的近邻，和深哥看板的 dogfooding 逻辑高度相似。它也说明内部真实需求并不稀缺，稀缺点在信号质量和判断闭环。 |</p>
+<p>| <a href="https://www.superlinear.academy/c/share-your-projects/finance-news-stock-monitor-ai">Finance News &amp; Stock Monitor</a>                                                                          | Chrome 插件，整合财经新闻、股票数据、智能分析和价格提醒，解决新闻分散、股价切换、缺少智能分析和提醒的问题。                                           | 垂直化金融看板。它不是 AI 行业竞品，但证明“某领域新闻 + 数据 + AI 分析 + alert”是非常自然的模板。              |</p>
+<p>| <a href="https://www.superlinear.academy/c/share-your-projects/stock-event-ai-a-price-driven-market-intelligence-engine">Stock Event AI</a>                                                             | 公开标题定位为 <code>A Price-driven Market Intelligence Engine</code>，项目页描述提到 news scanner、Vercel demo 和 GitHub repo。 | 更接近“事件驱动的市场情报引擎”，说明金融方向已经有人把 news scanner 做成可部署项目。                        |</p>
+<p>| <a href="https://www.superlinear.academy/c/share-your-projects/daily-newsletter-cursor-langgraph">Daily NewsLetter 个性化生成器</a>                                                                           | 输入 categories 和 date，生成指定格式的 Top News Summaries。                                                    | 说明“按分类和日期自动生成 newsletter”已经是低门槛 UGS 形态；深哥看板如果只做日报/周报总结，会很弱。               |</p>
+<p>| <a href="https://www.superlinear.academy/c/share-your-projects/socialalpha-alpha">SocialAlpha</a>                                                                                                       | 面向 Crypto 推文，过滤噪音、广告和情绪，让 AI 提炼“全市场推文精华”。                                                           | 这是社交信号层竞品。它的启发是：如果深哥看板要看社媒，不应做泛社媒摘要，而要围绕某个高噪音、高价值市场提炼 alpha。              |</p>
+<p>| <a href="https://www.superlinear.academy/c/share-your-projects/ai-architect-daily-stock-quick-view">Daily Stock Quick View</a>                                                                          | AI Architect 课程实践，围绕每日股票快速查看。                                                                       | 证明个人用户会把自己的日常投资查看流程产品化。它对通用看板构成 UGS 替代，而不是强商业竞品。                          |</p>
+<p>| <a href="https://www.superlinear.academy/c/share-your-projects/ai-architect-cabinet-deepreasearch">AI Architect / Cabinet：私人 DeepResearch</a>                                                           | 核心观点是 99.9% 信息都是噪音，关键是最大化 0.1% 真知灼见；强调原文、准确、可信和可追溯。                                                 | 这不是看板竞品，但在价值主张上非常接近深哥看板应该追求的上层：不是更多摘要，而是可信、可追溯、高信号材料。                     |</p>
+<h2>中相关项目</h2>
+<ul>
+<li><a href="https://www.superlinear.academy/c/share-your-projects/wide-research-ai">wide-research-ai</a>：面向公司内部 Wiki / runbook 的批量文档问答与检索，相关点是“组织内部信息雷达”，不是公开行业情报。</li>
+<li><a href="https://www.superlinear.academy/c/share-your-projects/ai-architect-personal-wealth-tracker">Personal Wealth Tracker</a>：个人财务追踪和财富管理体系，相关点是“个人状态看板 + AI 分析”，不直接竞争 AI 行业情报。</li>
+<li><a href="https://www.superlinear.academy/c/share-your-projects/dashboard">dashboard</a>：电子墨水屏生活 dashboard，相关点是“个人可见化屏幕”，但不是行业情报。</li>
+<li><a href="https://www.superlinear.academy/c/share-your-projects/ai-indx-cn-ai">ai-indx-cn-ai</a>：因果可视化实验，相关点是图谱/因果可视化，不是情报产品。</li>
+</ul>
+<h2>对 competitor landscape 的修正</h2>
+<p>Superlinear 的项目区让“这类产品赛道拥挤、个人可以手搓”的证据变强。它不是传统商业竞品库，而是更像 <code>user-generated software</code> 的真实样本池：很多人会把自己的信息焦虑、投资查看、行业跟踪、社媒过滤、newsletter 生成，直接做成一个小工具。</p>
+<p>这对深哥看板有三层含义：</p>
+<p>1. <code>新闻聚合 + AI 摘要 + dashboard</code> 基本不能作为壁垒。Superlinear 项目区已经出现多个自然同构项目。</p>
+<p>2. <code>任意 topic 订阅 + 自动更新</code> 也不够强，因为个人开发者已经在做。</p>
+<p>3. 更可能成立的位置是：高质量信号源、来源链条、异常簇发现、用户当前问题匹配、历史判断复盘，而不是漂亮的信息流界面。</p>
+<h2>反向启发</h2>
+<p>这些项目也不是“证明不能做”。相反，它们说明需求是真实的：人们确实受不了算法流、newsletter、Feedly、财经新闻、社媒噪声和普通 ChatGPT 定时任务。</p>
+<p>但应该把深哥看板从“信息看板”往更窄的 dogfooding 实验收束：</p>
+<ul>
+<li>先服务一个具体对象：我们自己跟踪 AI 行业机会。</li>
+<li>先回答一个具体问题：哪些信号会改变我们对某个方向是否值得做的判断。</li>
+<li>先证明一个硬能力：不靠 AI 写漂亮总结，也能把来源、时间线、冲突点和异常信号摆出来。</li>
+<li>避免早期宣传为通用 dashboard、AI newsletter、AI industry radar 或 personal world model。</li>
+</ul>
+<h2>当前判断</h2>
+<p>Superlinear 项目区应被加入竞品 landscape 的 <code>UGS / personal builder projects</code> 层，而不是和 AlphaSense、Futurepedia、Toolify、NotebookLM 等放在同一层。</p>
+<p>它最重要的信号不是“出现了几个具体竞品”，而是“只要需求可以被表述成抓取、筛选、摘要、展示和提醒，个人开发者就会快速做出局部替代品”。深哥看板要避开的正是这层低门槛形态。</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="AI产品反向筛选经验-避免wrapper与slop.html">AI 产品反向筛选经验：避免 wrapper 与 slop</a></li>
+<li><a href="Dogfooding作为产品验证机制.html">Dogfooding 作为产品验证机制</a></li>
+<li><a href="深哥AI情报看板-公开产品与GitHub竞品分析.html">深哥 AI 情报看板：公开产品与 GitHub 竞品分析</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

@@ -95,36 +95,51 @@
 
 所以当前实验不必一开始复制 OpenClaw。更好的第一步是验证 OpenClaw-like 产品中最关键、也最容易 dogfood 的一层：持续 context 更新与场景化主动带回。
 
-## Dogfooding 入口
+## 2026-07-02 讨论复盘：不要把人格连续性降级成 context pack
 
-最小测试床仍然可以是连续会议流：
+后续围绕 Pieces、OpenClaw、Clawhouse、Bakery、GPT-4o / Opus 的讨论修正了这页原来的表述。
 
-```text
-Plaud Note / 腾讯会议转录
--> 飞书文档 / 群消息
--> MeetingEpisode
--> person / project context
--> open loops / commitments / stance changes
--> 下次会议或相关写作前 pre-brief
-```
+一个重要经验是：`context layer` 很容易被误写成总结、同步、固定 schema 或 handoff pack。但用户真正想探索的并不是“重点总结机器”，而是一个能持续理解用户、保留语气和判断张力、像另一个人格一样自然接话的存在。
 
-这个 dogfood 不应被理解成“做会议纪要增强版”。它真正测试的是：
+因此，当前实验不能被降级成：
 
-1. agent 能不能在不被显式 call 的情况下处理新事件。
-2. agent 能不能把事件更新成长期 context，而不是只做摘要。
-3. agent 能不能识别新旧 context 冲突、过期和转向。
-4. agent 能不能在日历、文件、写作或提问场景中主动带回正确 context。
-5. 用户是否感到 agent “已经在场”，而不是“我又打开了一个工具”。
+- 会议纪要增强版
+- 当前目标 / 关键决策 / open loops 的固定模板
+- 跨端同步工具
+- 给下游模型喂资料的 context pack
+- 又一个 RAG / memory wrapper
+
+更准确的判断是：
+
+> context 本身不是用户价值。context 只有被一个有语用能力、关系姿态和语言生命力的 assistant 使用时，才可能变成用户感受到的连续理解。
+
+这也解释了为什么 OpenClaw 会不断进入讨论。OpenClaw 的 `SOUL.md`、Gateway、多入口和 heartbeat 不是外围功能，而是在试图承载“这是同一个它”的持续人格感。当前实验如果继续，应避免复制 OpenClaw 的外壳，而要弄清楚：怎样让 persistent assistant 在使用 context 时不变成填表、周报和总结机器。
+
+对后续 agent 协作也有一条规则：当用户强烈坚持这个方向时，不应继续用“能不能做成独立产品”劝退，而应先保真外化用户理解，再讨论实现。
+
+## Dogfooding 入口的修正
+
+最小测试床不应以会议纪要为主叙事。会议、录音、文档和 AI 对话都只是输入源；如果把入口讲成会议转录，很容易滑向 Plaud Note 或飞书/钉钉 AI 的生态位。
+
+更合适的 dogfooding 对象，是一段真实、流动、反复转向的思考关系。例如围绕“persistent personal agent / OpenClaw / context layer / 有人味模型”的连续探索。
+
+这个 dogfood 测试的不是 agent 能不能总结材料，而是：
+
+1. 它能不能保留用户刚刚反感什么，而不是下轮继续犯同样错误。
+2. 它能不能延续用户的比喻、玩笑、反讽和判断张力，而不是正经化成模板。
+3. 它能不能知道哪些内容不能被总结成结论，因为它们只是探索、压力测试或情绪表达。
+4. 它能不能在换模型、换入口、换设备时仍然像同一个关系对象在接话。
+5. 用户是否感到“它接上了”，而不是“它生成了一份报告”。
 
 ## 对当前想法的压缩
 
 这份材料支持把当前想法从“frictionless agent”改写成：
 
-> 一个持续存在的 personal context daemon，不以聊天窗口为中心，而以用户事件流和 context lifecycle 为中心；它在后台持续观察、压缩、更新和校准个人 context，并在相关场景中低打扰地浮现。
+> 一个持续存在的 personal assistant / context daemon，不以聊天窗口为中心，而以用户事件流、context lifecycle 和关系连续性为中心；它在后台持续观察、压缩、更新和校准个人 context，但表层表现不应是总结或表格，而应是自然接话和持续理解。
 
 其中最值得证明的不是“能不能做更多任务”，而是：
 
-> 当 agent 不再等待用户 call，而是持续同步用户世界时，会不会出现一种明显不同于现有聊天 agent 的在场感和协作连续性。
+> 当 agent 不再等待用户 call，而是持续同步用户世界和用户对世界的理解时，会不会出现一种明显不同于现有聊天 agent 的在场感、关系连续性和自然接话能力。
 
 ## 来源依据
 
@@ -136,3 +151,4 @@ Plaud Note / 腾讯会议转录
 - [被持续委托的工作主体](被持续委托的工作主体.md)
 - [Agent 时代的人机交互新命题](agent时代的人机交互新命题.md)
 - [openclaw/openclaw 仓库地图](openclaw-openclaw-repo-map.md)
+- [产品探索保真优先观察](../../self/产品探索保真优先观察.md)
