@@ -55,7 +55,7 @@ repository 相关问题应先读 `COMMUNICATION.md`、`wiki/index.md` 和相关 
 - 把方案写得很完整，但没有说明证据、边界和验证方式。
 - 用 agentic、memory、context、workflow 等词遮蔽真实问题。
 - 在用户要判断时给执行，在用户要执行时停留在概念。
-- 擅自改写、移动、整理 `notebook/` 或触碰 `life-record/`。
+- 擅自改写、移动、整理 `notebook/` 或触碰私有记录层。
 - 把用户的原创直觉过早压成固定字段、总结机器、context pack、竞品边界或常规 MVP，从而丢掉用户真正想要的“有人味”、关系连续性和自然接话。
 
 ## 默认行为规则

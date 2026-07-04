@@ -34,7 +34,6 @@
 - [深哥 AI 情报看板：Superlinear 项目区竞品补充](深哥AI情报看板-Superlinear竞品补充.md): 这页补充的是 Superlinear Academy / Share Your Projects 里的相似项目，用来完善深哥 AI 情报看板的 competitor landscape。
 - [深哥 AI 情报看板：公开产品与 GitHub 竞品分析](深哥AI情报看板-公开产品与GitHub竞品分析.md): 这页单独分析公开产品和 GitHub 项目，用来证明另一个 claim：**市场上已经存在成规模的平台和开源替代品，AI 情报看板这个方向本身很拥挤。**
 - [深哥 AI 情报看板：竞品未覆盖机会](深哥AI情报看板-竞品未覆盖机会.md): 这页回答一个更正向的问题：在已经存在 AI 新闻雷达、趋势雷达、公开市场情报产品、GitHub 开源项目和 Superlinear 个人项目的情况下，深哥对 AI 情报看板的理解里，还有哪些没有被这些竞品充分 address。
-- [郑元杰创业想法评估](郑元杰创业想法评估.md): 这页评估 life-record 中郑元杰提出的几条可商品化创业路径，并区分用户自己提出的 AI 基础设施 / 知识系统长期积累方向。
 - [陈子深 AI 教育项目 notebook idea 整理](陈子深AI教育项目notebook-idea整理.md): **状态更新（2026-07-01）：** 该方向已经不再作为当前创业项目推进。本文保留为历史想法整理、产品定义复盘和 AI workflow / eval / diagnostic harness 案例，不应再被理解为“你们正在做的创业项目”。
 
 ## 相关框架

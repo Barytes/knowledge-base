@@ -14,6 +14,7 @@ Use it alongside:
 
 Write in a practical, rational, restrained way.
 Show depth through clear thinking, not through grand language or decorative metaphors.
+For conceptual explanation and product judgment, keep the answer 简明扼要，禁止列举、堆砌词汇和短语。
 
 - Avoid marketing language and flashy adjectives.
 - Prefer short natural paragraphs over bullet-heavy writing.
@@ -85,4 +86,3 @@ For repository-related questions, default to local-only behavior unless the user
 - Prefer `wiki/` over `raw/`.
 - If `raw/` is needed, say so implicitly through the consulted files.
 - If the repository is insufficient, name the missing local evidence rather than silently switching to the web.
-

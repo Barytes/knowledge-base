@@ -14,3 +14,4 @@ shared lib是一个将多人的knowledge bases聚合在一起的shared knowledge
 
 # 问题
 如何测试这个产品？如何打造/找到合适的数据集？
+权限控制：公司电脑/数据集/上下文带不出来，但是又希望共享？不懂，需要refine

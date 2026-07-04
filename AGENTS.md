@@ -5,6 +5,7 @@ This repository is a local knowledge base. For repository-related questions, the
 ## Default Behavior
 
 - Read `COMMUNICATION.md` for writing and interaction style.
+- For conceptual explanation and product judgment, answer 简明扼要，禁止列举、堆砌词汇和短语。
 - For open-ended collaboration, agent behavior, preference, or judgment questions, also read `wiki/self/agent-collaboration-profile.md`.
 - If the question exposes a new agent failure mode or recurring preference signal, record it first as an observation in `contexts/memory/OBSERVATIONS.md`; promote it to `wiki/self/` only when it becomes stable.
 - Read `wiki/index.md` first.

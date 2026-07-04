@@ -5,10 +5,14 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from reorganize_wiki import redact_private_lines
 
 
 def run(command: list[str]) -> subprocess.CompletedProcess[str]:
@@ -147,6 +151,25 @@ def test_site_exposes_notebook_but_not_life_record() -> None:
         raise AssertionError("life-record must stay out of the generated search index")
 
 
+def test_private_path_redaction_keeps_non_source_mentions() -> None:
+    text = "\n".join(
+        [
+            "本页只整理 `notebook/` 草稿，不混入 `life-record/` 访谈记录。",
+            "- `life-record/陈子深- AI教育产品定义.md`",
+        ]
+    )
+
+    redacted = redact_private_lines(text)
+    expected = "\n".join(
+        [
+            "本页只整理 `notebook/` 草稿，不混入 `life-record/` 访谈记录。",
+            "- 私密记录路径已隐藏。",
+        ]
+    )
+    if redacted != expected:
+        raise AssertionError(f"unexpected redaction output: {redacted!r}")
+
+
 def main() -> None:
     tests = [
         test_kb_ingest_uses_repo_root,
@@ -155,6 +178,7 @@ def main() -> None:
         test_topics_config_is_externalized,
         test_site_search_indexes_all_maintained_pages,
         test_site_exposes_notebook_but_not_life_record,
+        test_private_path_redaction_keeps_non_source_mentions,
     ]
     for test in tests:
         test()

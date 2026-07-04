@@ -187,16 +187,23 @@ PAGE_TOPICS: dict[str, str] = {
 }
 
 LINK_RE = re.compile(r"(?P<prefix>!?\[[^\]]*\]\()(?P<url>[^)\n]+?\.md)(?P<anchor>#[^)]+)?(?P<suffix>\))")
+PRIVATE_PATH_RE = re.compile(r"`?life-record/[^`\n]+`?")
 
 
 def redact_private_lines(text: str) -> str:
     redacted: list[str] = []
     for line in text.splitlines():
-        if "life-record/" in line:
+        if "life-record/" not in line:
+            redacted.append(line)
+            continue
+
+        replaced = PRIVATE_PATH_RE.sub("私密记录路径已隐藏。", line)
+        stripped = replaced.strip()
+        if stripped == "私密记录路径已隐藏。":
             prefix = "- " if line.lstrip().startswith("- ") else ""
             redacted.append(f"{prefix}私密记录路径已隐藏。")
-        else:
-            redacted.append(line)
+            continue
+        redacted.append(replaced)
     return "\n".join(redacted)
 
 
