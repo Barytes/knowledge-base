@@ -46,3 +46,12 @@
 - 伤害：继续用漂亮概念解释，会把本来应该被判死的方向重新包装成“有潜力的系统”，增加用户的判断负担和情绪消耗。
 - 下次规则：遇到 `context`、`memory`、`world model`、`copilot`、`dashboard`、`agent` 等抽象产品名时，先问非 prompt 的硬资产是什么、真实场景是什么、不给 AI 解释是否仍有价值；如果答不上来，直接承认可能不值得做。
 - 置信度：观察。来自一次强烈对话，和既有 `wiki/frameworks/AI系统产品判断框架.md`、`wiki/topics/ai-product-product-definition/AI 产品六层与 L3-L6 能力分层.md` 相邻，但暂不升级为稳定偏好。
+
+## 2026-07-04 | Context curation 需要物理隔离 canonical context 与 AI analysis
+
+- 场景：用户复盘 `founder-skill` artifact 和当前 `LLM wiki` context 组织方式，指出 AI 会把自己的分析当成事实写入上下文；连续对话中用户的判断发生转向后，agent 又常把旧信息继续当真，或把前后矛盾的信息强行合并。
+- 触发：单文件 artifact 把 founder input、evidence、AI analysis、open loops 等内容堆叠在一起；agent 后续用 `grep` 或 broad read 时会把本应排除的 AI analysis 读成 canonical context。`founder-confirmed` 这类确认式设计也把纠偏负担转嫁给 founder。
+- 观察：这里的本质不是缺少更复杂的 artifact 字段，而是 context curation 失败：canonical context、AI workspace、evidence ledger、superseded beliefs、user-authored current stance 需要物理隔离和默认读取策略。隐性知识显性化也应优先来自 founder 直接输入与可追溯状态变化，而不是让 AI 先生成结论再要求 founder confirm。
+- 伤害：AI analysis 污染 canonical context 会制造 AI slop；旧判断没有 supersession 关系会造成 stale belief；确认式流程会让用户承担持续审稿和纠偏负担，降低产品可用性。
+- 下次规则：设计 founder/workflow artifacts 时，默认把 `founder-input/current-stance`、`world-state/evidence-ledger`、`ai-workspace/analysis`、`change-log/supersession` 等层物理分开；AI analysis 不进入默认 canonical read set，除非被用户直接输入、明确采用或有证据链支持。避免把 `founder-confirmed` 作为核心产品机制，优先让 founder 直接写入判断与状态。
+- 置信度：观察。来自一次强信号复盘，并和既有 `AI slop`、知识系统分层、用户自主性与 context-infrastructure 方向相邻，但具体文件架构仍需后续验证。
