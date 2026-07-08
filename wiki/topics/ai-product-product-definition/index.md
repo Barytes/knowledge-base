@@ -24,6 +24,7 @@
 - [AI 产品六层与 L3-L6 能力分层](AI%20产品六层与%20L3-L6%20能力分层.md): **标签：** AI runtime，prompt wrapper，RAG，tool use，workflow，agentic core，AI-native product，能力分层
 - [AI 产品反向筛选经验：避免 wrapper 与 slop](AI产品反向筛选经验-避免wrapper与slop.md): 这页来自 2026-07-02 一轮围绕 context copilot、情报看板、个人知识库、世界模型和大厂吞噬风险的反向复盘。
 - [Codex 与 AI 产品工作的实现廉价化](Codex与AI产品工作的实现廉价化.md): 当 AI 让实现和原型成本下降后，产品工作的稀缺点转向品味、策展、系统嵌入、媒介选择和模型能力时机判断，而不是简单取消 PM / 设计 / 工程角色。
+- [Context Copilot 的 context engine 设计](Context-Copilot的context-engine设计.md): 如果 Context Copilot 的愿景是让 AI 在写作、产品定义、研究判断和构建过程中持续理解用户，而不是每次从零开始，那么它的 context engine 不应被设计成一个泛 memory/RAG 系统。
 - [Dogfooding 作为产品验证机制](Dogfooding作为产品验证机制.md): Dogfooding 的价值不是“我们自己也用，所以产品一定好”，而是让团队在真实任务中持续暴露摩擦、盲点和错误优先级。它适合作为产品验证链条中的内部真实使用层，但不能替代外部用户研究。
 - [GenAI 的共识边界与任务委托框架](GenAI%20的共识边界与任务委托框架.md): **标签：** GenAI，任务委托，幻觉，创造力，职业能力
 - [Go to Market Multiple Times：把高价值工作与早期产品反复推向市场](go-to-market-multiple-times.md): ---

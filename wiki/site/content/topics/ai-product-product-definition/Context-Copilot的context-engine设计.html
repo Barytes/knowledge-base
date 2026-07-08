@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Context Copilot 的 context engine 设计 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/notebook.html">笔记</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+    <a href="../../../search.html">搜索</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">wiki/topics/ai-product-product-definition/Context-Copilot的context-engine设计.md</div>
+      <h1>Context Copilot 的 context engine 设计</h1>
+<h2>摘要</h2>
+<p>如果 <code>Context Copilot</code> 的愿景是让 AI 在写作、产品定义、研究判断和构建过程中持续理解用户，而不是每次从零开始，那么它的 <code>context engine</code> 不应被设计成一个泛 memory/RAG 系统。</p>
+<p>它更应该是：</p>
+<p>&gt; 一个把用户正在形成的理解、判断边界、材料来源、失败纠正和当前工作状态，持续整理成可被 agent 调用的上下文工作面的系统。</p>
+<p>它的核心任务不是“记住更多”，而是让下一次协作少一点误解、少一点重复铺垫、少一点 AI slop，多一点自然接话、保真延续和可验证写回。</p>
+<h2>产品边界</h2>
+<p><code>Context Copilot</code> 最容易失败的方向，是把自己做成总结器、dashboard、个人知识库搜索框或“自动给建议”的 wrapper。</p>
+<p>更好的边界是：它不替用户做最终判断，也不把用户压进固定字段；它负责维护一个能服务当前任务的 context state，让主 agent 在合适时刻知道：</p>
+<ul>
+<li>用户现在真正想推进什么</li>
+<li>哪些 framing 已经被否定</li>
+<li>哪些材料是来源，哪些是用户自己的理解</li>
+<li>哪些判断还只是观察，哪些已经稳定</li>
+<li>这次输出应该接在哪条思路后面</li>
+<li>什么东西不该再被 AI 重复建议</li>
+</ul>
+<p>所以它的主产品场景不是“我问，它答”，而是“我持续想、写、做，它帮我带着上下文继续”。</p>
+<h2>核心对象</h2>
+<p>第一版不要先做复杂图数据库。先把 context engine 的对象定义清楚。</p>
+<p><code>Source</code>：原始材料。包括笔记、对话、网页、代码、会议记录、草稿。它只负责证据和回查。</p>
+<p><code>Working Context</code>：当前工作状态。包括目标、材料、约束、最近决策、否定过的方向、当前卡点。它是任务内默认工作面。</p>
+<p><code>Understanding State</code>：用户对某个 idea 的当前理解。它不是偏好画像，而是一个正在演化的解释结构，包含核心表达、反规格说明、张力和未决问题。</p>
+<p><code>Memory Candidate</code>：可能值得长期保存的观察。默认低置信，不直接变成规则。</p>
+<p><code>Pattern / Rule / Skill</code>：经过多次验证后才能进入稳定层。这里才是长期复利层。</p>
+<p><code>Context Packet</code>：每次 agent 工作前生成的上下文包。它不是全量记忆，而是这次任务真正需要的材料组合。</p>
+<p><code>Review / Writeback</code>：任务结束后的人工或半自动审查。决定哪些内容丢弃、保留、降级、升级或写回。</p>
+<h2>读路径</h2>
+<p>读路径应服务“自然接上用户当前理解”，而不是机械召回相似文本。</p>
+<p>合理流程是：</p>
+<pre><code>task intent
+-&gt; identify active thread
+-&gt; load working context
+-&gt; retrieve supporting sources
+-&gt; include rejected framings
+-&gt; assemble context packet
+-&gt; run main agent</code></pre>
+<p>这里最重要的是 <code>active thread</code>。例如用户问 <code>context-copilot</code>，系统不应只召回所有带 context 的材料，而要识别这是同一条产品探索线：反感 AI slop、反感固定字段、重视 writing 场景、重视 context continuity，而不是泛泛 dashboard。</p>
+<p>因此检索要分两层：</p>
+<ul>
+<li>结构化路由：先判断主题、产品线、任务类型、用户意图。</li>
+<li>语义检索：再找具体材料、相邻页面、旧对话、失败样本。</li>
+</ul>
+<p>如果只做向量相似度，系统会很容易把所有叫 <code>context</code> 的东西混在一起。</p>
+<h2>写路径</h2>
+<p>写路径必须慢，尤其是关于用户偏好和产品直觉的写入。</p>
+<p>建议分成四级：</p>
+<pre><code>capture -&gt; observation -&gt; pattern candidate -&gt; stable rule / skill</code></pre>
+<p><code>capture</code> 自动记录任务过程、引用材料、输出、用户纠正。</p>
+<p><code>observation</code> 提炼单次有效信号，例如“用户反感把 context-copilot 压成周报式字段”。</p>
+<p><code>pattern candidate</code> 需要跨多次任务重复出现，才进入候选稳定层。</p>
+<p><code>stable rule / skill</code> 只有在确实能改善后续协作时才写入默认工作面。</p>
+<p>这条门禁很关键。<code>Context Copilot</code> 的最大风险不是忘记用户，而是过早把一次表达固化成粗暴画像，然后以后每次都用错误规则打断用户。</p>
+<h2>运行时结构</h2>
+<p>第一版应采用 <code>thin runtime + file-based working layer + agentic routing</code>。</p>
+<pre><code>Capture Layer
+  收集来源、对话、草稿、代码、任务结果
+
+Context Store
+  raw sources
+  working contexts
+  understanding states
+  observations
+  skills / rules
+  eval cases
+
+Router
+  判断任务类型、active thread、可见范围、需要读取的层
+
+Context Assembler
+  生成 context packet，控制 token、顺序、来源和排除项
+
+Main Agent
+  写作、分析、构建、复盘
+
+Review / Writeback
+  人审或半自动决定是否写回、升级、废弃、纠错
+
+Trace / Eval
+  记录读了什么、漏了什么、上下文是否帮助任务</code></pre>
+<p>runtime 不要太厚。真正的判断应尽量沉淀到文件、skills、框架和 eval cases。这样用户和 agent 都能检查系统为什么这样接话。</p>
+<h2>最小 MVP</h2>
+<p>最小版本不要做全量个人记忆，也不要接所有 app。</p>
+<p>更锋利的 MVP 是围绕一个高频场景：</p>
+<p>&gt; 用户围绕一个产品想法连续写作、讨论、反驳、修正，系统能在下一次对话或写作时自动带回正确的理解状态。</p>
+<p>最小文件结构可以是：</p>
+<pre><code>context-copilot/
+  sources/
+  threads/
+    context-copilot.md
+  observations/
+  packets/
+  eval-cases/
+  writeback-log.md</code></pre>
+<p>第一版只需要四个动作：</p>
+<p>1. <code>capture</code>：把一段对话或草稿挂到某条 thread。</p>
+<p>2. <code>distill</code>：提炼 active understanding、rejected framings、open questions。</p>
+<p>3. <code>assemble</code>：为下一次写作或 agent 任务生成 context packet。</p>
+<p>4. <code>review</code>：用户确认哪些理解保留、哪些删掉、哪些写成规则。</p>
+<p>只要这条链能稳定减少“AI 又误解我了”的次数，就比做一个漂亮 dashboard 更接近愿景。</p>
+<h2>评测方式</h2>
+<p>不要先测“召回了多少记忆”。应该测：</p>
+<ul>
+<li>是否接住用户当前 framing</li>
+<li>是否避免重复已经被否定的建议</li>
+<li>是否区分来源材料和用户自己的判断</li>
+<li>是否减少用户重复解释的次数</li>
+<li>是否让写作或产品定义更快进入有效状态</li>
+<li>是否有错误写回、过度概括、隐私越界</li>
+</ul>
+<p>可以做 10 个真实 episode。每个 episode 标注：</p>
+<ul>
+<li><code>must_include</code>：这次必须带回的上下文</li>
+<li><code>must_not_include</code>：过期、错误、被否定或越权的上下文</li>
+<li><code>stance</code>：这次 agent 应该采用的接话姿态</li>
+<li><code>failure_mode</code>：如果失败，属于漏召回、误召回、压缩失真、过度建议，还是写回污染</li>
+</ul>
+<p>这比通用 memory benchmark 更能验证 <code>Context Copilot</code> 是否真的成立。</p>
+<h2>推荐设计取向</h2>
+<p>推荐先走“写作/产品探索 context continuity”路线，而不是“全能个人 memory”路线。</p>
+<p>原因很简单：<code>Context Copilot</code> 的独特价值不在于知道用户生日、项目列表或日程，而在于能保存并带回那些正在形成、还没有固定成知识页或任务表的理解状态。</p>
+<p>这也是它和普通知识库、RAG、dashboard 的区别：它维护的不是事实集合，而是“用户正在怎样理解这件事”。</p>
+<h2>相关页面</h2>
+<ul>
+<li><a href="个人AI工作流从问答到系统化委托.html">个人 AI 工作流：从问答到系统化委托</a></li>
+<li><a href="AI产品反向筛选经验-避免wrapper与slop.html">AI 产品反向筛选经验：避免 wrapper 与 slop</a></li>
+<li><a href="ai-architect-context-intelligence.html">AI Architect 的 Context Intelligence 镜头</a></li>
+<li><a href="../context-memory-knowledge-system/context-engine.html">Context Engine：上下文编排层</a></li>
+<li><a href="../context-memory-knowledge-system/file-based-context-engine-design.html">长期 file-based context engine 设计</a></li>
+<li><a href="../../self/产品探索保真优先观察.html">产品探索保真优先观察</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

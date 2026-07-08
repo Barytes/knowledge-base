@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hermes、OpenClaw、Codex、Claude Code 的 memory 与 context 管理对比 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/notebook.html">笔记</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+    <a href="../../../search.html">搜索</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">wiki/topics/agent-harness-runtime/Hermes-OpenClaw-Codex-Claude-Code-context-memory对比.md</div>
+      <h1>Hermes、OpenClaw、Codex、Claude Code 的 memory 与 context 管理对比</h1>
+<h2>摘要</h2>
+<p>这四个系统都在处理同一个底层问题：模型上下文窗口有限，而 agent 工作又需要跨轮次、跨文件、跨工具、跨设备保留状态。差异不在于“谁有 memory”，而在于它们把 memory 和 context 放在哪一层。</p>
+<p>一个粗略判断是：</p>
+<ul>
+<li><code>Hermes</code> 更像显式 <code>Context Engine</code>：每轮动态组装 prompt，管理压缩、memory、skills、session search 和 prompt caching。</li>
+<li><code>OpenClaw</code> 更像持续 assistant runtime：用 Gateway、agent workspace、session store、<code>SOUL.md</code>、<code>AGENTS.md</code>、heartbeat 和 nodes 承接人格连续性与多入口状态。</li>
+<li><code>Codex</code> 更像较克制的 coding harness：以 session、工具调用、patch、权限、trace/replay 和项目上下文文件为核心，长期记忆主要依赖外部文件和工作区资产。</li>
+<li><code>Claude Code</code> 更像厚产品化 harness：把 <code>CLAUDE.md</code>、auto memory、session persistence、compaction、checkpoints、permissions、subagents、MCP、skills 和 hooks 都纳入默认工作面。</li>
+</ul>
+<p>本文对 <code>Hermes</code> 的判断主要来自 raw conversation，置信度低于维护页；对 <code>Codex</code> 的判断也偏中等，因为本地材料更多来自对照和路线图，而不是完整官方实现说明。</p>
+<h2>对比表</h2>
+<p>| 系统 | 主要 context 抽象 | memory 放在哪里 | 长上下文策略 | 关键取舍 |</p>
+<p>|---|---|---|---|---|</p>
+<p>| <code>Hermes</code> | <code>Context Engine</code> | 长期 memory、skills、session search、compression summary | token 压力监控后压缩旧历史，稳定 prompt 前缀配合 prompt caching | 上下文调度意识最显式，但本地证据主要来自 raw |</p>
+<p>| <code>OpenClaw</code> | assistant + Gateway + agent workspace | <code>SOUL.md</code> / prompt files、agentDir、workspace、session store、heartbeat checklist | 通过 Gateway 维持多入口 session 和状态，靠文件承接身份与行为边界 | 强调“同一个 assistant”持续存在，但实现仍 gateway-centric |</p>
+<p>| <code>Codex</code> | terminal-first coding harness / Codex-like session | 项目文件、<code>AGENTS.md</code>、session、trace、patch、eval case | 通过 session、compact / resume、工具日志和文件化任务状态管理 | 壳较克制，可观察性和可审计执行更重要 |</p>
+<p>| <code>Claude Code</code> | 厚 agentic coding harness | <code>CLAUDE.md</code>、auto memory、session JSONL、skills、MCP、subagents、hooks | 自动 compaction，先清工具输出，再总结对话；subagents 隔离上下文 | 开箱强，控制机制内建多，但黑箱感更高 |</p>
+<h2>Hermes</h2>
+<p>本地 raw 中对 Hermes 的描述非常接近通用 <code>Context Engine</code> 定义。它每轮模型调用前会组装系统提示词、当前会话、工具 schema、已加载 skills、长期 memory、session search 结果和工具结果。</p>
+<p>它的核心不是保存所有历史，而是在有限窗口内决定当前最该让模型知道什么。长对话接近阈值时，Hermes 会压缩旧历史，保留目标、约束、决策、待办、工具结果、错误路径和当前状态。</p>
+<p>Hermes 还强调插件化：<code>context_engine.py</code> / <code>context_compressor.py</code> 这类接口可以接管 <code>on_session_start</code>、<code>update_from_response</code>、<code>should_compress</code>、<code>compress</code>、<code>on_session_reset</code>、<code>on_session_end</code> 等生命周期点。它同时会考虑 prompt caching，因此倾向让系统提示词、工具定义和稳定上下文少变，把动态内容放在后面。</p>
+<p>所以 Hermes 的特点是：把 context 管理直接做成一个可替换的调度器，而不是把 memory 当成一个附属数据库。</p>
+<h2>OpenClaw</h2>
+<p>OpenClaw 的主语不是 coding session，而是 personal assistant。它的 context / memory 主要由几个层共同承接。</p>
+<p>第一层是 Gateway。Gateway 是 long-lived、always-on 的本地中枢，负责 channels、sessions、tools、events、WebSocket API、nodes 和 control UI。多入口访问不靠每个聊天窗口自己记忆，而是回到同一个 Gateway。</p>
+<p>第二层是 agent workspace。公开 docs 把一个 agent 定义成 workspace、<code>agentDir</code>、session store 和 per-agent auth profiles 的组合。这意味着 OpenClaw 的 agent 不是单次聊天实例，而是带隔离状态的 workspace。</p>
+<p>第三层是 prompt files，尤其是 <code>SOUL.md</code>、<code>AGENTS.md</code>、<code>TOOLS.md</code>。<code>SOUL.md</code> 被放在人格、声音和 continuity 的核心位置。公开 notes 里保留的关键意思是：每次会话虽然是 fresh，但这些文件是它的 memory，agent 应阅读并更新它们。</p>
+<p>第四层是 heartbeat 和 <code>HEARTBEAT.md</code>。这让 assistant 不只是被动响应，还能周期性维护 checklist 或执行例行 upkeep。</p>
+<p>所以 OpenClaw 管 context 的方式不是“一个检索器”，而是把身份、workspace、session、prompt files、heartbeat 和设备 nodes 拼成持续 assistant 的状态系统。它的张力是：产品叙事说 assistant 是本体，但实现里 Gateway 仍然是最强中心。</p>
+<h2>Codex</h2>
+<p>本地材料对 Codex 的直接证据比 Claude Code 少，所以这里要保守。</p>
+<p>可以确认的是，Codex 更接近 terminal-first coding agent harness。它关心的 context 不是人格连续性，而是一次开发任务能否在真实代码库里可恢复、可审计、可验证地推进。</p>
+<p>从本地 <code>Codex-like agent harness</code> 路线图看，Codex-like 的最小 context / memory 面包括：</p>
+<ul>
+<li><code>Session</code>：会话、状态、工作目录、resume、fork、compact。</li>
+<li><code>Tool Runtime</code>：文件读取、搜索、patch 编辑、命令执行、外部工具调用。</li>
+<li><code>Permission / Sandbox</code>：读、写、执行、网络、危险命令的权限边界。</li>
+<li><code>Plan / Todo</code>：把长任务拆成可观察状态。</li>
+<li><code>Diff / Patch</code>：所有修改可审计。</li>
+<li><code>Trace / Replay</code>：记录输入、工具调用、上下文、输出和失败标签。</li>
+<li><code>Skill System</code>：把可复用流程和项目规则外置成文件。</li>
+</ul>
+<p>这说明 Codex 的 memory 更像“任务状态 + 工作区文件 + 轨迹日志 + 项目规则”，而不是人格化长期 memory。它把可复用上下文更多放进 <code>AGENTS.md</code>、repo docs、skills、trace、eval cases 和项目文件，而不是把全部策略内建在聊天历史里。</p>
+<h2>Claude Code</h2>
+<p>Claude Code 的本地资料最完整。它是更厚的 agentic coding harness。</p>
+<p>官方材料已经明确它的默认上下文包括当前项目和 git state、<code>CLAUDE.md</code>、auto memory、MCP、skills、subagents、Chrome extension 等。session 保存在本地 JSONL 中，支持 resume 和 fork。context window 会自动 compaction：先清理工具输出，必要时再总结对话。subagents 通过独立上下文减轻主上下文膨胀。</p>
+<p>它还把 permissions、checkpoints、plan mode、MCP、hooks、skills、subagents 都做成正式控制面。Dynamic Workflows 又进一步把 subagents 推成临时 agent team：动态拆任务、并行 fan out、独立验证、adversarial checking、保存进度并恢复长任务。</p>
+<p>所以 Claude Code 的 memory / context 策略是产品化最强的一类：把很多原本需要用户用文件、脚本、tmux、外部流程自己拼的上下文控制机制，直接做进默认 harness。</p>
+<p>它的代价也清楚：系统更厚，用户更难完全知道每轮到底注入了什么、压缩了什么、哪些子流程已经发生。</p>
+<h2>核心差异</h2>
+<p>如果按“context 被放在哪里”来分：</p>
+<ul>
+<li>Hermes：放在可插拔 context engine 生命周期里。</li>
+<li>OpenClaw：放在持续 assistant 的 Gateway / workspace / prompt files / heartbeat 里。</li>
+<li>Codex：放在 coding harness 的 session / trace / patch / repo files / project rules 里。</li>
+<li>Claude Code：放在厚产品化 harness 的内建 memory、compaction、session、permissions、subagents 和扩展面里。</li>
+</ul>
+<p>如果按“长期记忆的形态”来分：</p>
+<ul>
+<li>Hermes 更像 memory + session search + compression summary。</li>
+<li>OpenClaw 更像人格文件 + workspace/session store。</li>
+<li>Codex 更像任务轨迹 + 项目文件 + 可复用规则。</li>
+<li>Claude Code 更像 auto memory + <code>CLAUDE.md</code> + session JSONL + subagent isolation。</li>
+</ul>
+<p>真正的判断点不是谁记得更多，而是谁能把正确上下文在正确时间送进当前任务，并且让写入、压缩、权限、回放和纠错可控。</p>
+<h2>来源依据</h2>
+<ul>
+<li><a href="../context-memory-knowledge-system/context-engine.html">Context Engine：上下文编排层</a></li>
+<li><a href="claude-code-harness.html">Claude Code：较厚的 agentic coding harness</a></li>
+<li><a href="coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a></li>
+<li><a href="openclaw-openclaw-repo-map.html">openclaw/openclaw 仓库地图</a></li>
+<li><a href="../context-memory-knowledge-system/agent-context-infra-2026-05-25.html">Agent Context Infra 前沿调研（2026-05-25）</a></li>
+<li><a href="../projects-roadmaps/Codex-like-agent-harness路线图.html">Codex-like agent harness 路线图</a></li>
+<li><a href="../../../../../raw/personal/conversations/context-engine-ai-infra-2026-06-17.md">Hermes context engine raw conversation</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

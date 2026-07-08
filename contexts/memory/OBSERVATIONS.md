@@ -55,3 +55,12 @@
 - 伤害：AI analysis 污染 canonical context 会制造 AI slop；旧判断没有 supersession 关系会造成 stale belief；确认式流程会让用户承担持续审稿和纠偏负担，降低产品可用性。
 - 下次规则：设计 founder/workflow artifacts 时，默认把 `founder-input/current-stance`、`world-state/evidence-ledger`、`ai-workspace/analysis`、`change-log/supersession` 等层物理分开；AI analysis 不进入默认 canonical read set，除非被用户直接输入、明确采用或有证据链支持。避免把 `founder-confirmed` 作为核心产品机制，优先让 founder 直接写入判断与状态。
 - 置信度：观察。来自一次强信号复盘，并和既有 `AI slop`、知识系统分层、用户自主性与 context-infrastructure 方向相邻，但具体文件架构仍需后续验证。
+
+## 2026-07-07 | 不要用 MVP 收窄篡改用户愿景
+
+- 场景：用户定义深哥产品愿景为“让创业者拥有接近咨询公司、投行研究部门的信息能力和决策能力”，agent 回答时把它改窄成 `Founder Intelligence Loop`，并强调先做很窄闭环。
+- 触发：agent 将“验证路径需要收窄”混同为“产品愿景本身应该收窄”，没有先保真承接用户的宏大目标。
+- 观察：当用户给出明确愿景时，agent 可以帮助区分愿景、产品定义、MVP 和验证路径，但不能擅自把愿景改写成更小的产品主语。
+- 伤害：这种收缩会让用户感觉自己的理解被篡改，而不是被增强；也会把真正有吸引力的 ambition 压成普通工具定义。
+- 下次规则：先复述并保留用户愿景，再单独标注“验证切口”或“第一阶段实现”。不要用竞品拥挤、MVP 可行性或工程复杂度覆盖愿景本体。
+- 置信度：观察。来自一次明确纠正，和“产品探索中保真优先于过早收缩”相邻，但暂不升级为稳定公理。

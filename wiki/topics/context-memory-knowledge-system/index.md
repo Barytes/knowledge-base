@@ -29,6 +29,7 @@
 - [本地知识库模式](local-knowledge-base-patterns.md): 这两份来源材料描述的是两套互补但不相同的系统。
 - [知识库运行模型](knowledge-base-operating-model.md): 当这个仓库把“知识编译”和“个人判断蒸馏”视为两条分开的生产线，只在回答时或在稳定桥接页里汇合时，它运行得最好。
 - [给自己做了一个 llm-wiki 的入口应用](essays/给自己做了一个llm-wiki的入口应用.md): 我在用 llm-wiki 作为自己的第二大脑。但是一个痛点是，我需要同时打开 Obsidian 和 Codex，在两个工具之间来回切换。并且我只有一个屏幕，来回切换就超级麻烦。我又懒得给obsidian装插件，现有的插件又需要配置（如acp）。
+- [长期 file-based context engine 设计](file-based-context-engine-design.md): 长期 file-based context engine 的核心不是把 memory 存成文件，也不是把 RAG 换成 grep。它真正要设计的是：哪些长期上下文应该以人和 agent 都能检查、修改、引用、diff 的文件形式存在，并在任务开始前被路由成当前模型真正需要的工作面。
 
 ## 相关框架
 

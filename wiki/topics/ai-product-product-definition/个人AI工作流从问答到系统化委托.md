@@ -154,6 +154,20 @@ Superlinear 的另一条边界同样重要：不是所有东西都该交给 AI�
 
 这三类任务都能积累到你的主线：context、harness、eval、workflow 和可验证执行系统。
 
+## Build copilot 时最该沉淀什么
+
+如果正在 build 一个 copilot，最有复利的沉淀不是“这次项目写了多少代码”，而是下一次 build 能直接复用的工作面。
+
+优先沉淀五类资产：
+
+1. `product-context.md`：用户、场景、核心问题、反例、非目标、必须保留的人类判断权。它让下次不是从“我要做一个 copilot”开始，而是从已经校准过的产品边界开始。
+2. `workflow-playbook.md`：从想法到 demo 的实际步骤，包括如何收集材料、如何写 brief、如何让 agent 实现、如何 review、如何决定下一轮。它把一次 build 变成下次 build 的操作手册。
+3. `eval-cases/`：真实任务样本、好坏输出对比、失败案例、验收清单。它让 copilot 不只停在“能聊天”，而能被重复验证。
+4. `component-contracts/`：capture、context routing、memory/writeback、agent executor、review UI 等模块的输入输出契约。它让下个项目可以换界面、换模型、换框架，但保留底层结构。
+5. `failure-log.md`：哪些 prompt 失效、哪些 context 污染结果、哪些自动化让人更累、哪些地方必须人审。失败日志比成功截图更容易复利，因为它会减少下一次同类错误。
+
+对 `Context Copilot` 这类项目，最值得保留的核心不是一个具体 dashboard，而是 `capture -> context state -> routing -> agent use -> review/writeback` 这条链路。每次 build 都应该问：这次有没有让这条链路更清楚、更可测、更容易被下一个项目调用。
+
 ## 相关页面
 
 - [Superlinear Academy 课程与洞见总索引](superlinear-academy-course-insights-index.md)

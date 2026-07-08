@@ -2457,3 +2457,47 @@ gogo-app 可立即开始的行动：
 **更新页面**
 - `contexts/memory/OBSERVATIONS.md`
 - `wiki/topics/ai-product-product-definition/index.md`
+
+## [2026-07-07] query | 澄清上百个 agent 与生产力提升的关系
+
+根据用户追问 Claude Code 团队同时运行大量 agent 是否意味着个人也必须如此，更新 Dynamic Workflows 页面。核心增量是：数十到数百个 subagents 不是先进性指标，而是特定大任务在可拆分、可评测、可复核时才有意义的并行编排形态；个人生产力提升更依赖可积累工作面、清楚上下文、稳定质量标准和验证闭环。
+
+**更新页面**
+- `wiki/topics/agent-harness-runtime/claude-code-dynamic-workflows.md`
+
+## [2026-07-07] query | 沉淀 build copilot 的可复用资产
+
+根据用户追问 build copilot 过程中哪些东西能加速下一次 build，更新个人 AI 工作流页面。核心增量是：最有复利的不是单次项目代码量，而是 `product-context.md`、`workflow-playbook.md`、`eval-cases/`、`component-contracts/`、`failure-log.md` 等可复用工作面；对 `Context Copilot`，应优先沉淀 `capture -> context state -> routing -> agent use -> review/writeback` 这条链路。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/个人AI工作流从问答到系统化委托.md`
+
+## [2026-07-07] query | 设计长期 file-based context engine
+
+根据用户追问“如何设计一个长期的 file-based context engine”，新增主题页。核心判断是：长期 file-based context engine 不是把 memory 存成文件，也不是用 `grep` 替代 RAG，而是用文件系统承载可复利的上下文资产，用轻量运行时负责路由、压缩、隔离、写回和验证；系统成败取决于默认工作面质量、写回门禁、文件式读路径和可回放评测。
+
+**新增页面**
+- `wiki/topics/context-memory-knowledge-system/file-based-context-engine-design.md`
+
+**更新页面**
+- `wiki/topics/context-memory-knowledge-system/index.md`
+
+## [2026-07-07] query | 对比 Hermes、OpenClaw、Codex、Claude Code 的 context 与 memory 管理
+
+根据用户追问“hermes、openclaw、codex、claude code 是如何管理用户的记忆和 context 的”，新增 agent runtime 对比页。核心判断是：四者都在解决有限上下文窗口下的跨轮次、跨文件、跨工具、跨设备状态保持问题，但 context 所在层不同；Hermes 更像显式 Context Engine，OpenClaw 更像持续 assistant runtime，Codex 更像较克制的 coding harness，Claude Code 更像厚产品化 harness。页面同时标注 Hermes 与 Codex 当前本地证据置信度较低。
+
+**新增页面**
+- `wiki/topics/agent-harness-runtime/Hermes-OpenClaw-Codex-Claude-Code-context-memory对比.md`
+
+**更新页面**
+- `wiki/topics/agent-harness-runtime/index.md`
+
+## [2026-07-07] query | 设计 Context Copilot 的 context engine
+
+根据用户追问“对于 context-copilot 的愿景，如何设计 context engine”，新增产品定义主题页。核心判断是：Context Copilot 的 context engine 不应是泛 memory/RAG 系统，而应维护用户正在形成的理解、判断边界、材料来源、失败纠正和当前工作状态；推荐先做写作/产品探索中的 context continuity，最小链路为 `capture -> distill -> assemble -> review/writeback`，用 active thread、understanding state、rejected framings 和 context packet 避免退化成总结器或 dashboard。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/Context-Copilot的context-engine设计.md`
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/index.md`

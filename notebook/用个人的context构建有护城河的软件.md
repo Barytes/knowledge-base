@@ -50,3 +50,8 @@ Objective 4：长期使用上下文follow我的心智模型
 
 ## 调查到的痛点
 ChatGPT无法看到自己的抖音视频、数据，无法分析
+
+## 竞品
+https://www.remio.ai/
+https://pieces.app
+https://www.obsidiancopilot.com/en

@@ -132,6 +132,15 @@
 <p>2. **产品判断**：给定想法，先产出 <code>Product Definition Brief</code>，再进入验证或实现。</p>
 <p>3. **项目复盘**：给定一次代码 / 写作 / 研究任务，把有效步骤、失败模式和下次规则写回 <code>wiki/</code> 或 repo skill。</p>
 <p>这三类任务都能积累到你的主线：context、harness、eval、workflow 和可验证执行系统。</p>
+<h2>Build copilot 时最该沉淀什么</h2>
+<p>如果正在 build 一个 copilot，最有复利的沉淀不是“这次项目写了多少代码”，而是下一次 build 能直接复用的工作面。</p>
+<p>优先沉淀五类资产：</p>
+<p>1. <code>product-context.md</code>：用户、场景、核心问题、反例、非目标、必须保留的人类判断权。它让下次不是从“我要做一个 copilot”开始，而是从已经校准过的产品边界开始。</p>
+<p>2. <code>workflow-playbook.md</code>：从想法到 demo 的实际步骤，包括如何收集材料、如何写 brief、如何让 agent 实现、如何 review、如何决定下一轮。它把一次 build 变成下次 build 的操作手册。</p>
+<p>3. <code>eval-cases/</code>：真实任务样本、好坏输出对比、失败案例、验收清单。它让 copilot 不只停在“能聊天”，而能被重复验证。</p>
+<p>4. <code>component-contracts/</code>：capture、context routing、memory/writeback、agent executor、review UI 等模块的输入输出契约。它让下个项目可以换界面、换模型、换框架，但保留底层结构。</p>
+<p>5. <code>failure-log.md</code>：哪些 prompt 失效、哪些 context 污染结果、哪些自动化让人更累、哪些地方必须人审。失败日志比成功截图更容易复利，因为它会减少下一次同类错误。</p>
+<p>对 <code>Context Copilot</code> 这类项目，最值得保留的核心不是一个具体 dashboard，而是 <code>capture -&gt; context state -&gt; routing -&gt; agent use -&gt; review/writeback</code> 这条链路。每次 build 都应该问：这次有没有让这条链路更清楚、更可测、更容易被下一个项目调用。</p>
 <h2>相关页面</h2>
 <ul>
 <li><a href="superlinear-academy-course-insights-index.html">Superlinear Academy 课程与洞见总索引</a></li>
