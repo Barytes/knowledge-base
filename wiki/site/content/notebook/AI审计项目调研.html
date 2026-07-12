@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI审计项目调研 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../index.html">首页</a>
+    <a href="../../layers/topics.html">话题</a>
+    <a href="../../layers/notebook.html">笔记</a>
+    <a href="../../layers/self.html">自我</a>
+    <a href="../../layers/frameworks.html">框架</a>
+    <a href="../../search.html">搜索</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">notebook/AI审计项目调研.md</div>
+      <h2>结论先行</h2>
+<p>这个需求真实存在，但**“Token 审计”本身正在迅速变成标准功能，而不是足以独立形成壁垒的产品**。Portkey、Helicone、Langfuse、Datadog 等已经覆盖 Token、成本、调用链、告警和预算控制；GitHub Copilot 也已经提供按企业、部门和用户设置预算并在超额时停止使用的能力。(<a href="https://docs.helicone.ai/guides/cookbooks/cost-tracking?utm_source=chatgpt.com &quot;Cost Tracking &amp; Optimization&quot;">Helicone OSS LLM Observability</a>)</p>
+<p>真正仍未被充分解决的问题是：</p>
+<p>&gt; **企业知道员工和 Agent“用了多少 AI”，却不知道这些消耗是否正在逼近一个可验收结果、为什么发生返工，以及应该在什么时候暂停 AI、补充上下文或让人介入。**</p>
+<p>因此，建议把产品从“Token 理财师”上移为：</p>
+<p>**AI 协作质量审计与任务控制系统（AI Collaboration Assurance / AI Task Assurance）**。</p>
+<p>---</p>
+<h2>1. 具体的 Problem Hypothesis</h2>
+<h3>核心问题假设</h3>
+<p>对于同时使用多种 LLM、Coding Agent 和 AI 助手完成研发、研究、分析与内容生产的企业团队，复杂任务中的主要可避免成本并非模型单价，而是由以下因素导致的“迟发现失败”：</p>
+<ul>
+<li>任务目标和验收条件没有在执行前澄清；</li>
+</ul>
+<ul>
+<li>上下文、Memory 或历史错误路径持续污染后续推理；</li>
+</ul>
+<ul>
+<li>Agent 重复调用工具、修改文件或尝试无效方案；</li>
+</ul>
+<ul>
+<li>缺少中间产物、里程碑和人工确认点；</li>
+</ul>
+<ul>
+<li>最终产物不可用时，企业只能看到 Token 和时间已经消耗，却无法解释失败原因或沉淀可复用经验。</li>
+</ul>
+<p>现有 AI Adoption、LLM Observability 和 AI Security 工具分别能回答“谁在使用”“花了多少钱”“调用哪里出错”和“是否泄露数据”，但通常不能回答：</p>
+<p>&gt; **这项任务是否正在取得有效进展，以及现在继续运行是否仍然值得。**</p>
+<h3>可证伪的量化版本</h3>
+<p>建议把第一轮验证假设写成：</p>
+<p>&gt; 在一个包含至少20名重度AI用户、持续30天的试点中，对于运行超过10分钟或消耗超过3万Token的复杂任务，至少15%的任务最终被放弃或发生超过30%的返工；其中至少50%的失败任务，在失败发生前已经出现可检测信号，例如重复工具调用、连续报错、上下文快速膨胀、频繁推翻计划、用户重复纠正或长期没有形成可验收中间产物。若系统能够据此进行提醒、暂停或要求人工确认，则失败及大幅返工任务消耗的Token与人工时间可以降低至少20%。</p>
+<p>这里的15%、50%和20%不是已有结论，而是应当通过MVP验证或推翻的初始门槛。</p>
+<h3>最适合的第一批客户假设</h3>
+<p>第一阶段不建议同时覆盖所有知识工作，而应集中在：</p>
+<p>**拥有20–200名研发人员、已大规模使用Cursor、Claude Code、Codex、GitHub Copilot或自建Agent的科技团队。**</p>
+<p>原因是研发场景天然存在可观测的结果标签，例如测试是否通过、Issue是否关闭、PR是否合并、是否发生回滚、同一任务是否重开。相比文档写作和战略分析，它更容易建立可靠的“任务成功率”和“有效交付成本”。</p>
+<p>---</p>
+<h2>2. 一句话产品 Pitch</h2>
+<p>为企业提供一层跨模型的AI协作审计与控制平面：任务前评估成功率与预算，运行中监控上下文、Token和里程碑并及时请求人工介入或止损，任务后解释返工与失败原因，让每一次AI消耗都能对应到可验收的业务结果。</p>
+<p>这句话刻意没有把产品描述成“员工监控工具”，而是强调任务质量、成本控制和结果可验收；面向CFO时可以突出“成本与ROI”，面向研发负责人时则突出“Agent成功率与止损”。</p>
+<p>---</p>
+<h2>3. 直接竞争者</h2>
+<p>截至2026年7月11日，我没有发现公开宣称同时具备“事前成功率评估、上下文与Memory诊断、运行中动态里程碑控制、事后因果审计”四项能力的成熟商业产品，但已经存在高度接近的竞争者。</p>
+<h3>1. Olakai Assistive IQ / Coding IQ / Agent IQ</h3>
+<p>这是目前发现的**最接近直接竞争者**。</p>
+<p>Assistive IQ 宣称能够覆盖630多种AI工具，并统计AI创造的价值、节省时间、工具成本、Prompt质量、采用深度和数据风险；Coding IQ 还覆盖AI编程支出预测、预算以及每个PR的成本与周期收益。(<a href="https://olakai.ai/assistive-iq/ &quot;Assistive IQ — Copilot Analytics &amp; Shadow AI - Olakai&quot;">Olakai</a>)</p>
+<p>它与你们的重合点包括：</p>
+<ul>
+<li>跨工具AI使用与成本归因；</li>
+</ul>
+<ul>
+<li>Prompt质量评分；</li>
+</ul>
+<ul>
+<li>ROI和时间节省；</li>
+</ul>
+<ul>
+<li>Shadow AI与员工使用行为；</li>
+</ul>
+<ul>
+<li>面向CFO、CAIO和研发管理者的报告。</li>
+</ul>
+<p>根据其公开页面判断，它目前更强调**工具、团队和应用层面的价值统计**，尚未明确展示对单次任务的上下文污染、Memory错配、失败路径、动态人工检查点和任务前成功率预测。这正是你们可以争夺的产品边界，但这个差异必须在MVP中表现得足够明显。</p>
+<h3>2. Worklytics MeasureAI</h3>
+<p>Worklytics 聚合Copilot、Gemini、ChatGPT Enterprise和Coding Assistant等工具的使用数据，按照团队和岗位分析采用率、活跃程度及其与生产力的相关性。它明确说明只分析使用元数据，不读取具体Prompt或模型输出。(<a href="https://www.worklytics.co/measureai &quot;Track AI Adoption and Usage Across Your Org | Worklytics&quot;">Worklytics</a>)</p>
+<p>这意味着它与你们争夺相似的企业决策者和AI ROI预算，但由于不分析交互内容，很难解释：</p>
+<ul>
+<li>为什么某个任务返工；</li>
+</ul>
+<ul>
+<li>哪段上下文产生误导；</li>
+</ul>
+<ul>
+<li>用户在哪一步没有说明需求；</li>
+</ul>
+<ul>
+<li>Agent为何进入循环。</li>
+</ul>
+<h3>3. Microsoft Copilot Dashboard</h3>
+<p>Microsoft Copilot Dashboard 已覆盖准备度、采用率、影响和员工反馈，并逐步加入Agent洞察、基准比较、组织分组和智能总结。其优势是直接嵌入Microsoft 365生态，但主要观察Microsoft Copilot及相关Agent的使用和影响。(<a href="https://learn.microsoft.com/en-us/viva/insights/org-team-insights/copilot-dashboard &quot;Connect to the Microsoft Copilot Dashboard for Microsoft 365 customers | Microsoft Learn&quot;">微软学习</a>)</p>
+<p>它会成为Microsoft客户中的默认替代方案，不过其跨模型能力和交互过程诊断能力有限。</p>
+<h3>4. ActivTrak AI Insights</h3>
+<p>ActivTrak 将员工生产力、工作容量和AI工具使用模式结合起来，用于判断AI采用是否真正改善工作表现。(<a href="https://www.activtrak.com/solutions/ai-insights/?utm_source=chatgpt.com &quot;AI insights — See how AI changes work.&quot;">ActivTrak</a>)</p>
+<p>它与产品构想在“AI是否提高员工效率”上存在重叠，但公开定位仍然偏向工作行为与生产力分析，而非LLM上下文和单次任务轨迹审计。</p>
+<p>---</p>
+<h2>4. 间接竞争者与潜在进入者</h2>
+<h3>LLM Observability和AI Gateway</h3>
+<p>这是最值得警惕的一组潜在进入者。</p>
+<ul>
+<li>**Langfuse**：记录完整Trace、Session、工具调用、输入输出、Token、成本和评价分数；</li>
+</ul>
+<ul>
+<li>**Helicone**：提供用户级指标、会话追踪、成本分析和成本告警；</li>
+</ul>
+<ul>
+<li>**Portkey**：能够按照API Key、Workspace和组织设置Token或金额预算，并在超额后停止调用；</li>
+</ul>
+<ul>
+<li>**Datadog LLM Observability**：记录调用链、成本、Token、延迟、错误和在线评估。(<a href="https://docs.helicone.ai/features/advanced-usage/user-metrics?utm_source=chatgpt.com &quot;User Metrics &amp; Analytics - Helicone OSS LLM Observability&quot;">Helicone OSS LLM Observability</a>)</li>
+</ul>
+<p>它们当前主要服务开发和运维团队，分析“AI应用是否正常运行”，而不是“员工与AI是否进行了高质量协作”。但它们已经掌握底层Trace和企业接入渠道，增加“任务质量评分”和“无效路径检测”并不困难。</p>
+<h3>AI安全与Shadow AI治理</h3>
+<p>Harmonic Security和LangProtect能够在浏览器、桌面工具和Agent工作流中观察Prompt，检测敏感数据、未批准AI工具和风险行为，并进行实时阻断或提示。(<a href="https://www.harmonic.security/solutions/shadow-ai-detection?utm_source=chatgpt.com &quot;Shadow AI Detection &amp; Monitoring for Enterprises&quot;">Harmonic Security</a>)</p>
+<p>它们主要回答“这次AI使用是否安全合规”，但其浏览器扩展、端点Agent和Prompt级数据采集能力，也可以被扩展为效率和协作质量分析。</p>
+<h3>研究原型和开源项目</h3>
+<p>两个近期项目在概念上已经接近你们的方向：</p>
+<ul>
+<li>**LLMography**：分析完整人机对话轨迹，输出Prompt质量、人类指导程度、AI依赖程度、可审计性、结果可追溯性和隐私风险等指标；</li>
+</ul>
+<ul>
+<li>**Prompt Coach**：在IDE内分析开发者Prompt质量，通过苏格拉底式提问帮助用户补全需求和自我纠正。两者目前更接近研究原型而非成熟企业产品。(<a href="https://arxiv.org/abs/2606.29437?utm_source=chatgpt.com &quot;LLMography: Transforming Human-AI Conversations into Traceability, Oversight, and Auditability Indicators&quot;">arxiv.org</a>)</li>
+</ul>
+<p>这说明“审计人机协作过程，而不仅审计最终输出”已经开始形成一个独立研究与产品方向。</p>
+<p>---</p>
+<h2>5. 科技社区中已经出现的明确痛点</h2>
+<h3>Token成本不可预测且缺少过程可见性</h3>
+<p>Claude Code用户持续提交功能请求，希望在会话中实时显示Token、上下文占用和累计成本；有用户称会话可能在没有明确提示的情况下增长到百万Token上下文，只有查看账单后才发现成本。OpenAI Codex社区也有人反映Sub-agent成本过高且不透明。(<a href="https://github.com/anthropics/claude-code/issues/65292?utm_source=chatgpt.com &quot;[FEATURE] Real-time cost/token usage display and ...&quot;">GitHub</a>)</p>
+<p>一篇2026年关于Agentic Coding的预印本发现，同一任务不同运行之间的Token消耗最多可能相差30倍，更多Token并不必然带来更高准确率，而且前沿模型普遍不能准确预测自身消耗并倾向于低估成本。(<a href="https://arxiv.org/abs/2604.22750?utm_source=chatgpt.com &quot;How Do AI Agents Spend Your Money? Analyzing and Predicting Token Consumption in Agentic Coding Tasks&quot;">arxiv.org</a>)</p>
+<p>这意味着“让模型在执行前自行估计需要多少Token”不能作为可靠核心技术，必须基于真实历史轨迹、任务特征和结果标签建模。</p>
+<h3>Agent进入循环但不会主动求助</h3>
+<p>Google AI开发者论坛有人将问题归因于上下文漂移、任务状态管理不足和Watchdog循环：长时间构建及大量输出会让Agent偏离原始任务，并重新检查已经完成的工作。(<a href="https://discuss.ai.google.dev/t/gap-solution-have-your-agent-got-stucked-in-a-loop-and-wasting-time-and-tokens/171081?utm_source=chatgpt.com &quot;[GAP+SOLUTION] Have your agent got stucked in a loop and ...&quot;">Google AI Developers Forum</a>)</p>
+<p>Hacker News讨论中，开发者明确抱怨Agent不会主动反思进度并及时向人类求助；有人直接提出增加一个“监督者”，在连续步骤没有取得实质进展时暂停执行并请求人工介入。(<a href="https://news.ycombinator.com/item?id=43998472 &quot;The unreasonable effectiveness of an LLM agent loop with tool use | Hacker News&quot;">黑客新闻</a>)</p>
+<p>这几乎就是你们提出的“人在监督回路”和“根据置信度动态调整打断频率”。</p>
+<h3>长任务失败后缺少可恢复的中间产物</h3>
+<p>有用户反映，在五小时额度耗尽时，长文档或结构化任务的部分输出会消失，无法恢复或续跑，只能重新开始并再次消耗Token。(<a href="https://www.reddit.com/r/ClaudeAI/comments/1qhvfao/am_i_the_only_one_wasting_tons_of_tokens_due_to/?utm_source=chatgpt.com &quot;Am I the only one wasting tons of tokens due to ...&quot;">Reddit</a>)</p>
+<p>这支持MVP加入：</p>
+<ul>
+<li>中间产物自动快照；</li>
+</ul>
+<ul>
+<li>阶段性验收；</li>
+</ul>
+<ul>
+<li>可恢复的任务状态；</li>
+</ul>
+<ul>
+<li>额度不足前的收尾与交接报告。</li>
+</ul>
+<h3>上下文膨胀和“错误路径污染”</h3>
+<p>开发者反复讨论Context Bloat和Context Rot：失败尝试、无关工具输出和旧答案会留在上下文中，使模型难以聚焦当前意图；有人建议在成功找到路径后删除失败尝试，而不是让错误历史持续占用上下文。(<a href="https://news.ycombinator.com/item?id=45387374&amp;utm_source=chatgpt.com &quot;Context is the bottleneck for coding agents now&quot;">黑客新闻</a>)</p>
+<p>这使“上下文审计”不能只统计长度，而应判断：</p>
+<ul>
+<li>当前上下文中有多少内容仍与任务相关；</li>
+</ul>
+<ul>
+<li>是否存在互相冲突的指令；</li>
+</ul>
+<ul>
+<li>哪些失败分支应该被移除；</li>
+</ul>
+<ul>
+<li>Memory是否仍适用于当前任务；</li>
+</ul>
+<ul>
+<li>最新用户意图是否被旧信息压制。</li>
+</ul>
+<h3>开发者已经自行制作止损工具</h3>
+<p>Ralph Wiggum Cursor等开源项目已经实现Token实时跟踪、70k Token告警、80k Token上下文轮换、重复失败检测、文件反复修改检测、任务清单、进度文件和失败经验沉淀。(<a href="https://github.com/agrimsingh/ralph-wiggum-cursor &quot;GitHub - agrimsingh/ralph-wiggum-cursor: Cursor CLI implementation of Geoffrey Huntley&#x27;s Ralph Wiggum autonomous iteration technique with deliberate context management · GitHub&quot;">GitHub</a>)</p>
+<p>这说明痛点不仅停留在抱怨层面，开发者已经愿意编写工具解决它；同时也表明“Token告警+循环检测”容易被开源项目复制，产品必须进一步提供跨任务诊断、组织级学习和可验证的成本收益。</p>
+<p>---</p>
+<h2>6. 最关键的产品定位调整</h2>
+<h3>不要把核心价值定义为“监控员工用了多少AI”</h3>
+<p>这种定位容易产生两个问题：</p>
+<p>1. 员工会将产品视为监控和绩效评估工具，主动规避或污染数据；</p>
+<p>2. 使用次数或Token量可能成为错误激励，导致为了显示AI使用积极性而制造无意义调用。</p>
+<p>更合理的北极星指标应是：</p>
+<p>&gt; **Cost per Accepted Outcome：每个可验收成果的AI综合成本。**</p>
+<p>辅助指标可以包括：</p>
+<ul>
+<li>首次交付通过率；</li>
+</ul>
+<ul>
+<li>被放弃任务的Token比例；</li>
+</ul>
+<ul>
+<li>返工路径Token比例；</li>
+</ul>
+<ul>
+<li>达到首个可检视产物所需时间；</li>
+</ul>
+<ul>
+<li>人工介入后的成功率提升；</li>
+</ul>
+<ul>
+<li>重复错误复发率；</li>
+</ul>
+<ul>
+<li>单位成功任务的上下文长度。</li>
+</ul>
+<h3>真正可能形成壁垒的数据</h3>
+<p>“跨行业聊天记录”本身未必是壁垒，因为隐私限制严重，模型和工具版本也在持续变化。更有价值的是：</p>
+<ul>
+<li>标准化任务类型；</li>
+</ul>
+<ul>
+<li>可验证的成功与失败标签；</li>
+</ul>
+<ul>
+<li>失败原因分类体系；</li>
+</ul>
+<ul>
+<li>失败发生前的轨迹特征；</li>
+</ul>
+<ul>
+<li>在不同状态下何时询问、暂停、压缩上下文或更换模型的干预策略；</li>
+</ul>
+<ul>
+<li>干预前后的实际收益。</li>
+</ul>
+<p>换句话说，数据飞轮应当围绕**“什么任务、出现什么信号、采用什么干预、最终是否成功”**建立，而不是简单积累Prompt。</p>
+<p>---</p>
+<h2>7. 建议的MVP范围</h2>
+<p>第一版只做“研发Agent任务审计”，不做完整企业员工监控：</p>
+<p>1. 导入Claude Code、Cursor、Codex或API Gateway的历史Trace；</p>
+<p>2. 关联Git Commit、测试结果、PR、Issue和用户最终评价；</p>
+<p>3. 自动识别重复错误、文件反复修改、Token异常增长、计划频繁改变、上下文污染和长时间无里程碑；</p>
+<p>4. 输出“有效交付成本、无效Token比例、失败根因、最早可干预时间点”；</p>
+<p>5. 对下一次类似任务生成预算、检查点和人工介入建议；</p>
+<p>6. 第二阶段再加入实时暂停、快照、上下文压缩和动态人机在环。</p>
+<p>最重要的MVP验证不是“能否画出好看的Token看板”，而是：</p>
+<p>&gt; **系统能否在用户意识到任务失败之前，准确指出任务已经偏航，并说明此时停止或介入可以节省多少成本。**</p>
+<p>整体判断是：**需求成立、技术路径可行、已有竞争明显；“Token审计”适合做切入口，但最终产品必须占据“AI任务结果保证与过程控制”这一层，否则会被现有Observability、AI Gateway或企业AI Analytics平台迅速覆盖。**</p>
+    </article>
+
+  </main>
+</body>
+</html>
