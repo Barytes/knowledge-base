@@ -34,6 +34,7 @@
 - [Google 多智能体安全相关工作与组织人物地图](Google多智能体安全相关工作与组织人物地图.md): Google 的多智能体安全资助新闻，应放在一张更大的 agent 生态图里看。
 - [Harness Engineering（约束壳工程）](harness-engineering.md): Harness engineering 指的是围绕模型外侧搭建的一层运行控制壳，让 agent 在处理漫长、混乱、跨步骤的任务时，不至于漂移、卡住，或错误地宣布自己已经完成。
 - [Hermes、OpenClaw、Codex、Claude Code 的 memory 与 context 管理对比](Hermes-OpenClaw-Codex-Claude-Code-context-memory对比.md): 这四个系统都在处理同一个底层问题：模型上下文窗口有限，而 agent 工作又需要跨轮次、跨文件、跨工具、跨设备保留状态。差异不在于“谁有 memory”，而在于它们把 memory 和 context 放在哪一层。
+- [Loop Engineering：把 Agent 当作非确定性组件的外循环工程](loop-engineering.md): Loop Engineering 不是新的 agent 算法，而是用普通代码把 agent 当作非确定性组件，围绕它建立目标、持久状态、独立验证、有信息增量的重试和明确终止条件。
 - [LuliYanng/Nono-Cowork 仓库地图](luliyanng-nono-cowork-repo-map.md): 这页是 LuliYanng/Nono-Cowork 的第一版仓库地图，观察主题是“仓库架构与工程实践”。
 - [Pi coding agent：一种极简且可观察的 coding harness](pi-coding-agent-harness.md): pi 把 coding agent harness 重新收缩成一个很小的壳：少量系统提示、四个默认工具、尽量透明的会话与 UI，再把更多状态与扩展能力外置到文件、CLI 工具和包机制里。
 - [ReflexioAI/reflexio 仓库地图](reflexioai-reflexio-repo-map.md): Reflexio 是一个 **AI Agent 自我改进平台**，核心价值是将 Agent 与用户的每一次对话转化为学习机会——自动提取用户偏好（User Profiles）和行为规范（Playbooks），让 Agent 持续改进而无需手动调优。

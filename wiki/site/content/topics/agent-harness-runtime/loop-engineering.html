@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loop Engineering：把 Agent 当作非确定性组件的外循环工程 · Knowledge Base</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../../../index.html">首页</a>
+    <a href="../../../layers/topics.html">话题</a>
+    <a href="../../../layers/notebook.html">笔记</a>
+    <a href="../../../layers/self.html">自我</a>
+    <a href="../../../layers/frameworks.html">框架</a>
+    <a href="../../../search.html">搜索</a>
+  </header>
+  <main>
+    <article class="article">
+      <div class="meta">wiki/topics/agent-harness-runtime/loop-engineering.md</div>
+      <h1>Loop Engineering：把 Agent 当作非确定性组件的外循环工程</h1>
+<p>Loop Engineering 不是新的 agent 算法，而是用普通代码把 agent 当作非确定性组件，围绕它建立目标、持久状态、独立验证、有信息增量的重试和明确终止条件。</p>
+<p>**标签：** loop engineering，agent loop，verification，state，stop rule，human-in-the-loop</p>
+<h2>核心判断</h2>
+<p><code>Loop Engineering</code> 指的是：**用普通代码控制 agent，把 agent 当作一个非确定性的能力组件，围绕它设计可验证、可恢复、可停止的自动外循环。**</p>
+<p>它关心的不是怎样让模型在一次调用里“想得更好”，而是怎样让系统反复执行下面这条路径：</p>
+<pre><code>读取目标与当前状态
+-&gt; 调用 agent 采取动作
+-&gt; 观察真实环境变化
+-&gt; 独立验证结果
+-&gt; 更新持久状态
+-&gt; 成功、重试、阻塞或转交人工</code></pre>
+<p>这个术语是新的，机制并不新。它重新命名的是工程重心：人不再逐轮手动 prompt agent，而是编写负责触发、反馈、验证、重试和终止的控制器。当前公开讨论通常也把它描述为位于 prompt、context 和单次 harness 运行之上的外层系统。<a href="https://loopengineering.run/">Loop Engineering Guide</a> 给出的定义具有代表性，但这页更关注可复用的工程结构，而不是术语热度。</p>
+<h2>Agent 不是 Loop 本身</h2>
+<p>在最小抽象里，agent 可以被看成一个函数：</p>
+<pre><code>proposal = agent(goal, state, feedback)</code></pre>
+<p>它读取目标、状态和上一轮反馈，返回下一步动作或修改结果。但 agent 的返回文字不能直接决定任务已经完成。外层代码才负责读取真实环境、调用 verifier，并决定下一轮是否发生。</p>
+<p>因此要区分两个嵌套层次：</p>
+<ul>
+<li>agent 内循环处理一次运行中的“思考、工具调用、观察、继续”。</li>
+<li>loop engineering 处理一次 agent 运行结束后的“验证、保存状态、重新调用、停止或升级”。</li>
+</ul>
+<p>同一个程序可以同时实现两层。这个区分不是按进程或框架划线，而是看谁拥有跨运行状态、最终验收权和终止权。</p>
+<h2>最小控制模型</h2>
+<p>一个最小 loop 只需要五个对象：目标、状态、agent、verifier 和停止策略。</p>
+<pre><code>state = load_state()
+
+for attempt in range(MAX_ATTEMPTS):
+    feedback = observe_environment(state)
+    result = agent(goal=GOAL, state=state, feedback=feedback)
+    verdict = verify(goal=GOAL, environment=current_environment())
+
+    append_trace(attempt, result, verdict)
+
+    if verdict.passed:
+        finish(&quot;success&quot;, verdict.evidence)
+        break
+
+    if verdict.unsafe or verdict.needs_human:
+        finish(&quot;human_review&quot;, verdict.evidence)
+        break
+
+    state = update_state(state, result, verdict)
+else:
+    finish(&quot;exhausted&quot;, state)</code></pre>
+<p>这里最重要的不是 <code>for</code>，而是 <code>verify()</code> 的权力高于 agent 的自我声明。loop 的结果来自环境证据，不来自“我已经完成”的自然语言。</p>
+<h2>一条可靠 Loop 的结构</h2>
+<h3>目标与完成契约</h3>
+<p>目标应描述可观察的终态，而不是规定 agent 必须逐步照做什么。代码任务可以把通过测试、保持已有行为、限制修改范围写进契约；研究任务可以把必须回答的问题、证据覆盖和人工复核点写进契约。</p>
+<p>如果人无法说明什么算成功，外循环只会自动放大模糊。此时应先改任务或 evaluator，而不是增加 agent 次数。</p>
+<h3>持久状态</h3>
+<p>状态不应只存在于对话上下文。最小状态通常包括当前目标、已完成工作、关键产物、最近验证结果、失败过的路径、剩余预算和需要人工判断的问题。</p>
+<p>长任务尤其需要记录“哪些方法试过但失败了，为什么失败”。Anthropic 的长时科学计算实践使用 progress file 作为跨 session 的便携记忆，并把 test oracle 与明确规则作为长期运行的核心。这说明状态文件的作用不是给 agent 写一份长摘要，而是避免失忆、重复死路和无法恢复。<a href="https://www.anthropic.com/research/long-running-Claude">Long-running Claude for scientific computing</a></p>
+<p>状态最好保持紧凑，详细过程进入 append-only trace 或 artifact。当前状态负责恢复工作，轨迹负责审计和复盘，二者不应混成无限增长的 prompt。</p>
+<h3>独立验证</h3>
+<p>验证优先检查最终环境，而不是 agent 生成的说明。例如代码是否真的通过测试、数据库里是否真的产生记录、文件是否满足 schema、外部系统是否真的进入预期状态。</p>
+<p>grader 的优先顺序通常是：能用确定性检查就不用模型判断；确定性检查覆盖不了的质量维度，再使用带清楚 rubric 的模型 grader；高风险或高度主观结果保留人工复核。Anthropic 的 agent eval 实践也建议组合 code-based、model-based 和 human graders，并优先评价 outcome，而不是把某条固定操作路径当作唯一正确答案。<a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Demystifying evals for AI agents</a></p>
+<p>verifier 还必须防止被 agent 绕过。测试、策略和验收数据不应与普通产物处于同等可修改权限；至少要检查 agent 是否改了测试、放宽了阈值或扩大了任务范围。</p>
+<h3>有信息增量的重试</h3>
+<p>重试不是把同一个 prompt 原样再调用一次。下一轮至少应获得一种新信息：测试错误、diff、外部查询结果、grader 反馈、失败类型或人工判断。</p>
+<p>控制器应区分可重试错误、不可重试错误和高风险错误。连续出现相同失败、指标没有进展或 agent 重复同一策略时，应停止或改变策略，而不是继续消耗 token。缺少外部反馈时，模型自我纠错并不可靠，甚至可能把原本正确的结果改坏；这也是 verifier 必须独立存在的原因。<a href="https://arxiv.org/abs/2310.01798">Large Language Models Cannot Self-Correct Reasoning Yet</a></p>
+<p>有副作用的动作还要考虑幂等性。发送消息、付款、创建工单、部署等操作应使用去重键、执行记录或状态查询，避免 retry 把一次动作执行多次。</p>
+<h3>明确的终止状态</h3>
+<p>可靠 loop 不只有 <code>success</code> 和“继续跑”。至少应能表达：</p>
+<pre><code>success       已通过验收
+retryable     本轮失败，但存在新证据和可行下一步
+blocked       缺少权限、输入或外部条件
+human_review  需要判断或将发生不可逆动作
+exhausted     已达到次数、时间、token 或成本预算
+unsafe        触发安全边界</code></pre>
+<p>最大尝试次数只是最粗的 stop rule。更实用的预算还包括总时间、token、费用、工具调用次数、允许修改的文件范围，以及连续无进展次数。OpenAI 的 agent 实践指南建议在超过失败阈值或遇到高风险、不可逆动作时把控制权交还给人，而不是继续自治。<a href="https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/">A practical guide to building agents</a></p>
+<h3>隔离、权限与人工门禁</h3>
+<p>loop 会放大 agent 的能力，也会放大错误副作用。每次运行应尽量使用隔离工作区、最小权限和可回滚产物。读取、修改、运行测试、访问网络、发布、合并和部署不应默认拥有同一级权限。</p>
+<p>人工门禁最适合放在不可逆边界，而不是每个微小步骤。agent 可以自主探索和产生候选修改，但发送、付款、删除、合并、部署或扩大权限应停下来等待确认。</p>
+<h3>轨迹与系统级评测</h3>
+<p>每轮至少记录输入状态、agent 动作、环境变化、验证证据、停止原因、耗时和成本。只保存最终回答，会丢失定位失败所需的因果链。</p>
+<p>单次成功也不能证明 loop 可靠。模型具有随机性，应在一组代表性任务上重复运行，观察首次成功率、跨多次运行的一致成功率、平均重试次数、人工介入率、回归率和单位成功成本。grader 本身也需要维护和抽查；错误的 verifier 会稳定地把整个 loop 优化到错误方向。</p>
+<h2>Best Practices 的压缩版本</h2>
+<p>综合当前 agent 工程、eval 与长任务实践，一条 loop 最值得坚持的顺序是：</p>
+<pre><code>先写成功契约和 verifier
+-&gt; 再给 agent 最小行动权限
+-&gt; 把状态和失败证据外化
+-&gt; 只在获得新反馈后重试
+-&gt; 用预算、无进展检测和人工门禁停止
+-&gt; 用多任务、多次 trial 评估整条 loop</code></pre>
+<p>架构上从一个 agent、一个 verifier 和一个状态文件开始。只有当轨迹证明单 agent 的上下文、专业性或并发成为瓶颈时，才增加 planner、worker 或 evaluator 角色。Anthropic 对 agent 系统的通用建议也是从简单、可组合的模式起步，只在任务收益足以覆盖成本、延迟和调试复杂度时增加结构。<a href="https://www.anthropic.com/engineering/building-effective-agents">Building effective agents</a></p>
+<h2>常见反模式</h2>
+<p>| 反模式 | 为什么没有形成可靠闭环 |</p>
+<p>|---|---|</p>
+<p>| <code>while True: agent(prompt)</code> | 没有独立状态、验证和停止策略，只是重复调用 |</p>
+<p>| 让 agent 自己宣布完成 | 生成者同时垄断验收权，缺少环境证据 |</p>
+<p>| 原样重试同一个失败 | 没有信息增量，容易形成高成本死循环 |</p>
+<p>| 把完整聊天记录当状态 | 无法稳定恢复，也难区分当前事实与历史噪音 |</p>
+<p>| agent 可以修改 verifier | 系统会奖励绕过测试，而不是真正解决问题 |</p>
+<p>| 只看测试通过 | 可能遗漏越界修改、安全问题、质量退化和不可逆副作用 |</p>
+<p>| 一开始就搭多 agent 编排 | 增加成本与故障面，却没有先证明单 loop 的瓶颈 |</p>
+<p>| 把 cron 当作 loop | cron 只有触发，没有观察、反馈、验证和终止语义 |</p>
+<h2>与 Harness 和 Runtime 的关系</h2>
+<p>Harness 让一次 agent 运行具备模型、工具、上下文、权限和执行环境；runtime 承担 session、sandbox、事件、恢复和资源生命周期；loop controller 则使用这些能力，把多次运行组织成一个向目标收敛的控制系统。</p>
+<p>三者在实现上可能由同一套软件提供，但判断时应保持职责分离：</p>
+<ul>
+<li>harness 回答“一次 agent 怎样工作”；</li>
+<li>runtime 回答“状态和执行环境怎样持续存在并恢复”；</li>
+<li>loop engineering 回答“系统何时再次调用 agent，依据什么验收，何时必须停止”。</li>
+</ul>
+<h2>适用边界</h2>
+<p>Loop engineering 最适合有清楚目标、可观察环境和较快反馈的任务，例如代码修复、数据处理、结构化研究、质量改进和持续维护。</p>
+<p>如果结果没有可信 verifier、反馈需要几个月才能出现、动作不可逆且代价很高，或任务本质上仍需要人定义“什么是好”，就不应靠增加循环自治来掩盖问题。此时更合理的是缩小自动化范围，让 agent 生成候选方案，把最终判断留给人。</p>
+<h2>来源与延伸阅读</h2>
+<ul>
+<li><a href="https://loopengineering.run/">Loop Engineering Guide</a>：当前术语与外循环边界的代表性定义。</li>
+<li><a href="https://www.anthropic.com/engineering/building-effective-agents">Building effective agents</a>：简单可组合模式、programmatic gate 与 evaluator-optimizer。</li>
+<li><a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Demystifying evals for AI agents</a>：outcome、trajectory、grader 组合与多 trial 评测。</li>
+<li><a href="https://www.anthropic.com/research/long-running-Claude">Long-running Claude for scientific computing</a>：progress file、test oracle 与跨 session 长任务实践。</li>
+<li><a href="https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/">A practical guide to building agents</a>：guardrail、失败阈值、高风险动作与人工介入。</li>
+<li><a href="https://learn.chatgpt.com/docs/non-interactive-mode">Codex non-interactive mode</a>：把 coding agent 作为脚本组件调用的官方例子。</li>
+<li><a href="https://arxiv.org/abs/2310.01798">Large Language Models Cannot Self-Correct Reasoning Yet</a>：没有外部反馈时，内在自我纠错的局限。</li>
+</ul>
+<h2>相关页面</h2>
+<ul>
+<li><a href="harness-engineering.html">Harness Engineering（约束壳工程）</a></li>
+<li><a href="AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.html">AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First</a></li>
+<li><a href="agent-runtime-os-cloud-runtime.html">Agent 系统作为 OS 与 Cloud Runtime 问题</a></li>
+<li><a href="../../frameworks/Harness架构判断框架.html">Harness 架构判断框架</a></li>
+</ul>
+    </article>
+
+  </main>
+</body>
+</html>

@@ -2,6 +2,30 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-07-12] query | 情境模型在 Context Engineering 中的位置
+
+基于本地 Context Engine 与 Agent Context Infra 页面，并核对 Anthropic、OpenAI Agents SDK、LangChain、Context Engineering survey、Agent-BRACE 与 Task2Quiz 等公开一手资料，新增 [情境模型在 Context Engineering 中的位置](topics/context-memory-knowledge-system/情境模型在Context-Engineering中的位置.md)。页面从零定义情境模型为任务级、可更新的显式局面表示，并将其定位为 context 获取与编排之后、决策与行动之前的状态估计层；同时明确它目前不是业界标准组件名称，而是与 belief state、world-state understanding、session state 等路线相邻的尚未标准化中间层。
+
+继续按用户要求补入“决策敏感情境建模”最小方法：用一张情境卡维护当前决定、暂定理解、关键前提、反转条件与下一步；只保留会改变眼前行动的判断，通过最低成本验证和更新 diff 形成闭环，并用反转预测、修正传导和交互成本作为首轮评测。
+
+进一步定义 Agent 工作中的“下一步”：它不是下一条计划或单次工具调用，而是 Agent 基于当前情境模型可以立即承诺的最小语义完整状态转换；执行结束后必须产生可观察的新状态，使系统重新进入观察、更新和决策。页面同步补入步长边界、信息获取动作、环境改变和终止状态的关系。
+
+根据用户对概念层级的质疑，修正情境模型与 context / memory 的关系：context 与 memory 属于信息供给和生命周期机制；情境模型是使用这些信息后形成的任务级认知状态；下一步则是控制层依据该状态选择的动作。保留“它需要被广义 context 工程维护”的工程判断，但不再把情境模型表述成一种 context 或 memory 的同层组件。
+
+继续明确情境模型的物理承载：模型权重只承载通用的状态估计能力；LLM 在每轮根据证据提出更新；Agent Harness / runtime 拥有并校验 canonical state；文件或数据库负责持久化、版本与人工修正；模型窗口只接收当前调用需要的投影。MVP 推荐使用可读、可 diff 的 `situation.md` 或 JSON 文件。
+
+根据用户进一步质疑“情境模型可能根本是伪概念”，将整页降级为探索性工作假设，不再预设它是独立层或独立工程对象。新增概念独立性检验：它必须解释已有对象解释不了的稳定失败、导致不同的实现选择，并产生可证伪预测；当前证据不足，默认应先把可验证机制改写为“行动前暴露最可能改变下一步的未确认假设，并让纠正真实传导到建议”，与普通 task state / 结构化简报做删除测试。同步记录 agent 过早把工作性比喻扩写成架构的失败观察。
+
+根据用户指出“跨轮、可检查的情境模型无非是修改频率不同的 memory”，进一步撤回“情境模型与 memory 不同层”的判断。若 memory 按广义工程定义覆盖模型外部可保存、更新和重新注入的状态，那么它至多是一种 `task-scoped working memory`；与长期 memory 的差别还包括有效范围、真值语义和失效条件，但这些只构成 memory 生命周期配置，不构成新的基础设施类别。页面同步将物理实现改为复用既有 task state / memory infrastructure。
+
+根据用户进一步指出关键问题是“如何获得 task memory”，把讨论从表示与存储移到 acquisition。对照鸭哥 `context-infrastructure` 的 observer / reflector 路径：长期 memory 从已发生的历史痕迹中观察、保留并蒸馏；task memory 则需要在任务进行中识别最可能改变下一步的未知项，再通过提问、读取证据或可逆试探主动获得新观察。AI 谋士的候选核心假设因此改为：能否用更少、更有区分度的交互获得决策所缺的关键信息，并让行动正确变化。
+
+根据用户指出“人类的 unknown known 不可能由 Agent 预先得出”，再次修正 task-memory acquisition 的因果方向：Agent 不负责识别一个预先存在的缺失事实，而是提供具体方案、对照或可逆试探；人的反应、否定和修正使隐性判断首次变成可观察证据。AI 产出的猜测只作为 probe，不能直接写入 canonical task memory；产品假设改为能否以较低负担诱发人显露原本未表达、甚至未意识到的判断，并让该判断可靠进入后续行动。同步记录“不要让 Agent 替人预先命名其 unknown known”的失败观察。
+
+根据用户追问这是否等于“AI 一直回答错误答案，再靠人纠正”，补入必要边界：错误不是机制目标，随机答错只会把质检负担转移给用户。有效候选必须足够具体且接近可用，使纠正它比用户从零表达同一判断更省力；纠正还必须改变后续结果并减少同类重复错误。评测对象因此是隐性判断的表达增益与反馈复用，而不是诱发纠正的数量。
+
+根据用户进一步指出“判断一个具体东西哪里不对”本身仍违反 frictionless interaction，撤回把候选纠正作为默认获取机制的设想。新增不可兼得约束：不接触真实工作过程、不要求用户显式说明或纠正、同时获得未表达的 unknown known，三者不能同时成立。Task memory 只能优先来自用户本来就会产生的工作痕迹，或来自本身就在创造即时价值的对话；若两种入口都不存在，应直接判定隐性知识不可得，而不是设计额外校准流程。同步记录“Memory 获取不能成为用户的额外工作”的失败观察。
+
 ## [2026-07-02] query | 深哥 AI 情报看板 Superlinear 竞品补充
 
 按用户要求从 Superlinear Academy 的 Share Your Projects 项目区补充 AI 情报看板竞品 landscape。公开访问边界是：项目区主页主要暴露 Circle 应用壳，单个项目页可读取标题和 meta description；因此本次只作为首轮相似项目筛查，不声称完整全文覆盖。新增 [深哥 AI 情报看板：Superlinear 项目区竞品补充](topics/ai-product-product-definition/深哥AI情报看板-Superlinear竞品补充.md)，把 AI Daily Picks、niche topic news app、AI Bubble Radar、Finance News & Stock Monitor、Stock Event AI、SocialAlpha 等归入 `UGS / personal builder projects` 竞品层，并收束结论：`新闻聚合 + AI 摘要 + dashboard` 与 `任意 topic 订阅 + 自动更新` 已经是个人开发者可快速替代的低门槛形态，深哥看板若继续做，应转向高质量信号源、来源链条、异常簇、用户当前问题匹配和历史判断复盘。
@@ -2501,3 +2525,10 @@ gogo-app 可立即开始的行动：
 
 **更新页面**
 - `wiki/topics/ai-product-product-definition/index.md`
+
+## [2026-07-12] query | 新增 Loop Engineering 主题页
+
+根据用户对 agent 内循环与自动外循环的连续追问，并结合公开的一手 agent 工程、eval 与长任务实践，新增 Loop Engineering 主题页。核心判断是：Loop Engineering 不是新的 agent 算法，而是用普通代码把 agent 当作非确定性组件，围绕它建立目标、持久状态、独立验证、有信息增量的重试、明确终止状态和人工门禁。页面同时沉淀了最小控制模型、best practices、常见反模式及其与 harness、runtime 的职责边界。
+
+**新增页面**
+- `wiki/topics/agent-harness-runtime/loop-engineering.md`

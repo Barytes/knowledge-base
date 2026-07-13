@@ -6,7 +6,7 @@
 
 围绕 agent 外层控制壳、运行时、coding harness、多设备工作面与可验证执行系统的页面。
 
-- 页面数：36
+- 页面数：37
 
 ## [人 / AI 关系 / 协作观察](human-ai-relationship/index.md)
 
@@ -18,7 +18,7 @@
 
 围绕 context、memory、本地知识库、信息复利、AI 知识系统与 context infra 的页面。
 
-- 页面数：14
+- 页面数：15
 
 ## [AI 产品 / 产品定义 / 验证](ai-product-product-definition/index.md)
 
