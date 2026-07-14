@@ -2532,3 +2532,22 @@ gogo-app 可立即开始的行动：
 
 **新增页面**
 - `wiki/topics/agent-harness-runtime/loop-engineering.md`
+
+## [2026-07-13] query | 定义知识库驱动的个人化新闻重写
+
+根据用户对新闻可视化、个人材料 capture、稠密理解痕迹与稀疏判断的连续校准，新增一页简短产品定义。核心假设是：对已经拥有个人知识库的高信息摄入者，通用新闻无法利用其已有背景；用户转发链接后，系统用相关知识库页面重写新闻，可以在阅读当下提供即时价值，并让 capture 自然进入长期复利。页面同时明确重写与外部深挖的证据边界，以及当前只验证 `一个链接 + 一个现有知识库 -> 一篇带引用的个人重写`。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/知识库驱动的个人化新闻重写.md`
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/index.md`
+
+## [2026-07-13] query | 区分知识库存储、用户理解与实践证据
+
+根据用户在 AI 新闻 capture 与个人化重写 dogfood 中暴露的问题，更新知识库运行模型。核心修正是：库中可检索的材料、用户当前理解和经过结果修正的实践证据是三种不同状态。capture 默认只增加材料，理解与实践层只能从真实任务中自然产生的用户表达、纠正和结果中写回。同步修正个人化新闻重写页对“库中存在＝用户已知”的错误前提。
+
+**更新页面**
+- `wiki/topics/context-memory-knowledge-system/knowledge-base-operating-model.md`
+- `wiki/topics/ai-product-product-definition/知识库驱动的个人化新闻重写.md`
+- `contexts/memory/OBSERVATIONS.md`

@@ -28,7 +28,7 @@
 - [信息复利系统设计](information-compounding-systems-design.md): 从 llm-wiki 和 context-infrastructure 往上抽象，可以得到一个更一般的洞察：
 - [情境模型在 Context Engineering 中的位置](情境模型在Context-Engineering中的位置.md): > 状态：探索性工作假设，尚未证明是一个独立概念。若把 memory 广义理解为模型外部、能够跨调用保留并重新注入的状态，那么所谓“情境模型”至多是 task-scoped working memory 的一种结构，与 task state、belief state、结构化任务简报和动态澄清策略高度重叠。本文后半部分保
 - [本地知识库模式](local-knowledge-base-patterns.md): 这两份来源材料描述的是两套互补但不相同的系统。
-- [知识库运行模型](knowledge-base-operating-model.md): 当这个仓库把“知识编译”和“个人判断蒸馏”视为两条分开的生产线，只在回答时或在稳定桥接页里汇合时，它运行得最好。
+- [知识库运行模型](knowledge-base-operating-model.md): 当这个仓库把“知识编译”和“个人判断蒸馏”视为两条分开的生产线，并且不把系统可检索的材料误当成用户已经理解、实践过的知识时，它运行得最好。
 - [给自己做了一个 llm-wiki 的入口应用](essays/给自己做了一个llm-wiki的入口应用.md): 我在用 llm-wiki 作为自己的第二大脑。但是一个痛点是，我需要同时打开 Obsidian 和 Codex，在两个工具之间来回切换。并且我只有一个屏幕，来回切换就超级麻烦。我又懒得给obsidian装插件，现有的插件又需要配置（如acp）。
 - [长期 file-based context engine 设计](file-based-context-engine-design.md): 长期 file-based context engine 的核心不是把 memory 存成文件，也不是把 RAG 换成 grep。它真正要设计的是：哪些长期上下文应该以人和 agent 都能检查、修改、引用、diff 的文件形式存在，并在任务开始前被路由成当前模型真正需要的工作面。
 
