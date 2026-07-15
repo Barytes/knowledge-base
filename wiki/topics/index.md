@@ -24,7 +24,7 @@
 
 围绕 AI 产品分层、AI Architect、产品定义、MVP、Pre-PMF 与 go-to-market 的页面。
 
-- 页面数：21
+- 页面数：22
 
 ## [研究知识库 / 公共知识治理](research-knowledge-governance/index.md)
 

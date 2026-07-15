@@ -32,6 +32,7 @@
 - [Superlinear Academy 课程与洞见总索引](superlinear-academy-course-insights-index.md): **标签：** Superlinear Academy，AI Builder，AI Architect，Agentic AI，Deep News，Knowledge Bank，AI 产品，agent runtime
 - [The Founder's Playbook：AI-native startup 的阶段纪律](the-founders-playbook-ai-native-startup.md): **标签：** AI-native startup，founder，Pre-PMF，MVP，Launch，Scale
 - [个人 AI 工作流：从问答到系统化委托](个人AI工作流从问答到系统化委托.md): 如果现在大部分 AI 使用还停在问答工具，真正要升级的不是“问得更会”，而是把 AI 放进稳定工作流里。
+- [深哥 AI 审计原始设想与任务结果保证推演](深哥AI审计原始设想与任务结果保证推演.md): 这里存在两个必须分开的产品定义。深哥的原始 Idea 始终是“员工怎样使用 AI”的企业使用分析；“一个 Agent 任务怎样走向或偏离可验收结果”是用户与 GPT 在批评原方案时推演出的另一套产品定义，不属于深哥已经提出的延伸。
 - [深哥 AI 情报看板：Superlinear 项目区竞品补充](深哥AI情报看板-Superlinear竞品补充.md): 这页补充的是 Superlinear Academy / Share Your Projects 里的相似项目，用来完善深哥 AI 情报看板的 competitor landscape。
 - [深哥 AI 情报看板：公开产品与 GitHub 竞品分析](深哥AI情报看板-公开产品与GitHub竞品分析.md): 这页单独分析公开产品和 GitHub 项目，用来证明另一个 claim：**市场上已经存在成规模的平台和开源替代品，AI 情报看板这个方向本身很拥挤。**
 - [深哥 AI 情报看板：竞品未覆盖机会](深哥AI情报看板-竞品未覆盖机会.md): 这页回答一个更正向的问题：在已经存在 AI 新闻雷达、趋势雷达、公开市场情报产品、GitHub 开源项目和 Superlinear 个人项目的情况下，深哥对 AI 情报看板的理解里，还有哪些没有被这些竞品充分 address。

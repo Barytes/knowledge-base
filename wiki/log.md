@@ -2,6 +2,14 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-07-14] correction | 区分深哥原始 AI 审计与对话中的任务结果保证推演
+
+用户纠正上一条 query 的产品归属：深哥的 Idea 仍是员工 AI 使用分析，包括 Token、Prompt 质量、培训建议和 Leader 看板；任务轨迹、可验收结果与运行干预是用户和 GPT 在讨论中推演出的新版本，不是深哥已经完成的延伸。新增 [深哥 AI 审计原始设想与任务结果保证推演](topics/ai-product-product-definition/深哥AI审计原始设想与任务结果保证推演.md) 并删除错误归属的维护页。后续必须分别评价两套产品定义，不能用更强的推演版本替原始 Idea 辩护。
+
+## [2026-07-14] query | AI 审计从员工使用分析延伸到任务结果保证
+
+结合用户提供的上次产品讨论与 `notebook/AI审计项目调研.md`，新增 [AI 审计：从员工使用分析到任务结果保证](topics/ai-product-product-definition/AI审计从员工使用分析到任务结果保证.md)。核心区分是：原方案以员工、Prompt 和 Token 为审计对象，深哥的延伸改以单次 Agent 任务轨迹和可验收结果为对象；它因此更接近长期的任务可靠性问题，但仍需验证偏航预测、有效干预、数据接入和平台吞噬风险。当前最窄路径应先做研发 Agent 的历史轨迹审计，再根据干预效果决定是否向 `AI Task Assurance` 演化。
+
 ## [2026-07-12] query | 情境模型在 Context Engineering 中的位置
 
 基于本地 Context Engine 与 Agent Context Infra 页面，并核对 Anthropic、OpenAI Agents SDK、LangChain、Context Engineering survey、Agent-BRACE 与 Task2Quiz 等公开一手资料，新增 [情境模型在 Context Engineering 中的位置](topics/context-memory-knowledge-system/情境模型在Context-Engineering中的位置.md)。页面从零定义情境模型为任务级、可更新的显式局面表示，并将其定位为 context 获取与编排之后、决策与行动之前的状态估计层；同时明确它目前不是业界标准组件名称，而是与 belief state、world-state understanding、session state 等路线相邻的尚未标准化中间层。
