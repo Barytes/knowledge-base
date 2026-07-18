@@ -2559,3 +2559,9 @@ gogo-app 可立即开始的行动：
 - `wiki/topics/context-memory-knowledge-system/knowledge-base-operating-model.md`
 - `wiki/topics/ai-product-product-definition/知识库驱动的个人化新闻重写.md`
 - `contexts/memory/OBSERVATIONS.md`
+## [2026-07-17] query | 三年 500 万目标下的职业与生活资源配置
+
+根据用户毕业后的创业兼职、论文收尾、家庭压力、异地伴侣和财富目标，新增具体职业决策页。核心判断是：当前问题不是缺少方向，而是多头无限责任耗尽可支配注意力；三年 500 万无法由当前工资线性实现，只能作为所有权与高杠杆方向约束。建议用当前现金流换取 90 天验证窗口，收紧创业合作和论文债务，同步取得真实 Agent 求职与用户反馈，并按外部结果决定加注、转职或降级。
+
+**新增页面**
+- `wiki/topics/career-positioning-job-search/三年500万目标下的职业与生活资源配置.md`
