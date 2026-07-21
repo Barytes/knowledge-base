@@ -2,6 +2,22 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-07-20] query | 会议 MVP 与通用工作台共享架构
+
+继续更新 [Agent 隐藏式工作平台：从自动化工具转向人的默认工作面](topics/agent-harness-runtime/从工作痕迹到可维护Agent.md)，把会议场景定位为通用工作台的第一个 `InputAdapter + SurfaceRenderer`，而非另一套 core。共用协议收束为 `WorkEvent -> Opportunity -> Run -> Artifact`，长期底座包括 context builder、opportunity detector、action runtime、artifact store、attention / permission policy 与 trace / eval。一天 MVP 只接麦克风转写和一份项目 brief，只执行 search 与 sandbox HTML demo，只输出 evidence card 与 demo preview，不建设会议管理、通用 agent builder 或跨会议 memory。
+
+## [2026-07-20] query | 实时会议中的 Agent 隐藏式协作
+
+继续更新 [Agent 隐藏式工作平台：从自动化工具转向人的默认工作面](topics/agent-harness-runtime/从工作痕迹到可维护Agent.md)，补入实时会议场景：谈话本身是人的自然输入界面，系统持续结合对话与项目 context，识别事实缺口和可物化想法，在后台完成搜索或 sandbox demo，再把证据卡、原型和动态界面放回当前讨论。新增边界是“后台可以积极试做，前台必须克制打扰”：低风险、可丢弃结果可以主动生成，发布、发送、正式写入和外部承诺仍由人决定。
+
+## [2026-07-20] correction | Agent 隐藏式工作平台不是后台自动化构建器
+
+用户纠正上一轮对“后台守护 agent”的理解：真正的产品主语不是 workflow、automation contract 或自动生成的 agent，而是人的工作、项目和内容。重写 [Agent 隐藏式工作平台：从自动化工具转向人的默认工作面](topics/agent-harness-runtime/从工作痕迹到可维护Agent.md)，把产品从“观察工作痕迹并自动搭建自动化”改为 AI-native 工作平台：用户只进行自然工作，平台持续提供 `frictionless interaction`、`contextual intelligence` 与 `proactive intelligence`，agent、workflow、context routing 和工具编排退到内部 substrate。同步澄清“隐藏”是默认操作面不暴露 agent，而非取消异常解释、权限可见性和人工接管。
+
+## [2026-07-20] query | 从工作痕迹到可维护 Agent
+
+围绕“后台守护 agent 实时感知日常工作流，并自动搭建可自动化部分”的想法，新增 [从工作痕迹到可维护 Agent](topics/agent-harness-runtime/从工作痕迹到可维护Agent.md)。页面保留持续观察与自动化发现的核心直觉，同时把产品从“屏幕监控 + agent 工厂”收紧为用户拥有的后台自动化架构师：从授权工作痕迹中识别意图模式，生成带触发、权限、验收、回退与维护语义的 automation contract，并通过回放、shadow mode 和真实运行证据逐级放权。外部校准补入 Power Automate、UiPath、Copilot Studio、ChatGPT Scheduled Tasks、Gemini Spark 与 Google GUIDE，明确任务挖掘、自然语言建流和后台执行已分别商品化，差异应落在从意图理解到可维护自动化的完整闭环。
+
 ## [2026-07-14] correction | 区分深哥原始 AI 审计与对话中的任务结果保证推演
 
 用户纠正上一条 query 的产品归属：深哥的 Idea 仍是员工 AI 使用分析，包括 Token、Prompt 质量、培训建议和 Leader 看板；任务轨迹、可验收结果与运行干预是用户和 GPT 在讨论中推演出的新版本，不是深哥已经完成的延伸。新增 [深哥 AI 审计原始设想与任务结果保证推演](topics/ai-product-product-definition/深哥AI审计原始设想与任务结果保证推演.md) 并删除错误归属的维护页。后续必须分别评价两套产品定义，不能用更强的推演版本替原始 Idea 辩护。
