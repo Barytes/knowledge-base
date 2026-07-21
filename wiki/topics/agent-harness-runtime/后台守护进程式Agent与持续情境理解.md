@@ -147,6 +147,7 @@
 
 ## 相关页面
 
+- [Agent 隐藏式工作平台：从自动化工具转向人的默认工作面](从工作痕迹到可维护Agent.md)
 - [Agent Context Infra 前沿调研](../context-memory-knowledge-system/agent-context-infra-2026-05-25.md)
 - [被持续委托的工作主体](被持续委托的工作主体.md)
 - [Agent 时代的人机交互新命题](agent时代的人机交互新命题.md)
