@@ -52,6 +52,7 @@
 - [safety-research/automated-w2s-research 仓库地图](safety-research-automated-w2s-research-repo-map.md): 这页是围绕主题“自动化 alignment research harness 与 weak-to-strong 监督”维护的 safety-research/automated-w2s-research 第一版仓库地图。
 - [yvonnegladwellstack/yvskills 仓库地图](yvonnegladwellstack-yvskills-repo-map.md): 这页是围绕主题“Claude skill 的打包方式与对话机制”维护的 yvonnegladwellstack/yvskills 第一版增强仓库地图。
 - [代码库作为知识来源](codebases-as-knowledge-sources.md): 代码库应该被纳入知识库，但通常不应该以“整仓库直接变成 wiki”的方式纳入。
+- [全双工语音 Agent：机制与改造边界](全双工语音Agent的机制与改造边界.md): 全双工原本是通信概念：双方可以在同一时间发送和接收信息。放到语音 Agent 中，需要区分传输层和对话层。
 - [后台守护进程式 Agent 与持续情境理解](后台守护进程式Agent与持续情境理解.md): 这页摄取并整理 Superlinear Academy clipping《AI Agent 的下一个形态：从聊天窗口到后台守护进程》。这份材料的核心价值，不在于评价 Gemini Spark 单个产品好坏，而是把 agent 产品形态从 chat window、agentic tool、background agent
 - [被持续委托的工作主体](被持续委托的工作主体.md): 这页原本想抓住一个重要直觉：用户真正想长期协作的，不是某个 runtime、某个 session，也不是某次 prompt 的输出，而是“那个我一直在和它合作的 agent”。
 

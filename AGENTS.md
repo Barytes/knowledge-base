@@ -1,6 +1,6 @@
 # Repository AGENTS Guide
 
-This repository is a local knowledge base. For repository-related questions, the default mode is local-first and local-only unless the user explicitly asks for web search.
+This repository is a local knowledge base. For repository-related questions, use the maintained knowledge base as the default evidence anchor. Web search is allowed when it improves freshness, correctness, or completeness.
 
 ## Default Behavior
 
@@ -11,8 +11,8 @@ This repository is a local knowledge base. For repository-related questions, the
 - Read `wiki/index.md` first.
 - Answer from `wiki/` before reading `raw/`.
 - Use `raw/` only when the maintained wiki is incomplete.
-- Do not browse the web for repository questions unless the user explicitly asks to search online.
-- If the local knowledge base is insufficient, say what is missing instead of silently switching to web search.
+- Prefer an answer that combines relevant local knowledge with any necessary external evidence. Do not return a purely web-derived answer unless the local knowledge base has no relevant material and external information is necessary to answer well.
+- When web search is used, state what the local knowledge base contributed, identify any local gap, and clearly distinguish external evidence from local material.
 
 ## Repository Layers
 
@@ -45,7 +45,7 @@ This repository is a local knowledge base. For repository-related questions, the
 - Treat `notebook/` as user-owned working space. It may be synced as source files and mirrored into the generated website under a separate notebook navigation entry, but do not rewrite, move, delete, lint, normalize, reorganize, or ingest it into maintained wiki pages.
 - Treat `life-record/` as private local-only material. Never stage, commit, push, publish, ingest, index, or include it in generated site output.
 - For maintenance workflows, use `skills/kb-ops/`.
-- For local-only question answering, use `skills/kb-query/`.
+- For knowledge-base-anchored question answering, use `skills/kb-query/`.
 - After creating or updating maintained wiki pages, run `./skills/kb-ops/scripts/kb-ingest.sh site` so `wiki/site/` stays in sync automatically.
 - For detailed repository policy, read:
   - `COMMUNICATION.md`

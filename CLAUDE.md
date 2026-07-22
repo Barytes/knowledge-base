@@ -24,7 +24,7 @@ The goal is to maintain both without collapsing them into one undifferentiated w
 
 ## Default Behavior
 
-For repository-related questions, default to local-first and local-only behavior unless the user explicitly asks for web search.
+For repository-related questions, use the local knowledge base as the default evidence anchor. Web search is allowed when it improves freshness, correctness, or completeness.
 
 That means:
 
@@ -32,8 +32,9 @@ That means:
 - read `COMMUNICATION.md` for writing and interaction style
 - answer from `wiki/` before reading `raw/`
 - use `raw/` only when the maintained wiki is incomplete
-- do not browse the web unless the user explicitly asks to search online
-- if the local knowledge base is insufficient, say what is missing instead of silently switching to web search
+- use web search as a supplement when it materially improves the answer
+- do not produce a purely web-derived answer unless local material is absent and external information is necessary
+- when external evidence is used, identify the local contribution, the local gap, and the externally supported claims
 
 ## Repository Map
 
@@ -75,7 +76,7 @@ The agent has four jobs:
 Use local skills when the task matches:
 
 - `skills/kb-ops/` as the top-level maintenance entry point
-- `skills/kb-query/` as the local-only query entry point
+- `skills/kb-query/` as the knowledge-base-anchored query entry point
 - `skills/research-ingest/` for external-source compilation
 - `skills/self-distill/` for personal-source distillation
 - `skills/bridge-write/` for mixed analyses and essays

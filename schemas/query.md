@@ -8,7 +8,7 @@ Answer from the maintained wiki first, keep facts and judgment separate, and sav
 
 When a query result is written back into `wiki/`, write the maintained page in Chinese by default. Keep paths, commands, code identifiers, repository names, and necessary technical terms in their original form when useful.
 
-Default mode for repository-related questions is `local-only`.
+Default mode for repository-related questions is `knowledge-anchored`: start from the local knowledge base and use web search when it materially improves the answer.
 
 ## Query Routing
 
@@ -21,24 +21,25 @@ Route each question before synthesizing:
 
 If the repository lacks enough material, say what is missing instead of faking confidence.
 
-## Local-Only Rule
+## Knowledge-Anchored Rule
 
 For repository-related questions:
 
 - read `wiki/index.md` first
 - prefer `wiki/` over `raw/`
-- do not browse the web unless the user explicitly asks for online search
-- do not silently supplement local gaps with web results
+- browse the web when it materially improves freshness, correctness, or completeness
+- do not let external search replace relevant local knowledge
+- do not produce a purely web-derived answer unless local material is absent and external information is necessary to answer well
 
-If local material is insufficient, say:
+When local material is incomplete and external evidence is used, say:
 
 1. what local pages were consulted
 2. what is still missing
-3. that web search would require an explicit user request
+3. which parts of the answer are supported by external evidence
 
-## Required Opening For Local-Only Answers
+## Required Opening For Knowledge-Anchored Answers
 
-For repository-related local-only answers, start by listing the local pages or files actually consulted.
+For repository-related answers, start by listing the local pages or files actually consulted.
 
 Preferred format:
 
@@ -66,7 +67,7 @@ Prefer these sources in order:
 3. cautious synthesis based on the available evidence
 
 Do not skip the wiki layer if it already contains the needed work.
-Do not use web search as a default fallback for repository questions.
+Use web search as a supplement when useful, not as a substitute for relevant repository knowledge.
 
 ## Write-Back Rules
 
@@ -112,15 +113,16 @@ When deciding between `wiki/frameworks/` and `wiki/topics/`, use this distinctio
 - `wiki/frameworks/` answers “what lens or routing surface should future queries start from?”
 - `wiki/topics/` answers “what does this topic contain, and what concrete conclusion follows in this case after combining knowledge and judgment?”
 
-## Search Escalation
+## Web Supplement
 
-Only use web search for repository questions when one of these is true:
+Web search is appropriate when one of these is true:
 
-- the user explicitly asks to search online
-- the user explicitly asks for the latest public information beyond the repository
-- the answer depends on time-sensitive information that is not present locally and the user wants that gap filled
+- the user asks to search online or asks for current public information
+- the answer depends on time-sensitive or externally verifiable facts
+- external primary sources would materially improve accuracy, completeness, or source attribution
+- the repository exposes a material gap that can be filled responsibly from the web
 
-When web search is used, explicitly label which parts came from outside the repository.
+When web search is used, explicitly label which parts came from outside the repository. Preserve the local knowledge base as the main interpretive context whenever it contains relevant material. A purely web-derived answer is acceptable only when local material is absent and external information is necessary; say so explicitly.
 
 ## Query Logging
 

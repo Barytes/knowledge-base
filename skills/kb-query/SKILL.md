@@ -1,6 +1,6 @@
 ---
 name: kb-query
-description: Answer repository questions from the local knowledge base only. Use when Codex needs to answer questions about this repository's topics, pages, or architecture by reading `wiki/` and `raw/` without automatic web search, and by reporting local gaps explicitly when the repository is insufficient.
+description: Answer repository questions with the local knowledge base as the evidence anchor. Read `wiki/` and `raw/` first, use web search when it materially improves freshness, correctness, or completeness, and keep external evidence distinct from local knowledge.
 ---
 
 # KB Query
@@ -17,11 +17,11 @@ Use this skill for repository-related question answering, not for maintenance.
 
 If the user input is only `kb-query` or `$kb-query`, interpret it as:
 
-- answer the current repository question from local materials only
+- answer the current repository question from local materials, supplemented by external evidence when useful
 
 ## Default Behavior
 
-Treat repository questions as local-only unless the user explicitly asks for web search.
+Treat repository questions as knowledge-base-anchored. Web search is allowed when it materially improves the answer.
 
 That means:
 
@@ -30,8 +30,9 @@ That means:
 3. then read the most relevant `wiki/frameworks/` page
 4. then read the most relevant `wiki/topics/` pages
 5. read `raw/` only if the wiki is incomplete
-6. answer from local material
-7. if local material is insufficient, say so explicitly and stop
+6. answer from local material and use web search when freshness, correctness, completeness, or source attribution would materially improve
+7. if external evidence is used, keep it distinguishable from the local contribution and name any material local gap
+8. do not return a purely web-derived answer unless local material is absent and external information is necessary
 
 ## Answer Order
 
@@ -55,15 +56,16 @@ If only `wiki/index.md` was read before deciding the repository is insufficient,
 
 ## Guardrails
 
-- Do not browse the web by default.
+- Use web search as a supplement, not as a replacement for relevant local knowledge.
 - Do not silently mix repository material with outside search results.
-- If the user asks for latest or external information, clearly mark the answer as going beyond the repository.
+- Clearly mark claims supported by external information and explain why external evidence was needed.
+- Avoid purely web-derived answers unless the repository has no relevant material and the external information is necessary.
 - If the question is really a maintenance request, hand off to `kb-ops`.
 - Do not omit the consulted-pages opening, even for short answers.
 
 ## Write-Back
 
-If a local-only answer produces a durable clarification or synthesis, save it back into the right maintained layer and add a `query` log entry.
+If an answer produces a durable clarification or synthesis, save it back into the right maintained layer and add a `query` log entry.
 
 Prefer:
 

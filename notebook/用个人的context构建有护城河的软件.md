@@ -56,3 +56,6 @@ ChatGPT无法看到自己的抖音视频、数据，无法分析
 https://www.remio.ai/
 https://pieces.app
 https://www.obsidiancopilot.com/en
+
+## 相关思考
+[[日历]]

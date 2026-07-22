@@ -2581,3 +2581,53 @@ gogo-app 可立即开始的行动：
 
 **新增页面**
 - `wiki/topics/career-positioning-job-search/三年500万目标下的职业与生活资源配置.md`
+## [2026-07-21] query | 深入分析日历作为 Agent 的自然委托协议
+
+根据用户对“日历天然理解工作生活轨迹、创建待办近似指派任务并给出 deadline”的连续探索，新增产品分析页。核心判断是：传统日历安排人的时间，Agent 日历安排结果何时就绪以及哪些工作可由系统提前完成；创建待办形成的是带目标与期限的初步委托，而不是完整授权。页面进一步分析了时间与注意力调度、周期事项形成工作流、事项前中后生命周期、跨软件连续性、原型驱动验证，以及主动性、隐私和审核负担等失败边界。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/日历作为Agent的自然委托协议.md`
+
+**更新页面**
+- `wiki/topics/agent-harness-runtime/从工作痕迹到可维护Agent.md`
+
+## [2026-07-21] query | 解释全双工语音 Agent 并调整联网策略
+
+结合本地 AI 系统与 Harness 判断框架，以及 OpenAI Realtime API 官方文档，新增全双工语音 Agent 主题页。核心判断是：GPT Realtime 的全双工体验由持续双向音频、VAD、可取消生成、播放截断和会话状态同步共同实现；普通 Agent 可以复用工具与业务逻辑，但必须改造 session 与 runtime，不能靠 prompt 直接变成全双工。
+
+同时按用户要求移除知识库“默认本地限定、必须显式授权才联网”的规则，改为知识库锚定：优先吸收本地判断，可在需要时联网补充；除非本地没有相关材料且外部信息对回答必要，否则不输出纯联网答案。
+
+**新增页面**
+- `wiki/topics/agent-harness-runtime/全双工语音Agent的机制与改造边界.md`
+
+**更新规则与入口**
+- `AGENTS.md`
+- `CLAUDE.md`
+- `COMMUNICATION.md`
+- `schemas/AGENTS.md`
+- `schemas/query.md`
+- `skills/kb-query/SKILL.md`
+- `skills/kb-query/agents/openai.yaml`
+- `wiki/topics/agent-harness-runtime/index.md`
+
+## [2026-07-21] query | 设计文字全双工 Agent 的最小 MVP
+
+围绕用户希望先排除语音变量、验证全双工交互精髓的要求，新增文字全双工 Agent MVP 方案。方案只验证一个命题：用户能否在 Agent 持续工作时把新意图注入当前任务，并在保留已确认工作的前提下减少等待、重复解释与整轮重做。
+
+MVP 收缩为 `Live Memo`：一个持续演化的共享文档、始终可用的输入框和可追踪的 steering 事件。runtime 采用短片段执行、事件队列、取消当前未提交片段、checkpoint 和 `event_id -> applied_revision` 映射；验证采用普通轮流模式与全双工模式的组内对照，只观察生效延迟、重复/重做和用户是否主动选择全双工。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/文字全双工Agent的最小MVP.md`
+
+**更新页面**
+- `wiki/topics/agent-harness-runtime/全双工语音Agent的机制与改造边界.md`
+
+## [2026-07-21] query | 区分 steer 与文字全双工 Agent
+
+根据用户指出“当前 MVP 和 steer 机制可能没有区别”的纠正，修订文字全双工 Agent 方案。核心校准是：steer 是修改当前 run 的一种操作；全双工是用户交互流与 Agent 工作流相对独立、持续开放的交互拓扑。若所有输入都导致取消和重算，方案只是 steer-only。
+
+修订后的 MVP 增加前台 conversation loop 与后台 work loop，区分 `steer / context / answer / query`。只有 steer 默认使相关未提交工作失效，其他消息应尽量在主工作继续时被吸收或回答。新增观察记录，防止以后把已有机制重新命名成伪产品差异。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/文字全双工Agent的最小MVP.md`
+- `contexts/memory/OBSERVATIONS.md`

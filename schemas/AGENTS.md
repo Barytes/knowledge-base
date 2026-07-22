@@ -55,7 +55,7 @@ The agent has four jobs:
 Use local skills when the task matches:
 
 - `skills/kb-ops/` as the top-level orchestration entry point
-- `skills/kb-query/` as the local-only query entry point
+- `skills/kb-query/` as the knowledge-base-anchored query entry point
 - `skills/research-ingest/` for external-source compilation into topic pages
 - `skills/self-distill/` for personal-source distillation
 - `skills/bridge-write/` for mixed analyses and essays inside `wiki/topics/`
@@ -85,7 +85,7 @@ Route questions by type:
 - Design, evaluation, comparison, and decision questions: read `wiki/frameworks/router.md` first, then the most relevant framework page, then pull in `wiki/topics/` as needed.
 - Save concrete applied outputs to the relevant `wiki/topics/<topic>/` directory when the result is really an analysis or memo, not merely a reusable router or framework page.
 
-For repository-related questions, default to local-only behavior. Do not browse the web unless the user explicitly requests online search.
+For repository-related questions, use the maintained knowledge base as the default evidence anchor. Web search is allowed when it improves freshness, correctness, or completeness. Do not return a purely web-derived answer unless local material is absent and external information is necessary; when browsing, distinguish the external supplement from the local contribution.
 
 ## Ingest Rules
 

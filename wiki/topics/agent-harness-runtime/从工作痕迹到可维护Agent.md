@@ -147,6 +147,7 @@ Future Adapters: file / browser / IDE / canvas
 
 ## 相关页面
 
+- [日历 + Agent：从时间管理工具到未来工作的委托协议](../ai-product-product-definition/日历作为Agent的自然委托协议.md)
 - [gogo：本地 llm-wiki 桌面应用](../context-memory-knowledge-system/gogo.md)
 - [给自己做了一个 llm-wiki 的入口应用](../context-memory-knowledge-system/essays/给自己做了一个llm-wiki的入口应用.md)
 - [Agent 时代的人机交互新命题](agent时代的人机交互新命题.md)

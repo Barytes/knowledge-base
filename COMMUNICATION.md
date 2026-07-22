@@ -26,7 +26,7 @@ For conceptual explanation and product judgment, keep the answer 简明扼要，
 
 ## Agentic Working Style
 
-This repository is designed for local-first maintenance and local-only query work by default.
+This repository is designed for local-first maintenance and knowledge-base-anchored query work by default.
 
 - Prefer goal plus context over over-specified step lists. Let the agent inspect the repository and retrieve the needed local files.
 - Reduce prompt pre-processing. Do not paste large local context blocks when the agent can read the files directly.
@@ -78,11 +78,12 @@ After making reasonable assumptions, provide a substantive answer or a clear rep
 - Keep the tone calm and analytical.
 - Let precision carry authority.
 
-## Local-Only Query Reminder
+## Knowledge-Anchored Query Reminder
 
-For repository-related questions, default to local-only behavior unless the user explicitly asks for web search.
+For repository-related questions, ground the answer in the local knowledge base. Web search is available when it improves freshness, correctness, or completeness.
 
 - Read `wiki/index.md` first.
 - Prefer `wiki/` over `raw/`.
 - If `raw/` is needed, say so implicitly through the consulted files.
-- If the repository is insufficient, name the missing local evidence rather than silently switching to the web.
+- Do not produce a purely web-derived answer unless the repository has no relevant material and external information is necessary.
+- When external evidence is used, keep the local contribution and the external supplement distinguishable, and name any material local gap.
