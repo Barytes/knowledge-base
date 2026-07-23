@@ -1,0 +1,182 @@
+# 提示词会消失吗：Agent 编程的长期分工
+
+## 核心判断
+
+提示词、上下文编排和会话管理不会以今天的操作形态长期存在，但它们背后的职能不会消失。
+
+更准确地说，长期趋势不是“prompt engineering 消失”或“所有工程都变成 prompt engineering”，而是发生三层迁移：模型特定的措辞技巧会被模型能力和自动优化吞掉；手工拼上下文、压缩历史和恢复会话会下沉到 runtime；目标、约束、验收标准、权限边界和领域知识会继续由人定义，只是逐渐从临时 prompt 变成可复用的 contract、eval、skill、policy 和知识资产。
+
+因此，今天人们厌恶的主要是低层操作，不是这些职能本身。没有人喜欢重复复制背景、调试一句话的措辞、手动维护长会话，这种厌恶会成为抽象层成熟的压力。类似于多数工程师不愿手工管理内存，但内存管理没有消失，而是大部分进入了 runtime 和 garbage collector。
+
+## 冲突的本质
+
+### 自然语言降低的是语法成本，不是规格成本
+
+传统编程要求人把意图翻译成确定性过程。Agent 编程允许人直接描述目标，让模型寻找过程。这显著降低了过程编码成本，却没有自动回答几个更难的问题：什么才算完成，哪些信息可信，哪些动作允许执行，失败后如何恢复，结果由谁承担责任。
+
+所以人会产生一种错觉：既然已经可以“用人话编程”，为什么还要写这么多说明。原因是自然语言消除了严格语法，却没有消除真实世界里的歧义、隐性知识和利益冲突。模型可以替人补全实现细节，不能替人决定组织到底想要什么。
+
+### 执行成本下降后，瓶颈上移到定义与验证
+
+过去工程成本主要在实现。Agent 降低实现成本后，成功标准、上下文质量和验证机制占总成本的比例自然上升。这不是新增了一个无意义的 prompt 工种，而是过去分散在需求、架构、代码审查、运维和项目沟通中的工作，被集中暴露到人机委托接口上。
+
+可以把 Agent 工作压缩成：
+
+```text
+任务定义 + 上下文编译 + 受控执行 + 结果验证 + 责任归属
+```
+
+模型首先压低的是“执行”。其余部分不会同步归零。随着 Agent 获得更大行动范围，错误的影响半径也变大，边界和验证反而更重要。
+
+### 模型的工作记忆与真实任务状态不是一回事
+
+当前上下文窗口只是一次推理可见的工作集。真实任务状态却跨越多次模型调用、文件修改、工具执行、用户插话和环境故障。即使上下文窗口继续扩大，也仍然存在过期信息、噪声、权限、成本、审计和恢复问题。
+
+因此，`context window` 不会变成完整的 `session`。长期系统更可能把 session 保存为可恢复的事件流，把当前 prompt 视为由 runtime 临时物化出的视图。上下文编排的职能会长期存在，但普通用户会越来越少直接操作它。
+
+### 人和 Agent 之间缺少人际协作中的共享背景
+
+人与长期同事合作时，大量约束通过组织习惯、共同经历和责任关系隐式传递。Agent 没有天然拥有这些背景，也不承担失败后果，所以今天需要用 prompt、项目规则、memory 和会话历史人工补齐。
+
+长期产品要解决的并不是让用户更擅长写 prompt，而是建立可持续的共同背景：系统能从文件、历史决策、示例、反馈和实际结果中逐渐学习，同时让用户能够检查、纠正和撤销这些学习。否则“自动理解用户”只会把显式 prompt debt 变成不可见的 memory drift。
+
+## 哪些会消失，哪些会留下
+
+| 今天的工作 | 长期变化 | 不会消失的内核 |
+|---|---|---|
+| 反复调整措辞、角色扮演、固定话术 | 大量被更强模型、自动 prompt 优化和默认模板吞掉 | 清楚表达目标与关键歧义 |
+| 手工复制文件、聊天历史和背景材料 | 下沉为检索、resolver、progressive disclosure 和 context policy | 相关性、时效性、来源与权限判断 |
+| 手工总结长会话、重启后重新交代 | 下沉为 session log、checkpoint、compaction 和 rehydration | 状态连续性、冲突处理、回放与恢复 |
+| 在 prompt 中写大量步骤和边界 | 分化成 skill、workflow、policy、tool schema 和 contract | 过程知识、权限边界与失败处理 |
+| 通过感觉判断 Agent 是否变好 | 迁移到 trace、golden set、grader 和业务指标 | 对“什么是好结果”的定义 |
+
+真正易腐化的是模型特定的控制技巧。真正耐久的是任务与组织特定的语义：领域模型、成功标准、风险边界、权威来源和例外处理。
+
+## 长期演化
+
+### 近期：prompt 从聊天技巧变成工程资产
+
+项目级 instructions、`AGENTS.md`、skills、工具描述和 eval 会继续增长，但它们会更版本化、模块化和可测试。工程师仍会写自然语言，不过目标不再是寻找神奇措辞，而是把领域知识和委托边界固化成可复用资产。
+
+同时，随着模型对意图的理解增强，逐步指挥会减少。OpenAI 当前的模型指导已经明确倾向于少写过程步骤，保留领域上下文、硬约束、授权边界和成功标准。这说明 prompt 的重心正在从“教模型怎样思考”转向“告诉系统这里什么最重要”。
+
+### 中期：runtime 吞掉大部分会话与上下文操作
+
+session、memory、sandbox、trace、checkpoint 和权限会成为标准 runtime 能力。应用工程师会像使用数据库事务或云任务队列一样使用它们，而不必每个项目重新发明 compaction 和恢复逻辑。
+
+2026 年的公开产品信号已经沿这条方向收敛。Anthropic 把 agent 拆成可替换的 session、harness 和 sandbox，并明确区分持久 session 与模型 context；OpenAI 也把 configurable memory、sandbox orchestration、snapshot 和 rehydration 放进 Agents SDK。两者都在把手工 orchestration 变成基础设施。
+
+### 更长期：人操作的是意图、证据和例外，不是 prompt
+
+用户更可能通过现有文档、代码、样例、直接修改产物、批准边界案例和评价结果来“编程” Agent。系统根据这些信号自动生成或优化 prompt、选择上下文和执行策略。好的交互不会给用户一个空白框让他发明完整规格，而会主动暴露关键歧义，请用户只做高杠杆选择。
+
+这不会让人退出系统。人的位置会从持续微操转向定义目标、提供非共识判断、处理例外和承担最终责任。输入负担下降，判断型界面、provenance、diff、trace 和接管机制会更重要。
+
+## 对工程职业的影响
+
+“Prompt Engineer”作为专门研究措辞技巧的独立岗位，长期壁垒较弱。更稳定的角色会是 Agent Systems Engineer、AI Runtime Engineer、Eval Engineer，以及能把领域流程转化为工具、契约和评测的数据或产品工程师。
+
+普通工程师不需要人人手写 context engine。就像不是每个后端工程师都实现数据库查询优化器，未来多数人只需要提供目标、环境、工具、领域上下文和验收标准。少数平台工程师负责 session、memory、编排、安全和可观察性。Agent 本身会参与生成 prompt、压缩 trace、维护 skill 和构造 eval。
+
+但这不意味着相关工作总量一定下降。单个任务的编排成本会降低，可委托任务的数量和长度却会扩大。于是会出现一个看似矛盾的结果：每个人更少手写 prompt，整个产业投入到 Agent 编排、上下文基础设施和评测上的工程量反而更多。
+
+## 如果据此创业，应该从哪一层切入
+
+如果目标是做一家让人少写 prompt、少管理 Agent，并且能够穿越模型演进的企业，最稳的结构不是直接卖“无提示词”，也不是从通用 prompt manager 或通用 memory API 起步。
+
+更准确的策略是：
+
+> 从一个高价值、可重复、可验收的业务事项切入，长期把公司沉淀在“组织委托编译与控制层”。
+
+可以把产品栈画成：
+
+```text
+现有业务工作面 / system of record
+  日历、CRM、工单、文档、财务系统
+                    ↓ 自然工作信号
+组织委托编译与控制层                         ← 公司长期核心
+  task contract + context compiler + permission + eval + writeback
+                    ↓ 可执行任务包
+可替换的 Agent runtime
+  session + sandbox + tools + trace
+                    ↓
+模型与算力
+```
+
+### 产品从业务层进入，资产在控制层积累
+
+客户不会为抽象的“少写 prompt”持续付钱。他们会为某类工作更快完成、错误更少、责任更清楚付钱。因此第一步应进入一个真实部门工作流，而不是先做通用平台。
+
+合适的切口通常同时满足：任务重复发生；每次都要重新找大量背景；结果可以在一定程度上验收；大部分准备动作可逆、低风险；需要连接企业已有数据和权限；失败或延迟具有明确成本。
+
+产品表面可以是销售准备、研究交付、客户跟进、周期汇报或某类审批前准备。真正要沉淀的不是某个 UI，而是系统怎样把一个自然产生的 work item 编译成：目标、期限、可信上下文、可用工具、权限边界、输出形式、完成标准和人工接管条件。
+
+### 长期核心更像企业的“标准库”，不是 prompt 模板库
+
+高级语言之所以简洁，不只是语法高级，而是底层存在经过验证的 runtime 和标准库。对应到 Agent，企业真正缺的标准库不是一批提示词，而是一组可执行的组织能力。
+
+例如“准备季度客户回顾”这项能力，不应只是一段 prompt。它应该包含：从哪些系统读取数据，数据权限是什么，怎样识别异常，输出必须包含什么，哪些数字需要确定性校验，什么情况下停止，哪些结论必须由负责人确认，以及最终结果写回哪里。
+
+这类能力可以表示为 skill、contract、eval、policy 和工具组合。模型与措辞可以替换，但业务语义、权限、验收与历史反馈会持续积累。这才接近企业级 Agent 的标准库。
+
+### 为什么不宜先做完整通用 runtime
+
+session、sandbox、checkpoint、tool execution 和基础 tracing 会长期存在，但正在被模型公司与云平台标准化。Anthropic 已将 session、harness、sandbox 抽成稳定接口；OpenAI 也把 state、working context、permission boundary 和 long-running orchestration 下沉到 Agents SDK 与 Stateful Runtime。
+
+创业公司除非在安全、合规、成本、跨云或某种特殊执行环境上有明显优势，否则一开始重做完整通用 runtime，容易与平台供应商正面重叠。更稳的做法是复用可替换 runtime，只控制自己的 task contract、context policy、eval 与业务反馈资产。
+
+### 为什么只做 context 或 memory 也不够
+
+企业不会单独购买“记得更多”，而会购买更好的业务结果。Context 只有进入具体委托，并和权限、执行、验收、写回连接起来，才形成闭环。纯 memory 容易被平台吸收；纯知识库容易停在回答；纯 workflow 又容易要求用户继续配置。
+
+真正有价值的是 context compiler：它围绕当前任务，在当前权限和时效条件下，把正确的组织知识编译成 Agent 可使用的最小工作集，并把结果与反馈写回长期层。
+
+### 对当前“日历 + Agent”方向的含义
+
+如果套到日历产品，日历是自然委托入口，不是长期壁垒。真正可复用的核心是：
+
+```text
+日程 / 待办
+→ Work Item
+→ 委托契约
+→ context + permission + tools
+→ Agent 执行
+→ artifact + eval
+→ 用户修改与组织写回
+```
+
+日历验证的是用户是否愿意用自然工作动作发起委托。公司最终能否穿越周期，则取决于它能否把这种委托稳定编译成跨模型、跨工具、可审计、可验收的组织能力。
+
+因此，这个方向最准确的产品与技术分工是：业务场景负责切入和收费；委托编译与控制层负责形成壁垒；通用 runtime 和模型负责提供可替换的执行能力。
+
+## 最终判断
+
+这个冲突不是“大家讨厌一项注定成为主流的工作”，而是新计算范式早期把内部机制直接暴露给了使用者。厌恶感本身会推动封装、标准化和自动化。
+
+长期会消失的是对模型脾气的微操，长期存在的是对委托关系的设计。后者包括：系统应该知道什么，允许做什么，怎样判断完成，失败后怎样恢复，什么时候必须把判断权还给人。
+
+所以，与其把未来概括为“人人面向 Agent 写提示词”，更准确的说法是：
+
+> 软件工程正在从主要编码执行过程，转向同时设计人机委托的语义、运行时与验证闭环。
+
+## 本地知识依据
+
+- [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.md)
+- [Harness Engineering（约束壳工程）](harness-engineering.md)
+- [Agent 系统作为 OS 与 Cloud Runtime 问题](agent-runtime-os-cloud-runtime.md)
+- [Thin Harness, Fat Skills](thin-harness-fat-skills.md)
+- [Agent 时代的人机交互新命题](agent时代的人机交互新命题.md)
+- [Context Engine：上下文编排层](../context-memory-knowledge-system/context-engine.md)
+- [长期 file-based context engine 设计](../context-memory-knowledge-system/file-based-context-engine-design.md)
+
+## 外部补充证据
+
+外部资料用于核对 2025-2026 年产品和工程实践是否沿上述方向收敛，本页的长期判断仍以本地框架为主。
+
+- Anthropic, [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), 2025-09-29
+- Anthropic, [Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps), 2026-03-24
+- Anthropic, [Scaling Managed Agents: Decoupling the brain from the hands](https://www.anthropic.com/engineering/managed-agents), 2026-04-08
+- OpenAI, [The next evolution of the Agents SDK](https://openai.com/index/the-next-evolution-of-the-agents-sdk/), 2026-04-15
+- OpenAI, [Introducing the Stateful Runtime Environment for Agents in Amazon Bedrock](https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock/), 2026-02-27
+- OpenAI, [Model guidance](https://developers.openai.com/api/docs/guides/latest-model), accessed 2026-07-22
+- OpenAI, [How evals drive the next chapter in AI for businesses](https://openai.com/index/evals-drive-next-chapter-of-ai/), 2025-11-19

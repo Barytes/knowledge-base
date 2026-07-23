@@ -2631,3 +2631,54 @@ MVP 收缩为 `Live Memo`：一个持续演化的共享文档、始终可用的�
 **更新页面**
 - `wiki/topics/ai-product-product-definition/文字全双工Agent的最小MVP.md`
 - `contexts/memory/OBSERVATIONS.md`
+## [2026-07-22] query | 汇总日历 + Agent 新项目背景包
+
+根据用户希望把完整产品上下文移交给新项目 Codex 的需求，新增一份可直接复用的背景包。内容整合了想法从后台自动化 Agent 到 Agent 隐藏式工作平台、会议场景、入口比较、知识工作结构、日历与待办的委托协议、PRD、原型驱动验证、风险边界和未决问题，并单独列出新项目 Codex 不应重复的错误理解与协作要求。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/日历Agent产品背景包.md`
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/日历作为Agent的自然委托协议.md`
+
+## [2026-07-22] query | 分析提示词、上下文与会话管理的长期演化
+
+结合本地 Agent Runtime、Harness、Context Engine 与人机交互材料，并用 Anthropic、OpenAI 2025-2026 年官方工程资料核对产业信号，新增 Agent 编程长期分工分析。核心判断是：模型特定的提示词技巧和手工上下文操作会持续被模型与 runtime 吞掉，但意图规格、领域上下文、权限边界、持久状态、结果验证和责任归属不会消失。长期变化不是所有工程师都成为 Prompt Engineer，而是软件工程从编码执行过程，扩展为设计人机委托的语义、运行时与验证闭环。
+
+**新增页面**
+- `wiki/topics/agent-harness-runtime/提示词会消失吗-Agent编程的长期分工.md`
+
+## [2026-07-22] query | 判断低 Prompt Agent 企业的长期切入层
+
+在提示词与 Agent 编程长期分工分析上补充创业位置判断。结论是：产品应从一个高价值、重复、可验收的垂直业务事项进入，长期沉淀在“组织委托编译与控制层”，把自然 work item 编译成包含目标、上下文、权限、工具、验收与接管条件的可执行任务包。通用 runtime 与模型应保持可替换；日历等工作面负责自然委托入口，task contract、context compiler、eval 和业务反馈资产才是可跨模型周期积累的核心。
+
+**更新页面**
+- `wiki/topics/agent-harness-runtime/提示词会消失吗-Agent编程的长期分工.md`
+
+## [2026-07-22] query | 统一日历与会议作为长期后台 Agent 的双入口
+
+根据用户进一步明确的产品假设，更新日历 + Agent 背景包。核心校准是：日历和会议不是两个并列产品；日历提供未来承诺、deadline 与提前工作窗口并创建长期 `Work Item`，会议转录提供高密度事实、方向修正、决定和承诺，后台 Agent 在两次人类活动之间持续推进。当前更强的首个切口是高价值周期会议的完整生命周期。长期自主 runtime 是必要能力核心，而真正可积累的语义资产是由真实 episode、用户采纳与最终结果逐步晋升形成的 `Delegation Method Library`，不能从转录直接生成稳定方法。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/日历Agent产品背景包.md`
+
+## [2026-07-22] query | 判断日历与会议 Agent 在 AI 产业链中的长期位置
+
+结合本地 AI 产业分层、Harness 演进与委托编译层判断，并用 OpenAI、Microsoft、Zoom、Google 的 2026 年官方产品资料核对当前边界，进一步收缩产品定位。模型正在吞掉模型特定提示技巧，通用 Harness 正在吸收 memory、sandbox 与长任务恢复，办公平台也开始同时占据工作上下文、权限、长期 workspace 和会议到成果的闭环。因此，“少写 prompt”、长期后台运行和通用委托编译都不足以单独支撑一家独立公司。更稳的位置是从一个有预算、可验收的业务职能纵向切入，拥有长期 `Work Item` 及承诺、授权、证据、成果和结果事件账本，逐步成为该类工作的 `Delegation System of Record`。委托方法库先作为垂直产品从真实结果中形成的内部资产，再考虑平台化。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/日历Agent产品背景包.md`
+
+## [2026-07-22] query | 校准产品对长程 Agent 能力的押注
+
+在日历与会议 Agent 的产业链定位中补充一项关键澄清：产品确实押注长程 Agent 能力持续成熟，但不会自动获益。若产品主要拥有 session 拼接、prompt 修补和恢复等当代模型补偿，底层升级会消灭差异化；若产品拥有长期 `Work Item`、委托契约、授权、评测和业务反馈，Agent 变强会扩大可覆盖事项与自主推进比例，并降低监督和错误成本。长程 Agent 也不等于一个模型进程连续运行数天，真正长期存在的应是委托状态和责任链，底层可以由多次短 session、不同模型与不同 Harness 接力执行。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/日历Agent产品背景包.md`
+
+## [2026-07-22] query | 区分 Work Item、事件账本、Memory、Context 与 Skill
+
+进一步校准日历与会议 Agent 的长期核心。长期 `Work Item` 与事件账本是长程系统中必要的事实角色，但不是天然护城河，也不一定需要由独立产品物理存储。更大的 context 或 memory 平台可以包含它；只要仍保存原始事件、来源、版本、权限、授权、副作用并支持 replay，就只是把事件账本实现进了平台。`Skill` 是可复用的工作方法，`Work Item` 是具体任务实例，事件账本保存实际发生过什么，Memory 是从事件中提炼的派生知识，Context 是当前模型调用的工作视图。模型可以内化通用方法，却不能可靠替代快速变化、需审计和权限治理的组织事实。真正可积累的核心应是 canonical delegation state、带结果标签的 episodes、Skill/Eval 演化与工作流嵌入形成的闭环，而不是账本本身。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/日历Agent产品背景包.md`

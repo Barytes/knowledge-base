@@ -33,6 +33,7 @@
 - [The Founder's Playbook：AI-native startup 的阶段纪律](the-founders-playbook-ai-native-startup.md): **标签：** AI-native startup，founder，Pre-PMF，MVP，Launch，Scale
 - [个人 AI 工作流：从问答到系统化委托](个人AI工作流从问答到系统化委托.md): 如果现在大部分 AI 使用还停在问答工具，真正要升级的不是“问得更会”，而是把 AI 放进稳定工作流里。
 - [文字全双工 Agent 的最小 MVP](文字全双工Agent的最小MVP.md): 如果系统只是允许用户在 Agent 运行中加入新指令、取消当前片段并继续，这主要是 mid-flight steering。它可以是全双工系统的一部分，但本身不足以构成新的全双工产品体验。
+- [日历 + Agent 产品背景包](日历Agent产品背景包.md): > 用途：为新项目中的 Codex 提供完整产品背景。本文保留想法的演进、核心信念、当前产品假设、PRD、关键体验、边界、验证方式和未决问题。不要把其中仍待验证的假设误写成已经确认的用户需求。
 - [日历 + Agent：从时间管理工具到未来工作的委托协议](日历作为Agent的自然委托协议.md): 日历与 Agent 结合的核心，不是让 AI 帮用户更聪明地排时间，也不是在日历旁边增加一个聊天框。真正值得探索的变化是：
 - [深哥 AI 审计原始设想与任务结果保证推演](深哥AI审计原始设想与任务结果保证推演.md): 这里存在两个必须分开的产品定义。深哥的原始 Idea 始终是“员工怎样使用 AI”的企业使用分析；“一个 Agent 任务怎样走向或偏离可验收结果”是用户与 GPT 在批评原方案时推演出的另一套产品定义，不属于深哥已经提出的延伸。
 - [深哥 AI 情报看板：Superlinear 项目区竞品补充](深哥AI情报看板-Superlinear竞品补充.md): 这页补充的是 Superlinear Academy / Share Your Projects 里的相似项目，用来完善深哥 AI 情报看板的 competitor landscape。
