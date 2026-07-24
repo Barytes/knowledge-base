@@ -622,6 +622,7 @@ CRM / 工单 / 文档 / 财务等 system of record   执行与结果写回
 
 ## 相关页面
 
+- [持续委派中间层：日历与 Agent 之间缺失的责任层](日历与Agent之间的持续委派中间层.md)
 - [日历 + Agent：从时间管理工具到未来工作的委托协议](日历作为Agent的自然委托协议.md)
 - [Agent 隐藏式工作平台：从自动化工具转向人的默认工作面](../agent-harness-runtime/从工作痕迹到可维护Agent.md)
 - [AI Architect 的 Context Intelligence 镜头](ai-architect-context-intelligence.md)

@@ -166,6 +166,7 @@ Agent 日历可能变成一种新的时间操作面：用户安排的不是自�
 
 ## 相关页面
 
+- [持续委派中间层：日历与 Agent 之间缺失的责任层](日历与Agent之间的持续委派中间层.md)
 - [日历 + Agent 产品背景包](日历Agent产品背景包.md)
 - [Agent 隐藏式工作平台：从自动化工具转向人的默认工作面](../agent-harness-runtime/从工作痕迹到可维护Agent.md)
 - [AI Architect 的 Context Intelligence 镜头](ai-architect-context-intelligence.md)

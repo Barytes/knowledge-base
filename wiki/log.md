@@ -2682,3 +2682,13 @@ MVP 收缩为 `Live Memo`：一个持续演化的共享文档、始终可用的�
 
 **更新页面**
 - `wiki/topics/ai-product-product-definition/日历Agent产品背景包.md`
+## [2026-07-23] query | 理解日历与 Agent 之间的持续委派中间层
+
+根据用户提供的 ChatGPT 分享内容，新增持续委派中间层分析页。核心澄清是：中间层不是日历触发器、普通连接器或单纯 Context Engine，而是负责把未来承诺转化为长期任务对象，并持续承担时间、状态、上下文保管、Agent 调度、权限和完成判断的责任层。页面同时分析了它对“会自己生长的日历”的修正、与 Agent 隐藏式愿景的一致性，以及可能重新制造 AI 管理负担和平台先行的风险。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/日历与Agent之间的持续委派中间层.md`
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/日历Agent产品背景包.md`
+- `wiki/topics/ai-product-product-definition/日历作为Agent的自然委托协议.md`
