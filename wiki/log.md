@@ -2692,3 +2692,10 @@ MVP 收缩为 `Live Memo`：一个持续演化的共享文档、始终可用的�
 **更新页面**
 - `wiki/topics/ai-product-product-definition/日历Agent产品背景包.md`
 - `wiki/topics/ai-product-product-definition/日历作为Agent的自然委托协议.md`
+
+## [2026-07-26] query | 补充计划与 AI 执行轨迹的校准闭环
+
+根据用户提出“AI 办公能够统计每项工作的执行时间，并反哺计划实施”的判断，更新日历 + Agent 背景包。新增假设是：日历提供事前承诺，跨会话和工具的 `Work Item` 轨迹提供事后事实，系统可根据计划与实际偏差逐步校准同类任务的时间估计、启动时点和 Agenda。页面同时明确机器执行、人工判断、等待阻塞和自然流逝不能混成单一工时，轨迹不完整时必须保留置信度和用户纠正，也不能把可见活动时长误写成绩效。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/日历Agent产品背景包.md`
