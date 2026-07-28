@@ -2699,3 +2699,24 @@ MVP 收缩为 `Live Memo`：一个持续演化的共享文档、始终可用的�
 
 **更新页面**
 - `wiki/topics/ai-product-product-definition/日历Agent产品背景包.md`
+
+## [2026-07-27] query | 明确面向多 Agent 的公共时间协调模块
+
+根据用户提出“做一个时间模块，可以接各个 Agent，并面向大家使用”的方向，补充持续委派中间层的公共化边界。时间可以作为跨 Agent 的共同坐标，但模块必须同时拥有长期 `Work Item`、状态、依赖、人工介入窗口、权限、完成条件、执行事件和结果反馈，因而更准确的技术定位是 `temporal delegation layer`。架构采用稳定 core 加 Agent adapters，用户前台仍然面对工作与成果，而不是管理 Agent。推进顺序应先用一个日历、一类周期任务和两种执行器证明端到端闭环，再从真实使用中稳定 adapter 与开放协议，避免平台两侧冷启动。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/日历与Agent之间的持续委派中间层.md`
+
+## [2026-07-27] query | 明确公共时间协调产品的混合形态
+
+根据用户追问“是软件还是 Web 服务”，进一步明确第一版产品形态。用户可见部分是轻量 `Web Agenda`，负责呈现承诺、准备度、阻塞、成果和待判断事项；持续运行的 `Coordination Service` 负责长期 `Work Item`、时间线、唤醒、状态、权限、Agent 接力和计划估计；云端 Agent 通过 adapter 接入，本地 Codex、IDE 和文件则通过设备侧 `Local Connector` 接入。该产品因此不是纯网页或纯桌面软件，而是“Web 工作面 + 后台协调服务 + 按需本地 Connector”的混合架构。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/日历与Agent之间的持续委派中间层.md`
+
+## [2026-07-27] query | 区分时间委派核心与具体部署拓扑
+
+根据用户追问“后台任务服务为什么一定是核心”，修正上一轮过早绑定云端混合架构的表述。真正稳定的核心是可恢复的长期 `Work Item`、权威状态、未来唤醒、权限、完成条件和结果反馈，不是某个独立后台进程。页面补充本地 daemon、云端 SaaS、本地优先混合架构、嵌入式 SDK 和自托管服务的部署比较，并区分简单数据库加 worker、事件状态机、durable workflow、actor 与 serverless 函数等运行时实现。当前更小的建议是先用本地常驻应用、SQLite、timer worker、日历 adapter 和一个 Agent adapter 验证闭环，再由跨设备、关机后执行、团队权限等真实约束推动云化。
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/日历与Agent之间的持续委派中间层.md`
