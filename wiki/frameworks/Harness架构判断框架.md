@@ -76,10 +76,19 @@
 
 厚壳的好处是默认能力更强。薄壳的好处是更透明、更容易理解系统到底做了什么。
 
+这里还需要区分三种经常被混在一起的“可见”：
+
+- 技术可访问：文件、CLI 或 API 允许用户找到内部状态
+- 交互可理解：系统会在自然工作流里说明刚刚改变了什么、为什么改变
+- 行为可治理：用户可以查看 diff、确认作用域、批准或拒绝、回滚，并追溯这项改变之后影响了哪些运行
+
+一个 skill 存在本地 `SKILL.md`，只能证明它技术上可访问，不能证明用户在产品交互中真正看得见。易用性和可见性也不是必然二选一。更稳的设计是渐进式可理解性：日常执行保持低摩擦，用户可随时下钻；一旦系统要修改 memory、skill、权限或其他会改变未来行为的控制资产，就必须主动暴露变更摘要、证据、作用域和恢复入口。
+
 主要依据：
 - [Claude Code：较厚的 agentic coding harness](../topics/agent-harness-runtime/claude-code-harness.md)
 - [Pi coding agent：一种极简且可观察的 coding harness](../topics/agent-harness-runtime/pi-coding-agent-harness.md)
 - [Claude Code、Codex 与 pi 的 harness 对比](../topics/agent-harness-runtime/coding-agent-harness-comparison.md)
+- [Agent 时代的人机交互新命题](../topics/agent-harness-runtime/agent时代的人机交互新命题.md)
 
 ### 5. subagent 的本质常常是上下文隔离，不是拟人分工
 
@@ -121,6 +130,7 @@ Claude Code Dynamic Workflows 补了另一种形态：subagent 也可以成为�
 - 模型升级 vs 壳层补偿
 - harness 策略 vs runtime interface
 - 厚壳默认能力 vs 薄壳可观察性
+- 技术可访问 vs 交互可理解 vs 行为可治理
 - latent 判断 vs deterministic 执行
 - 内建 orchestration vs 外置编排
 - subagent 角色化 vs 上下文隔离

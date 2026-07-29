@@ -11,7 +11,7 @@
 - `Codex` 更像较克制的 coding harness：以 session、工具调用、patch、权限、trace/replay 和项目上下文文件为核心，长期记忆主要依赖外部文件和工作区资产。
 - `Claude Code` 更像厚产品化 harness：把 `CLAUDE.md`、auto memory、session persistence、compaction、checkpoints、permissions、subagents、MCP、skills 和 hooks 都纳入默认工作面。
 
-本文对 `Hermes` 的判断主要来自 raw conversation，置信度低于维护页；对 `Codex` 的判断也偏中等，因为本地材料更多来自对照和路线图，而不是完整官方实现说明。
+本文对 `Hermes` 的 context engine 判断仍主要来自 raw conversation；但 skill 的存储、查看与审批边界已经用官方文档补充核对。对 `Codex` 的判断仍偏中等，因为本地材料更多来自对照和路线图，而不是完整官方实现说明。
 
 ## 对比表
 
@@ -32,6 +32,10 @@ Hermes 还强调插件化：`context_engine.py` / `context_compressor.py` 这类
 
 所以 Hermes 的特点是：把 context 管理直接做成一个可替换的调度器，而不是把 memory 当成一个附属数据库。
 
+需要补充一个容易被产品表面遮住的事实：Hermes 生成的 skill 并非不可查看。官方文档把 `~/.hermes/skills/` 定义为 agent-created skills 的 source of truth，并提供 `skills_list()` 与 `skill_view()` 查看完整内容。若开启 `skills.write_approval`，agent 对 skill 的 create、edit、patch、delete 会先进入 `~/.hermes/pending/skills/`，用户可以查看 diff 后批准或拒绝。
+
+因此 Hermes 当前更准确的问题不是“没有可见性”，而是这些能力主要分布在文件、CLI、命令和审批机制中。技术上可以检查，不等于普通用户会在主交互里自然意识到 Agent 学会了什么、为何学到、何时开始生效。
+
 ## OpenClaw
 
 OpenClaw 的主语不是 coding session，而是 personal assistant。它的 context / memory 主要由几个层共同承接。
@@ -45,6 +49,8 @@ OpenClaw 的主语不是 coding session，而是 personal assistant。它的 con
 第四层是 heartbeat 和 `HEARTBEAT.md`。这让 assistant 不只是被动响应，还能周期性维护 checklist 或执行例行 upkeep。
 
 所以 OpenClaw 管 context 的方式不是“一个检索器”，而是把身份、workspace、session、prompt files、heartbeat 和设备 nodes 拼成持续 assistant 的状态系统。它的张力是：产品叙事说 assistant 是本体，但实现里 Gateway 仍然是最强中心。
+
+OpenClaw 的实验性 Skill Workshop 已经进一步处理“从工作过程里学习”的治理问题：`/learn` 可以把当前对话或指定来源蒸馏成 skill proposal，但 proposal 与 active `SKILL.md` 分开，只有 inspect、apply 后才会成为生效的 workspace skill。它还保存目标、证据、hash、scanner state 与 rollback metadata。这个设计说明，从轨迹提取 skill 的关键交互对象不应只是最终文件，而应是“候选变更 + 证据 + 激活决策”。
 
 ## Codex
 
@@ -94,6 +100,8 @@ Claude Code 的本地资料最完整。它是更厚的 agentic coding harness。
 
 真正的判断点不是谁记得更多，而是谁能把正确上下文在正确时间送进当前任务，并且让写入、压缩、权限、回放和纠错可控。
 
+对于自动学习，还应再加一条：是否能区分 `candidate skill` 与 `active skill`，并让“从哪段轨迹抽出了什么规则、将影响哪些任务、如何撤销”在主交互中可理解。文件可访问只是底线，不是完整的可见性。
+
 ## 来源依据
 
 - [Context Engine：上下文编排层](../context-memory-knowledge-system/context-engine.md)
@@ -103,3 +111,6 @@ Claude Code 的本地资料最完整。它是更厚的 agentic coding harness。
 - [Agent Context Infra 前沿调研（2026-05-25）](../context-memory-knowledge-system/agent-context-infra-2026-05-25.md)
 - [Codex-like agent harness 路线图](../projects-roadmaps/Codex-like-agent-harness路线图.md)
 - [Hermes context engine raw conversation](../../../raw/personal/conversations/context-engine-ai-infra-2026-06-17.md)
+- [Hermes Skills System](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/skills.md)
+- [Hermes Configuration：skill write approval](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md)
+- [OpenClaw Skill Workshop](https://docs.openclaw.ai/tools/skill-workshop)

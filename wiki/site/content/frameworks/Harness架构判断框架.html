@@ -85,11 +85,19 @@
 <li>packages / extensions</li>
 </ul>
 <p>厚壳的好处是默认能力更强。薄壳的好处是更透明、更容易理解系统到底做了什么。</p>
+<p>这里还需要区分三种经常被混在一起的“可见”：</p>
+<ul>
+<li>技术可访问：文件、CLI 或 API 允许用户找到内部状态</li>
+<li>交互可理解：系统会在自然工作流里说明刚刚改变了什么、为什么改变</li>
+<li>行为可治理：用户可以查看 diff、确认作用域、批准或拒绝、回滚，并追溯这项改变之后影响了哪些运行</li>
+</ul>
+<p>一个 skill 存在本地 <code>SKILL.md</code>，只能证明它技术上可访问，不能证明用户在产品交互中真正看得见。易用性和可见性也不是必然二选一。更稳的设计是渐进式可理解性：日常执行保持低摩擦，用户可随时下钻；一旦系统要修改 memory、skill、权限或其他会改变未来行为的控制资产，就必须主动暴露变更摘要、证据、作用域和恢复入口。</p>
 <p>主要依据：</p>
 <ul>
 <li><a href="../topics/agent-harness-runtime/claude-code-harness.html">Claude Code：较厚的 agentic coding harness</a></li>
 <li><a href="../topics/agent-harness-runtime/pi-coding-agent-harness.html">Pi coding agent：一种极简且可观察的 coding harness</a></li>
 <li><a href="../topics/agent-harness-runtime/coding-agent-harness-comparison.html">Claude Code、Codex 与 pi 的 harness 对比</a></li>
+<li><a href="../topics/agent-harness-runtime/agent时代的人机交互新命题.html">Agent 时代的人机交互新命题</a></li>
 </ul>
 <h3>5. subagent 的本质常常是上下文隔离，不是拟人分工</h3>
 <p>在复杂代码库里，subagent 最重要的作用往往不是扮演“前端”“后端”“QA”，而是把探索噪音留在子上下文里，只把压缩后的结论回传给主上下文。</p>
@@ -126,6 +134,7 @@
 <li>模型升级 vs 壳层补偿</li>
 <li>harness 策略 vs runtime interface</li>
 <li>厚壳默认能力 vs 薄壳可观察性</li>
+<li>技术可访问 vs 交互可理解 vs 行为可治理</li>
 <li>latent 判断 vs deterministic 执行</li>
 <li>内建 orchestration vs 外置编排</li>
 <li>subagent 角色化 vs 上下文隔离</li>

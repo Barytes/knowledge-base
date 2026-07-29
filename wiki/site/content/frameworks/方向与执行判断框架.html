@@ -108,6 +108,24 @@
 <ul>
 <li><a href="../topics/learning-judgment-mental-models/science-and-craft-cognitive-model.html">科学与技艺双层认知模型</a></li>
 </ul>
+<h3>7. 不确定工作中的计划不是结果保证，而是探索协议</h3>
+<p>研究、产品探索和复杂工程无法诚实承诺“在两个月内解决未知问题”。如果组织把计划等同于结果保证，计划就会变成事后追责工具，人也会通过不计划来避免制造虚假确定性。</p>
+<p>这类任务仍然可以计划，但计划对象应该换掉。不要承诺尚不可控的最终突破；应明确当前假设、下一次最低成本验证、阶段性证据、复盘时间和继续、转向或停止的条件。</p>
+<p>因此，<code>两个月内解决 XX</code> 可以改写成：第一阶段复现基线并暴露主要失败；到检查点根据证据决定继续哪条路径；周期结束时交付已验证结果、失败边界和下一步判断。计划的作用不是预测成功，而是让探索过程可观察、可沟通、可调整。</p>
+<h3>8. 业务期限不能制造知识确定性</h3>
+<p>导师、老板或投资人可以有真实的一两个月资源期限，但期限只能决定投入多少、何时检查和何时停止，不能保证理论问题被解开、技术路线成立或市场出现付费用户。把业务 deadline 直接翻译成突破 deadline，是把资源约束误写成知识确定性。</p>
+<p>诚实的探索契约应该是：在给定时间和资源内，交付当前最有价值的证据、原型、反证、失败边界和阶段判断。最终结果若尚未出现，仍需说明获得了什么信息，以及这些信息为何支持继续、转向或停止。</p>
+<p>如果组织拒绝接受这种边界，坚持要求不可控结果按期出现，它实际上是在把探索风险单方面转嫁给执行者。此时个人未必能靠解释说服对方；能做的只剩下收窄问题、把概率和风险写明、争取与风险匹配的控制权与上行，或者承认双方需要的不是同一种合作。</p>
+<h3>9. 不要把所有工作都当成同一种不确定性</h3>
+<p>工作至少可以区分为三类。确定性执行的结果和路径大体已知，例如常规配置、明确修改和重复性交付；有界工程的结果已知、实现细节和工期存在不确定，例如功能开发、缺陷修复、迁移和性能优化；发现型工作连答案是否存在、方案是否成立或市场是否需要都未知，例如理论研究、前沿算法、零到一产品和 Pre-PMF 创业。</p>
+<p>典型成熟软件团队的大部分开发更接近前两类，而不是纯发现型工作。Google 的公开工程实践要求把功能拆成一个个可独立评审、带测试、保持系统可运行的小变更；GitLab 的公开产品开发流程把 problem / solution validation 与 build track 分开，进入开发阶段前先把工作收缩成单个 milestone 内可交付的 MVC，并在复杂度上升时继续减小 scope。这些机制没有消除不确定性，但把“是否存在答案”的风险尽量留在验证与技术调查阶段，不让每个开发任务都退化成开放研究。</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://google.github.io/eng-practices/review/developer/small-cls.html">Google Engineering Practices: Small CLs</a></li>
+<li><a href="https://handbook.gitlab.com/handbook/product-development/how-we-work/product-development-flow/">GitLab Product Development Flow</a></li>
+<li><a href="https://handbook.gitlab.com/handbook/engineering/workflow/iteration/">GitLab Engineering Workflow: Iteration</a></li>
+</ul>
+<p>如果一个人的经历长期集中在硕士研究、早期创业、创始人临时探索和零到一产品，他看到的工作样本会严重偏向第三类。这不证明所有工作都如此，也不证明本人天生不能计划；更可能是角色选择持续把他放在高不确定性、低结构化的位置。</p>
 <h2>常见张力</h2>
 <ul>
 <li>先想清楚 vs 先做起来</li>
@@ -116,6 +134,9 @@
 <li>世界模型不足 vs 重复不足</li>
 <li>方向偏航 vs 执行拖延</li>
 <li>抽象讨论 vs 真实实验</li>
+<li>结果承诺 vs 探索协议</li>
+<li>业务期限 vs 知识确定性</li>
+<li>有界工程 vs 发现型工作</li>
 </ul>
 <h2>推荐阅读顺序</h2>
 <p>1. <a href="../topics/learning-judgment-mental-models/science-and-craft-cognitive-model.html">科学与技艺双层认知模型</a></p>

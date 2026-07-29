@@ -28,7 +28,7 @@
 <li><code>Codex</code> 更像较克制的 coding harness：以 session、工具调用、patch、权限、trace/replay 和项目上下文文件为核心，长期记忆主要依赖外部文件和工作区资产。</li>
 <li><code>Claude Code</code> 更像厚产品化 harness：把 <code>CLAUDE.md</code>、auto memory、session persistence、compaction、checkpoints、permissions、subagents、MCP、skills 和 hooks 都纳入默认工作面。</li>
 </ul>
-<p>本文对 <code>Hermes</code> 的判断主要来自 raw conversation，置信度低于维护页；对 <code>Codex</code> 的判断也偏中等，因为本地材料更多来自对照和路线图，而不是完整官方实现说明。</p>
+<p>本文对 <code>Hermes</code> 的 context engine 判断仍主要来自 raw conversation；但 skill 的存储、查看与审批边界已经用官方文档补充核对。对 <code>Codex</code> 的判断仍偏中等，因为本地材料更多来自对照和路线图，而不是完整官方实现说明。</p>
 <h2>对比表</h2>
 <p>| 系统 | 主要 context 抽象 | memory 放在哪里 | 长上下文策略 | 关键取舍 |</p>
 <p>|---|---|---|---|---|</p>
@@ -41,6 +41,8 @@
 <p>它的核心不是保存所有历史，而是在有限窗口内决定当前最该让模型知道什么。长对话接近阈值时，Hermes 会压缩旧历史，保留目标、约束、决策、待办、工具结果、错误路径和当前状态。</p>
 <p>Hermes 还强调插件化：<code>context_engine.py</code> / <code>context_compressor.py</code> 这类接口可以接管 <code>on_session_start</code>、<code>update_from_response</code>、<code>should_compress</code>、<code>compress</code>、<code>on_session_reset</code>、<code>on_session_end</code> 等生命周期点。它同时会考虑 prompt caching，因此倾向让系统提示词、工具定义和稳定上下文少变，把动态内容放在后面。</p>
 <p>所以 Hermes 的特点是：把 context 管理直接做成一个可替换的调度器，而不是把 memory 当成一个附属数据库。</p>
+<p>需要补充一个容易被产品表面遮住的事实：Hermes 生成的 skill 并非不可查看。官方文档把 <code>~/.hermes/skills/</code> 定义为 agent-created skills 的 source of truth，并提供 <code>skills_list()</code> 与 <code>skill_view()</code> 查看完整内容。若开启 <code>skills.write_approval</code>，agent 对 skill 的 create、edit、patch、delete 会先进入 <code>~/.hermes/pending/skills/</code>，用户可以查看 diff 后批准或拒绝。</p>
+<p>因此 Hermes 当前更准确的问题不是“没有可见性”，而是这些能力主要分布在文件、CLI、命令和审批机制中。技术上可以检查，不等于普通用户会在主交互里自然意识到 Agent 学会了什么、为何学到、何时开始生效。</p>
 <h2>OpenClaw</h2>
 <p>OpenClaw 的主语不是 coding session，而是 personal assistant。它的 context / memory 主要由几个层共同承接。</p>
 <p>第一层是 Gateway。Gateway 是 long-lived、always-on 的本地中枢，负责 channels、sessions、tools、events、WebSocket API、nodes 和 control UI。多入口访问不靠每个聊天窗口自己记忆，而是回到同一个 Gateway。</p>
@@ -48,6 +50,7 @@
 <p>第三层是 prompt files，尤其是 <code>SOUL.md</code>、<code>AGENTS.md</code>、<code>TOOLS.md</code>。<code>SOUL.md</code> 被放在人格、声音和 continuity 的核心位置。公开 notes 里保留的关键意思是：每次会话虽然是 fresh，但这些文件是它的 memory，agent 应阅读并更新它们。</p>
 <p>第四层是 heartbeat 和 <code>HEARTBEAT.md</code>。这让 assistant 不只是被动响应，还能周期性维护 checklist 或执行例行 upkeep。</p>
 <p>所以 OpenClaw 管 context 的方式不是“一个检索器”，而是把身份、workspace、session、prompt files、heartbeat 和设备 nodes 拼成持续 assistant 的状态系统。它的张力是：产品叙事说 assistant 是本体，但实现里 Gateway 仍然是最强中心。</p>
+<p>OpenClaw 的实验性 Skill Workshop 已经进一步处理“从工作过程里学习”的治理问题：<code>/learn</code> 可以把当前对话或指定来源蒸馏成 skill proposal，但 proposal 与 active <code>SKILL.md</code> 分开，只有 inspect、apply 后才会成为生效的 workspace skill。它还保存目标、证据、hash、scanner state 与 rollback metadata。这个设计说明，从轨迹提取 skill 的关键交互对象不应只是最终文件，而应是“候选变更 + 证据 + 激活决策”。</p>
 <h2>Codex</h2>
 <p>本地材料对 Codex 的直接证据比 Claude Code 少，所以这里要保守。</p>
 <p>可以确认的是，Codex 更接近 terminal-first coding agent harness。它关心的 context 不是人格连续性，而是一次开发任务能否在真实代码库里可恢复、可审计、可验证地推进。</p>
@@ -84,6 +87,7 @@
 <li>Claude Code 更像 auto memory + <code>CLAUDE.md</code> + session JSONL + subagent isolation。</li>
 </ul>
 <p>真正的判断点不是谁记得更多，而是谁能把正确上下文在正确时间送进当前任务，并且让写入、压缩、权限、回放和纠错可控。</p>
+<p>对于自动学习，还应再加一条：是否能区分 <code>candidate skill</code> 与 <code>active skill</code>，并让“从哪段轨迹抽出了什么规则、将影响哪些任务、如何撤销”在主交互中可理解。文件可访问只是底线，不是完整的可见性。</p>
 <h2>来源依据</h2>
 <ul>
 <li><a href="../context-memory-knowledge-system/context-engine.html">Context Engine：上下文编排层</a></li>
@@ -93,6 +97,9 @@
 <li><a href="../context-memory-knowledge-system/agent-context-infra-2026-05-25.html">Agent Context Infra 前沿调研（2026-05-25）</a></li>
 <li><a href="../projects-roadmaps/Codex-like-agent-harness路线图.html">Codex-like agent harness 路线图</a></li>
 <li><a href="../../../../../raw/personal/conversations/context-engine-ai-infra-2026-06-17.md">Hermes context engine raw conversation</a></li>
+<li><a href="https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/skills.md">Hermes Skills System</a></li>
+<li><a href="https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md">Hermes Configuration：skill write approval</a></li>
+<li><a href="https://docs.openclaw.ai/tools/skill-workshop">OpenClaw Skill Workshop</a></li>
 </ul>
     </article>
 

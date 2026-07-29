@@ -2,6 +2,18 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-07-28] query | 不确定工作中的计划应是探索协议
+
+更新 [方向与执行判断框架](frameworks/方向与执行判断框架.md)，区分“按期保证未知结果”与“规划可控探索过程”。研究、产品探索和复杂工程不能诚实承诺在固定期限内解决未知问题，但可以规划当前假设、下一次验证、阶段证据、复盘时间和继续、转向或停止条件。进一步区分业务期限与知识确定性：期限只能决定投入、检查和停止，不能保证理论突破、技术路线或付费需求按期出现；拒绝这一边界的组织，实际上是在把探索风险单方面转嫁给执行者。结合 Google Engineering Practices 与 GitLab 公开产品开发流程，再把工作分成确定性执行、有界工程和发现型工作：成熟软件团队通常通过小变更、测试、里程碑、scope reduction 和 validation / build 分轨，把日常开发收敛到前两类；硕士研究、早期创业和零到一产品则集中在第三类。同步在 `contexts/memory/OBSERVATIONS.md` 记录低置信个人假设：硕士研究阶段可能让用户把计划体验为虚假承诺和追责工具，因此形成回避；该因果解释仍需后续样本验证。
+
+## [2026-07-28] query | 区分个人市场价值与人的价值
+
+更新 [真本事：从会工作到会赚钱](topics/career-positioning-job-search/真本事-从会工作到会赚钱.md) 与 [自我表达、Specific Knowledge 与市场价值之间的桥梁](topics/career-positioning-job-search/自我表达、Specific%20Knowledge与市场价值之间的桥梁.md)，修正“个人价值由市场需求决定”的概念越界。及时、高质量交付决定的是具体交换关系中的市场价值，不等于人的道德价值、关系价值和存在价值。个人仍需训练可靠交付以维持交换，但也需要保留不以交付换取存在资格的生活区域，避免把组织对角色表现的评价扩张成人格判决。
+
+## [2026-07-28] query | 在终极理由可解构时仍然行动
+
+更新 [人生意义](topics/learning-judgment-mental-models/人生意义.md)，补入宗教之外支持行善、自我照顾与努力的最低理由。核心区分是：世俗伦理未必能提供不可继续追问的终极命令，但“可以被解构”不等于“不足以行动”。痛苦、关系和行动后果对具体生命真实有效；在受挫状态中照顾自己，是在不确定条件下保存未来选择权；努力也可以是对所选价值的忠实，而不必由金钱、寿命或成功回报担保。
+
 ## [2026-07-20] query | 会议 MVP 与通用工作台共享架构
 
 继续更新 [Agent 隐藏式工作平台：从自动化工具转向人的默认工作面](topics/agent-harness-runtime/从工作痕迹到可维护Agent.md)，把会议场景定位为通用工作台的第一个 `InputAdapter + SurfaceRenderer`，而非另一套 core。共用协议收束为 `WorkEvent -> Opportunity -> Run -> Artifact`，长期底座包括 context builder、opportunity detector、action runtime、artifact store、attention / permission policy 与 trace / eval。一天 MVP 只接麦克风转写和一份项目 brief，只执行 search 与 sandbox HTML demo，只输出 evidence card 与 demo preview，不建设会议管理、通用 agent builder 或跨会议 memory。
@@ -2720,3 +2732,12 @@ MVP 收缩为 `Live Memo`：一个持续演化的共享文档、始终可用的�
 
 **更新页面**
 - `wiki/topics/ai-product-product-definition/日历与Agent之间的持续委派中间层.md`
+
+## [2026-07-28] query | 区分轨迹 Skill 提取的易用性、可见性与治理权
+
+根据用户提出 Hermes、OpenClaw 已能从交互过程提取 skill、但普通用户仍感到内部机制不可见的问题，补充 Agent 学习交互判断。结合本地 Harness 与校准界面框架，并用 Hermes 和 OpenClaw 官方文档核对当前边界，明确现有 skill 在技术上可以通过本地文件、查看命令、proposal 与审批机制检查；真正缺口是这些能力尚未自然成为主交互中的学习治理工作面。新增“技术可访问、交互可理解、行为可治理”三区分，并把完整闭环收敛为 `trajectory -> candidate skill -> evidence-linked diff -> scope / activation -> observed impact -> rollback`。
+
+**更新页面**
+- `wiki/frameworks/Harness架构判断框架.md`
+- `wiki/topics/agent-harness-runtime/Hermes-OpenClaw-Codex-Claude-Code-context-memory对比.md`
+- `wiki/topics/agent-harness-runtime/agent时代的人机交互新命题.md`

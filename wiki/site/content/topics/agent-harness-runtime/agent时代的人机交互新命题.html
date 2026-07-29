@@ -98,12 +98,21 @@
 <li>把新的判断再次写回系统</li>
 </ul>
 <p>也就是说，核心界面从操作面板，转向校准面板。</p>
+<h2>四、从交互轨迹提取 Skill：真正矛盾的是无感使用与行为治理</h2>
+<p>从交互轨迹中提取 skill，表面上像是在把重复配置自动化；实际上，它是在把一次工作过程压缩成未来会反复影响 Agent 的行为策略。因此 skill 不是普通的后台缓存，也不只是一次输出。系统一旦自动激活它，就等于替用户修改了未来的委托方式。</p>
+<p>这里确实存在交互张力，但不是简单的“易用性 vs 可见性”。聊天界面擅长连续、低摩擦地完成工作；skill 治理则需要稳定 artifact、证据来源、diff、作用域、版本和回滚。若每次学习都要求用户阅读完整 <code>SKILL.md</code>，人会重新成为审批瓶颈；若系统静默学习并直接生效，用户又无法判断一次异常究竟来自模型、当前 context，还是某条被悄悄写入的旧规则。</p>
+<p>更合理的交互原则是**渐进式可理解性**。系统可以默认只提示一条压缩信息，例如“我从这次任务中提炼出一项可复用方法，准备作用于某类任务”；用户需要时再展开证据、完整内容与 diff。但只要变更会跨任务、跨项目或改变权限与风险边界，就必须显式确认，不能因为追求无感而跳过。</p>
+<p>因此完整对象不应只是 <code>trajectory -&gt; skill</code>，而应是：</p>
+<p><code>trajectory -&gt; candidate skill -&gt; evidence-linked diff -&gt; scope / activation -&gt; observed impact -&gt; rollback</code></p>
+<p>其中最重要的边界，是把 <code>candidate skill</code> 与 <code>active skill</code> 分开。提取可以自动，激活和作用域必须可治理；使用可以无感，变更不能无痕。</p>
+<p>这也重新定义了产品机会。Hermes 与 OpenClaw 已经证明“让 Agent 从过程里创建 skill”可以实现，且公开文档中已经存在本地文件、查看命令、proposal 和审批机制。新的产品价值不应只是再做一个 extractor，而应把这些分散能力整合成第一等的**学习校准工作面**：让用户看见 Agent 学会了什么、依据是什么、会影响哪里，以及使用后到底变好了还是产生了 drift。</p>
 <h2>张力与限制</h2>
 <ul>
 <li>“人的认知在 loop 中”只在判断标准能被足够好地外化时才成立。很多 tacit knowledge 并不容易显性化。</li>
 <li>动态生成 UI 并不自动等于好 UI。如果没有好的 provenance、压缩和异常突出机制，生成式界面只会把噪音包装得更花。</li>
 <li>并不是所有任务都需要复杂可视化。高精度执行任务依然可能更适合 CLI、代码或简单表单。</li>
 <li>这两篇文章更像一组方向性判断，还不是严密验证过的 HCI 理论，但它们对 agent 产品设计很有启发，因为它们抓住了一个真实矛盾：系统吞吐在涨，人类注意力没有涨。</li>
+<li>自动提取出可读的 skill，不等于提取过程已经可解释。系统仍需保留轨迹证据与版本关系，避免把模型生成的合理叙述误当成真实因果。</li>
 </ul>
 <h2>来源依据</h2>
 <ul>
@@ -115,6 +124,8 @@
 <li><a href="被持续委托的工作主体.html">被持续委托的工作主体</a></li>
 <li><a href="clawhouse-多设备-agent-工作台.html">Clawhouse：多设备 Agent 上下文同步</a></li>
 <li><a href="openclaw-openclaw-repo-map.html">openclaw/openclaw 仓库地图</a></li>
+<li><a href="Hermes-OpenClaw-Codex-Claude-Code-context-memory对比.html">Hermes、OpenClaw、Codex、Claude Code 的 memory 与 context 管理对比</a></li>
+<li><a href="../../frameworks/Harness架构判断框架.html">Harness 架构判断框架</a></li>
 </ul>
     </article>
 
