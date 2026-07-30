@@ -11,6 +11,7 @@
 - [Agentic Canvas Workbench：可被 agent 观看的知识画板](Agentic-canvas-workbench.md)
 - [Codex-like agent harness 路线图](Codex-like-agent-harness路线图.md)
 - [Pulse：有呼吸感的项目工作台](Pulse-有呼吸感的项目工作台.md)
+- [当前项目收束（2026-07-30）](当前项目收束-2026-07-30.md)
 
 ## 页面
 
@@ -21,6 +22,7 @@
 - [Agentic Canvas Workbench：可被 agent 观看的知识画板](Agentic-canvas-workbench.md): Agentic Canvas Workbench 是一个面向个人知识工作流的可视化思考工作面。
 - [Codex-like agent harness 路线图](Codex-like-agent-harness路线图.md): 这个想法的核心不是“复制一个 Codex”，而是把 Codex 暴露出来的 agent harness 能力压缩成 my-little-agent-loop 可以实现、可以评测、可以服务 context-core 和 oh-share-it 的内核。
 - [Pulse：有呼吸感的项目工作台](Pulse-有呼吸感的项目工作台.md): > 一个新产品设想，从 clawhouse 的反思中生长出来。
+- [当前项目收束（2026-07-30）](当前项目收束-2026-07-30.md): 2026-07-30，用户补充：已经被 Lev 裁员，原有每月 2 万元现金流结束。此前把 Lev 当作现金流底盘的判断失效。
 
 ## 相关框架
 
