@@ -2757,3 +2757,48 @@ MVP 收缩为 `Live Memo`：一个持续演化的共享文档、始终可用的�
 - `wiki/frameworks/Harness架构判断框架.md`
 - `wiki/topics/agent-harness-runtime/Hermes-OpenClaw-Codex-Claude-Code-context-memory对比.md`
 - `wiki/topics/agent-harness-runtime/agent时代的人机交互新命题.md`
+
+## [2026-07-31] query | 从收藏材料转向研究议程与学习闭环
+
+结合本地的方向/执行分层、阅读与经典、高质量学习场和当前项目收束判断，新增学习闭环页面。核心诊断是：方向探索、世界模型、技艺训练、职业行动和长期基础处在不同时间尺度，却都被压成了“待看材料”。页面用一个 AI 职业与学习的上位研究问题统摄多条学习线，区分方向层的判断更新与执行层的“尝试—按需输入—重做—反馈”，并明确探索和基础学习不必立即产出，但需要留下可继续更新的问题与认识。
+
+**新增页面**
+- `wiki/topics/learning-judgment-mental-models/从收藏到能力的最小学习闭环.md`
+
+**更新页面**
+- `wiki/topics/learning-judgment-mental-models/index.md`
+- `wiki/topics/learning-judgment-mental-models/阅读与经典.md`
+- `contexts/memory/OBSERVATIONS.md`
+
+## [2026-07-31] query | 当前没有判断时先建立问题地图
+
+补充“没有当前判断”的起步分支。判断不是探索的前提；如果还没有答案，可以保留并列候选，如果连问题空间都不清楚，则先选择差异足够大的对照案例，识别比较维度与未知项。第一轮目标是形成地图和暂定解释，而不是为了填写模板编造结论。
+
+**更新页面**
+- `wiki/topics/learning-judgment-mental-models/从收藏到能力的最小学习闭环.md`
+
+## [2026-07-31] query | 独立调研无效时转向有指导的共同学习
+
+用户直接指出“研究完”仍然完全得不到任何东西。修正此前“比较案例会自然形成判断”的假设：独立研究本身要求学习者已经能选择维度、识别机制和压缩差异，不能用它来解决这些能力尚未形成的问题。当前更合适的起点是高质量示范、共同推理、学习者重建或预测，以及即时纠正；成功标准是用户真实看见一个此前看不见的差异，而不是产生调研报告。
+
+**更新页面**
+- `wiki/topics/learning-judgment-mental-models/从收藏到能力的最小学习闭环.md`
+- `contexts/memory/OBSERVATIONS.md`
+
+## [2026-08-01] lint | 同步 notebook 变动并修复已删除来源坏链
+
+执行每日维护与站点刷新后，同步了 `notebook/` 的新增与删除，使网页笔记层数量和页面列表与当前源文件一致；同时修复 `深哥AI审计原始设想与任务结果保证推演` 中指向已删除 `notebook/AI审计项目调研.md` 的坏链，避免 `wiki/site/` 生成不存在的目标。
+
+**更新页面**
+- `wiki/log.md`
+- `wiki/topics/ai-product-product-definition/深哥AI审计原始设想与任务结果保证推演.md`
+- `wiki/site/layers/notebook.html`
+- `wiki/site/search-index.json`
+
+## [2026-07-31] query | 停止把连续拒绝加工成新的学习流程
+
+用户明确拒绝上一轮提出的有指导共同学习。修正此前仍然过度求解的做法：研究无效只能证明研究无效，不能自动推出带学、交互式 AI 或另一套流程。当前只能确认用户强烈希望提升，却对阅读清单、问题卡、案例调研和带领式学习都没有内在牵引；这个矛盾尚未被理解，应允许它保持开放，不再追加方案。
+
+**更新页面**
+- `wiki/topics/learning-judgment-mental-models/从收藏到能力的最小学习闭环.md`
+- `contexts/memory/OBSERVATIONS.md`
