@@ -11,3 +11,4 @@ __pycache__/
 *.pyc
 .obsidian/workspace.json
 life-record/
+tmp/
