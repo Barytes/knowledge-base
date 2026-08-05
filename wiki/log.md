@@ -2789,6 +2789,14 @@ MVP 收缩为 `Live Memo`：一个持续演化的共享文档、始终可用的�
 - `wiki/topics/learning-judgment-mental-models/从收藏到能力的最小学习闭环.md`
 - `contexts/memory/OBSERVATIONS.md`
 
+## [2026-08-05] lint | 清理本地 Finder 杂物并补充忽略规则
+
+执行每日维护时，清理仓库中的本地 `.DS_Store` 杂物，并在 `.gitignore` 中补充递归忽略规则，减少后续同步噪声。本轮未改写 `notebook/`、未触碰 `life-record/`，也未做内容摄取。
+
+**更新页面**
+- `wiki/log.md`
+- `.gitignore`
+
 ## [2026-08-01] lint | 同步 notebook 变动并修复已删除来源坏链
 
 执行每日维护与站点刷新后，同步了 `notebook/` 的新增与删除，使网页笔记层数量和页面列表与当前源文件一致；同时修复 `深哥AI审计原始设想与任务结果保证推演` 中指向已删除 `notebook/AI审计项目调研.md` 的坏链，避免 `wiki/site/` 生成不存在的目标。
