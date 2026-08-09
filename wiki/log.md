@@ -2789,6 +2789,16 @@ MVP 收缩为 `Live Memo`：一个持续演化的共享文档、始终可用的�
 - `wiki/topics/learning-judgment-mental-models/从收藏到能力的最小学习闭环.md`
 - `contexts/memory/OBSERVATIONS.md`
 
+## [2026-08-08] query | 分析 Coding Agent 情绪缓冲与失败恢复插件
+
+根据用户提出“连续 Tab 生成不重复脏话、发送前过滤并转成更有效纠错提示”的想法，新增产品分析页。核心定义从脏话词库或文明过滤器收敛为 `Rage Compiler`：情绪表达留在本地，技术诉求与当前会话的失败证据被编译成不扩大权限的 `repair contract`。页面同时核实当前 Codex `UserPromptSubmit` hook 只能阻止或附加上下文、没有文档化的 prompt 改写和桌面 composer Tab 扩展点；完整体验更适合先用自定义 composer 与 App Server 验证。另将模型对粗鲁语气的混合研究结果、catharsis 假设风险、公共插件目录的一般受众要求和四组回放验证纳入边界。
+
+**新增页面**
+- `wiki/topics/ai-product-product-definition/Coding-Agent情绪缓冲与失败恢复插件分析.md`
+
+**更新页面**
+- `wiki/topics/ai-product-product-definition/index.md`
+
 ## [2026-08-05] lint | 清理本地 Finder 杂物并补充忽略规则
 
 执行每日维护时，清理仓库中的本地 `.DS_Store` 杂物，并在 `.gitignore` 中补充递归忽略规则，减少后续同步噪声。本轮未改写 `notebook/`、未触碰 `life-record/`，也未做内容摄取。
