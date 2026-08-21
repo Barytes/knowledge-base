@@ -4,6 +4,7 @@
 
 ## 推荐阅读顺序
 
+- [12 周目标与计划设定准则](12周目标与计划设定准则.md)
 - [Accountability 与所有权](Accountability与所有权.md)
 - [Ace the Data Science Interview](ace-the-data-science-interview.md)
 - [Go to Yourself 框架](go-to-yourself-框架.md)
@@ -11,11 +12,11 @@
 - [Latticework of Mental Models](Latticework-of-Mental-Models.md)
 - [Lollapalooza Effect](Lollapalooza-Effect.md)
 - [Lollapalooza 心理倾向](Lollapalooza心理倾向.md)
-- [Naval 的 Mental Models](naval-mental-models.md)
 - 其余页面可按下面的完整列表继续浏览。
 
 ## 页面
 
+- [12 周目标与计划设定准则](12周目标与计划设定准则.md): 本页整理自 Brian P. Moran 与 Michael Lennington 的 *The 12 Week Year* Chapter 14 “Develop Your 12 Week Plan”。阅读范围为 Apple Books 本地版本显示的第 55–64 页。
 - [Accountability 与所有权](Accountability与所有权.md): Accountability 是《纳瓦尔宝典》财富框架里的关键节点：以自己的名义承担风险，让市场能够把结果、责任、声誉和上行回报归因到你身上。
 - [Ace the Data Science Interview](ace-the-data-science-interview.md): 数据科学面试准备指南，包含 201 道真实面试题，覆盖概率、统计、机器学习、产品感知、行为面试等核心模块。
 - [Go to Yourself 框架](go-to-yourself-框架.md): 两篇个人随笔，将物理学模型映射到个人成长与商业策略：

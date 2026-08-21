@@ -2,6 +2,18 @@
 
 把这个文件当成追加式活动日志来用。
 
+## [2026-08-19] query | 把行业调研改写为可验收的 12 周目标
+
+更新 [12 周目标与计划设定准则](topics/learning-judgment-mental-models/12周目标与计划设定准则.md)，将“调研当前值得投资的行业，捋清楚逻辑”从开放式活动改写为有边界的职业投入方向验证。新增的应用说明先区分行业、岗位、能力轴和机制层，再以真实工作样本、外部反馈、阶段决策备忘录和重新评估条件作为验收证据；同时明确，如果同一周期还要求在所选方向获得工作，方向决策必须提前成为第 3 或第 4 周的里程碑，不能占满整个 12 周。
+
+## [2026-08-19] ingest | 整理 12 周目标与计划设定准则
+
+根据 Brian P. Moran 与 Michael Lennington 的 *The 12 Week Year* Chapter 14，新增 12 周目标与计划设定准则页面。页面区分长期愿景、12 周目标、12 周计划与每周 tactics，整理目标的愿景一致性、本人拥有、具体可衡量、正向表述、现实拉伸、责任归属、周期内结果和少量聚焦要求，并补充 tactics 的可执行写法、检查清单与常见失败模式。来源层仅保存书目和阅读范围，不复制章节正文。
+
+**新增页面**
+- `raw/external/the-12-week-year-chapter-14-source-note.md`
+- `wiki/topics/learning-judgment-mental-models/12周目标与计划设定准则.md`
+
 ## [2026-08-02] lint | 清理重复站点副本并确认临时目录不入库
 
 清理 `wiki/site/` 下误生成的重复副本 `index 2.html`、`search 2.html`、`search 2.js`、`search-index 2.json` 与 `style 2.css`，避免未跟踪生成物进入同步。同步确认 `tmp/pdfs/comnet-review/` 仍是本地临时研究产物，本轮按仓库边界保留在工作树中但不纳入版本控制。
