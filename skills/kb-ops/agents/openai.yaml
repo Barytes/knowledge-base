@@ -1,4 +1,4 @@
 interface:
   display_name: "KB Ops"
   short_description: "Run ingest, update, and lint workflows."
-  default_prompt: "Use $kb-ops to ingest new material, update affected pages, and lint this knowledge base."
+  default_prompt: "Use $kb-ops."

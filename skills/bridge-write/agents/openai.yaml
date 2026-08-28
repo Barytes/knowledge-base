@@ -1,4 +1,4 @@
 interface:
   display_name: "Bridge Write"
   short_description: "Turn knowledge and self pages into analysis."
-  default_prompt: "Use $bridge-write to combine the knowledge layer and the self layer into an applied analysis, recommendation, or essay, then save durable work into bridges."
+  default_prompt: "Use $bridge-write."

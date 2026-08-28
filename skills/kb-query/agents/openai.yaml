@@ -1,4 +1,4 @@
 interface:
   display_name: "KB Query"
   short_description: "Answer with the local knowledge base as the evidence anchor."
-  default_prompt: "Use $kb-query to answer this question from the local knowledge base, supplementing with clearly labeled web evidence when it materially improves the answer."
+  default_prompt: "Use $kb-query."

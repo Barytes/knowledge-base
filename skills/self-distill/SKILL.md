@@ -1,51 +1,20 @@
 ---
 name: self-distill
-description: Distill personal materials into observations, patterns, and candidate axioms. Use when Codex needs to read journals, conversations, decision notes, or reflective writing from `raw/personal/`, update `wiki/self/`, and preserve the difference between one-off thoughts and stable judgment.
+description: Distill personal evidence into observations, patterns, and candidate axioms without overstating stability.
 ---
 
 # Self Distill
 
-Read `schemas/AGENTS.md` and `schemas/ingest.md` first. Treat personal sources as evidence about the user's behavior and thinking, not as automatic truth about the user.
+## Goal
 
-## Workflow
+Maintain a useful personal judgment model while preserving uncertainty and the difference between a moment and a stable tendency.
 
-1. Read the personal source.
-2. Extract concrete observations before making abstractions.
-3. Compare those observations with existing self pages.
-4. Promote only repeated, stable tendencies into higher-level pages.
-5. Append a `reflection` or `lint` entry to `wiki/log.md`.
+## Contract
 
-This skill may also re-read maintained topic essays as secondary evidence when they expose recurring judgment or expression signals, but raw personal evidence still carries more weight than a polished maintained essay.
+- Treat personal records as evidence about behavior and thinking, not automatic truth about identity.
+- Extract concrete observations before higher-level interpretation and compare them with existing `wiki/self/` pages.
+- Promote only to the evidence level defined in `schemas/ingest.md`; one anecdote or topic essay cannot establish a stable axiom.
+- Keep mood, writing style, world facts, and decision principles distinguishable.
+- Prefer concise updates to existing self pages. For authorized changes, append a reflection log entry and regenerate the site.
 
-## Promotion Ladder
-
-- observation: one signal from one or a few records
-- pattern: a tendency that repeats across time, projects, or settings
-- axiom: a stable decision principle that explains repeated choices
-
-Never create an axiom from a single anecdote unless the user explicitly asks for a speculative draft.
-
-## Capture
-
-Look for:
-
-- what the user repeatedly prioritizes
-- how the user trades off speed, quality, cost, and simplicity
-- what triggers approval, skepticism, or rejection
-- what appears stable versus situational
-- how the user repeatedly frames problems or builds abstractions
-- whether there are recurring writing tendencies such as preferred structure, contrast style, or explanation rhythm
-
-## Guardrails
-
-- Keep facts about the world out of `wiki/self/`.
-- Do not confuse mood with principle.
-- If a piece of writing is really an applied essay about an external topic, save the essay under the relevant `wiki/topics/` directory and only extract self pages when repeated evidence supports them.
-- A single topic essay can support an `observation`, but not a high-confidence `pattern` or `axiom`.
-- Treat writing style as self evidence about expression habits, not as evidence about factual beliefs unless repeated support exists.
-
-## Output
-
-Prefer concise self pages that clearly say whether they are an observation, pattern, or axiom, and what evidence supports that level.
-
-Write maintained self pages in Chinese by default.
+Choose the analytical lens and page structure that best preserve the evidence. Do not impose a personality model unless the user asks for one.

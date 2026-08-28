@@ -1,4 +1,4 @@
 interface:
   display_name: "Self Distill"
   short_description: "Distill personal records into self patterns."
-  default_prompt: "Use $self-distill to read this personal source, extract observations, identify repeated patterns, and only propose axioms when the evidence is stable."
+  default_prompt: "Use $self-distill."

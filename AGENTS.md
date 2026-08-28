@@ -1,55 +1,43 @@
-# Repository AGENTS Guide
+# Repository Agent Guide
 
-This repository is a local knowledge base. For repository-related questions, use the maintained knowledge base as the default evidence anchor. Web search is allowed when it improves freshness, correctness, or completeness.
+This repository is a local knowledge base. This file is the canonical source for repository-wide agent policy. Task schemas and skills add task-specific contracts; they should not repeat these rules.
 
-## Default Behavior
+## Authority And Discretion
 
-- Read `COMMUNICATION.md` for writing and interaction style.
-- For conceptual explanation and product judgment, answer 简明扼要，禁止列举、堆砌词汇和短语。
-- For open-ended collaboration, agent behavior, preference, or judgment questions, also read `wiki/self/agent-collaboration-profile.md`.
-- If the question exposes a new agent failure mode or recurring preference signal, record it first as an observation in `contexts/memory/OBSERVATIONS.md`; promote it to `wiki/self/` only when it becomes stable.
-- Read `wiki/index.md` first.
-- Answer from `wiki/` before reading `raw/`.
-- Use `raw/` only when the maintained wiki is incomplete.
-- Prefer an answer that combines relevant local knowledge with any necessary external evidence. Do not return a purely web-derived answer unless the local knowledge base has no relevant material and external information is necessary to answer well.
-- When web search is used, state what the local knowledge base contributed, identify any local gap, and clearly distinguish external evidence from local material.
+- `MUST` rules protect data, ownership, evidence, or repository correctness.
+- Other guidance is a default, not a required reasoning method or response template.
+- Unless a task contract requires an order, the agent may choose how to investigate, reason, use tools, and present the result.
+- Examples illustrate possible outputs; they are not mandatory templates.
 
-## Repository Layers
+## Protected Material
 
-- `notebook/`: user-owned draft notebook; agents may read it and may include it in git sync and the generated website view, but must not rewrite, move, delete, lint, normalize, reorganize, or convert it into maintained wiki pages
-- `life-record/`: private life records; never stage, commit, push, publish, ingest, index, or include in generated site output
-- `raw/`: source evidence
-- `contexts/`: low-confidence working memory and observation logs for future distillation; not a substitute for maintained `wiki/self/` pages
-- `wiki/topics/`: topic-organized maintained knowledge and applied analysis
-- `wiki/self/`: maintained personal judgment patterns
-- `wiki/frameworks/`: compact judgment frameworks and query routing surfaces
-- `wiki/site/`: generated static HTML browsing view
+- `notebook/` is user-authored draft space. It may be read when relevant and mirrored unchanged to the generated site, but MUST NOT be edited, moved, normalized, linted, reorganized, or ingested into maintained wiki pages.
+- `life-record/` is private local-only material. It MUST NOT be staged, committed, pushed, published, ingested, indexed, or included in generated site output.
+- `raw/` is source evidence. It MUST NOT be rewritten unless the user explicitly requests it.
 
-## Wiki Language Policy
+## Maintained Layers
 
-- All maintained wiki pages under `wiki/` should default to Chinese.
-- This includes `wiki/index.md`, `wiki/log.md`, and new or updated pages in `wiki/topics/`, `wiki/self/`, and `wiki/frameworks/`.
-- Keep file paths, repository names, commands, code identifiers, and unavoidable technical terms in their original form when helpful.
-- Do not create new English-first wiki pages unless the user explicitly asks for bilingual or English output.
+- `wiki/topics/`: world-facing knowledge and concrete applied analysis.
+- `wiki/self/`: recurring user judgment supported by personal evidence.
+- `wiki/frameworks/`: compact reusable judgment frameworks and query routes.
+- `contexts/`: low-confidence observations awaiting possible distillation.
+- `wiki/site/`: generated browsing view; Markdown remains the source of truth.
 
-## Query Rules
+Maintained wiki prose defaults to Chinese. Preserve paths, identifiers, commands, repository names, and useful technical terms in their original form.
 
-- Factual repository questions: use `wiki/topics/`
-- Questions about recurring user preferences or judgment: use `wiki/self/`
-- Reusable judgment frameworks, router pages, and compact entry surfaces: use `wiki/frameworks/`
-- For design, evaluation, comparison, and decision questions, read `wiki/frameworks/router.md` first, then the most relevant framework page, then the relevant `wiki/topics/` pages when needed
-- Advisory questions: write durable applied analysis back to the most relevant topic under `wiki/topics/`
+## Evidence And Query Policy
 
-## Operational Rules
+For repository questions, use relevant maintained wiki material as the default interpretive context. It is an evidence anchor, not an exclusive source.
 
-- Treat `notebook/` as user-owned working space. It may be synced as source files and mirrored into the generated website under a separate notebook navigation entry, but do not rewrite, move, delete, lint, normalize, reorganize, or ingest it into maintained wiki pages.
-- Treat `life-record/` as private local-only material. Never stage, commit, push, publish, ingest, index, or include it in generated site output.
-- For maintenance workflows, use `skills/kb-ops/`.
-- For knowledge-base-anchored question answering, use `skills/kb-query/`.
-- After creating or updating maintained wiki pages, run `./skills/kb-ops/scripts/kb-ingest.sh site` so `wiki/site/` stays in sync automatically.
-- For detailed repository policy, read:
-  - `COMMUNICATION.md`
-  - `schemas/AGENTS.md`
-  - `schemas/ingest.md`
-  - `schemas/query.md`
-  - `schemas/lint.md`
+Web search is allowed whenever it can materially improve freshness, correctness, completeness, verification, or source attribution. When external evidence is used, keep it distinguishable from local material, cite it, and identify any material local gap. If the repository has no relevant material, an externally grounded answer is acceptable.
+
+Use `wiki/topics/` for topic facts, `wiki/self/` for recurring personal judgment, and `wiki/frameworks/router.md` when a reusable decision lens would help. These are routing defaults, not a required reading sequence.
+
+## Change Contract
+
+- Query and review tasks default to read-only. Modify the repository only when the user requests a change or the task is explicitly a maintenance workflow.
+- Prefer updating an existing maintained page over creating a duplicate.
+- Preserve uncertainty and distinguish source fact, inference, synthesis, and user-specific judgment.
+- After changing maintained wiki pages, update relevant navigation or log entries and regenerate `wiki/site/` with `./skills/kb-ops/scripts/kb-ingest.sh site`.
+
+Use `skills/kb-query/` for knowledge-base-anchored questions and `skills/kb-ops/` for maintenance. Task-specific requirements live in `schemas/` and the selected skill.

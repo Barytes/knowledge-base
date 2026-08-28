@@ -56,7 +56,6 @@ def test_kb_ingest_exposes_site_refresh() -> None:
 def test_ingest_docs_require_site_refresh() -> None:
     docs = [
         ROOT / "AGENTS.md",
-        ROOT / "schemas" / "AGENTS.md",
         ROOT / "schemas" / "ingest.md",
         ROOT / "skills" / "kb-ops" / "SKILL.md",
         ROOT / "skills" / "kb-ops" / "scripts" / "README.md",
@@ -64,7 +63,62 @@ def test_ingest_docs_require_site_refresh() -> None:
     for path in docs:
         text = path.read_text(encoding="utf-8")
         assert_contains(text, "wiki/site", str(path.relative_to(ROOT)))
-        assert_contains_any(text, ["自动", "automatic"], str(path.relative_to(ROOT)))
+        assert_contains_any(text, ["自动", "automatic", "regenerat"], str(path.relative_to(ROOT)))
+
+
+def active_prompt_and_control_files() -> list[Path]:
+    files = [
+        ROOT / "AGENTS.md",
+        ROOT / "CLAUDE.md",
+        ROOT / "COMMUNICATION.md",
+        ROOT / "README.md",
+        ROOT / "notebook" / "AGENTS.md",
+        ROOT / "skills" / "README.md",
+        ROOT / "skills" / "repo-map-ingest" / "references" / "output-template.md",
+        ROOT / "skills" / "kb-ops" / "scripts" / "kb-ingest.sh",
+        ROOT / "skills" / "repo-map-ingest" / "scripts" / "github_repo_ingest.py",
+        ROOT / "skills" / "repo-map-ingest" / "scripts" / "repo_map_from_snapshot.py",
+    ]
+    files.extend(sorted((ROOT / "schemas").glob("*.md")))
+    files.extend(sorted((ROOT / "skills").glob("*/SKILL.md")))
+    files.extend(sorted((ROOT / "skills").glob("*/agents/openai.yaml")))
+    return files
+
+
+def test_prompt_policy_has_one_global_source() -> None:
+    if (ROOT / "schemas" / "AGENTS.md").exists():
+        raise AssertionError("AGENTS.md should be the only global repository policy source")
+    if (ROOT / "skills" / "action-coach" / "gemini-gem-prompt.md").exists():
+        raise AssertionError("action-coach should not maintain a duplicate platform prompt")
+
+
+def test_active_prompts_do_not_target_retired_layers() -> None:
+    retired = ["wiki/knowledge", "wiki/bridges"]
+    for path in active_prompt_and_control_files():
+        text = path.read_text(encoding="utf-8")
+        for value in retired:
+            if value in text:
+                raise AssertionError(f"{path.relative_to(ROOT)} targets retired layer {value!r}")
+
+
+def test_local_evidence_policy_allows_web_search() -> None:
+    policy_files = [
+        ROOT / "AGENTS.md",
+        ROOT / "schemas" / "query.md",
+        ROOT / "skills" / "kb-query" / "SKILL.md",
+    ]
+    for path in policy_files:
+        text = path.read_text(encoding="utf-8").lower()
+        assert_contains(text, "web search", str(path.relative_to(ROOT)))
+        assert_contains_any(text, ["allowed", "proactively"], str(path.relative_to(ROOT)))
+
+
+def test_launcher_prompts_only_invoke_their_skill() -> None:
+    for path in sorted((ROOT / "skills").glob("*/agents/openai.yaml")):
+        skill_name = path.parents[1].name
+        text = path.read_text(encoding="utf-8")
+        expected = f'default_prompt: "Use ${skill_name}."'
+        assert_contains(text, expected, str(path.relative_to(ROOT)))
 
 
 def test_topics_config_is_externalized() -> None:
@@ -175,6 +229,10 @@ def main() -> None:
         test_kb_ingest_uses_repo_root,
         test_kb_ingest_exposes_site_refresh,
         test_ingest_docs_require_site_refresh,
+        test_prompt_policy_has_one_global_source,
+        test_active_prompts_do_not_target_retired_layers,
+        test_local_evidence_policy_allows_web_search,
+        test_launcher_prompts_only_invoke_their_skill,
         test_topics_config_is_externalized,
         test_site_search_indexes_all_maintained_pages,
         test_site_exposes_notebook_but_not_life_record,

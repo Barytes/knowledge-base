@@ -73,7 +73,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("snapshot_path", help="Path to a repo snapshot markdown file")
     parser.add_argument(
         "--outdir",
-        default="wiki/knowledge",
+        default="wiki/topics/agent-harness-runtime",
         help="Destination directory for the generated repo map note",
     )
     parser.add_argument(
@@ -445,10 +445,8 @@ def generate_note(snapshot_path: Path, outdir: Path, topic_override: Optional[st
         outfile=outfile,
     )
 
-    # Since wiki pages live under wiki/knowledge/, a plain relative path to raw/external is preferred.
     try:
-        relative_source_link = str(snapshot_path.resolve().relative_to(Path.cwd().resolve()))
-        source_basis_link = f"../../{relative_source_link}"
+        source_basis_link = os.path.relpath(snapshot_path.resolve(), outfile.parent.resolve())
     except Exception:
         source_basis_link = str(snapshot_path)
 
@@ -539,7 +537,9 @@ def generate_note(snapshot_path: Path, outdir: Path, topic_override: Optional[st
     if related_pages:
         lines.extend(f"- [{title}]({path})" for title, path in related_pages)
     else:
-        lines.append("- [代码库作为知识来源](../bridges/codebases-as-knowledge-sources.md)")
+        codebase_page = Path.cwd() / "wiki/topics/agent-harness-runtime/codebases-as-knowledge-sources.md"
+        codebase_link = os.path.relpath(codebase_page, outfile.parent)
+        lines.append(f"- [代码库作为知识来源]({codebase_link})")
 
     outfile.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
     return outfile

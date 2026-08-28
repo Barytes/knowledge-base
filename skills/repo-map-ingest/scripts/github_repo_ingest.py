@@ -24,7 +24,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--wiki-outdir",
-        default="wiki/knowledge",
+        default="wiki/topics/agent-harness-runtime",
         help="Destination for the maintained repo map note",
     )
     parser.add_argument(
@@ -39,7 +39,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--index-path",
-        default="wiki/index.md",
+        default="wiki/topics/agent-harness-runtime/index.md",
         help="Index file to update after generating the repo map",
     )
     parser.add_argument(
@@ -84,19 +84,19 @@ def update_index(index_path: Path, target: github_repo_snapshot.RepoTarget, note
         index_path.write_text("\n".join(updated_lines).rstrip() + "\n", encoding="utf-8")
         return
 
-    knowledge_heading = "## 知识\n" if "## 知识\n" in text else "## Knowledge\n"
-    self_heading = "\n## 自我\n" if "\n## 自我\n" in text else "\n## Self\n"
-    if knowledge_heading not in text or self_heading not in text:
+    pages_heading = "## 页面\n"
+    if pages_heading not in text:
         return
 
-    start = text.index(knowledge_heading) + len(knowledge_heading)
-    end = text.index(self_heading, start)
-    knowledge_block = text[start:end].rstrip("\n")
-    if knowledge_block:
-        knowledge_block = knowledge_block + "\n" + bullet + "\n"
+    start = text.index(pages_heading) + len(pages_heading)
+    next_heading = text.find("\n## ", start)
+    end = len(text) if next_heading == -1 else next_heading
+    pages_block = text[start:end].rstrip("\n")
+    if pages_block:
+        pages_block = pages_block + "\n" + bullet + "\n"
     else:
-        knowledge_block = bullet + "\n"
-    new_text = text[:start] + knowledge_block + text[end:]
+        pages_block = bullet + "\n"
+    new_text = text[:start] + pages_block + text[end:]
     index_path.write_text(new_text.rstrip() + "\n", encoding="utf-8")
 
 

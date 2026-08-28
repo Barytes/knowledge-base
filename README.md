@@ -14,9 +14,8 @@ Core idea:
 - `schemas/` stores the operating rules the agent should follow.
 - `skills/` stores task-specific prompts or workflows, including local workflow skills and imported external skills.
 
-Current operating schemas:
+Repository-wide policy lives in `AGENTS.md`. Task contracts live in:
 
-- `schemas/AGENTS.md`
 - `schemas/ingest.md`
 - `schemas/query.md`
 - `schemas/lint.md`
@@ -48,11 +47,9 @@ Use short requests such as:
 - `Use $kb-ops to ingest everything in inbox/.`
 - `Use $kb-ops to update the Harness Engineering topic and any affected bridge pages.`
 - `Use $kb-ops to run a full-cycle maintenance pass on this repo.`
-- `Use $kb-query to answer from this repository only.`
-
-`$kb-query` should begin by listing the local pages it actually consulted before answering.
+- `Use $kb-query to answer with local knowledge and web research when useful.`
 
 Bare invocation behavior:
 
-- `kb-ops` or `$kb-ops` defaults to full repository maintenance
-- `kb-query` or `$kb-query` defaults to local-only repository question answering
+- `kb-ops` or `$kb-ops` inspects the repository and performs the smallest safe maintenance justified by the current state
+- `kb-query` or `$kb-query` uses local knowledge as an evidence anchor and may search the web when useful

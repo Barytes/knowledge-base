@@ -8,7 +8,6 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. && pwd)"
 INBOX_DIR="$ROOT_DIR/inbox"
 RAW_EXTERNAL_DIR="$ROOT_DIR/raw/external"
 RAW_PERSONAL_DIR="$ROOT_DIR/raw/personal"
-WIKI_KNOWLEDGE_DIR="$ROOT_DIR/wiki/knowledge"
 WIKI_LOG="$ROOT_DIR/wiki/log.md"
 
 refresh_site() {

@@ -1,0 +1,4 @@
+interface:
+  display_name: "无边记 12 Week Year 同步"
+  short_description: "将无边记的目标、愿景、周计划和记分表单向同步到本项目并校验"
+  default_prompt: "使用 $freeform-12wy-sync，将无边记画板中的 12 Week Year 内容按本项目规则同步到本目录。"
