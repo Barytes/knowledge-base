@@ -2847,3 +2847,28 @@ MVP 收缩为 `Live Memo`：一个持续演化的共享文档、始终可用的�
 **更新页面**
 - `wiki/topics/learning-judgment-mental-models/从收藏到能力的最小学习闭环.md`
 - `contexts/memory/OBSERVATIONS.md`
+
+## [2026-08-31] ingest | 整合 lizheng-open-context 版本化来源与主题路由
+
+将 `sunyuzheng/lizheng-open-context` 的 2026-08-30 发布快照按提交 `6ed5fec701095601e1348ac85bac8f11490aacaa` 原样固化到 `raw/external/`。下载包与远端克隆逐文件一致；发布清单校验通过，覆盖 223 篇立正本人社区帖子全文、10 条精选本人评论、169 条 Knowledge Bank 目录（其中 35 篇立正全文）、536 条视频目录（其中 201 份本人主讲字幕），上游 14 项测试通过。
+
+新增来源模型与主题路由、`做点真东西`、`fake work` 三张维护页；重写《真本事》主题页，使原书强表述与 2026-08-29 作者开放 V1 按版本并置，不用本库综合无声降格或覆盖。同步补充旧 Superlinear 课程归档的分工、Barytes `AI 鞭子` 与立正 `fake work` 的作者及权力边界，并更新职业、产品验证、AI 系统、研究、方向与执行框架。
+
+**新增来源**
+- `raw/external/lizheng-open-context-2026-08-30-6ed5fec/`
+
+**新增页面**
+- `wiki/topics/context-memory-knowledge-system/lizheng-open-context来源模型与主题路由.md`
+- `wiki/topics/learning-judgment-mental-models/做点真东西-现实反馈作品与作者责任.md`
+- `wiki/topics/career-positioning-job-search/fake-work-从内部记分牌到真实结果.md`
+
+**更新页面**
+- `wiki/topics/career-positioning-job-search/真本事-从会工作到会赚钱.md`
+- `wiki/topics/ai-product-product-definition/superlinear-academy-course-insights-index.md`
+- `wiki/topics/human-ai-relationship/AI鞭子-accountability与AI-native团队.md`
+- `wiki/frameworks/职业判断框架.md`
+- `wiki/frameworks/产品验证判断框架.md`
+- `wiki/frameworks/AI系统产品判断框架.md`
+- `wiki/frameworks/研究判断框架.md`
+- `wiki/frameworks/方向与执行判断框架.md`
+- `skills/topic-deep-ingest/scripts/topic_coverage_audit.py`（兼容当前 `body` 搜索字段、URL 编码链接，并排除追加式历史日志）

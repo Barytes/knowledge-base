@@ -19,6 +19,22 @@
 
 原文以 JSONL 形式归档在 `raw/external/superlinear-academy-course-insights-2026-06-22/pages.jsonl`。每条记录保留 `category`、`kind`、`href`、`title`、`headings`、`links`、`text` 和 `textLength`，便于后续用 `rg` 或脚本按主题继续深挖。
 
+## 与 lizheng-open-context 的分工
+
+2026-08-30 的 [lizheng-open-context：来源模型与主题路由](../context-memory-knowledge-system/lizheng-open-context来源模型与主题路由.md) 已作为另一份版本化 raw 快照进入本库。它不是对本归档的替换：
+
+| 查询目标 | 默认来源 |
+| --- | --- |
+| 立正本人在何时、何处表达过什么；当前 thesis；需要按明确许可公开复用 | `lizheng-open-context` |
+| AI Builders / AI Architect / Agentic AI 的 lesson 结构 | 本页对应的 2026-06-22 课程归档 |
+| Deep News 的连续产业信号 | 本页对应的 2026-06-22 课程归档 |
+| Knowledge Bank 其他作者的正文与当时页面上下文 | 本归档；继续保留原作者归属，不转成立正观点 |
+| 嘉宾视频与其他作者的发现信息 | 优先使用新快照元数据，再按权利范围回到原链接或本归档 |
+
+两批材料按规范化 URL 精确比较，有 30 条立正社区帖子 URL、162 条 Knowledge Bank URL 重叠；新快照另有 193 条第一方帖子 URL 不在旧归档中。重叠材料默认用新快照确认作者、日期、时间语义和权利字段，用旧归档补课程位置与 2026-06-22 当时的页面上下文。不要把新快照里 `metadata-only` 的其他作者条目因为本归档有正文，就升级成立正第一方内容。
+
+例如，`AI的大鞭子终于抽回我身上` 在新快照中明确属于 Barytes，且只有元数据；本库的 [AI 鞭子：Accountability、AI 理解与 AI-native 团队](../human-ai-relationship/AI鞭子-accountability与AI-native团队.md) 来自旧归档中的 Barytes 正文。它可以与立正的 [fake work：从内部记分牌到真实结果](../career-positioning-job-search/fake-work-从内部记分牌到真实结果.md) 并置分析，但不能互换作者。
+
 ## 这批材料在知识库里的位置
 
 这批材料不应该被理解成单一课程摘要。它更像一组连续更新的 AI builder / architect 训练语料，覆盖三层：
@@ -160,6 +176,7 @@ rg -n "安全|权限|prompt injection|agentjacking" raw/external/superlinear-aca
 - **多篇合并**：至少跨 2-3 篇材料形成稳定主题，再新增维护页。
 - **新闻不逐条入 wiki**：Deep News 适合作为趋势证据池，除非某条已经改变本库的框架判断。
 - **课程页不逐课摘要**：lesson 的价值在于课程地图和方法论结构，单课只在被具体 query 触发时再抽取。
+- **第一方查询先分版本**：涉及立正原话时，保留原书 / 历史帖子与 2026 开放 V1 的真实措辞差异，不用本库综合无声降格或覆盖原表述。
 
 ## 相关页面
 
@@ -172,3 +189,4 @@ rg -n "安全|权限|prompt injection|agentjacking" raw/external/superlinear-aca
 - [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](../agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.md)
 - [Claude Code Dynamic Workflows](../agent-harness-runtime/claude-code-dynamic-workflows.md)
 - [Context Engine：上下文编排层](../context-memory-knowledge-system/context-engine.md)
+- [lizheng-open-context：来源模型与主题路由](../context-memory-knowledge-system/lizheng-open-context来源模型与主题路由.md)

@@ -162,6 +162,19 @@ AI-native 团队更接近一种 accountability-first 的组织形态。它不只
 
 如果这些问题都没有被回答，只说“用 ChatGPT”，那就是典型 AI 鞭子：AI 被用来降低提出需求的心理成本，而不是提高研究工作的清晰度。下级在这里不是单纯“使用 AI 的人”，而是被放到了一个新的中间位置：既要承接上级的模糊要求，又要指使 AI 完成执行，还要替 AI 的不稳定输出承担最终责任。
 
+## 与 fake work 的互补边界
+
+[fake work：从内部记分牌到真实结果](../career-positioning-job-search/fake-work-从内部记分牌到真实结果.md) 追问一项动作能否沿着产出继续连接到真实变化，并提出“先删除，再自动化”。本页补充的是权力条件：看见一项工作没有价值，不等于执行者拥有目标定义权、价值判断权和停止权。
+
+两页不能互相替代：
+
+- `fake work` 诊断动作、代理信号与结果链；
+- AI 鞭子诊断谁能定义结果、谁能停止、谁承担 AI 带来的澄清与验证成本；
+- 如果执行者没有相应权力，不能把“你为什么不删除 fake work”变成新一轮个人归责；
+- 如果组织给了名义 autonomy，却只奖励速度和产量，fake work 与 AI 鞭子仍可能同时出现。
+
+这段关系是本知识库对 Yuzheng Sun / 立正的 `fake work` 文章与 Barytes 本文的跨来源综合，不是任一作者的逐字表述，也不降低两篇原文各自的命题强度。
+
 ## 判断清单
 
 判断一个 AI 工作场景是否正在滑向鞭子，可以问六个问题：
@@ -180,6 +193,7 @@ AI-native 团队更接近一种 accountability-first 的组织形态。它不只
 - [AI 系统产品判断框架](../../frameworks/AI系统产品判断框架.md)
 - [Harness 架构判断框架](../../frameworks/Harness架构判断框架.md)
 - [产品验证判断框架](../../frameworks/产品验证判断框架.md)
+- [fake work：从内部记分牌到真实结果](../career-positioning-job-search/fake-work-从内部记分牌到真实结果.md)
 - [Harness Engineering（约束壳工程）](../agent-harness-runtime/harness-engineering.md)
 - [The Founder's Playbook：AI-native startup 的阶段纪律](../ai-product-product-definition/the-founders-playbook-ai-native-startup.md)
 - [Go to Yourself 框架](../learning-judgment-mental-models/go-to-yourself-框架.md)

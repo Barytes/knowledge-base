@@ -4,13 +4,14 @@
 
 ## 先看什么
 
-遇到 AI 系统问题时，优先先问五件事：
+遇到 AI 系统问题时，优先先问六件事：
 
 1. 这是 AI-assisted building，还是 AI runtime
 2. 任务主要需要共识，还是非共识判断
 3. 当前最难的是模型、runtime、还是契约
 4. 这个场景真需要 agent，还是 workflow / RAG 已经够用
 5. 人真正该保留的判断权在哪里
+6. 被自动化的工作最终改变什么；它是否应该先被删除
 
 ## 核心判断
 
@@ -66,6 +67,16 @@ AI 最适合接手的是 transformation、整理、草拟、重复执行；最�
 - [GenAI 的共识边界与任务委托框架](../topics/ai-product-product-definition/GenAI%20的共识边界与任务委托框架.md)
 - [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](../topics/agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.md)
 
+### 6. 先删除，再自动化
+
+`Public Axioms V1` 和立正 2026-08-28 的 `fake work` 文章明确使用“先删除，再自动化”：AI 会先把现有目标执行得更便宜，不会自动证明目标有价值。对不能连接下游变化、且低风险可恢复的周期工作，应先写下停做后的预期后果并做停做实验，再决定是否自动化。
+
+这一原则不授权执行者越过职责、安全或合规边界自行停工。若执行者没有目标定义权、价值判断权和停止权，问题还涉及组织 accountability，而不只是系统设计。
+
+主要依据：
+- [fake work：从内部记分牌到真实结果](../topics/career-positioning-job-search/fake-work-从内部记分牌到真实结果.md)
+- [AI 鞭子：Accountability、AI 理解与 AI-native 团队](../topics/human-ai-relationship/AI鞭子-accountability与AI-native团队.md)
+
 ## 常见张力
 
 - AI-assisted building vs AI runtime
@@ -73,13 +84,16 @@ AI 最适合接手的是 transformation、整理、草拟、重复执行；最�
 - 过程确定性 vs 结果确定性
 - 共识任务 vs 非共识任务
 - 自动执行 vs 人工接管
+- 删除无效工作 vs 自动化既有流程
+- 结果责任 vs 实际停止权
 
 ## 推荐阅读顺序
 
 1. [AI 产品六层与 L3-L6 能力分层](../topics/ai-product-product-definition/AI%20产品六层与%20L3-L6%20能力分层.md)
-2. [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](../topics/agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.md)
-3. [GenAI 的共识边界与任务委托框架](../topics/ai-product-product-definition/GenAI%20的共识边界与任务委托框架.md)
-4. 如涉及控制壳，再读 [Harness Engineering（约束壳工程）](../topics/agent-harness-runtime/harness-engineering.md)
+2. [fake work：从内部记分牌到真实结果](../topics/career-positioning-job-search/fake-work-从内部记分牌到真实结果.md)
+3. [AI 时代的结果确定性：Agentic Runtime 与 Evaluation-First](../topics/agent-harness-runtime/AI%20时代的结果确定性%20Agentic%20Runtime%20与%20Evaluation-First.md)
+4. [GenAI 的共识边界与任务委托框架](../topics/ai-product-product-definition/GenAI%20的共识边界与任务委托框架.md)
+5. 如涉及控制壳，再读 [Harness Engineering（约束壳工程）](../topics/agent-harness-runtime/harness-engineering.md)
 
 ## 什么时候进入 bridge
 

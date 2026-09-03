@@ -18,7 +18,7 @@
 
 围绕 context、memory、本地知识库、信息复利、AI 知识系统与 context infra 的页面。
 
-- 页面数：15
+- 页面数：16
 
 ## [AI 产品 / 产品定义 / 验证](ai-product-product-definition/index.md)
 
@@ -36,7 +36,7 @@
 
 围绕 AI 时代职业路径、Agent Systems Engineer 定位、简历叙事、JD 信号与求职策略的页面。
 
-- 页面数：25
+- 页面数：26
 
 ## [AI 产业 / 投资 / 创业位置](ai-industry-investment/index.md)
 
@@ -48,7 +48,7 @@
 
 围绕 taste、科学与技艺、数学基础、Naval、内心游戏、人际理解与长期适配的页面。
 
-- 页面数：115
+- 页面数：116
 
 ## [项目 / 路线图 / 执行计划](projects-roadmaps/index.md)
 

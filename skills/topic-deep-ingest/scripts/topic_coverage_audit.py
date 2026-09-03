@@ -7,6 +7,7 @@ import argparse
 import json
 import re
 from pathlib import Path
+from urllib.parse import unquote
 
 
 LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+\.md)(#[^)]+)?\)")
@@ -27,7 +28,11 @@ def read_terms(path: Path) -> list[str]:
 
 
 def load_markdown(root: Path) -> list[tuple[Path, str]]:
-    return [(path, path.read_text(encoding="utf-8")) for path in sorted(root.rglob("*.md"))]
+    return [
+        (path, path.read_text(encoding="utf-8"))
+        for path in sorted(root.rglob("*.md"))
+        if path != root / "log.md"
+    ]
 
 
 def check_markdown_terms(
@@ -53,6 +58,9 @@ def check_search_terms(search_index: Path, terms: list[str]) -> dict[str, list[s
                 [
                     str(entry.get("title", "")),
                     str(entry.get("text", "")),
+                    str(entry.get("body", "")),
+                    str(entry.get("summary", "")),
+                    str(entry.get("path", "")),
                     str(entry.get("url", "")),
                 ]
             )
@@ -67,7 +75,7 @@ def check_links(paths: list[Path]) -> list[tuple[str, str]]:
     for path in paths:
         text = strip_fenced_code(path.read_text(encoding="utf-8"))
         for match in LINK_RE.finditer(text):
-            target = match.group(1).split("#", 1)[0]
+            target = unquote(match.group(1).split("#", 1)[0])
             if "://" in target or target.startswith("/"):
                 continue
             resolved = (path.parent / target).resolve()
